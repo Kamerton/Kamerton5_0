@@ -96,7 +96,6 @@ void calculateCRC_Out();
 void calculateCRC_In();
 void i2c_eeprom_write_byte( int deviceaddress, unsigned int eeaddress, byte data );
 byte i2c_eeprom_read_byte( int deviceaddress, unsigned int eeaddress );
-void reg_Kamerton();
 void UpdateRegs();
 void Reg_count_clear();
 void set_clock();

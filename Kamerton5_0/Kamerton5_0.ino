@@ -81,9 +81,9 @@ unsigned int  voltage10 ;
 
 
 //**************************************************************************
-int analog_tok            = 0;       //
-int analog_12V            = 1;       //
-int analog_tok_x10        = 2;       //
+int analog_tok            = 0;       //   Измерение тока питания платы Камертон
+int analog_12V            = 1;       //   Измерение напряжения питания 12в. платы Камертон
+int analog_tok_x10        = 2;       //   Измерение тока питания платы Камертон х 10
 int analog_mag_radio      = 3;       //
 int analog_mag_phone      = 4;       //
 int analog_gg_radio1      = 5;       //
@@ -94,9 +94,9 @@ int analog_LineR          = 9;       //
 int analog_FrontL        = 10;       //
 int analog_FrontR        = 11;       //
 int analog_W             = 12;       //
-int analog_13            = 13;       //
-int analog_14            = 14;       //
-int analog_3_6           = 15;       //
+int analog_13            = 13;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
+int analog_14            = 14;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
+int analog_3_6           = 15;       // Измерение напряжения питания 3,6в. на разъемах платы Камертон
 
 //************************************************************************************************
 
@@ -114,9 +114,6 @@ uint8_t month  = 1;
 uint16_t year  = 15 ;
 
 //------------------------------------------------------------------------------------------------------------
-
-
-MCP23017 mcp_Klava;                                 // Назначение портов расширения MCP23017  2 A - in,  B - Out
 MCP23017 mcp_Out1;                                  // Назначение портов расширения MCP23017  4 A - Out, B - Out
 MCP23017 mcp_Out2;                                  // Назначение портов расширения MCP23017  6 A - Out, B - Out
 MCP23017 mcp_Analog;                                // Назначение портов расширения MCP23017  5 A - Out, B - In
@@ -906,27 +903,7 @@ byte i2c_eeprom_read_byte( int deviceaddress, unsigned int eeaddress ) {
 	return rdata;
 }
 
-void reg_Kamerton()                                       // Подпрограмма преобразования и переноса данных из  regs_out[3] в регистры Samkoon
-{
-	/*
-	 regBank.set(40001,regs_out[0]);   
-	 regBank.set(40002,regs_out[1]);   
-	 regBank.set(40003,regs_out[2]);   
-	 regBank.set(40004,regs_in[0]);   
-	 regBank.set(40005,regs_in[1]); 
-	 regBank.set(40006,regs_in[2]); 
-	 regBank.set(40007,regs_in[3]); 
 
-	 */
-	// if (regBank.get(118)== 0)
-	//	 {
-	//		 test_repeat = false;
-	//	 }
-	//else
-	//	 {
-	//		test_repeat = true;
-	//	 }
-}
 void UpdateRegs()                                        // Обновить регистры
 {
 	//-----Первый байт ------------
@@ -977,12 +954,12 @@ void UpdateRegs()                                        // Обновить регистры
 	  set_rele = regBank.get(10);
 	  mcp_Out1.digitalWrite(9, set_rele);               // Реле RL9 XP1 10
 
-	 //-----Установить бит 10                           // Свободен J24 - 2 
+	 //-----Установить бит 10                           // Реле RL10 Включение питания на высоковольтный модуль 
 	  set_rele = regBank.get(11);
 	  mcp_Out1.digitalWrite(10, set_rele);    
 
 
-	//-----Установить бит 11                            // Свободен J24 - 1
+	//-----Установить бит 11                            // Свободен 
 	  set_rele = regBank.get(12);
 	  mcp_Out1.digitalWrite(11, set_rele);    
 
@@ -5306,35 +5283,6 @@ void setup_mcp()
 {
 	// Настройка расширителя портов
 
- // mcp_Klava.begin(2);             // Адрес (2)первого расширителя портов клавиатура и светодиоды
-  mcp_Klava.begin(2);             // Адрес (2)первого расширителя портов клавиатура и светодиоды
-  mcp_Klava.pinMode(8, OUTPUT);   // Светодиод №1
-  mcp_Klava.pinMode(9, OUTPUT);   // Светодиод №2
-  mcp_Klava.pinMode(10, OUTPUT);  // Светодиод №3
-  mcp_Klava.pinMode(11, OUTPUT);  // Светодиод №4
-  mcp_Klava.pinMode(12, OUTPUT);  // Светодиод №5
-  mcp_Klava.pinMode(13, OUTPUT);  // Светодиод №6
-  mcp_Klava.pinMode(14, OUTPUT);  // Светодиод №7
-  mcp_Klava.pinMode(15, OUTPUT);  // Светодиод №8
- 
- 
-  mcp_Klava.pinMode(0, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(0, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(1, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(1, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(2, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(2, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(3, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(3, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(4, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(4, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(5, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(5, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(6, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(6, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  mcp_Klava.pinMode(7, INPUT);    // Расширитель портов на ввод
-  mcp_Klava.pullUp(7, HIGH);      // Подключить внутренний резистор 100K к 5В.
-  
  
   mcp_Out1.begin(4);              //  Адрес (4) второго  расширителя портов
   mcp_Out1.pinMode(0, OUTPUT);    // Реле №0  Звук    
@@ -5451,7 +5399,7 @@ modbus registers follow the following format
   
 	regBank.add(9);                           // Реле RL8 Звук на микрофон
 	regBank.add(10);                          // Реле RL9 XP1 10 Включение микрофона диспетчера
-	regBank.add(11);                          // Свободен J24 - 2 
+	regBank.add(11);                          // Реле RL10 Включение питания на высоковольтный модуль 
 	regBank.add(12);                          // Свободен J24 - 1 
 	regBank.add(13);                          // XP8 - 2   sensor Тангента ножная
 	regBank.add(14);                          // XP8 - 1   PTT Тангента ножная
