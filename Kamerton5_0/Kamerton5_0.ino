@@ -105,7 +105,8 @@ byte inputByte_1;
 byte inputByte_2;
 byte inputByte_3;
 byte inputByte_4;
-
+uint32_t logTime = 0;
+int32_t diff = 0;
 //************************************************************************************************
 
 RTC_DS1307 RTC;                                     // define the Real Time Clock object
@@ -767,7 +768,7 @@ void flash_time()                                              // Программа обра
 }
 
 void serialEvent2()
-{
+{/*
 	digitalWrite(ledPin13,HIGH);
 	if (portFound == false)
 	{
@@ -820,8 +821,8 @@ void serialEvent2()
 
 		   Serial.print(inputByte_0,DEC);
 		   Serial.print(inputByte_1,DEC);
-           Serial.print(inputByte_2,DEC);
-           Serial.print(inputByte_3,DEC);
+		   Serial.print(inputByte_2,DEC);
+		   Serial.print(inputByte_3,DEC);
 		   Serial.print(inputByte_4,DEC);
 			//Clear Message bytes
 			inputByte_0 = 0;
@@ -832,7 +833,7 @@ void serialEvent2()
 	   }
 	}
 	digitalWrite(ledPin13,LOW);
-
+	*/
 	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 	//	digitalWrite(ledPin13,HIGH);
 	// // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
@@ -6199,6 +6200,8 @@ void test_system()
 
 void set_serial()
 {
+	Serial.println("COM port find...");
+
 	do
 	{
 	  //Read Buffer
@@ -6243,6 +6246,7 @@ void set_serial()
 				//Say hello
 				Serial2.print("HELLO FROM KAMERTON ");
 				portFound = true;
+				Serial.println("COM port find OK!.");
 			 //   Serial.print("");
 				break;
 			} 
@@ -6252,6 +6256,7 @@ void set_serial()
 			inputByte_2 = 0;
 			inputByte_3 = 0;
 			inputByte_4 = 0;
+
 	   } 
 	} while(portFound == false);
 
@@ -6301,8 +6306,7 @@ void setup()
 	pinMode(ledPin11, OUTPUT);  
 	pinMode(ledPin10, OUTPUT);  
 	setup_resistor();                               // Начальные установки резистора
-	//set_serial();
-		Serial.print("Initializing SD card...");
+	Serial.print("Initializing SD card...");
 	// On the Ethernet Shield, CS is pin 4. It's set as an output by default.
 	// Note that even if it's not used as the CS pin, the hardware SS pin
 	// (10 on most Arduino boards, 53 on the Mega) must be left as an output
@@ -6371,6 +6375,7 @@ void setup()
 
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
+//	set_serial();
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
 //	MsTimer2::start();                               // Включить таймер прерывания
 	resistor(1, 200);                                // Установить уровень сигнала
@@ -6378,11 +6383,19 @@ void setup()
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	preob_num_str();
 	list_file();
+	set_serial();
+	MsTimer2::start();                               // Включить таймер прерывания
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+//	logTime = micros();
 	Serial.println(" ");
 	Serial.println("System initialization OK!.");
-	clear_serial();
+
+	 //do {
+		//diff = logTime - micros();
+	 // } while(diff > 0);
+
+//	clear_serial();
 }
 
 void loop()

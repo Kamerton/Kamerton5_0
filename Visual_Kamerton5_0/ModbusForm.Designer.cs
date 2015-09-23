@@ -327,6 +327,8 @@ namespace KamertonTest
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
+            this.lblResult1 = new System.Windows.Forms.Label();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -2723,6 +2725,7 @@ namespace KamertonTest
             // TabPage1
             // 
             this.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TabPage1.Controls.Add(this.lblResult1);
             this.TabPage1.Controls.Add(this.groupBox12);
             this.TabPage1.Controls.Add(this.label78);
             this.TabPage1.Controls.Add(this.lblResult);
@@ -2874,9 +2877,9 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult.Location = new System.Drawing.Point(3, 432);
+            this.lblResult.Location = new System.Drawing.Point(3, 464);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(963, 70);
+            this.lblResult.Size = new System.Drawing.Size(963, 38);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "Результат :";
             this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
@@ -3530,7 +3533,8 @@ namespace KamertonTest
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3});
             this.statusStrip1.Location = new System.Drawing.Point(0, 644);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(992, 22);
@@ -3541,8 +3545,8 @@ namespace KamertonTest
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
-            this.toolStripStatusLabel1.Text = "MODBUS Ststus :";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel1.Text = "MODBUS Status :";
             // 
             // toolStripStatusLabel2
             // 
@@ -3572,6 +3576,24 @@ namespace KamertonTest
             // 
             this.timerCTS.Interval = 400;
             this.timerCTS.Tick += new System.EventHandler(this.timerCTS_Tick);
+            // 
+            // lblResult1
+            // 
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblResult1.Location = new System.Drawing.Point(1, 393);
+            this.lblResult1.Name = "lblResult1";
+            this.lblResult1.Size = new System.Drawing.Size(963, 53);
+            this.lblResult1.TabIndex = 18;
+            this.lblResult1.Text = "Результат :";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(86, 17);
+            this.toolStripStatusLabel3.Text = "COM port status";
             // 
             // Form1
             // 
@@ -3927,6 +3949,8 @@ namespace KamertonTest
         private System.Windows.Forms.CheckBox checkBoxDisp;
         private System.Windows.Forms.CheckBox checkBoxPower;
         private System.Windows.Forms.Button FindSerial;
+        private System.Windows.Forms.Label lblResult1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
     }
 }
 

@@ -83,10 +83,10 @@ namespace KamertonTest
             cmbSerialProtocol.SelectedIndex = 0;
             cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
-            SetComPort();
-            serial_connect();
+         //   SetComPort();
+         //   serial_connect();
             cmbCommand.SelectedIndex = 0;
-            Polltimer1.Enabled = true;
+            Polltimer1.Enabled = false;
             timer_byte_set.Enabled = false;
             timer_Mic_test.Enabled = false;
             timerCTS.Enabled = false;
@@ -100,6 +100,8 @@ namespace KamertonTest
             // _serialPort.WriteTimeout = 500;
             // if (!(_serialPort.IsOpen))
             // _serialPort.Open();
+           // findComPort();
+            Polltimer1.Enabled = true;
         }
 
         private delegate void SetTextDeleg(string text);                  //             
@@ -117,7 +119,6 @@ namespace KamertonTest
 
         private void serviceSet()
         {
-
             checkBoxSenAll.Checked = true;
         }
 
@@ -310,7 +311,7 @@ namespace KamertonTest
                     }
                     catch (OutOfMemoryException ex)
                     {
-                        toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
+                        lblResult.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
                         return;
                     }
                 }
@@ -328,7 +329,7 @@ namespace KamertonTest
                     }
                     catch (OutOfMemoryException ex)
                     {
-                        toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
+                        lblResult.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
                         return;
                     }
                 }
@@ -422,16 +423,19 @@ namespace KamertonTest
                 res = ((MbusSerialMasterProtocol)(myProtocol)).openProtocol(cmbComPort.Text, baudRate, dataBits, stopBits, parity);
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
-                    toolStripStatusLabel1.Text = ("Последовательный порт успешно открыт с параметрами: "
-                        //lblResult.Text = ("Последовательный порт успешно открыт с параметрами: "
+                    lblResult1.Text = ("Последовательный порт успешно открыт с параметрами: "
                                 + (cmbComPort.Text + (", "
                                 + (baudRate + (" baud, "
                                 + (dataBits + (" data bits, "
                                 + (stopBits + (" stop bits, parity " + parity)))))))));
+
+                    toolStripStatusLabel3.Text =(cmbComPort.Text + (", " + (baudRate + (" baud"))));
+
                 }
                 else
                 {
-                    toolStripStatusLabel1.Text = ("Не удалось открыть протокол, ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
+                    lblResult1.Text = ("Не удалось открыть протокол, ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
+                    toolStripStatusLabel3.Text = ("СОМ порт не подключен");
                 }
 
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
@@ -439,7 +443,7 @@ namespace KamertonTest
                 startRdReg = 47; // 40047 Адрес дата/время контроллера
                 numRdRegs = 8;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-                lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+               // lblResult.Text += ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
 
@@ -458,10 +462,12 @@ namespace KamertonTest
                 }
                 else
                 {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR (6) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
                     timer_Mic_test.Enabled = false;
+                    portFound = false;
+                    //findComPort();
                 }
 
             }
@@ -478,14 +484,16 @@ namespace KamertonTest
                     currentPort = new SerialPort(port, 57600);
                     if (DetectKamerton())
                     {
-                        label78.Text = currentPort.PortName;
+                        label78.Text = ("Подключен к " + currentPort.PortName);
                         portFound = true;
                         serial_connect();
                         break;
                     }
                     else
                     {
-                        label78.Text = "Com port no found";
+                        label78.Text = "COM порт не найден";
+                        toolStripStatusLabel3.Text = ("СОМ порт не подключен");
+                        lblResult1.Text = ("СОМ порт не подключен");
                         portFound = false;
                     }
                 }
@@ -585,8 +593,10 @@ namespace KamertonTest
 
             else
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
+                portFound = false;
+                //findComPort();
             }
            test_end1();
         }
@@ -611,30 +621,18 @@ namespace KamertonTest
         #region timer all
         private void Polltimer1_Tick(object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
         {
-            if(portFound == true)
-          {
-            short[] readVals = new short[125];
-            int slave;
-            int startRdReg;
-            int numRdRegs;
-            int res;
-   
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-            startRdReg = 46; // 40046 Адрес дата/время контроллера  
-            numRdRegs = 8;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            if (portFound == true)
             {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
+                short[] readVals = new short[125];
+                int slave;
+                int startRdReg;
+                int numRdRegs;
+                int res;
 
-                label83.Text = "";
-                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-  
-                startRdReg = 112; // 40046 Адрес дата/время контроллера  
-                numRdRegs = 4;
+                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+
+                startRdReg = 46; // 40046 Адрес дата/время контроллера  
+                numRdRegs = 8;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -642,50 +640,68 @@ namespace KamertonTest
                     toolStripStatusLabel1.Text = "    MODBUS ON    ";
                     toolStripStatusLabel1.BackColor = Color.Lime;
 
-                    label134.Text = "";
-                    label134.Text = (label134.Text + readVals[0]);
-                    if (readVals[1] < 10)
-                    {
-                        label134.Text += ("0" + readVals[1]);
-                    }
-                    else
-                    {
-                        label134.Text += (readVals[1]);
-                    }
-                    if (readVals[2] < 10)
-                    {
-                        label134.Text += ("0" + readVals[2]);
-                    }
-                    else
-                    {
-                        label134.Text += (readVals[2]);
-                    }
-                    if (readVals[3] < 10)
-                    {
-                        label134.Text += ("0" + readVals[3] + ".TXT");
-                    }
-                    else
-                    {
-                        label134.Text += (readVals[3] + ".TXT");
-                    }
+                    label83.Text = "";
+                    label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
+                    startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                    numRdRegs = 4;
+                    res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+                    lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                    if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                    {
+                        toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                        toolStripStatusLabel1.BackColor = Color.Lime;
+
+                        label134.Text = "";
+                        label134.Text = (label134.Text + readVals[0]);
+                        if (readVals[1] < 10)
+                        {
+                            label134.Text += ("0" + readVals[1]);
+                        }
+                        else
+                        {
+                            label134.Text += (readVals[1]);
+                        }
+                        if (readVals[2] < 10)
+                        {
+                            label134.Text += ("0" + readVals[2]);
+                        }
+                        else
+                        {
+                            label134.Text += (readVals[2]);
+                        }
+                        if (readVals[3] < 10)
+                        {
+                            label134.Text += ("0" + readVals[3] + ".TXT");
+                        }
+                        else
+                        {
+                            label134.Text += (readVals[3] + ".TXT");
+                        }
+
+                    }
                 }
-            }
 
+                else
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR (9) ";
+                    toolStripStatusLabel1.BackColor = Color.Red;
+                    timer_byte_set.Enabled = false;
+                    timer_Mic_test.Enabled = false;
+                    timerCTS.Enabled = false;
+                    timerTestAll.Enabled = false;
+                    portFound = false;
+                   // findComPort();
+                }
+
+                label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+                toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
+                //  timer_Mic_test.Enabled = false;
+            }
             else
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                timer_byte_set.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                timerCTS.Enabled = false;
-                timerTestAll.Enabled = false;
+                SetComPort();
             }
-
-            label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-            //  timer_Mic_test.Enabled = false;
-          }
         }
 
         private void timer_byte_set_Tick(object sender, EventArgs e)
@@ -1445,10 +1461,12 @@ namespace KamertonTest
             }
             else
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.Text = "    MODBUS ERROR (1)  ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 // Polltimer1.Enabled = false;
                 timer_Mic_test.Enabled = false;
+                portFound = false;
+                //findComPort();
             }
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
@@ -1719,10 +1737,12 @@ namespace KamertonTest
 
             if ((res != BusProtocolErrors.FTALK_SUCCESS))
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.Text = "    MODBUS ERROR (2) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 //Polltimer1.Enabled = false;
                 timer_Mic_test.Enabled = false;
+                portFound = false;
+                //findComPort();
             }
 
 
@@ -1747,16 +1767,15 @@ namespace KamertonTest
 
             else
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.Text = "    MODBUS ERROR (3) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 // Polltimer1.Enabled = false;
                 timer_Mic_test.Enabled = false;
                 timer_byte_set.Enabled = false;
                 timerCTS.Enabled = false;
                 timerTestAll.Enabled = false;
-
-
-
+                portFound = false;
+                //findComPort();
             }
 
 
@@ -2168,8 +2187,6 @@ namespace KamertonTest
             Polltimer1.Enabled = false;
             toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
             toolStripStatusLabel1.BackColor = Color.Red;
-
-
         }
 
         private void button6_Click(object sender, EventArgs e)                        // Закрыть TCP и протокол
@@ -2184,8 +2201,6 @@ namespace KamertonTest
             Polltimer1.Enabled = false;
             toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
             toolStripStatusLabel1.BackColor = Color.Red;
-
-
         }
         #region label all
         private void label48_Click(object sender, EventArgs e)
@@ -3279,13 +3294,15 @@ namespace KamertonTest
 
                 else
                 {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR (4) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
                     timer_byte_set.Enabled = false;
                     timer_Mic_test.Enabled = false;
                     timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
+                    portFound = false;
+                    //findComPort();
                     return;
                 }
                 Thread.Sleep(50);
@@ -3324,9 +3341,11 @@ namespace KamertonTest
 
                 else
                 {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR (5) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
+                    portFound = false;
+                    //findComPort();
                     return;
                 }
                 Thread.Sleep(50);
@@ -4637,8 +4656,10 @@ namespace KamertonTest
             }
             else
             {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                toolStripStatusLabel1.Text = "    MODBUS ERROR (7) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
+                portFound = false;
+                //findComPort();
             }
 
             progressBar2.Value = 0;
@@ -4985,9 +5006,12 @@ namespace KamertonTest
         {
             label78.Text = "";
             label78.Refresh();
-            SetComPort();
-        }
 
-  
+            myProtocol = new MbusRtuOverTcpMasterProtocol();
+            if (myProtocol.isOpen())
+                myProtocol.closeProtocol();
+            myProtocol = null;
+            SetComPort(); 
+        }
     }
 }
