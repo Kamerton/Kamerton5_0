@@ -263,6 +263,7 @@ namespace KamertonTest
             this.Label10 = new System.Windows.Forms.Label();
             this.txtTCPPort = new System.Windows.Forms.TextBox();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this.FindSerial = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
@@ -2748,7 +2749,7 @@ namespace KamertonTest
             this.groupBox12.Controls.Add(this.label83);
             this.groupBox12.Location = new System.Drawing.Point(618, 6);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(284, 261);
+            this.groupBox12.Size = new System.Drawing.Size(284, 310);
             this.groupBox12.TabIndex = 17;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Установка времени контроллера";
@@ -2860,9 +2861,9 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(1, 426);
+            this.label78.Location = new System.Drawing.Point(1, 513);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(963, 57);
+            this.label78.Size = new System.Drawing.Size(963, 77);
             this.label78.TabIndex = 16;
             this.label78.Text = "Инфо :";
             this.label78.Click += new System.EventHandler(this.label78_Click);
@@ -2873,9 +2874,9 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult.Location = new System.Drawing.Point(3, 355);
+            this.lblResult.Location = new System.Drawing.Point(3, 432);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(963, 46);
+            this.lblResult.Size = new System.Drawing.Size(963, 70);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "Результат :";
             this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
@@ -2883,7 +2884,7 @@ namespace KamertonTest
             // Label13
             // 
             this.Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Label13.Location = new System.Drawing.Point(6, 282);
+            this.Label13.Location = new System.Drawing.Point(6, 343);
             this.Label13.Name = "Label13";
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
@@ -2902,7 +2903,7 @@ namespace KamertonTest
             this.GroupBox3.Controls.Add(this.txtTCPPort);
             this.GroupBox3.Location = new System.Drawing.Point(194, 6);
             this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(208, 261);
+            this.GroupBox3.Size = new System.Drawing.Size(208, 310);
             this.GroupBox3.TabIndex = 13;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "MODBUS/TCP";
@@ -2978,6 +2979,7 @@ namespace KamertonTest
             // 
             // GroupBox2
             // 
+            this.GroupBox2.Controls.Add(this.FindSerial);
             this.GroupBox2.Controls.Add(this.button5);
             this.GroupBox2.Controls.Add(this.cmbDataBits);
             this.GroupBox2.Controls.Add(this.cmbStopBits);
@@ -2994,10 +2996,19 @@ namespace KamertonTest
             this.GroupBox2.Controls.Add(this.cmbSerialProtocol);
             this.GroupBox2.Location = new System.Drawing.Point(12, 6);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(166, 261);
+            this.GroupBox2.Size = new System.Drawing.Size(166, 310);
             this.GroupBox2.TabIndex = 5;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Serial Modbus";
+            // 
+            // FindSerial
+            // 
+            this.FindSerial.Location = new System.Drawing.Point(34, 272);
+            this.FindSerial.Name = "FindSerial";
+            this.FindSerial.Size = new System.Drawing.Size(95, 22);
+            this.FindSerial.TabIndex = 15;
+            this.FindSerial.Text = "Поиск Serial";
+            this.FindSerial.Click += new System.EventHandler(this.FindSerial_Click);
             // 
             // button5
             // 
@@ -3150,7 +3161,7 @@ namespace KamertonTest
             this.GroupBox1.Controls.Add(this.Label9);
             this.GroupBox1.Location = new System.Drawing.Point(418, 6);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(184, 261);
+            this.GroupBox1.Size = new System.Drawing.Size(184, 310);
             this.GroupBox1.TabIndex = 4;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Опции MODBUS";
@@ -3915,6 +3926,7 @@ namespace KamertonTest
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.CheckBox checkBoxDisp;
         private System.Windows.Forms.CheckBox checkBoxPower;
+        private System.Windows.Forms.Button FindSerial;
     }
 }
 

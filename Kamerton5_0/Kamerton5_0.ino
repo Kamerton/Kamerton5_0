@@ -98,6 +98,14 @@ int analog_13            = 13;       // Измерение напряжения питания  12в.на раз
 int analog_14            = 14;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
 int analog_3_6           = 15;       // Измерение напряжения питания 3,6в. на разъемах платы Камертон
 
+//-----------------------------------------------------------------------------------
+bool portFound = false;
+byte inputByte_0;
+byte inputByte_1;
+byte inputByte_2;
+byte inputByte_3;
+byte inputByte_4;
+
 //************************************************************************************************
 
 RTC_DS1307 RTC;                                     // define the Real Time Clock object
@@ -760,6 +768,71 @@ void flash_time()                                              // Программа обра
 
 void serialEvent2()
 {
+	digitalWrite(ledPin13,HIGH);
+	if (portFound == false)
+	{
+	  //Read Buffer
+	  if (Serial2.available() == 5) 
+	  {
+		//Read buffer
+		inputByte_0 = Serial2.read();
+		delay(100);    
+		inputByte_1 = Serial2.read();
+		delay(100);      
+		inputByte_2 = Serial2.read();
+		delay(100);      
+		inputByte_3 = Serial2.read();
+		delay(100);
+		inputByte_4 = Serial2.read();   
+	  }
+	  //Check for start of Message
+	  if(inputByte_0 == 16)
+	  {       
+		   //Detect Command type
+		   switch (inputByte_1) 
+		   {
+			  case 127:
+				 //Set PIN and value
+				 switch (inputByte_2)
+				{
+				  case 4:
+					if(inputByte_3 == 255)
+					{
+	//                  digitalWrite(ledPin_13, HIGH); 
+					  break;
+					}
+					else
+					{
+			   //       digitalWrite(ledPin_13, LOW); 
+					  break;
+					}
+				  break;
+				} 
+				break;
+			  case 128:
+				//Say hello
+				Serial2.print("HELLO FROM KAMERTON ");
+				portFound = true;
+				MsTimer2::start(); 
+			 //   Serial.print("");
+				break;
+			} 
+
+		   Serial.print(inputByte_0,DEC);
+		   Serial.print(inputByte_1,DEC);
+           Serial.print(inputByte_2,DEC);
+           Serial.print(inputByte_3,DEC);
+		   Serial.print(inputByte_4,DEC);
+			//Clear Message bytes
+			inputByte_0 = 0;
+			inputByte_1 = 0;
+			inputByte_2 = 0;
+			inputByte_3 = 0;
+			inputByte_4 = 0;
+	   }
+	}
+	digitalWrite(ledPin13,LOW);
+
 	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 	//	digitalWrite(ledPin13,HIGH);
 	// // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
@@ -5278,6 +5351,8 @@ void measure_power()
 	regBank.set(40497,voltage10);   
 }
 
+
+
 void setup_mcp()
 {
 	// Настройка расширителя портов
@@ -6083,7 +6158,6 @@ modbus registers follow the following format
 	regBank.add(40529);                         // 
 	regBank.add(40530);                         // 
 
-
 	slave._device = &regBank;  
 }
 void test_system()
@@ -6122,12 +6196,87 @@ void test_system()
 	//prer_Kmerton_On = 1;   
 	////delay(1000);
 }
+
+void set_serial()
+{
+	do
+	{
+	  //Read Buffer
+	  if (Serial2.available() == 5) 
+	  {
+		//Read buffer
+		inputByte_0 = Serial2.read();
+		delay(100);    
+		inputByte_1 = Serial2.read();
+		delay(100);      
+		inputByte_2 = Serial2.read();
+		delay(100);      
+		inputByte_3 = Serial2.read();
+		delay(100);
+		inputByte_4 = Serial2.read();   
+	  }
+	  //Check for start of Message
+	  if(inputByte_0 == 16)
+	  {       
+		   //Detect Command type
+		   switch (inputByte_1) 
+		   {
+			  case 127:
+				 //Set PIN and value
+				 switch (inputByte_2)
+				{
+				  case 4:
+					if(inputByte_3 == 255)
+					{
+	//                  digitalWrite(ledPin_13, HIGH); 
+					  break;
+					}
+					else
+					{
+			   //       digitalWrite(ledPin_13, LOW); 
+					  break;
+					}
+				  break;
+				} 
+				break;
+			  case 128:
+				//Say hello
+				Serial2.print("HELLO FROM KAMERTON ");
+				portFound = true;
+			 //   Serial.print("");
+				break;
+			} 
+			//Clear Message bytes
+			inputByte_0 = 0;
+			inputByte_1 = 0;
+			inputByte_2 = 0;
+			inputByte_3 = 0;
+			inputByte_4 = 0;
+	   } 
+	} while(portFound == false);
+
+}
+void clear_serial()
+{
+  if (Serial.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+
+			while (Serial.available())
+				{
+					 Serial1.read();
+				}
+		   }
+}
+
 void setup()
 {
 	Serial.begin(9600);                             // Подключение к USB ПК
+	
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 	//slave.setBaud(57600);   
 	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
+	//slave.setSerial(2,9600);                       // Подключение к протоколу MODBUS компьютера Serial2 
+//	Serial2.begin(9600);                             // 
 	Serial3.begin(115200);                          // Свободен
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
@@ -6152,7 +6301,7 @@ void setup()
 	pinMode(ledPin11, OUTPUT);  
 	pinMode(ledPin10, OUTPUT);  
 	setup_resistor();                               // Начальные установки резистора
-
+	//set_serial();
 		Serial.print("Initializing SD card...");
 	// On the Ethernet Shield, CS is pin 4. It's set as an output by default.
 	// Note that even if it's not used as the CS pin, the hardware SS pin
@@ -6220,21 +6369,20 @@ void setup()
 	   regBank.set(i,0);   
 	} 
 
-
 	regBank.set(40120,0);
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
-	MsTimer2::start();                               // Включить таймер преравания
+//	MsTimer2::start();                               // Включить таймер прерывания
 	resistor(1, 200);                                // Установить уровень сигнала
 	resistor(2, 200);                                // Установить уровень сигнала
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
-	
 	preob_num_str();
 	list_file();
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	Serial.println(" ");
 	Serial.println("System initialization OK!.");
+	clear_serial();
 }
 
 void loop()
@@ -6242,6 +6390,7 @@ void loop()
 	//while(prer_Kmerton_Run == true) {}  // 
 	//slave.run(); 
 	control_command();
+	//set_serial();
 //	delay(100);
 	/*
 	 Serial.print(regs_out[0],HEX);
@@ -6273,4 +6422,5 @@ void loop()
 	//Serial.print(	regBank.get(136),HEX);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	//Serial.print("--");
 	//Serial.println(	regBank.get(137),HEX);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
+ 
 }

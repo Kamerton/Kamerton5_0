@@ -39,7 +39,6 @@ namespace KamertonTest
         private int startCoil;
         private int numCoils;
         private int startWrReg;
-      //  private int numWrRegs;
         private int numRdRegs;
         private int startRdReg;
         private int res;
@@ -47,19 +46,19 @@ namespace KamertonTest
         private int TestRepeatCount;
         private int _SerialMonitor;
         static bool _All_Test_Stop = true;
-     //   private int temp_count = 0;
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         bool[] coilArr_all = new bool[200];
-
+        bool portFound;
+        SerialPort currentPort;
 
         public Form1()
         {
             InitializeComponent();
             LoadListboxes();
         }
-
+ 
         //SerialPort _serialPort = new SerialPort("COM4",
         //                                9600,
         //                                Parity.None,
@@ -76,7 +75,7 @@ namespace KamertonTest
             ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
             ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
             //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
-            cmbComPort.SelectedIndex = 0;
+            cmbComPort.SelectedIndex = 1;
             cmbParity.SelectedIndex = 0;
             cmbStopBits.SelectedIndex = 0;
             cmbDataBits.SelectedIndex = 0;
@@ -84,6 +83,7 @@ namespace KamertonTest
             cmbSerialProtocol.SelectedIndex = 0;
             cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
+            SetComPort();
             serial_connect();
             cmbCommand.SelectedIndex = 0;
             Polltimer1.Enabled = true;
@@ -171,7 +171,7 @@ namespace KamertonTest
             {
                 if (myProtocol.isOpen())
                     myProtocol.closeProtocol();
-                myProtocol = null;
+                    myProtocol = null;
                 try
                 {
                     if ((cmbSerialProtocol.SelectedIndex == 0))
@@ -296,175 +296,247 @@ namespace KamertonTest
             // First we must instantiate class if we haven't done so already
             //
             //  CloseButton.Enabled = true;
-            //  cmdOpenSerial.Enabled = false;
-
-
-            if ((myProtocol == null))
+            //  cmdOpenSerial.Enabled = false;    // Кнопка "Открыть Serial"
+            if (portFound == true)
             {
+                if ((myProtocol == null))
+                {
+                    try
+                    {
+                        if ((cmbSerialProtocol.SelectedIndex == 0))
+                            myProtocol = new MbusRtuMasterProtocol(); // RTU
+                        else
+                            myProtocol = new MbusAsciiMasterProtocol(); // ASCII
+                    }
+                    catch (OutOfMemoryException ex)
+                    {
+                        toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
+                        return;
+                    }
+                }
+                else // already instantiated, close protocol, reinstantiate
+                {
+                    if (myProtocol.isOpen())
+                        myProtocol.closeProtocol();
+                    myProtocol = null;
+                    try
+                    {
+                        if ((cmbSerialProtocol.SelectedIndex == 0))
+                            myProtocol = new MbusRtuMasterProtocol(); // RTU
+                        else
+                            myProtocol = new MbusAsciiMasterProtocol(); // ASCII
+                    }
+                    catch (OutOfMemoryException ex)
+                    {
+                        toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
+                        return;
+                    }
+                }
+                //
+                // Here we configure the protocol
+                //
+                short[] readVals = new short[125];
+                int retryCnt;
+                int pollDelay;
+                int timeOut;
+                int baudRate;
+                int parity;
+                int dataBits;
+                int stopBits;
+                int res;
+                int slave;
+                int startRdReg;
+                int numRdRegs;
                 try
                 {
-                    if ((cmbSerialProtocol.SelectedIndex == 0))
-                        myProtocol = new MbusRtuMasterProtocol(); // RTU
-                    else
-                        myProtocol = new MbusAsciiMasterProtocol(); // ASCII
+                    retryCnt = int.Parse(cmbRetry.Text, CultureInfo.CurrentCulture);
                 }
-                catch (OutOfMemoryException ex)
+                catch (Exception)
                 {
-                    toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
-                    return;
+                    retryCnt = 0;
                 }
-            }
-            else // already instantiated, close protocol, reinstantiate
-            {
-                if (myProtocol.isOpen())
-                    myProtocol.closeProtocol();
-                myProtocol = null;
                 try
                 {
-                    if ((cmbSerialProtocol.SelectedIndex == 0))
-                        myProtocol = new MbusRtuMasterProtocol(); // RTU
-                    else
-                        myProtocol = new MbusAsciiMasterProtocol(); // ASCII
+                    pollDelay = int.Parse(txtPollDelay.Text, CultureInfo.CurrentCulture);
                 }
-                catch (OutOfMemoryException ex)
+                catch (Exception)
                 {
-                    toolStripStatusLabel1.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
-                    return;
+                    pollDelay = 0;
                 }
-            }
-            //
-            // Here we configure the protocol
-            //
-            short[] readVals = new short[125];
-            int retryCnt;
-            int pollDelay;
-            int timeOut;
-            int baudRate;
-            int parity;
-            int dataBits;
-            int stopBits;
-            int res;
-            int slave;
-            int startRdReg;
-            int numRdRegs;
-            try
-            {
-                retryCnt = int.Parse(cmbRetry.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                retryCnt = 0;
-            }
-            try
-            {
-                pollDelay = int.Parse(txtPollDelay.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                pollDelay = 0;
-            }
-            try
-            {
-                timeOut = int.Parse(txtTimeout.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                timeOut = 1000;
-            }
-            try
-            {
-                baudRate = int.Parse(cmbBaudRate.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                baudRate = 57600;
-            }
-            switch (cmbParity.SelectedIndex)
-            {
-                default:
-                case 0:
-                    parity = MbusSerialMasterProtocol.SER_PARITY_NONE;
-                    break;
-                case 1:
-                    parity = MbusSerialMasterProtocol.SER_PARITY_EVEN;
-                    break;
-                case 2:
-                    parity = MbusSerialMasterProtocol.SER_PARITY_ODD;
-                    break;
-            }
-            switch (cmbDataBits.SelectedIndex)
-            {
-                default:
-                case 0:
-                    dataBits = MbusSerialMasterProtocol.SER_DATABITS_8;
-                    break;
-                case 1:
-                    dataBits = MbusSerialMasterProtocol.SER_DATABITS_7;
-                    break;
-            }
-            switch (cmbStopBits.SelectedIndex)
-            {
-                default:
-                case 0:
-                    stopBits = MbusSerialMasterProtocol.SER_STOPBITS_1;
-                    break;
-                case 1:
-                    stopBits = MbusSerialMasterProtocol.SER_STOPBITS_2;
-                    break;
-            }
-            myProtocol.timeout = timeOut;
-            myProtocol.retryCnt = retryCnt;
-            myProtocol.pollDelay = pollDelay;
-            // Note: The following cast is required as the myProtocol object is declared 
-            // as the superclass of MbusSerialMasterProtocol. That way myProtocol can
-            // represent different protocol types.
-            res = ((MbusSerialMasterProtocol)(myProtocol)).openProtocol(cmbComPort.Text, baudRate, dataBits, stopBits, parity);
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = ("Последовательный порт успешно открыт с параметрами: "
-                    //lblResult.Text = ("Последовательный порт успешно открыт с параметрами: "
-                            + (cmbComPort.Text + (", "
-                            + (baudRate + (" baud, "
-                            + (dataBits + (" data bits, "
-                            + (stopBits + (" stop bits, parity " + parity)))))))));
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = ("Не удалось открыть протокол, ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
-            }
+                try
+                {
+                    timeOut = int.Parse(txtTimeout.Text, CultureInfo.CurrentCulture);
+                }
+                catch (Exception)
+                {
+                    timeOut = 1000;
+                }
+                try
+                {
+                    baudRate = int.Parse(cmbBaudRate.Text, CultureInfo.CurrentCulture);
+                }
+                catch (Exception)
+                {
+                    baudRate = 57600;
+                }
+                switch (cmbParity.SelectedIndex)
+                {
+                    default:
+                    case 0:
+                        parity = MbusSerialMasterProtocol.SER_PARITY_NONE;
+                        break;
+                    case 1:
+                        parity = MbusSerialMasterProtocol.SER_PARITY_EVEN;
+                        break;
+                    case 2:
+                        parity = MbusSerialMasterProtocol.SER_PARITY_ODD;
+                        break;
+                }
+                switch (cmbDataBits.SelectedIndex)
+                {
+                    default:
+                    case 0:
+                        dataBits = MbusSerialMasterProtocol.SER_DATABITS_8;
+                        break;
+                    case 1:
+                        dataBits = MbusSerialMasterProtocol.SER_DATABITS_7;
+                        break;
+                }
+                switch (cmbStopBits.SelectedIndex)
+                {
+                    default:
+                    case 0:
+                        stopBits = MbusSerialMasterProtocol.SER_STOPBITS_1;
+                        break;
+                    case 1:
+                        stopBits = MbusSerialMasterProtocol.SER_STOPBITS_2;
+                        break;
+                }
+                myProtocol.timeout = timeOut;
+                myProtocol.retryCnt = retryCnt;
+                myProtocol.pollDelay = pollDelay;
+                if (portFound == true) cmbComPort.Text = currentPort.PortName;
+                // Note: The following cast is required as the myProtocol object is declared 
+                // as the superclass of MbusSerialMasterProtocol. That way myProtocol can
+                // represent different protocol types.
+                res = ((MbusSerialMasterProtocol)(myProtocol)).openProtocol(cmbComPort.Text, baudRate, dataBits, stopBits, parity);
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    toolStripStatusLabel1.Text = ("Последовательный порт успешно открыт с параметрами: "
+                        //lblResult.Text = ("Последовательный порт успешно открыт с параметрами: "
+                                + (cmbComPort.Text + (", "
+                                + (baudRate + (" baud, "
+                                + (dataBits + (" data bits, "
+                                + (stopBits + (" stop bits, parity " + parity)))))))));
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = ("Не удалось открыть протокол, ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
+                }
 
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
-            startRdReg = 47; // 40047 Адрес дата/время контроллера
-            numRdRegs = 8;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
+                startRdReg = 47; // 40047 Адрес дата/время контроллера
+                numRdRegs = 8;
+                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+                lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
 
 
-                label83.Text = "";
-                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
+                    label83.Text = "";
+                    label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
+
+                }
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
+                    toolStripStatusLabel1.BackColor = Color.Red;
+                    Polltimer1.Enabled = false;
+                    timer_Mic_test.Enabled = false;
+                }
 
             }
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
-            }
-
-
+            Polltimer1.Enabled = true;
         }
+
+        private void SetComPort()
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames();
+                foreach (string port in ports)
+                {
+                    currentPort = new SerialPort(port, 57600);
+                    if (DetectKamerton())
+                    {
+                        label78.Text = currentPort.PortName;
+                        portFound = true;
+                        serial_connect();
+                        break;
+                    }
+                    else
+                    {
+                        label78.Text = "Com port no found";
+                        portFound = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        private bool DetectKamerton()
+        {
+            try
+            {
+                //The below setting are for the Hello handshake
+                byte[] buffer = new byte[5];
+                buffer[0] = Convert.ToByte(16);
+                buffer[1] = Convert.ToByte(128);
+                buffer[2] = Convert.ToByte(0);
+                buffer[3] = Convert.ToByte(0);
+                buffer[4] = Convert.ToByte(4);
+                int intReturnASCII = 0;
+                char charReturnValue = (Char)intReturnASCII;
+                currentPort.Open();
+                currentPort.Write(buffer, 0, 5);
+                Thread.Sleep(1000);
+                int count = currentPort.BytesToRead;
+                string returnMessage = "";
+                while (count > 0)
+                {
+                    intReturnASCII = currentPort.ReadByte();
+                    returnMessage = returnMessage + Convert.ToChar(intReturnASCII);
+                    count--;
+                }
+
+                currentPort.Close();
+                if (returnMessage.Contains("HELLO FROM KAMERTON "))
+                {
+                 //   textBox2.Text = returnMessage;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
 
         private void file_fakt_namber()
         {
@@ -539,12 +611,14 @@ namespace KamertonTest
         #region timer all
         private void Polltimer1_Tick(object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
         {
+            if(portFound == true)
+          {
             short[] readVals = new short[125];
             int slave;
             int startRdReg;
             int numRdRegs;
             int res;
-
+   
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
 
             startRdReg = 46; // 40046 Адрес дата/время контроллера  
@@ -611,6 +685,7 @@ namespace KamertonTest
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
             //  timer_Mic_test.Enabled = false;
+          }
         }
 
         private void timer_byte_set_Tick(object sender, EventArgs e)
@@ -1790,8 +1865,8 @@ namespace KamertonTest
             }
         }
 
-        private void cmdExecute_Click(object sender, EventArgs e)
-        {
+        private void cmdExecute_Click(object sender, EventArgs e)    
+        {  // Ввод данных в регистры MODBUS
             short[] writeVals = new short[125];
             short[] readVals = new short[125];
             int slave;
@@ -4906,7 +4981,13 @@ namespace KamertonTest
 
         }
 
- 
+        private void FindSerial_Click(object sender, EventArgs e)
+        {
+            label78.Text = "";
+            label78.Refresh();
+            SetComPort();
+        }
 
+  
     }
 }

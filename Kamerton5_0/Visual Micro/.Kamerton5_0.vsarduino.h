@@ -141,6 +141,8 @@ void setup_mcp();
 void setup_resistor();
 void setup_regModbus();
 void test_system();
+void set_serial();
+void clear_serial();
 //
 //
 
