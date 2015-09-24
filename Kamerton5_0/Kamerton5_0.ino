@@ -6276,13 +6276,10 @@ void clear_serial()
 void setup()
 {
 	Serial.begin(9600);                             // Подключение к USB ПК
-	
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
-	//slave.setBaud(57600);   
 	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
-	//slave.setSerial(2,9600);                       // Подключение к протоколу MODBUS компьютера Serial2 
-//	Serial2.begin(9600);                             // 
-	Serial3.begin(115200);                          // Свободен
+	//slave.setSerial(3,57600);                      // Подключение к протоколу MODBUS компьютера Serial3 
+	Serial3.begin(57600);                           // USB2
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
@@ -6299,7 +6296,7 @@ void setup()
 	setup_mcp();                                    // Настроить порты расширения  
 	mcp_Analog.digitalWrite(DTR, HIGH);             // Разрешение вывода (обмена)информации с Камертоном
 	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
-	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
+//	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Red, HIGH); 
 	pinMode(ledPin13, OUTPUT);  
 	pinMode(ledPin12, OUTPUT);  
@@ -6307,16 +6304,10 @@ void setup()
 	pinMode(ledPin10, OUTPUT);  
 	setup_resistor();                               // Начальные установки резистора
 	Serial.print("Initializing SD card...");
-	// On the Ethernet Shield, CS is pin 4. It's set as an output by default.
-	// Note that even if it's not used as the CS pin, the hardware SS pin
-	// (10 on most Arduino boards, 53 on the Mega) must be left as an output
-	// or the SD library functions will not work.
 	pinMode(53, OUTPUT);
-
 	if (!sd.begin(chipSelect)) 
 		{
-		Serial.println("initialization failed!");
-		//return;
+	    	Serial.println("initialization failed!");
 		}
 	Serial.println("initialization done.");
 
@@ -6332,17 +6323,12 @@ void setup()
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
-	//regs_in[0]= 0x00;                               // Код первого байта 
-	//regs_in[1]= 0x00;                               // 
-	//regs_in[2]= 0x00;                               // 
-	//regs_in[3]= 0x00;                               // 
-//	reg_Kamerton();
 
-	regBank.set(21,0);    // XP2-2     sensor "Маг."  
-	regBank.set(22,0);    // XP5-3     sensor "ГГC."
-	regBank.set(23,0);    // XP3-3     sensor "ГГ-Радио1."
-	regBank.set(24,0);    // XP4-3     sensor "ГГ-Радио2."
-	regBank.set(8,1);                               // Выключить питание Камертон
+	regBank.set(21,0);                              // XP2-2     sensor "Маг."  
+	regBank.set(22,0);                              // XP5-3     sensor "ГГC."
+	regBank.set(23,0);                              // XP3-3     sensor "ГГ-Радио1."
+	regBank.set(24,0);                              // XP4-3     sensor "ГГ-Радио2."
+	regBank.set(8,1);                               // Включить питание Камертон
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -6357,8 +6343,6 @@ void setup()
 	   regBank.set(i,0);   
 	}
 
-
-
 	for (int i = 200; i <= 330; i++)                  // Очистить флаги ошибок
 	{
 	   regBank.set(i,0);   
@@ -6368,42 +6352,32 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	}
-		for (unsigned int i = 40400; i <= 40530; i++)     // Очистить флаги ошибок
+		for (unsigned int i = 40400; i <= 40530; i++) // Очистить флаги ошибок
 	{
 	   regBank.set(i,0);   
 	} 
 
-	regBank.set(40120,0);
+	regBank.set(40120,0);                            // 
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
-//	set_serial();
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
-//	MsTimer2::start();                               // Включить таймер прерывания
 	resistor(1, 200);                                // Установить уровень сигнала
 	resistor(2, 200);                                // Установить уровень сигнала
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	preob_num_str();
-	list_file();
-	set_serial();
+	list_file();                                     // Вывод списка файлов в СОМ порт  
+	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	MsTimer2::start();                               // Включить таймер прерывания
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
-	Serial.println(" ");
-	Serial.println("System initialization OK!.");
-
-	 //do {
-		//diff = logTime - micros();
-	 // } while(diff > 0);
-
-//	clear_serial();
+	Serial.println(" ");                             //
+	Serial.println("System initialization OK!.");    // Информация о завершении настройки
 }
 
 void loop()
 {
-	//while(prer_Kmerton_Run == true) {}  // 
-	//slave.run(); 
 	control_command();
-	//set_serial();
+
 //	delay(100);
 	/*
 	 Serial.print(regs_out[0],HEX);
@@ -6413,17 +6387,6 @@ void loop()
 	 Serial.print(regs_out[2],HEX);
 	 Serial.print("    ");
 	 */
-
-	 //Serial.print(regs_in[0],BIN); 
-	 //Serial.print("--");
-	 //Serial.print(regs_in[1],BIN);
-	 //Serial.print("--");
-	 //Serial.print(regs_in[2],BIN);
-	 //Serial.print("--");
-	 //Serial.println(regs_in[3],BIN);
-
-	
-
 	 //Serial.print(regBank.get(40004),HEX); 
 	 //Serial.print("--");
 	 //Serial.print(regBank.get(40005),HEX); 

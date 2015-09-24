@@ -5006,12 +5006,19 @@ namespace KamertonTest
         {
             label78.Text = "";
             label78.Refresh();
-
-            myProtocol = new MbusRtuOverTcpMasterProtocol();
-            if (myProtocol.isOpen())
-                myProtocol.closeProtocol();
-            myProtocol = null;
-            SetComPort(); 
+            if (portFound != true)
+            {
+                myProtocol = new MbusRtuOverTcpMasterProtocol();
+                if (myProtocol.isOpen())
+                    myProtocol.closeProtocol();
+                myProtocol = null;
+                SetComPort();
+            }
+            else
+            {
+                label78.Text = "COM порт уже открыт";
+                label78.Refresh();
+            }
         }
     }
 }
