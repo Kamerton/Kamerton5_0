@@ -12,7 +12,7 @@
  высоковольтного  модуля для испытания на пробой.
  Реализовано:
  -
- - прерывание 20мс,
+ - прерывание 30мс,
  - передача/прием по СОМ порту,
  - подсчет контролных сумм, связь с Камертоном, 
  - Расширение MCP23017
@@ -6205,18 +6205,18 @@ void set_serial()
 	do
 	{
 	  //Read Buffer
-	  if (Serial2.available() == 5) 
+	  if (Serial3.available() == 5) 
 	  {
 		//Read buffer
-		inputByte_0 = Serial2.read();
+		inputByte_0 = Serial3.read();
 		delay(100);    
-		inputByte_1 = Serial2.read();
+		inputByte_1 = Serial3.read();
 		delay(100);      
-		inputByte_2 = Serial2.read();
+		inputByte_2 = Serial3.read();
 		delay(100);      
-		inputByte_3 = Serial2.read();
+		inputByte_3 = Serial3.read();
 		delay(100);
-		inputByte_4 = Serial2.read();   
+		inputByte_4 = Serial3.read();   
 	  }
 	  //Check for start of Message
 	  if(inputByte_0 == 16)
@@ -6244,7 +6244,7 @@ void set_serial()
 				break;
 			  case 128:
 				//Say hello
-				Serial2.print("HELLO FROM KAMERTON ");
+				Serial3.print("HELLO FROM KAMERTON ");
 				portFound = true;
 				Serial.println("COM port find OK!.");
 			 //   Serial.print("");
@@ -6277,9 +6277,9 @@ void setup()
 {
 	Serial.begin(9600);                             // Подключение к USB ПК
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
-	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
-	//slave.setSerial(3,57600);                      // Подключение к протоколу MODBUS компьютера Serial3 
-	Serial3.begin(57600);                           // USB2
+//	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
+	slave.setSerial(3,57600);                      // Подключение к протоколу MODBUS компьютера Serial3 
+//	Serial3.begin(57600);                           // USB2
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");

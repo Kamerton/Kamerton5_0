@@ -83,8 +83,6 @@ namespace KamertonTest
             cmbSerialProtocol.SelectedIndex = 0;
             cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
-         //   SetComPort();
-         //   serial_connect();
             cmbCommand.SelectedIndex = 0;
             Polltimer1.Enabled = false;
             timer_byte_set.Enabled = false;
@@ -544,7 +542,6 @@ namespace KamertonTest
                 return false;
             }
         }
-
 
         private void file_fakt_namber()
         {
@@ -4961,10 +4958,10 @@ namespace KamertonTest
                 label39.Text = "=";
                 textBox5.BackColor = Color.White;
             }
-            startWrReg = 61;                                                                   // 40060 Адрес хранения величины сигнала
+            startWrReg = 61;                                                                       // 40060 Адрес хранения величины сигнала
             res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
          
-            startWrReg = 120;                                                                   // 
+            startWrReg = 120;                                                                      // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 18);                        // 
             test_end1();
             startRdReg = 62;
@@ -4975,12 +4972,12 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ON    ";
                 toolStripStatusLabel1.BackColor = Color.Lime;
 
-                string s1 = readVals[0].ToString();                // Преобразование числа в строку
+                string s1 = readVals[0].ToString();                                             // Преобразование числа в строку
                 label43.Text = (s1);
 
                 if (readVals[1] != 0)
                 {
-                    string s2 = readVals[1].ToString();                // Преобразование числа в строку
+                    string s2 = readVals[1].ToString();                                        // Преобразование числа в строку
                     label41.Text = (s2);
                     label42.Text = "мкс";
                 }
