@@ -141,7 +141,8 @@ int regcount_err        = 0;                                     // Переменная д
 
 
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
-#define chipSelect SS
+//#define chipSelect SS
+#define chipSelect 49
 SdFat sd;
 File myFile;
 SdFile file;
@@ -6256,10 +6257,11 @@ void set_serial()
 			inputByte_2 = 0;
 			inputByte_3 = 0;
 			inputByte_4 = 0;
-
 	   } 
+		delay(500);
+	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
-
+	digitalWrite(ledPin13,LOW);
 }
 void clear_serial()
 {
@@ -6304,10 +6306,10 @@ void setup()
 	pinMode(ledPin10, OUTPUT);  
 	setup_resistor();                               // Начальные установки резистора
 	Serial.print("Initializing SD card...");
-	pinMode(53, OUTPUT);
+	pinMode(49, OUTPUT);
 	if (!sd.begin(chipSelect)) 
 		{
-	    	Serial.println("initialization failed!");
+			Serial.println("initialization failed!");
 		}
 	Serial.println("initialization done.");
 

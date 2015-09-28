@@ -31,7 +31,7 @@
     <ProductName>Kamerton5_0</ProductName>
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton5_0</SuiteName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -78,10 +78,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7CFE1556DE7214B244B10F3EEAD1D6F55A748763</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>C4667D4C394A3EEE889F4302A722B921D3412282</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KamertonTestNet_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Kamerton5_0_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -184,6 +184,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kamerton5_0_TemporaryKey.pfx" />
     <None Include="Resources\btSetCustom.Image.png" />
     <None Include="Resources\btSetSystem.Image.png" />
   </ItemGroup>
