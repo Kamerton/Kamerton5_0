@@ -1144,13 +1144,13 @@ namespace KamertonTest
 
                 if (coilArr[2] == true)                              //   Свободен regBank.add(11)
                 {
-                    //button27.BackColor = Color.Lime;
-                    //button30.BackColor = Color.White;
+                    button2.BackColor = Color.Lime;
+                    button81.BackColor = Color.White;
                 }
                 else
                 {
-                    //button30.BackColor = Color.Red;
-                    //button27.BackColor = Color.White;
+                    button81.BackColor = Color.Red;
+                    button2.BackColor = Color.White;
                 }
 
                 if (coilArr[3] == true)                                //   Свободен regBank.add(12)
@@ -2628,7 +2628,17 @@ namespace KamertonTest
             startCoil = 10; // Микрофон диспетчера отключить
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
+        private void button2_Click(object sender, EventArgs e)                       // ВКЛ Реле RL10
+        {
+            startCoil = 11; // Питание высоковольтное включить
+            res = myProtocol.writeCoil(slave, startCoil, true);
+        }
 
+        private void button81_Click(object sender, EventArgs e)                      // ВЫКЛ Реле RL10
+        {
+            startCoil = 11; // Питание высоковольтное отключить
+            res = myProtocol.writeCoil(slave, startCoil, false);
+        }
 
         //**********************************************************************************************
 
@@ -5017,5 +5027,22 @@ namespace KamertonTest
                 label78.Refresh();
             }
         }
+
+        private void label44_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button65_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button80_Click(object sender, EventArgs e)
+        {
+
+        }
+
+ 
     }
 }
