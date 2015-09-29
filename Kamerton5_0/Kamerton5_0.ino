@@ -45,12 +45,26 @@
 #define  Front_led_Blue 14                          // Назначение светодиодов на передней панели
 #define  Front_led_Red  15                          // Назначение светодиодов на передней панели
 
+
+
+
+
+
 //  Порты управления платой Камертон
 #define DTR  8                                      // DTR out выходной сигнал  сформировать 0 для старта
 #define RTS  9                                      // RTS out выходной сигнал   
 #define CTS  5                                      // CTS in  входной сигнал  флаг нажатия тангенты контролировать!!!!
 #define DSR  6                                      // DSR in  входной сигнал  флаг нажатия "Связь - передача"
 #define DCD  7                                      // DCD in  входной сигнал  флаг снятия трубки с ложемента 
+
+
+//  Порты управления платой Arduino Nano
+#define  kn1Nano   34                               // Назначение кнопок управления Nano генератор качения
+#define  kn2Nano   36                               // Назначение кнопок управления Nano генератор 1000 гц
+#define  kn3Nano   38                               // Назначение кнопок управления Nano генератор 2000 гц
+#define  InNano12  40                               // Назначение входов - индикация генератор 1000 или 2000 гц
+#define  InNano13  39                               // Назначение входов - индикация генератор качения 
+
 
 //+++++++++++++++++++++++ Настройка электронного резистора +++++++++++++++++++++++++++++++++++++
 #define address_AD5252   0x2F                       // Адрес микросхемы AD5252  
@@ -6280,7 +6294,7 @@ void setup()
 	Serial.begin(9600);                             // Подключение к USB ПК
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
-	slave.setSerial(3,57600);                      // Подключение к протоколу MODBUS компьютера Serial3 
+	slave.setSerial(3,57600);                       // Подключение к протоколу MODBUS компьютера Serial3 
 //	Serial3.begin(57600);                           // USB2
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
@@ -6304,6 +6318,16 @@ void setup()
 	pinMode(ledPin12, OUTPUT);  
 	pinMode(ledPin11, OUTPUT);  
 	pinMode(ledPin10, OUTPUT);  
+	pinMode(kn1Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор качения
+    pinMode(kn2Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 1000 гц
+    pinMode(kn3Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 2000 гц
+    pinMode(InNano12, INPUT);                        // Назначение входов - индикация генератор 1000 или 2000 гц
+    pinMode(InNano13, INPUT);                        // Назначение входов - индикация генератор качения 
+
+	digitalWrite(kn1Nano, LOW);
+	digitalWrite(kn2Nano, HIGH);
+	digitalWrite(kn3Nano, HIGH);
+
 	setup_resistor();                               // Начальные установки резистора
 	Serial.print("Initializing SD card...");
 	pinMode(49, OUTPUT);
