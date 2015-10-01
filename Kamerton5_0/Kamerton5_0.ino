@@ -121,6 +121,8 @@ byte inputByte_3;
 byte inputByte_4;
 uint32_t logTime = 0;
 int32_t diff = 0;
+
+bool blink_red = false;
 //************************************************************************************************
 
 RTC_DS1307 RTC;                                     // define the Real Time Clock object
@@ -6273,9 +6275,12 @@ void set_serial()
 			inputByte_4 = 0;
 	   } 
 		delay(500);
+	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
+	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
 	digitalWrite(ledPin13,LOW);
+	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }
 void clear_serial()
 {
@@ -6319,11 +6324,11 @@ void setup()
 	pinMode(ledPin11, OUTPUT);  
 	pinMode(ledPin10, OUTPUT);  
 	pinMode(kn1Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор качения
-    pinMode(kn2Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 1000 гц
-    pinMode(kn3Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 2000 гц
-    pinMode(InNano12, INPUT);                        // Назначение входов - индикация генератор 1000 или 2000 гц
-    pinMode(InNano13, INPUT);                        // Назначение входов - индикация генератор качения 
-
+	pinMode(kn2Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 1000 гц
+	pinMode(kn3Nano, OUTPUT);                        // Назначение кнопок управления Nano генератор 2000 гц
+	pinMode(InNano12, INPUT);                        // Назначение входов - индикация генератор 1000 или 2000 гц
+	pinMode(InNano13, INPUT);                        // Назначение входов - индикация генератор качения 
+ 
 	digitalWrite(kn1Nano, LOW);
 	digitalWrite(kn2Nano, HIGH);
 	digitalWrite(kn3Nano, HIGH);
