@@ -474,6 +474,8 @@ namespace KamertonTest
 
         private void SetComPort()
         {
+            //currentPort = new SerialPort();
+            //if (currentPort.IsOpen) currentPort.Close();
             try
             {
                 string[] ports = SerialPort.GetPortNames();
@@ -2173,16 +2175,18 @@ namespace KamertonTest
         private void button5_Click(object sender, EventArgs e)                         // Закрыть сериал и протокол
         {
 
-            // Close protocol and serial port
-            myProtocol.closeProtocol();
-            //    // Indicate result on status line
-            lblResult.Text = "Протокол закрыт";
-            //    // Disable button controls
-            button5.Enabled = false;
-            cmdOpenSerial.Enabled = true;
-            Polltimer1.Enabled = false;
-            toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-            toolStripStatusLabel1.BackColor = Color.Red;
+ 
+                // Close protocol and serial port
+                myProtocol.closeProtocol();
+                //    // Indicate result on status line
+                lblResult.Text = "Протокол закрыт";
+                //    // Disable button controls
+                button5.Enabled = false;
+                cmdOpenSerial.Enabled = true;
+                Polltimer1.Enabled = false;
+                toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+          
         }
 
         private void button6_Click(object sender, EventArgs e)                        // Закрыть TCP и протокол
