@@ -688,8 +688,7 @@ namespace KamertonTest
                     timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
                     portFound = false;
-                   // findComPort();
-                }
+                 }
 
                 label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                 toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
