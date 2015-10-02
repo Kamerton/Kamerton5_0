@@ -36,6 +36,14 @@
 #include <modbusSlave.h>
 #include "MCP23017.h"
 #include <avr/pgmspace.h>
+#include <AH_AD9850.h>
+
+
+
+//CLK - D6, FQUP - D7,  BitData - D8, RESET - D9
+//AH_AD9850(int CLK, int FQUP, int BitData, int RESET);
+//AH_AD9850 AD9850(6, 7, 8, 9);
+AH_AD9850 AD9850(23, 25, 27, 29);
 
 
 #define  ledPin13  13                               // Назначение светодиодов на плате
@@ -64,6 +72,8 @@
 #define  kn3Nano   38                               // Назначение кнопок управления Nano генератор 2000 гц
 #define  InNano12  40                               // Назначение входов - индикация генератор 1000 или 2000 гц
 #define  InNano13  39                               // Назначение входов - индикация генератор качения 
+
+
 
 
 //+++++++++++++++++++++++ Настройка электронного резистора +++++++++++++++++++++++++++++++++++++
@@ -5369,8 +5379,6 @@ void measure_power()
 	regBank.set(40497,voltage10);   
 }
 
-
-
 void setup_mcp()
 {
 	// Настройка расширителя портов
@@ -6300,16 +6308,29 @@ void setup()
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
 	slave.setSerial(3,57600);                       // Подключение к протоколу MODBUS компьютера Serial3 
-//	Serial3.begin(57600);                           // USB2
+	Serial2.begin(9600);                           // USB2
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
+	Serial2.println(" ");
+	Serial2.println(" ***** Start system  *****");
+	Serial2.println(" ");
+
 	Wire.begin();
 	if (!RTC.begin())                               // Настройка часов 
 		{
 			Serial.println("RTC failed");
 			while(1);
 		};
+
+  //reset device
+  AD9850.reset();                   //reset module
+  delay(1000);
+  AD9850.powerDown();               //set signal output to LOW
+  delay(100);
+  AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1kHz frequency
+  delay(1000); 
+
 	// DateTime set_time = DateTime(15, 6, 15, 10, 51, 0); // Занести данные о времени в строку "set_time"
 	// RTC.adjust(set_time);                                // Записа
 	serial_print_date();
@@ -6317,7 +6338,6 @@ void setup()
 	setup_mcp();                                    // Настроить порты расширения  
 	mcp_Analog.digitalWrite(DTR, HIGH);             // Разрешение вывода (обмена)информации с Камертоном
 	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
-//	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Red, HIGH); 
 	pinMode(ledPin13, OUTPUT);  
 	pinMode(ledPin12, OUTPUT);  
