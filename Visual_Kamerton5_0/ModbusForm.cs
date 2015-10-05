@@ -50,7 +50,10 @@ namespace KamertonTest
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         bool[] coilArr_all = new bool[200];
-        bool portFound;
+        bool portFound = false;
+        //bool power_radio1 = false;
+        //bool power_radio2 = false;
+        //bool power_ggs = false;
         SerialPort currentPort;
 
         public Form1()
@@ -859,23 +862,23 @@ namespace KamertonTest
 
             if (Dec_bin[24] == false) // 30024 флаг подключения ГГ Радио2
             {
-                label103.BackColor = Color.Red;
-                label103.Text = "0";
+                //label103.BackColor = Color.Red;
+                //label103.Text = "0";
             }
             else
             {
-                label103.BackColor = Color.Lime;
-                label103.Text = "1";
+                //label103.BackColor = Color.Lime;
+                //label103.Text = "1";
             }
             if (Dec_bin[25] == false) // 30025 флаг подключения ГГ Радио1
             {
-                label104.BackColor = Color.Red;
-                label104.Text = "0";
+                //label104.BackColor = Color.Red;
+                //label104.Text = "0";
             }
             else
             {
-                label104.BackColor = Color.Lime;
-                label104.Text = "1";
+                //label104.BackColor = Color.Lime;
+                //label104.Text = "1";
             }
 
             if (Dec_bin[26] == false) // 30026 флаг подключения трубки
@@ -913,13 +916,13 @@ namespace KamertonTest
 
             if (Dec_bin[40] == false) // 30040  флаг подключения магнитофона
             {
-                label108.BackColor = Color.Red;
-                label108.Text = "0";
+                //label108.BackColor = Color.Red;
+                //label108.Text = "0";
             }
             else
             {
-                label108.BackColor = Color.Lime;
-                label108.Text = "1";
+                //label108.BackColor = Color.Lime;
+                //label108.Text = "1";
             }
 
             if (Dec_bin[41] == false) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
@@ -979,13 +982,13 @@ namespace KamertonTest
 
             if (Dec_bin[46] == false) //  30046  флаг подключения ГГС
             {
-                label115.BackColor = Color.Red;
-                label115.Text = "0";
+                //label115.BackColor = Color.Red;
+                //label115.Text = "0";
             }
             else
             {
-                label115.BackColor = Color.Lime;
-                label115.Text = "1";
+                //label115.BackColor = Color.Lime;
+                //label115.Text = "1";
             }
 
 
@@ -1257,13 +1260,13 @@ namespace KamertonTest
                 }
                 if (coilArr[4] == true)                             // XP2-2    Sence "Маг." 
                 {
-                    button60.BackColor = Color.Lime;
-                    button76.BackColor = Color.White;
+                    //button60.BackColor = Color.Lime;
+                    //button76.BackColor = Color.White;
                 }
                 else
                 {
-                    button76.BackColor = Color.Red;
-                    button60.BackColor = Color.White;
+                    //button76.BackColor = Color.Red;
+                    //button60.BackColor = Color.White;
                 }
                 if (coilArr[5] == true)                             // XP5-3    Sence "ГГC."
                 {
@@ -1524,23 +1527,23 @@ namespace KamertonTest
                 }
                 if (readVals[24] == 0) // 30024 флаг подключения ГГ Радио2
                 {
-                    label103.BackColor = Color.Red;
-                    label103.Text = "0";
+                    //label103.BackColor = Color.Red;
+                    //label103.Text = "0";
                 }
                 else
                 {
-                    label103.BackColor = Color.Lime;
-                    label103.Text = "1";
+                    //label103.BackColor = Color.Lime;
+                    //label103.Text = "1";
                 }
                 if (readVals[25] == 0) // 30025 флаг подключения ГГ Радио1
                 {
-                    label104.BackColor = Color.Red;
-                    label104.Text = "0";
+                    //label104.BackColor = Color.Red;
+                    //label104.Text = "0";
                 }
                 else
                 {
-                    label104.BackColor = Color.Lime;
-                    label104.Text = "1";
+                    //label104.BackColor = Color.Lime;
+                    //label104.Text = "1";
                 }
 
                 if (readVals[26] == 0) // 30026 флаг подключения трубки
@@ -1578,13 +1581,13 @@ namespace KamertonTest
 
                 if (readVals[40] == 0) // 30040  флаг подключения магнитофона
                 {
-                    label108.BackColor = Color.Red;
-                    label108.Text = "0";
+                    //label108.BackColor = Color.Red;
+                    //label108.Text = "0";
                 }
                 else
                 {
-                    label108.BackColor = Color.Lime;
-                    label108.Text = "1";
+                    //label108.BackColor = Color.Lime;
+                    //label108.Text = "1";
                 }
 
                 if (readVals[41] == 0) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
@@ -1644,13 +1647,13 @@ namespace KamertonTest
 
                 if (readVals[46] == 0) //  30046  флаг подключения ГГС
                 {
-                    label115.BackColor = Color.Red;
-                    label115.Text = "0";
+                    //label115.BackColor = Color.Red;
+                    //label115.Text = "0";
                 }
                 else
                 {
-                    label115.BackColor = Color.Lime;
-                    label115.Text = "1";
+                    //label115.BackColor = Color.Lime;
+                    //label115.Text = "1";
                 }
 
 
@@ -2463,9 +2466,9 @@ namespace KamertonTest
             }
         }
 
-        private void button32_Click(object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
+        private void button32_Click(object sender, EventArgs e)                        //Старт теста "Байты обмена с Камертон"
         {
-            Polltimer1.Enabled = false;                                               // Запретить опрос состояния
+            Polltimer1.Enabled = false;                                                // Запретить опрос состояния
             timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
             timerCTS.Enabled = false;
             timerTestAll.Enabled = false;
@@ -2475,10 +2478,10 @@ namespace KamertonTest
             bool[] coilArr = new bool[2];
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             progressBar1.Value = 0;
-            startCoil = 8;                                               // Управление питанием платы "Камертон"
-            res = myProtocol.writeCoil(slave, startCoil, true);          // Включить питание платы "Камертон"
-            Thread.Sleep(700);
-            button32.BackColor = Color.Lime;                                           //Изменение цвета кнопок
+            startCoil = 8;                                                             // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
+            Thread.Sleep(1700);
+            button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
             button31.BackColor = Color.LightSalmon;
             label102.Text = "Выполняется контроль состояния сенсоров";
             label102.ForeColor = Color.DarkOliveGreen;
@@ -2648,26 +2651,26 @@ namespace KamertonTest
 
 
 
-        private void button55_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио2
+        private void button55_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ питание +12 ГГ-Радио2
         {
-            //startCoil = 24;                                                          // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, true);
+            startCoil = 24;                                                          // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button67_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио2
+        private void button67_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ питание +12 ГГ-Радио2
         {
-            //startCoil = 24;                                                           // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, false);
+            startCoil = 24;                                                           // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button56_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ Сенсор ГГ-Радио1
+        private void button56_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ питание +12 ГГ-Радио1
         {
-            //startCoil = 23; // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, true);
+             startCoil = 23; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
-        private void button68_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ Сенсор ГГ-Радио1
+        private void button68_Click(object sender, EventArgs e)                      // Кнопка  ОТКЛ питание +12 в ГГ-Радио1
         {
-            //startCoil = 23; // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, false);
+            startCoil = 23; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
         private void button57_Click(object sender, EventArgs e)                      // Кнопка  ВКЛ подключения трубки    XP1- 19 HaSs  
@@ -2777,16 +2780,16 @@ namespace KamertonTest
             res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
-        private void button35_Click(object sender, EventArgs e)                      //  Кнопка  ВКЛ Сенсор ГГС
+        private void button35_Click(object sender, EventArgs e)                      //  Кнопка  ВКЛ питание +12 ГГС
         {
-            //startCoil = 22; // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, true);
+            startCoil = 22; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, true);
         }
 
-        private void button36_Click(object sender, EventArgs e)                      //  Кнопка  ОТКЛ Сенсор ГГС
+        private void button36_Click(object sender, EventArgs e)                      //  Кнопка  ОТКЛ питание +12 ГГС
         {
-            //startCoil = 22; // Управление сенсорами
-            //res = myProtocol.writeCoil(slave, startCoil, false);
+            startCoil = 22; // Управление сенсорами
+            res = myProtocol.writeCoil(slave, startCoil, false);
         }
 
 
@@ -4588,7 +4591,7 @@ namespace KamertonTest
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             startCoil = 8;                                               // Управление питанием платы "Камертон"
             res = myProtocol.writeCoil(slave, startCoil, true);          // Включить питание платы "Камертон"
-            Thread.Sleep(1000);
+            Thread.Sleep(1700);
             button11.BackColor = Color.Lime;
             button11.Refresh();
             label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!");
@@ -5046,6 +5049,36 @@ namespace KamertonTest
 
         }
 
- 
-    }
+        private void Test_power12v_Click(object sender, EventArgs e)
+        {
+            ushort[] readVolt = new ushort[10];
+            numRdRegs = 2;
+            ushort[] writeVals = new ushort[2];
+            bool[] coilArr = new bool[4];
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17);                // Провести измерение питания
+            Thread.Sleep(250);
+            test_end1();
+            startRdReg = 494;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
+            double s = readVolt[0] * 2.51 / 100;
+            string s2 = s.ToString();                                                   // Преобразование числа в строку
+            label45.Text = (s2);
+            startRdReg = 495;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
+            s = readVolt[0] * 2.51 / 100;
+            s2 = s.ToString();                                                          // Преобразование числа в строку
+            label46.Text = (s2);
+            startRdReg = 496;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
+            s = readVolt[0] * 2.51 / 100;
+            s2 = s.ToString();           
+            label47.Text = (s2);
+            startRdReg = 493;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
+            s = readVolt[0] * 2.51 / 100;
+            s2 = s.ToString();
+            label48.Text = (s2);
+         }
+     }
 }
