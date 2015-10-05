@@ -6308,7 +6308,7 @@ void setup()
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
 	slave.setSerial(3,57600);                       // Подключение к протоколу MODBUS компьютера Serial3 
-	Serial2.begin(9600);                           // USB2
+	Serial2.begin(9600);                            // 
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
