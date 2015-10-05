@@ -6416,7 +6416,7 @@ void setup()
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	preob_num_str();
 	list_file();                                     // Вывод списка файлов в СОМ порт  
-	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+	//set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	MsTimer2::start();                               // Включить таймер прерывания
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 

@@ -102,6 +102,7 @@ namespace KamertonTest
             // if (!(_serialPort.IsOpen))
             // _serialPort.Open();
            // findComPort();
+            serial_connect();
             Polltimer1.Enabled = true;
         }
 
@@ -299,8 +300,8 @@ namespace KamertonTest
             //
             //  CloseButton.Enabled = true;
             //  cmdOpenSerial.Enabled = false;    // Кнопка "Открыть Serial"
-            if (portFound == true)
-            {
+            //if (portFound == true)
+            //{
                 if ((myProtocol == null))
                 {
                     try
@@ -471,7 +472,7 @@ namespace KamertonTest
                     //findComPort();
                 }
 
-            }
+          //  }
             Polltimer1.Enabled = true;
         }
 
@@ -623,8 +624,8 @@ namespace KamertonTest
         #region timer all
         private void Polltimer1_Tick(object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
         {
-            if (portFound == true)
-            {
+            //if (portFound == true)
+            //{
                 short[] readVals = new short[125];
                 int slave;
                 int startRdReg;
@@ -698,11 +699,11 @@ namespace KamertonTest
                 label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                 toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
                 //  timer_Mic_test.Enabled = false;
-            }
-            else
-            {
-                SetComPort();
-            }
+            //}
+            //else
+            //{
+            //    SetComPort();
+            //}
         }
 
         private void timer_byte_set_Tick(object sender, EventArgs e)
@@ -5017,6 +5018,7 @@ namespace KamertonTest
 
         private void FindSerial_Click(object sender, EventArgs e)
         {
+/*
             label78.Text = "";
             label78.Refresh();
             if (portFound != true)
@@ -5032,6 +5034,7 @@ namespace KamertonTest
                 label78.Text = "COM порт уже открыт";
                 label78.Refresh();
             }
+            */
         }
 
         private void label44_Click(object sender, EventArgs e)
@@ -5062,8 +5065,15 @@ namespace KamertonTest
             startRdReg = 494;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             double s = readVolt[0] * 2.51 / 100;
-            string s2 = s.ToString();                                                   // Преобразование числа в строку
-            label45.Text = (s2);
+            string s2 = s.ToString();
+
+            //label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+            //toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
+
+     //       string.Format("{0:0.00}", s2);  // Преобразование числа в строку
+            label45.Text = string.Format("{0:0}", s2, CultureInfo.CurrentCulture);
+
+      //      label45.Text = (s2);
             startRdReg = 495;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             s = readVolt[0] * 2.51 / 100;
