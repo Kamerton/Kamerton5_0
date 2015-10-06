@@ -5065,30 +5065,19 @@ namespace KamertonTest
             startRdReg = 494;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             double s = readVolt[0] * 2.51 / 100;
-            string s2 = s.ToString();
-
-            //label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            //toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-
-     //       string.Format("{0:0.00}", s2);  // Преобразование числа в строку
-            label45.Text = string.Format("{0:0}", s2, CultureInfo.CurrentCulture);
-
-      //      label45.Text = (s2);
+            label45.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
             startRdReg = 495;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             s = readVolt[0] * 2.51 / 100;
-            s2 = s.ToString();                                                          // Преобразование числа в строку
-            label46.Text = (s2);
+            label46.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
             startRdReg = 496;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             s = readVolt[0] * 2.51 / 100;
-            s2 = s.ToString();           
-            label47.Text = (s2);
+            label47.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
             startRdReg = 493;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVolt, numRdRegs);
             s = readVolt[0] * 2.51 / 100;
-            s2 = s.ToString();
-            label48.Text = (s2);
+            label48.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
          }
      }
 }
