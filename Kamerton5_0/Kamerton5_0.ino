@@ -5325,14 +5325,12 @@ void measure_volume(int analog)
 			}
 		for (i = 0; i<= i_stop; i++)
 			{
-	/*			Array_max[sti] = max(volume_max, Array_volume[i]);
-				Array_min[sti] = min(volume_min, Array_volume[i]);*/
 				volume_max = max(volume_max, Array_volume[i]);
 				volume_min = min(volume_min, Array_volume[i]);
 			}
+			   volume_maxx += volume_max;
+			   volume_minx += volume_min;
        }
-
-
 
 		volume_fact = (volume_max) - (volume_min);
 		voltage = volume_fact * (5.0 / 1023.0);
