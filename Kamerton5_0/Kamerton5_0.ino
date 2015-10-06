@@ -87,7 +87,9 @@ unsigned int volume1     = 0;                       //
 unsigned int volume_max  = 0;                       //
 unsigned int volume_min  = 0;                       //
 unsigned int volume_fact = 0;                       //
-unsigned int Array_volume[514];                     //
+unsigned int Array_volume[260];                     //
+unsigned int Array_min[20];                         //
+unsigned int Array_max[20];                         //
 unsigned int volume_porog_D = 40;                   // Максимальная величина порога при проверке исправности FrontL,FrontR
 unsigned int volume_porog_L = 200;                  // Минимальная величина порога при проверке исправности FrontL,FrontR
 float voltage ;
@@ -3594,7 +3596,7 @@ void test_mikrophon()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[56])));                   //"Command PTT    OFF microphone                    send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 
 	 // +++++++++++++++++++++++++++++++++++++++ Проверка  на отключение сенсора и  PTT microphone ++++++++++++++++++++++++++++++++++++++++++++
 //		byte i50 = regBank.get(40004);    
@@ -3630,6 +3632,7 @@ void test_mikrophon()
 		  }
 
 	 UpdateRegs(); 
+	 delay(1000);
 	  // 2)  Проверка  на отключение PTT microphone
 		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение "Test microphone PTT  (CTS)                                  OFF - ";
 		  {
@@ -3663,7 +3666,7 @@ void test_mikrophon()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[59])));                   // "Command sensor ON  microphone                    send!"      ; 
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	//	byte i50 = regBank.get(40004);    
 	i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
@@ -3704,7 +3707,7 @@ void test_mikrophon()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[58])));                   // "Command sensor OFF microphone                    send!"      ;  
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 
 	//byte i50 = regBank.get(40004);    
 	i52 = regBank.get(40006);     
@@ -3739,6 +3742,7 @@ void test_mikrophon()
 		  }
 
 	 UpdateRegs(); 
+	 delay(1000);
 	  // 2)  Проверка  на включение  PTT microphone
 		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение      "Test microphone PTT  (CTS)                                  ON  
 		  {
@@ -3784,7 +3788,7 @@ void test_mikrophon()
 	resistor(2, 60);                                                                // Установить уровень сигнала 60 мв
 	regBank.set(9,1);                                                               // Включить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1400);
 
@@ -3815,12 +3819,12 @@ void testGGS()
 	myFile.println("");
 	regBank.set(25,1);                                                              // XP1- 19 HaSs      sensor подключения трубки  
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
-	resistor(1, 220);                                                               // Установить уровень сигнала 60 мв
-	resistor(2, 220);                                                               // Установить уровень сигнала 60 мв
+	resistor(1, 250);                                                               // Установить уровень сигнала 60 мв
+	resistor(2, 250);                                                               // Установить уровень сигнала 60 мв
 	//UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	UpdateRegs(); 
-	delay(300);
+	delay(500);
 	UpdateRegs(); 
 
 	byte i50 = regBank.get(40004);    
@@ -3872,7 +3876,7 @@ void testGGS()
 	if (test_repeat == false) myFile.println(buffer);                                                         // "Signal GGS  FrontL, FrontR   0,7v             ON"            ;
 	regBank.set(6,1);                                                               // Реле RL5 Звук Front L, Front R
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 
 	measure_vol_max(analog_FrontL,    40290,290,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
 	measure_vol_max(analog_FrontR,    40291,291,40);                                // Измерить уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
@@ -3886,7 +3890,7 @@ void testGGS()
 
 	regBank.set(25,0);                                                              // XP1- 19 HaSs      sensor подключения трубки          
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	UpdateRegs(); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[30])));                   // "Command sensor ON  MTT                           send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                                                         // "Command sensor ON  MTT                           send!"      ;
@@ -3914,12 +3918,12 @@ void test_GG_Radio1()
 	file_print_date();
 	myFile.println("");
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
-	resistor(1, 110);                                                               // Установить уровень сигнала 300 мв
-	resistor(2, 110);                                                               // Установить уровень сигнала 300 мв
+	resistor(1, 250);                                                               // Установить уровень сигнала 300 мв
+	resistor(2, 250);                                                               // Установить уровень сигнала 300 мв
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	UpdateRegs(); 
-	delay(300);
+	delay(500);
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -3935,7 +3939,7 @@ void test_GG_Radio1()
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
 	regBank.set(4,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -3958,12 +3962,12 @@ void test_GG_Radio2()
 	file_print_date();
 	myFile.println("");
 	regBank.set(7,0);                                                               // Реле RL3 Звук  LFE  "Маг."
-	resistor(1, 110);                                                               // Установить уровень сигнала 300 мв
-	resistor(2, 110);                                                               // Установить уровень сигнала 300 мв
+	resistor(1, 250);                                                               // Установить уровень сигнала 300 мв
+	resistor(2, 250);                                                               // Установить уровень сигнала 300 мв
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 	UpdateRegs(); 
-	delay(300);
+	delay(500);
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
@@ -3979,7 +3983,7 @@ void test_GG_Radio2()
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal Radio1 300 mV    LFE                   ON"            ;
 	regBank.set(7,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(1000);
 
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
@@ -4264,7 +4268,7 @@ void test_instr_off()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[8])));
 	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT headset instructor OFF      send!"
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
-	delay(300);
+	delay(1000);
 	UpdateRegs(); 
 //	byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
@@ -4402,7 +4406,7 @@ void test_instr_on()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[12])));
 	if (test_repeat == false) myFile.println(buffer);                               // "Command        ON  PTT headset instructor (CTS)  send!"      ;  
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
-	delay(300);
+	delay(1000);
 	UpdateRegs(); 
  
 	byte i52 = regBank.get(40006);     
@@ -4516,7 +4520,7 @@ void test_disp_off()
 	if (test_repeat == false) myFile.println(buffer);                               // "Command PTT headset instructor OFF      send!""
 
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
-	delay(300);
+	delay(1000);
 	UpdateRegs(); 
 	//byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
@@ -4652,7 +4656,7 @@ void test_disp_on()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[21])));
 	if (test_repeat == false) myFile.println(buffer);                               // "Command        ON  PTT headset dispatcher (CTS)  send!"      ;  
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
-	delay(300);
+	delay(1000);
 	UpdateRegs(); 
 	//byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
@@ -4767,7 +4771,7 @@ void test_MTT_off()
 	regBank.set(9,0);                                                               // Реле RL8 Звук на микрофон
 	regBank.set(10,0);                                                              // Реле RL9 XP1 10
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
-	delay(300);
+	delay(1000);
 	UpdateRegs(); 
 	delay(100);
 	byte i50 = regBank.get(40004);    
@@ -4802,7 +4806,7 @@ void test_MTT_off()
 			   }
 		  }
 		   UpdateRegs(); 
-
+		   delay(1000);
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
 		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение CTS MTT
 		  {
@@ -4873,7 +4877,7 @@ void test_MTT_on()
 	if (test_repeat == false) myFile.println(buffer);                               // "Command HangUp ON  MTT                           send!"      ;
 
 	UpdateRegs(); 
-	delay(600);
+	delay(1000);
 	UpdateRegs(); 
 	  // 1)  Проверка сенсора MTT на включение 
 	byte i50 = regBank.get(40004);    
@@ -4907,7 +4911,7 @@ void test_MTT_on()
 			   }
 		  }
 
-		delay(300);
+		delay(1000);
 		UpdateRegs(); 
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
 		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение CTS MTT
@@ -5302,11 +5306,18 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 void measure_volume(int analog)
 {
 		volume1     = 0;
+	unsigned int	volume_maxx = 0;
+	unsigned int    volume_minx = 0;
+//unsigned int Array_min[20];                         //
+//unsigned int Array_max[20];                         //
+ int stix=10;
+	for (int sti = 0;sti<= stix; sti++)
+	  {
 		volume_max  = 0;
 		volume_min  = 1023;
 		volume_fact = 0;
 		int i;
-		int i_stop = 255;
+		int i_stop = 100;
 		
 		for (i = 0;i<= i_stop; i++)
 			{
@@ -5314,13 +5325,27 @@ void measure_volume(int analog)
 			}
 		for (i = 0; i<= i_stop; i++)
 			{
+	/*			Array_max[sti] = max(volume_max, Array_volume[i]);
+				Array_min[sti] = min(volume_min, Array_volume[i]);*/
 				volume_max = max(volume_max, Array_volume[i]);
 				volume_min = min(volume_min, Array_volume[i]);
 			}
-		
-		volume_fact = volume_max - volume_min;
+       }
+
+
+
+		volume_fact = (volume_max) - (volume_min);
 		voltage = volume_fact * (5.0 / 1023.0);
 		voltage10 = voltage * 100;
+
+		Serial.print("volume_max - ");
+		Serial.print((volume_maxx/stix) * (5.0 / 1023.0));
+		Serial.print("- volume_min - ");
+		Serial.print((volume_minx /stix) * (5.0 / 1023.0));
+		Serial.print(" = ");
+		Serial.println(((volume_maxx/stix) -(volume_minx /stix)) * (5.0 / 1023.0));
+
+
 
 		//Serial.print("voltage - ");
 		//Serial.println(voltage10);
