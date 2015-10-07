@@ -102,8 +102,8 @@ namespace KamertonTest
             // if (!(_serialPort.IsOpen))
             // _serialPort.Open();
            // findComPort();
-            serial_connect();
-            Polltimer1.Enabled = true;
+           // serial_connect();
+           // Polltimer1.Enabled = true;
         }
 
         private delegate void SetTextDeleg(string text);                  //             
@@ -473,7 +473,7 @@ namespace KamertonTest
                 }
 
           //  }
-            Polltimer1.Enabled = true;
+          //  Polltimer1.Enabled = true;
         }
 
         private void SetComPort()

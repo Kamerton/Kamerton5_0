@@ -796,8 +796,16 @@ void flash_time()                                              // Программа обра
 		prer_Kmerton_Run = false;
 }
 
-void serialEvent2()
-{/*
+void serialEvent3()
+{
+	while (prer_Kmerton_Run) 
+	{
+	//	char inChar = (char)Serial.read();
+	}
+//	MsTimer2::stop();                                // Выключить таймер прерывания
+//	slave.run(); 
+//	MsTimer2::start();                               // Включить таймер прерывания
+	/*
 	digitalWrite(ledPin13,HIGH);
 	if (portFound == false)
 	{
@@ -3940,7 +3948,7 @@ void test_GG_Radio1()
 	regBank.set(4,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
-
+	UpdateRegs();  
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40302,302,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
@@ -3948,7 +3956,7 @@ void test_GG_Radio1()
 	measure_vol_min(analog_mag_radio, 40304,304,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
 	measure_vol_min(analog_mag_phone, 40305,305,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
 	measure_vol_min(analog_ggs,       40306,306,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
-	measure_vol_max(analog_gg_radio1, 40309,309,220);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
+	measure_vol_max(analog_gg_radio1, 40309,309,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
 	measure_vol_min(analog_gg_radio2, 40308,308,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
@@ -3984,6 +3992,7 @@ void test_GG_Radio2()
 	regBank.set(7,1);                                                               //  Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
+	UpdateRegs();  
 
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";

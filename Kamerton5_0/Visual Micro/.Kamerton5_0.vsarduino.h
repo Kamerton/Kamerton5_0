@@ -87,7 +87,7 @@ void dateTime(uint16_t* date, uint16_t* time);
 void serial_print_date();
 void set_time();
 void flash_time();
-void serialEvent2();
+void serialEvent3();
 void prer_Kamerton();
 void sendPacketK ();
 void waiting_for_replyK();
