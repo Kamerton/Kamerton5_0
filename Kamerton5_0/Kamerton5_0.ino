@@ -368,147 +368,147 @@ const char  txt_message70[]   PROGMEM            = "Adjusting the brightness mks
 
 
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-const char  txt_error0[]  PROGMEM              = "Sensor MTT                          XP1- 19 HaSs            OFF - ";
-const char  txt_error1[]  PROGMEM              = "Sensor tangenta ruchnaja            XP7 - 2                 OFF - ";
-const char  txt_error2[]  PROGMEM              = "Sensor tangenta nognaja             XP8 - 2                 OFF - "; 
-const char  txt_error3[]  PROGMEM              = "Sensor headset instructor 2         XP1- 16 HeS2Rs          OFF - ";
-const char  txt_error4[]  PROGMEM              = "Sensor headset instructor           XP1- 13 HeS2Ls          OFF - "; 
-const char  txt_error5[]  PROGMEM              = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          OFF - "; 
-const char  txt_error6[]  PROGMEM              = "Sensor headset dispatcher           XP1- 1  HeS1Ls          OFF - ";
-const char  txt_error7[]  PROGMEM              = "Sensor microphone                   XS1 - 6                 OFF - "; 
-const char  txt_error8[]  PROGMEM              = "Microphone headset instructor Sw.   XP1 12 HeS2e            OFF - "; 
-const char  txt_error9[]  PROGMEM              = "Microphone headset dispatcher Sw.   XP1 12 HeS2e            OFF - ";  
+const char  txt_error0[]  PROGMEM              = "Sensor MTT                          XP1- 19 HaSs    OFF - ";
+const char  txt_error1[]  PROGMEM              = "Sensor tangenta ruchnaja            XP7 - 2         OFF - ";
+const char  txt_error2[]  PROGMEM              = "Sensor tangenta nognaja             XP8 - 2         OFF - "; 
+const char  txt_error3[]  PROGMEM              = "Sensor headset instructor 2         XP1- 16 HeS2Rs  OFF - ";
+const char  txt_error4[]  PROGMEM              = "Sensor headset instructor           XP1- 13 HeS2Ls  OFF - "; 
+const char  txt_error5[]  PROGMEM              = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs  OFF - "; 
+const char  txt_error6[]  PROGMEM              = "Sensor headset dispatcher           XP1- 1  HeS1Ls  OFF - ";
+const char  txt_error7[]  PROGMEM              = "Sensor microphone                   XS1 - 6         OFF - "; 
+const char  txt_error8[]  PROGMEM              = "Microphone headset instructor Sw.   XP1 12 HeS2e    OFF - "; 
+const char  txt_error9[]  PROGMEM              = "Microphone headset dispatcher Sw.   XP1 12 HeS2e    OFF - ";  
 
-const char  txt_error10[]  PROGMEM             = "Sensor MTT                          XP1- 19 HaSs            ON  - "; 
-const char  txt_error11[]  PROGMEM             = "Sensor tangenta ruchnaja            XP7 - 2                 ON  - ";
-const char  txt_error12[]  PROGMEM             = "Sensor tangenta nognaja             XP8 - 2                 ON  - "; 
-const char  txt_error13[]  PROGMEM             = "Sensor headset instructor 2         XP1- 16 HeS2Rs          ON  - ";
-const char  txt_error14[]  PROGMEM             = "Sensor headset instructor           XP1- 13 HeS2Ls          ON  - "; 
-const char  txt_error15[]  PROGMEM             = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs          ON  - "; 
-const char  txt_error16[]  PROGMEM             = "Sensor headset dispatcher           XP1- 1  HeS1Ls          ON  - ";
-const char  txt_error17[]  PROGMEM             = "Sensor microphone                   XS1 - 6                 ON  - "; 
-const char  txt_error18[]  PROGMEM             = "Microphone headset instructor Sw.   XP1 12 HeS2e            ON  - "; 
-const char  txt_error19[]  PROGMEM             = "Microphone headset dispatcher Sw.   XP1 10 HeS1e            ON  - "; 
+const char  txt_error10[]  PROGMEM             = "Sensor MTT                          XP1- 19 HaSs    ON  - "; 
+const char  txt_error11[]  PROGMEM             = "Sensor tangenta ruchnaja            XP7 - 2         ON  - ";
+const char  txt_error12[]  PROGMEM             = "Sensor tangenta nognaja             XP8 - 2         ON  - "; 
+const char  txt_error13[]  PROGMEM             = "Sensor headset instructor 2         XP1- 16 HeS2Rs  ON  - ";
+const char  txt_error14[]  PROGMEM             = "Sensor headset instructor           XP1- 13 HeS2Ls  ON  - "; 
+const char  txt_error15[]  PROGMEM             = "Sensor headset dispatcher 2         XP1- 5  HeS1Rs  ON  - "; 
+const char  txt_error16[]  PROGMEM             = "Sensor headset dispatcher           XP1- 1  HeS1Ls  ON  - ";
+const char  txt_error17[]  PROGMEM             = "Sensor microphone                   XS1 - 6         ON  - "; 
+const char  txt_error18[]  PROGMEM             = "Microphone headset instructor Sw.   XP1 12 HeS2e    ON  - "; 
+const char  txt_error19[]  PROGMEM             = "Microphone headset dispatcher Sw.   XP1 10 HeS1e    ON  - "; 
   
-const char  txt_error20[]  PROGMEM             = "Command PTT headset instructor (CTS)                        OFF - ";
-const char  txt_error21[]  PROGMEM             = "Command PTT headset instructor (CTS)                        ON  - ";
-const char  txt_error22[]  PROGMEM             = "Command PTT headset dispatcher (CTS)                        OFF - ";
-const char  txt_error23[]  PROGMEM             = "Command PTT headset dispatcher (CTS)                        ON  - ";
-const char  txt_error24[]  PROGMEM             = "Test headset instructor ** Signal LineL                     ON  - ";
-const char  txt_error25[]  PROGMEM             = "Test headset instructor ** Signal LineR                     ON  - ";   
-const char  txt_error26[]  PROGMEM             = "Test headset instructor ** Signal Mag phone                 ON  - ";
-const char  txt_error27[]  PROGMEM             = "Test headset dispatcher ** Signal LineL                     ON  - ";
-const char  txt_error28[]  PROGMEM             = "Test headset dispatcher ** Signal LineR                     ON  - ";  
-const char  txt_error29[]  PROGMEM             = "Test headset dispatcher ** Signal Mag phone                 ON  - ";
+const char  txt_error20[]  PROGMEM             = "Command PTT headset instructor (CTS)                OFF - ";
+const char  txt_error21[]  PROGMEM             = "Command PTT headset instructor (CTS)                ON  - ";
+const char  txt_error22[]  PROGMEM             = "Command PTT headset dispatcher (CTS)                OFF - ";
+const char  txt_error23[]  PROGMEM             = "Command PTT headset dispatcher (CTS)                ON  - ";
+const char  txt_error24[]  PROGMEM             = "Test headset instructor ** Signal LineL             ON  - ";
+const char  txt_error25[]  PROGMEM             = "Test headset instructor ** Signal LineR             ON  - ";   
+const char  txt_error26[]  PROGMEM             = "Test headset instructor ** Signal Mag phone         ON  - ";
+const char  txt_error27[]  PROGMEM             = "Test headset dispatcher ** Signal LineL             ON  - ";
+const char  txt_error28[]  PROGMEM             = "Test headset dispatcher ** Signal LineR             ON  - ";  
+const char  txt_error29[]  PROGMEM             = "Test headset dispatcher ** Signal Mag phone         ON  - ";
 
-const char  txt_error30[]  PROGMEM             = "Test headset instructor ** Signal FrontL                    OFF - ";
-const char  txt_error31[]  PROGMEM             = "Test headset instructor ** Signal FrontR                    OFF - ";
-const char  txt_error32[]  PROGMEM             = "Test headset instructor ** Signal LineL                     OFF - ";
-const char  txt_error33[]  PROGMEM             = "Test headset instructor ** Signal LineR                     OFF - ";
-const char  txt_error34[]  PROGMEM             = "Test headset instructor ** Signal mag radio                 OFF - ";
-const char  txt_error35[]  PROGMEM             = "Test headset instructor ** Signal mag phone                 OFF - ";
-const char  txt_error36[]  PROGMEM             = "Test headset instructor ** Signal GGS                       OFF - ";
-const char  txt_error37[]  PROGMEM             = "Test headset instructor ** Signal GG Radio1                 OFF - ";
-const char  txt_error38[]  PROGMEM             = "Test headset instructor ** Signal GG Radio2                 OFF - ";
+const char  txt_error30[]  PROGMEM             = "Test headset instructor ** Signal FrontL            OFF - ";
+const char  txt_error31[]  PROGMEM             = "Test headset instructor ** Signal FrontR            OFF - ";
+const char  txt_error32[]  PROGMEM             = "Test headset instructor ** Signal LineL             OFF - ";
+const char  txt_error33[]  PROGMEM             = "Test headset instructor ** Signal LineR             OFF - ";
+const char  txt_error34[]  PROGMEM             = "Test headset instructor ** Signal mag radio         OFF - ";
+const char  txt_error35[]  PROGMEM             = "Test headset instructor ** Signal mag phone         OFF - ";
+const char  txt_error36[]  PROGMEM             = "Test headset instructor ** Signal GGS               OFF - ";
+const char  txt_error37[]  PROGMEM             = "Test headset instructor ** Signal GG Radio1         OFF - ";
+const char  txt_error38[]  PROGMEM             = "Test headset instructor ** Signal GG Radio2         OFF - ";
 const char  txt_error39[]  PROGMEM             = "";
 
-const char  txt_error40[]  PROGMEM             = "Test headset dispatcher ** Signal FrontL                    OFF - ";
-const char  txt_error41[]  PROGMEM             = "Test headset dispatcher ** Signal FrontR                    OFF - ";
-const char  txt_error42[]  PROGMEM             = "Test headset dispatcher ** Signal LineL                     OFF - ";
-const char  txt_error43[]  PROGMEM             = "Test headset dispatcher ** Signal LineR                     OFF - ";
-const char  txt_error44[]  PROGMEM             = "Test headset dispatcher ** Signal mag radio                 OFF - ";
-const char  txt_error45[]  PROGMEM             = "Test headset dispatcher ** Signal mag phone                 OFF - ";
-const char  txt_error46[]  PROGMEM             = "Test headset dispatcher ** Signal GGS                       OFF - ";
-const char  txt_error47[]  PROGMEM             = "Test headset dispatcher ** Signal GG Radio1                 OFF - ";
-const char  txt_error48[]  PROGMEM             = "Test headset dispatcher ** Signal GG Radio2                 OFF - ";
+const char  txt_error40[]  PROGMEM             = "Test headset dispatcher ** Signal FrontL            OFF - ";
+const char  txt_error41[]  PROGMEM             = "Test headset dispatcher ** Signal FrontR            OFF - ";
+const char  txt_error42[]  PROGMEM             = "Test headset dispatcher ** Signal LineL             OFF - ";
+const char  txt_error43[]  PROGMEM             = "Test headset dispatcher ** Signal LineR             OFF - ";
+const char  txt_error44[]  PROGMEM             = "Test headset dispatcher ** Signal mag radio         OFF - ";
+const char  txt_error45[]  PROGMEM             = "Test headset dispatcher ** Signal mag phone         OFF - ";
+const char  txt_error46[]  PROGMEM             = "Test headset dispatcher ** Signal GGS               OFF - ";
+const char  txt_error47[]  PROGMEM             = "Test headset dispatcher ** Signal GG Radio1         OFF - ";
+const char  txt_error48[]  PROGMEM             = "Test headset dispatcher ** Signal GG Radio2         OFF - ";
 const char  txt_error49[]  PROGMEM             = "";
 
-const char  txt_error50[]  PROGMEM             = "Test MTT ** Signal FrontL                                   OFF - ";
-const char  txt_error51[]  PROGMEM             = "Test MTT ** Signal FrontR                                   OFF - ";
-const char  txt_error52[]  PROGMEM             = "Test MTT ** Signal LineL                                    OFF - ";
-const char  txt_error53[]  PROGMEM             = "Test MTT ** Signal LineR                                    OFF - ";
-const char  txt_error54[]  PROGMEM             = "Test MTT ** Signal mag radio                                OFF - ";
-const char  txt_error55[]  PROGMEM             = "Test MTT ** Signal mag phone                                OFF - ";
-const char  txt_error56[]  PROGMEM             = "Test MTT ** Signal GGS                                      OFF - ";
-const char  txt_error57[]  PROGMEM             = "Test MTT ** Signal GG Radio1                                OFF - ";
-const char  txt_error58[]  PROGMEM             = "Test MTT ** Signal GG Radio2                                OFF - ";
-const char  txt_error59[]  PROGMEM             = "Test MTT ** Signal GGS                                      ON  - ";
+const char  txt_error50[]  PROGMEM             = "Test MTT ** Signal FrontL                           OFF - ";
+const char  txt_error51[]  PROGMEM             = "Test MTT ** Signal FrontR                           OFF - ";
+const char  txt_error52[]  PROGMEM             = "Test MTT ** Signal LineL                            OFF - ";
+const char  txt_error53[]  PROGMEM             = "Test MTT ** Signal LineR                            OFF - ";
+const char  txt_error54[]  PROGMEM             = "Test MTT ** Signal mag radio                        OFF - ";
+const char  txt_error55[]  PROGMEM             = "Test MTT ** Signal mag phone                        OFF - ";
+const char  txt_error56[]  PROGMEM             = "Test MTT ** Signal GGS                              OFF - ";
+const char  txt_error57[]  PROGMEM             = "Test MTT ** Signal GG Radio1                        OFF - ";
+const char  txt_error58[]  PROGMEM             = "Test MTT ** Signal GG Radio2                        OFF - ";
+const char  txt_error59[]  PROGMEM             = "Test MTT ** Signal GGS                              ON  - ";
 
-const char  txt_error60[]  PROGMEM             = "Test MTT ** Signal LineL                                    ON  - ";
-const char  txt_error61[]  PROGMEM             = "Test MTT ** Signal LineR                                    ON  - ";  
-const char  txt_error62[]  PROGMEM             = "Test MTT ** Signal Mag phone                                ON  - ";
-const char  txt_error63[]  PROGMEM             = "Test MTT PTT    (CTS)                                       OFF - ";
-const char  txt_error64[]  PROGMEM             = "Test microphone PTT  (CTS)                                  OFF - ";
-const char  txt_error65[]  PROGMEM             = "Test MTT PTT    (CTS)                                       ON  - ";
-const char  txt_error66[]  PROGMEM             = "Test microphone PTT  (CTS)                                  ON  - ";
-const char  txt_error67[]  PROGMEM             = "Test MTT HangUp (DCD)                                       OFF - ";
-const char  txt_error68[]  PROGMEM             = "Test MTT HangUp (DCD)                                       ON  - ";
+const char  txt_error60[]  PROGMEM             = "Test MTT ** Signal LineL                            ON  - ";
+const char  txt_error61[]  PROGMEM             = "Test MTT ** Signal LineR                            ON  - ";  
+const char  txt_error62[]  PROGMEM             = "Test MTT ** Signal Mag phone                        ON  - ";
+const char  txt_error63[]  PROGMEM             = "Test MTT PTT    (CTS)                               OFF - ";
+const char  txt_error64[]  PROGMEM             = "Test microphone PTT  (CTS)                          OFF - ";
+const char  txt_error65[]  PROGMEM             = "Test MTT PTT    (CTS)                               ON  - ";
+const char  txt_error66[]  PROGMEM             = "Test microphone PTT  (CTS)                          ON  - ";
+const char  txt_error67[]  PROGMEM             = "Test MTT HangUp (DCD)                               OFF - ";
+const char  txt_error68[]  PROGMEM             = "Test MTT HangUp (DCD)                               ON  - ";
 const char  txt_error69[]  PROGMEM             = "";
 
-const char  txt_error70[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
-const char  txt_error71[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
-const char  txt_error72[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                        ON  - ";
-const char  txt_error73[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                        ON  - ";
-const char  txt_error74[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2                 OFF - ";
-const char  txt_error75[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2                 ON  - ";
-const char  txt_error76[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2                 OFF - ";
-const char  txt_error77[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2                 ON  - ";
-const char  txt_error78[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 OFF - ";
-const char  txt_error79[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1                 ON  - ";
+const char  txt_error70[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                OFF - ";
+const char  txt_error71[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                OFF - ";
+const char  txt_error72[]  PROGMEM             = "Command PTT1 tangenta ruchnaja (CTS)                ON  - ";
+const char  txt_error73[]  PROGMEM             = "Command PTT2 tangenta ruchnaja (DCR)                ON  - ";
+const char  txt_error74[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2         OFF - ";
+const char  txt_error75[]  PROGMEM             = "Command sensor tangenta ruchnaja    XP7 - 2         ON  - ";
+const char  txt_error76[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2         OFF - ";
+const char  txt_error77[]  PROGMEM             = "Command sensor tangenta nognaja     XP8 - 2         ON  - ";
+const char  txt_error78[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1         OFF - ";
+const char  txt_error79[]  PROGMEM             = "Command PTT tangenta nognaja (CTS)  XP8 - 1         ON  - ";
 
-const char  txt_error80[]  PROGMEM             = "Test GGS ** Signal FrontL                                   OFF - ";
-const char  txt_error81[]  PROGMEM             = "Test GGS ** Signal FrontR                                   OFF - ";
-const char  txt_error82[]  PROGMEM             = "Test GGS ** Signal LineL                                    OFF - ";
-const char  txt_error83[]  PROGMEM             = "Test GGS ** Signal LineR                                    OFF - ";
-const char  txt_error84[]  PROGMEM             = "Test GGS ** Signal mag radio                                OFF - ";
-const char  txt_error85[]  PROGMEM             = "Test GGS ** Signal mag phone                                OFF - ";
-const char  txt_error86[]  PROGMEM             = "Test GGS ** Signal GGS                                      OFF - ";
-const char  txt_error87[]  PROGMEM             = "Test GGS ** Signal GG Radio1                                OFF - ";
-const char  txt_error88[]  PROGMEM             = "Test GGS ** Signal GG Radio2                                OFF - ";
-const char  txt_error89[]  PROGMEM             = "Test GGS ** Signal GGS                                      ON  - ";
+const char  txt_error80[]  PROGMEM             = "Test GGS ** Signal FrontL                           OFF - ";
+const char  txt_error81[]  PROGMEM             = "Test GGS ** Signal FrontR                           OFF - ";
+const char  txt_error82[]  PROGMEM             = "Test GGS ** Signal LineL                            OFF - ";
+const char  txt_error83[]  PROGMEM             = "Test GGS ** Signal LineR                            OFF - ";
+const char  txt_error84[]  PROGMEM             = "Test GGS ** Signal mag radio                        OFF - ";
+const char  txt_error85[]  PROGMEM             = "Test GGS ** Signal mag phone                        OFF - ";
+const char  txt_error86[]  PROGMEM             = "Test GGS ** Signal GGS                              OFF - ";
+const char  txt_error87[]  PROGMEM             = "Test GGS ** Signal GG Radio1                        OFF - ";
+const char  txt_error88[]  PROGMEM             = "Test GGS ** Signal GG Radio2                        OFF - ";
+const char  txt_error89[]  PROGMEM             = "Test GGS ** Signal GGS                              ON  - ";
 
-const char  txt_error90[]  PROGMEM             = "Test GGS ** Signal FrontL                                   ON  - ";
-const char  txt_error91[]  PROGMEM             = "Test GGS ** Signal FrontR                                   ON  - ";
-const char  txt_error92[]  PROGMEM             = "Test GGS ** Signal mag phone                                ON  - ";
+const char  txt_error90[]  PROGMEM             = "Test GGS ** Signal FrontL                           ON  - ";
+const char  txt_error91[]  PROGMEM             = "Test GGS ** Signal FrontR                           ON  - ";
+const char  txt_error92[]  PROGMEM             = "Test GGS ** Signal mag phone                        ON  - ";
 const char  txt_error93[]  PROGMEM             = "";  
 const char  txt_error94[]  PROGMEM             = "";
 const char  txt_error95[]  PROGMEM             = ""; 
 const char  txt_error96[]  PROGMEM             = "";    
 const char  txt_error97[]  PROGMEM             = "";  
-const char  txt_error98[]  PROGMEM             = "Test Microphone ** Signal mag phone                         ON  - ";  
-const char  txt_error99[]  PROGMEM             = "Test Microphone ** Signal LineL                             ON  - "; 
+const char  txt_error98[]  PROGMEM             = "Test Microphone ** Signal mag phone                 ON  - ";  
+const char  txt_error99[]  PROGMEM             = "Test Microphone ** Signal LineL                     ON  - "; 
 
-const char  txt_error100[]  PROGMEM            = "Test Radio1 ** Signal FrontL                                OFF - ";
-const char  txt_error101[]  PROGMEM            = "Test Radio1 ** Signal FrontR                                OFF - ";
-const char  txt_error102[]  PROGMEM            = "Test Radio1 ** Signal LineL                                 OFF - ";
-const char  txt_error103[]  PROGMEM            = "Test Radio1 ** Signal LineR                                 OFF - ";
-const char  txt_error104[]  PROGMEM            = "Test Radio1 ** Signal mag radio                             OFF - ";
-const char  txt_error105[]  PROGMEM            = "Test Radio1 ** Signal mag phone                             OFF - ";
-const char  txt_error106[]  PROGMEM            = "Test Radio1 ** Signal GGS                                   OFF - ";
-const char  txt_error107[]  PROGMEM            = "Test Radio1 ** Signal GG Radio1                             OFF - ";
-const char  txt_error108[]  PROGMEM            = "Test Radio1 ** Signal GG Radio2                             OFF - ";
-const char  txt_error109[]  PROGMEM            = "Test Radio1 ** Signal Radio1                                ON  - ";
+const char  txt_error100[]  PROGMEM            = "Test Radio1 ** Signal FrontL                        OFF - ";
+const char  txt_error101[]  PROGMEM            = "Test Radio1 ** Signal FrontR                        OFF - ";
+const char  txt_error102[]  PROGMEM            = "Test Radio1 ** Signal LineL                         OFF - ";
+const char  txt_error103[]  PROGMEM            = "Test Radio1 ** Signal LineR                         OFF - ";
+const char  txt_error104[]  PROGMEM            = "Test Radio1 ** Signal mag radio                     OFF - ";
+const char  txt_error105[]  PROGMEM            = "Test Radio1 ** Signal mag phone                     OFF - ";
+const char  txt_error106[]  PROGMEM            = "Test Radio1 ** Signal GGS                           OFF - ";
+const char  txt_error107[]  PROGMEM            = "Test Radio1 ** Signal GG Radio1                     OFF - ";
+const char  txt_error108[]  PROGMEM            = "Test Radio1 ** Signal GG Radio2                     OFF - ";
+const char  txt_error109[]  PROGMEM            = "Test Radio1 ** Signal Radio1                        ON  - ";
 
-const char  txt_error110[]  PROGMEM            = "Test Radio2 ** Signal FrontL                                OFF - ";
-const char  txt_error111[]  PROGMEM            = "Test Radio2 ** Signal FrontR                                OFF - ";
-const char  txt_error112[]  PROGMEM            = "Test Radio2 ** Signal LineL                                 OFF - ";
-const char  txt_error113[]  PROGMEM            = "Test Radio2 ** Signal LineR                                 OFF - ";
-const char  txt_error114[]  PROGMEM            = "Test Radio2 ** Signal mag radio                             OFF - ";
-const char  txt_error115[]  PROGMEM            = "Test Radio2 ** Signal mag phone                             OFF - ";
-const char  txt_error116[]  PROGMEM            = "Test Radio2 ** Signal GGS                                   OFF - ";
-const char  txt_error117[]  PROGMEM            = "Test Radio2 ** Signal GG Radio1                             OFF - ";
-const char  txt_error118[]  PROGMEM            = "Test Radio2 ** Signal GG Radio2                             OFF - ";
-const char  txt_error119[]  PROGMEM            = "Test Radio2 ** Signal Radio2                                ON  - ";
+const char  txt_error110[]  PROGMEM            = "Test Radio2 ** Signal FrontL                        OFF - ";
+const char  txt_error111[]  PROGMEM            = "Test Radio2 ** Signal FrontR                        OFF - ";
+const char  txt_error112[]  PROGMEM            = "Test Radio2 ** Signal LineL                         OFF - ";
+const char  txt_error113[]  PROGMEM            = "Test Radio2 ** Signal LineR                         OFF - ";
+const char  txt_error114[]  PROGMEM            = "Test Radio2 ** Signal mag radio                     OFF - ";
+const char  txt_error115[]  PROGMEM            = "Test Radio2 ** Signal mag phone                     OFF - ";
+const char  txt_error116[]  PROGMEM            = "Test Radio2 ** Signal GGS                           OFF - ";
+const char  txt_error117[]  PROGMEM            = "Test Radio2 ** Signal GG Radio1                     OFF - ";
+const char  txt_error118[]  PROGMEM            = "Test Radio2 ** Signal GG Radio2                     OFF - ";
+const char  txt_error119[]  PROGMEM            = "Test Radio2 ** Signal Radio2                        ON  - ";
 
-const char  txt_error120[]  PROGMEM            = "Test Microphone ** Signal FrontL                            OFF - ";
-const char  txt_error121[]  PROGMEM            = "Test Microphone ** Signal FrontR                            OFF - ";
-const char  txt_error122[]  PROGMEM            = "Test Microphone ** Signal LineL                             OFF - ";
-const char  txt_error123[]  PROGMEM            = "Test Microphone ** Signal LineR                             OFF - ";
-const char  txt_error124[]  PROGMEM            = "Test Microphone ** Signal mag radio                         OFF - ";
-const char  txt_error125[]  PROGMEM            = "Test Microphone ** Signal mag phone                         OFF - ";
-const char  txt_error126[]  PROGMEM            = "Test Microphone ** Signal GGS                               OFF - ";
-const char  txt_error127[]  PROGMEM            = "Test Microphone ** Signal GG Radio1                         OFF - ";
-const char  txt_error128[]  PROGMEM            = "Test Microphone ** Signal GG Radio2                         OFF - ";
+const char  txt_error120[]  PROGMEM            = "Test Microphone ** Signal FrontL                    OFF - ";
+const char  txt_error121[]  PROGMEM            = "Test Microphone ** Signal FrontR                    OFF - ";
+const char  txt_error122[]  PROGMEM            = "Test Microphone ** Signal LineL                     OFF - ";
+const char  txt_error123[]  PROGMEM            = "Test Microphone ** Signal LineR                     OFF - ";
+const char  txt_error124[]  PROGMEM            = "Test Microphone ** Signal mag radio                 OFF - ";
+const char  txt_error125[]  PROGMEM            = "Test Microphone ** Signal mag phone                 OFF - ";
+const char  txt_error126[]  PROGMEM            = "Test Microphone ** Signal GGS                       OFF - ";
+const char  txt_error127[]  PROGMEM            = "Test Microphone ** Signal GG Radio1                 OFF - ";
+const char  txt_error128[]  PROGMEM            = "Test Microphone ** Signal GG Radio2                 OFF - ";
 const char  txt_error129[]  PROGMEM            = "";
 
 char buffer[130];  
@@ -3148,6 +3148,7 @@ void test_headset_dispatcher()
  }
 void test_MTT()
 {
+	Serial.println(" test_MTT - off ");
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[24])));                   // " ****** Test MTT start! ******"                              ; 
 	myFile.println(buffer);                                                         // " ****** Test MTT start! ******"                              ; 
@@ -3160,6 +3161,8 @@ void test_MTT()
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[30])));
 	if (test_repeat == false)  myFile.println(buffer);                              // "Command sensor ON MTT  send!         
 	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD Трубку поднять DCD должно быть в "0"
+	UpdateRegs();                                                                   // Выполнить команду
+	delay(400);
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));
 	if (test_repeat == false)  myFile.println(buffer);                              // "Command  HangUp MTT OFF send!"
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
@@ -3178,6 +3181,7 @@ void test_MTT()
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
+    Serial.println(" test_MTT - on ");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях  +++++++++++++++++++++++++++++++++
@@ -3213,6 +3217,7 @@ void test_MTT()
 	UpdateRegs();                                                                   // Выполнить команду
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
+	Serial.println(" test_MTT - end ");
 }
 void test_tangR()
 {
@@ -3920,6 +3925,7 @@ void testGGS()
 }
 void test_GG_Radio1()
 {
+	Serial.println("test_GG_Radio1 - off ");
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[50])));                   // " ****** Test Radio1 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio1 start! ******"                           ;
@@ -3949,6 +3955,7 @@ void test_GG_Radio1()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
 	UpdateRegs();  
+	Serial.println("test_GG_Radio1 - on ");
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40302,302,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
@@ -3964,6 +3971,7 @@ void test_GG_Radio1()
 }
 void test_GG_Radio2()
 {
+	Serial.println("test_GG_Radio2 - off ");
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[52])));                   // " ****** Test Radio2 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio2 start! ******"                           ;
@@ -3993,6 +4001,7 @@ void test_GG_Radio2()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
 	UpdateRegs();  
+	Serial.println("test_GG_Radio2 - on ");
 
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
@@ -4007,6 +4016,7 @@ void test_GG_Radio2()
 	regBank.set(7,0);                                                               // Реле RL6 Звук Center
 	UpdateRegs();     
 	regBank.set(adr_control_command,0);    
+	Serial.println("test_GG_Radio2 - end ");
 }
 void test_power()
 {

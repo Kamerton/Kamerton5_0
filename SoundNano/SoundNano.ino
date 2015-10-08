@@ -33,9 +33,13 @@ int var = 0;
 
 AH_AD9850 AD9850(CLK, FQUP, BitData, RESET);// настройка звукового генератора
 
-int frequency_start = 100;
-int frequency_max = 5500;
+int frequency_start = 500;
+int frequency_max = 3500;
 int frequency_step = 50;
+int frequency_start2 = 100;
+int frequency_max2 = 5500;
+int frequency_step2 = 50;
+
 
 void step_sound()
 {
@@ -46,14 +50,14 @@ void step_sound()
   for (int i=frequency_start;i<= frequency_max; i=i+frequency_step)
 			{
 				 AD9850.set_frequency(0,0,i);    //set power=UP, phase=0, i= frequency
-				 delay(50); 
+				 delay(5); 
 			}
   delay(10); 
   digitalWrite(led13, LOW); 
   for (int i=frequency_max;i >  frequency_start; i=i-frequency_step)
 			{
 				 AD9850.set_frequency(0,0,i);    //set power=UP, phase=0, i= frequency
-				 delay(50); 
+				 delay(5); 
 			}
 }
 void fix_sound1()
@@ -64,8 +68,22 @@ void fix_sound1()
 
 void fix_sound2()
 {
- AD9850.set_frequency(0,0,2000);    //set power=UP, phase=0, 2000= frequency
- digitalWrite(Out1, LOW);
+  digitalWrite(Out1, HIGH);
+  digitalWrite(led13, HIGH); 
+   //set_frequency(boolean PowerDown, byte Phase, double Freq); 
+  // AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1kHz frequency
+  for (int i=frequency_start2;i<= frequency_max2; i=i+frequency_step2)
+			{
+				 AD9850.set_frequency(0,0,i);    //set power=UP, phase=0, i= frequency
+				 delay(5); 
+			}
+  delay(10); 
+  digitalWrite(led13, LOW); 
+  for (int i=frequency_max2;i >  frequency_start2; i=i-frequency_step2)
+			{
+				 AD9850.set_frequency(0,0,i);    //set power=UP, phase=0, i= frequency
+				 delay(5); 
+			}
 }
 
 void menu()
