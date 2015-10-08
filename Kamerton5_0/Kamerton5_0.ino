@@ -282,58 +282,58 @@ const unsigned int adr_reg_count_err      PROGMEM       = 40121; // Адрес счетчи
 const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг установки
 
 //---------------------------Тексты сообщений   ---------------------------------------------------
-const char  txt_message0[]    PROGMEM            = "    Error! - ";                           
+const char  txt_message0[]    PROGMEM            = "  Error! - ";                           
 const char  txt_message1[]    PROGMEM            = "Pass";      
 const char  txt_message2[]    PROGMEM            = " ****** Test sensor OFF start! ******";    
 const char  txt_message3[]    PROGMEM            = " ****** Test sensor ON  start! ******";      
 const char  txt_message4[]    PROGMEM            = "Signal headset instructor microphone 30mv     ON"            ;   
 const char  txt_message5[]    PROGMEM            = "Microphone headset instructor signal          ON"            ;  
-const char  txt_message6[]    PROGMEM            = "Command sensor OFF headset instructor 2          send!"      ;    
-const char  txt_message7[]    PROGMEM            = "Command sensor OFF headset instructor            send!"      ;    
-const char  txt_message8[]    PROGMEM            = "Command PTT    OFF headset instructor            send!"      ;    
-const char  txt_message9[]    PROGMEM            = "Command sensor OFF microphone                    send!"      ;    
+const char  txt_message6[]    PROGMEM            = "Command sensor OFF headset instructor 2             send!"   ;    
+const char  txt_message7[]    PROGMEM            = "Command sensor OFF headset instructor               send!"   ;    
+const char  txt_message8[]    PROGMEM            = "Command PTT    OFF headset instructor               send!"   ;    
+const char  txt_message9[]    PROGMEM            = "Command sensor OFF microphone                       send!"   ;    
 
-const char  txt_message10[]   PROGMEM            = "Command sensor ON  headset instructor 2          send!"      ;     
-const char  txt_message11[]   PROGMEM            = "Command sensor ON  headset instructor            send!"      ;     
-const char  txt_message12[]   PROGMEM            = "Command        ON  PTT headset instructor (CTS)  send!"      ;  
+const char  txt_message10[]   PROGMEM            = "Command sensor ON  headset instructor 2             send!"   ;     
+const char  txt_message11[]   PROGMEM            = "Command sensor ON  headset instructor               send!"   ;     
+const char  txt_message12[]   PROGMEM            = "Command        ON  PTT headset instructor (CTS)     send!"   ;  
 const char  txt_message13[]   PROGMEM            = "Signal headset dispatcher microphone 30 mV    ON"            ;   
 const char  txt_message14[]   PROGMEM            = "Microphone headset dispatcher signal          ON"            ;     
-const char  txt_message15[]   PROGMEM            = "Command sensor OFF headset dispatcher 2          send!"      ;    
-const char  txt_message16[]   PROGMEM            = "Command sensor OFF headset dispatcher            send!"      ;   
-const char  txt_message17[]   PROGMEM            = "Command PTT    OFF headset dispatcher            send!"      ;    
-const char  txt_message18[]   PROGMEM            = "Command sensor OFF microphone                    send!"      ;   
-const char  txt_message19[]   PROGMEM            = "Command sensor ON  headset dispatcher 2          send!"      ;   
+const char  txt_message15[]   PROGMEM            = "Command sensor OFF headset dispatcher 2             send!"   ;    
+const char  txt_message16[]   PROGMEM            = "Command sensor OFF headset dispatcher               send!"   ;   
+const char  txt_message17[]   PROGMEM            = "Command PTT    OFF headset dispatcher               send!"   ;    
+const char  txt_message18[]   PROGMEM            = "Command sensor OFF microphone                       send!"   ;   
+const char  txt_message19[]   PROGMEM            = "Command sensor ON  headset dispatcher 2             send!"   ;   
 
-const char  txt_message20[]   PROGMEM            = "Command sensor ON  headset dispatcher            send!"      ;    
-const char  txt_message21[]   PROGMEM            = "Command        ON  PTT headset dispatcher (CTS)  send!"      ;  
+const char  txt_message20[]   PROGMEM            = "Command sensor ON  headset dispatcher               send!"   ;    
+const char  txt_message21[]   PROGMEM            = "Command        ON  PTT headset dispatcher (CTS)     send!"   ;  
 const char  txt_message22[]   PROGMEM            = " ****** Test headset instructor start! ******"               ; 
 const char  txt_message23[]   PROGMEM            = " ****** Test headset dispatcher start! ******"               ;
 const char  txt_message24[]   PROGMEM            = " ****** Test MTT start! ******"                              ;  
 const char  txt_message25[]   PROGMEM            = " ****** Test tangenta nognaja start! ********"               ;  
 const char  txt_message26[]   PROGMEM            = " ****** Test tangenta ruchnaja start! ********"              ; 
-const char  txt_message27[]   PROGMEM            = "Command sensor OFF MTT                           send! "     ;
-const char  txt_message28[]   PROGMEM            = "Command PTT    OFF MTT                           send! "     ;
-const char  txt_message29[]   PROGMEM            = "Command HangUp OFF MTT                           send! "     ;
+const char  txt_message27[]   PROGMEM            = "Command sensor OFF MTT                              send! "  ;
+const char  txt_message28[]   PROGMEM            = "Command PTT    OFF MTT                              send! "  ;
+const char  txt_message29[]   PROGMEM            = "Command HangUp OFF MTT                              send! "  ;
 
-const char  txt_message30[]   PROGMEM            = "Command sensor ON  MTT                           send!"      ;
-const char  txt_message31[]   PROGMEM            = "Command PTT    ON  MTT                           send!"      ;
-const char  txt_message32[]   PROGMEM            = "Command HangUp ON  MTT                           send!"      ;
+const char  txt_message30[]   PROGMEM            = "Command sensor ON  MTT                              send!"   ;
+const char  txt_message31[]   PROGMEM            = "Command PTT    ON  MTT                              send!"   ;
+const char  txt_message32[]   PROGMEM            = "Command HangUp ON  MTT                              send!"   ;
 const char  txt_message33[]   PROGMEM            = "Signal MTT microphone 30 mV                   ON"            ;
 const char  txt_message34[]   PROGMEM            = "Microphone MTT signal                         ON"            ;  
 const char  txt_message35[]   PROGMEM            = "Signal FrontL, FrontR                         ON "           ;
 const char  txt_message36[]   PROGMEM            = " ****** Test tangenta ruchnaja start! ******"                ;
-const char  txt_message37[]   PROGMEM            = "Command sensor OFF tangenta ruchnaja             send!"      ;
-const char  txt_message38[]   PROGMEM            = "Command PTT1   OFF tangenta ruchnaja             send!"      ;
-const char  txt_message39[]   PROGMEM            = "Command PTT2   OFF tangenta ruchnaja             send!"      ; 
+const char  txt_message37[]   PROGMEM            = "Command sensor OFF tangenta ruchnaja                send!"   ;
+const char  txt_message38[]   PROGMEM            = "Command PTT1   OFF tangenta ruchnaja                send!"   ;
+const char  txt_message39[]   PROGMEM            = "Command PTT2   OFF tangenta ruchnaja                send!"   ; 
 
-const char  txt_message40[]   PROGMEM            = "Command sensor ON  tangenta ruchnaja             send!"      ;
-const char  txt_message41[]   PROGMEM            = "Command PTT1   ON  tangenta ruchnaja             send!"      ;
-const char  txt_message42[]   PROGMEM            = "Command PTT2   ON  tangenta ruchnaja             send!"      ;
+const char  txt_message40[]   PROGMEM            = "Command sensor ON  tangenta ruchnaja                send!"   ;
+const char  txt_message41[]   PROGMEM            = "Command PTT1   ON  tangenta ruchnaja                send!"   ;
+const char  txt_message42[]   PROGMEM            = "Command PTT2   ON  tangenta ruchnaja                send!"   ;
 const char  txt_message43[]   PROGMEM            = " ****** Test tangenta nognaja start! ******"                 ;
-const char  txt_message44[]   PROGMEM            = "Command sensor OFF tangenta nognaja              send!"      ;
-const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta nognaja              send!"      ;
-const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja              send!"      ;
-const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja              send!"      ;
+const char  txt_message44[]   PROGMEM            = "Command sensor OFF tangenta nognaja                 send!"   ;
+const char  txt_message45[]   PROGMEM            = "Command PTT    OFF tangenta nognaja                 send!"   ;
+const char  txt_message46[]   PROGMEM            = "Command sensor ON  tangenta nognaja                 send!"   ;
+const char  txt_message47[]   PROGMEM            = "Command PTT    ON  tangenta nognaja                 send!"   ;
 const char  txt_message48[]   PROGMEM            = " ****** Test GGS start! ******"      ;
 const char  txt_message49[]   PROGMEM            = "Signal GGS  FrontL, FrontR   0,7V             ON"            ;
 
@@ -343,26 +343,22 @@ const char  txt_message52[]   PROGMEM            = " ****** Test Radio2 start! *
 const char  txt_message53[]   PROGMEM            = "Signal Radio1 300 mV    Center                ON"            ;
 const char  txt_message54[]   PROGMEM            = " ****** Test microphone start! ******"                       ;
 const char  txt_message55[]   PROGMEM            = "Signal miсrophone 30  mV                      ON"            ;
-const char  txt_message56[]   PROGMEM            = "Command PTT    OFF microphone                    send!"      ;
-const char  txt_message57[]   PROGMEM            = "Command PTT    ON  microphone                    send!"      ;
-const char  txt_message58[]   PROGMEM            = "Command sensor OFF microphone                    send!"      ;  
-const char  txt_message59[]   PROGMEM            = "Command sensor ON  microphone                    send!"      ;
+const char  txt_message56[]   PROGMEM            = "Command PTT    OFF microphone                       send!"   ;
+const char  txt_message57[]   PROGMEM            = "Command PTT    ON  microphone                       send!"   ;
+const char  txt_message58[]   PROGMEM            = "Command sensor OFF microphone                       send!"   ;  
+const char  txt_message59[]   PROGMEM            = "Command sensor ON  microphone                       send!"   ;
 
-const char  txt_message60[]   PROGMEM            = "Power amperage                                      mA - "   ;
-const char  txt_message61[]   PROGMEM            = "Power module Kamerton                                  - "   ;
-const char  txt_message62[]   PROGMEM            = "Power amperage                                      mA - "   ;
-const char  txt_message63[]   PROGMEM            = "Power Radio1                                           - "   ;
-const char  txt_message64[]   PROGMEM            = "Power Radio2                                           - "   ;
-const char  txt_message65[]   PROGMEM            = "Power GGS                                              - "   ;
-const char  txt_message66[]   PROGMEM            = "Power Led microphone                                   -  "  ;
+const char  txt_message60[]   PROGMEM            = "Power amperage                              mA - "   ;
+const char  txt_message61[]   PROGMEM            = "Power module Audio 2                           - "   ;
+const char  txt_message62[]   PROGMEM            = "Power amperage                              mA - "   ;
+const char  txt_message63[]   PROGMEM            = "Power Radio1                                   - "   ;
+const char  txt_message64[]   PROGMEM            = "Power Radio2                                   - "   ;
+const char  txt_message65[]   PROGMEM            = "Power GGS                                      - "   ;
+const char  txt_message66[]   PROGMEM            = "Power Led microphone                           -  "  ;
 const char  txt_message67[]   PROGMEM            = " ****** Test power start! ******"                            ;
 const char  txt_message68[]   PROGMEM            = " ****** Test Adjusting the brightness of the display! ******"; 
 const char  txt_message69[]   PROGMEM            = "Adjusting the brightness code                              - "   ;
 const char  txt_message70[]   PROGMEM            = "Adjusting the brightness mks                               - "   ;
-
-
-
-
 
 
 
@@ -3181,7 +3177,7 @@ void test_MTT()
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
-    Serial.println(" test_MTT - on ");
+	Serial.println(" test_MTT - on ");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях  +++++++++++++++++++++++++++++++++
@@ -5204,7 +5200,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));         // "    Error! - "; 
 				myFile.print(buffer);                                                // "    Error! - "; 
 				myFile.print(regcount);                                              // Показания счетчика ошибок
-				myFile.print("     ");  
+				myFile.print("  ");  
 				myFile.print(voltage); 
 				myFile.println(" V");
 			}
@@ -5215,7 +5211,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 					myFile.print(buffer);                                           // Наименование проверки
 					strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));    // "Pass";
 					myFile.print(buffer);                                           // "Pass";
-					myFile.print("     ");  
+					myFile.print("  ");  
 					myFile.print(voltage); 
 					myFile.println(" V");
 				}
@@ -5304,7 +5300,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(table_message[0])));        // "    Error! - "; 
 				myFile.print(buffer);                                               // "    Error! - "; 
 				myFile.print(regcount);                                             // Показания счетчика ошибок
-				myFile.print("     ");  
+				myFile.print("  ");  
 				myFile.print(voltage); 
 				myFile.println(" V");
 			}
@@ -5315,7 +5311,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 					myFile.print(buffer);                                           // Наименование проверки
 					strcpy_P(buffer, (char*)pgm_read_word(&(table_message[1])));    // "Pass";
 					myFile.print(buffer);                                           // "Pass";
-					myFile.print("     ");  
+					myFile.print("  ");  
 					myFile.print(voltage); 
 					myFile.println(" V");
 				}
@@ -5349,7 +5345,7 @@ void measure_volume(int analog)
 			}
 			   volume_maxx += volume_max;
 			   volume_minx += volume_min;
-       }
+	   }
 
 		volume_fact = (volume_max) - (volume_min);
 		voltage = volume_fact * (5.0 / 1023.0);
