@@ -37,6 +37,7 @@
 #include "MCP23017.h"
 #include <avr/pgmspace.h>
 #include <AH_AD9850.h>
+#include <avr/wdt.h>
 
 
 
@@ -786,6 +787,7 @@ void flash_time()                                              // Программа обра
 { 
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
+		//wdt_reset();
 		prer_Kamerton();
 		slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
@@ -794,30 +796,34 @@ void flash_time()                                              // Программа обра
 
 void serialEvent3()
 {
-	while (prer_Kmerton_Run) 
-	{
-	//	char inChar = (char)Serial.read();
-	}
+	wdt_reset();
+	//while (prer_Kmerton_Run) 
+	//{
+	////	char inChar = (char)Serial.read();
+	//}
 //	MsTimer2::stop();                                // Выключить таймер прерывания
 //	slave.run(); 
 //	MsTimer2::start();                               // Включить таймер прерывания
-	/*
-	digitalWrite(ledPin13,HIGH);
+/*
 	if (portFound == false)
 	{
-	  //Read Buffer
-	  if (Serial2.available() == 5) 
+	Serial.println("COM port find...");
+	do
+	{
+
+			  //Read Buffer
+	  if (Serial3.available() == 5) 
 	  {
 		//Read buffer
-		inputByte_0 = Serial2.read();
+		inputByte_0 = Serial3.read();
 		delay(100);    
-		inputByte_1 = Serial2.read();
+		inputByte_1 = Serial3.read();
 		delay(100);      
-		inputByte_2 = Serial2.read();
+		inputByte_2 = Serial3.read();
 		delay(100);      
-		inputByte_3 = Serial2.read();
+		inputByte_3 = Serial3.read();
 		delay(100);
-		inputByte_4 = Serial2.read();   
+		inputByte_4 = Serial3.read();   
 	  }
 	  //Check for start of Message
 	  if(inputByte_0 == 16)
@@ -832,12 +838,12 @@ void serialEvent3()
 				  case 4:
 					if(inputByte_3 == 255)
 					{
-	//                  digitalWrite(ledPin_13, HIGH); 
+					//  digitalWrite(ledPin_13, HIGH); 
 					  break;
 					}
 					else
 					{
-			   //       digitalWrite(ledPin_13, LOW); 
+					 // digitalWrite(ledPin_13, LOW); 
 					  break;
 					}
 				  break;
@@ -845,18 +851,11 @@ void serialEvent3()
 				break;
 			  case 128:
 				//Say hello
-				Serial2.print("HELLO FROM KAMERTON ");
+				Serial3.print("HELLO FROM KAMERTON ");
 				portFound = true;
-				MsTimer2::start(); 
-			 //   Serial.print("");
+				Serial.println("COM port find OK!.");
 				break;
 			} 
-
-		   Serial.print(inputByte_0,DEC);
-		   Serial.print(inputByte_1,DEC);
-		   Serial.print(inputByte_2,DEC);
-		   Serial.print(inputByte_3,DEC);
-		   Serial.print(inputByte_4,DEC);
 			//Clear Message bytes
 			inputByte_0 = 0;
 			inputByte_1 = 0;
@@ -864,8 +863,18 @@ void serialEvent3()
 			inputByte_3 = 0;
 			inputByte_4 = 0;
 	   }
-	}
+
+	   delay(200);
+	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
+	   blink_red = !blink_red;
+	   digitalWrite(ledPin13,!digitalRead(ledPin13));
+	   MsTimer2::start();                               // Включить таймер прерывания
+	} while(portFound == false);
+
 	digitalWrite(ledPin13,LOW);
+	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
+	}
+
 	*/
 	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
 	//	digitalWrite(ledPin13,HIGH);
@@ -879,6 +888,7 @@ void serialEvent3()
 	//{
 	//	char inChar = (char)Serial.read();
 	//}
+
 }
 
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
@@ -3177,6 +3187,7 @@ void test_MTT()
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(400);
+	wdt_reset();
 	Serial.println(" test_MTT - on ");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal MTT microphone 30mv                    ON"            ;
@@ -3606,6 +3617,7 @@ void test_mikrophon()
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
+	wdt_reset();
 
 	 // +++++++++++++++++++++++++++++++++++++++ Проверка  на отключение сенсора и  PTT microphone ++++++++++++++++++++++++++++++++++++++++++++
 //		byte i50 = regBank.get(40004);    
@@ -3642,6 +3654,7 @@ void test_mikrophon()
 
 	 UpdateRegs(); 
 	 delay(1000);
+	 wdt_reset();
 	  // 2)  Проверка  на отключение PTT microphone
 		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение "Test microphone PTT  (CTS)                                  OFF - ";
 		  {
@@ -3676,6 +3689,7 @@ void test_mikrophon()
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
+	wdt_reset();
 	//	byte i50 = regBank.get(40004);    
 	i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
@@ -3717,7 +3731,7 @@ void test_mikrophon()
 	if (test_repeat == false) myFile.println(buffer);                               //
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
-
+	wdt_reset();
 	//byte i50 = regBank.get(40004);    
 	i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
@@ -3752,6 +3766,7 @@ void test_mikrophon()
 
 	 UpdateRegs(); 
 	 delay(1000);
+	 wdt_reset();
 	  // 2)  Проверка  на включение  PTT microphone
 		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение      "Test microphone PTT  (CTS)                                  ON  
 		  {
@@ -3800,7 +3815,7 @@ void test_mikrophon()
 	delay(1000);
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1400);
-
+	wdt_reset();
 	measure_vol_max(analog_mag_phone,40298,298,180);                                // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
 	measure_vol_max(analog_LineL,    40299,299,180);                                // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
 	
@@ -3934,6 +3949,7 @@ void test_GG_Radio1()
 	delay(1000);
 	UpdateRegs(); 
 	delay(500);
+	wdt_reset();
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -3951,6 +3967,7 @@ void test_GG_Radio1()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
 	UpdateRegs();  
+	wdt_reset();
 	Serial.println("test_GG_Radio1 - on ");
 	measure_vol_min(analog_FrontL,    40300,300,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
@@ -3980,6 +3997,7 @@ void test_GG_Radio2()
 	delay(1000);
 	UpdateRegs(); 
 	delay(500);
+	wdt_reset();
 	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
@@ -3997,6 +4015,7 @@ void test_GG_Radio2()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
 	UpdateRegs();  
+	wdt_reset();
 	Serial.println("test_GG_Radio2 - on ");
 
 	measure_vol_min(analog_FrontL,    40310,310,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
@@ -6263,11 +6282,12 @@ void test_system()
 
 void set_serial()
 {
+//	wdt_disable(); // бесполезная строка до которой не доходит выполнение при bootloop
 	Serial.println("COM port find...");
-
 	do
 	{
-	  //Read Buffer
+
+			  //Read Buffer
 	  if (Serial3.available() == 5) 
 	  {
 		//Read buffer
@@ -6294,12 +6314,12 @@ void set_serial()
 				  case 4:
 					if(inputByte_3 == 255)
 					{
-	//                  digitalWrite(ledPin_13, HIGH); 
+					//  digitalWrite(ledPin_13, HIGH); 
 					  break;
 					}
 					else
 					{
-			   //       digitalWrite(ledPin_13, LOW); 
+					 // digitalWrite(ledPin_13, LOW); 
 					  break;
 					}
 				  break;
@@ -6310,7 +6330,6 @@ void set_serial()
 				Serial3.print("HELLO FROM KAMERTON ");
 				portFound = true;
 				Serial.println("COM port find OK!.");
-			 //   Serial.print("");
 				break;
 			} 
 			//Clear Message bytes
@@ -6319,12 +6338,14 @@ void set_serial()
 			inputByte_2 = 0;
 			inputByte_3 = 0;
 			inputByte_4 = 0;
-	   } 
-		delay(500);
+	   }
+
+	   delay(200);
 	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
+	wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	digitalWrite(ledPin13,LOW);
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }
@@ -6342,6 +6363,7 @@ void clear_serial()
 
 void setup()
 {
+	wdt_disable(); // бесполезная строка до которой не доходит выполнение при bootloop
 	Serial.begin(9600);                             // Подключение к USB ПК
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
@@ -6350,10 +6372,7 @@ void setup()
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
-	Serial2.println(" ");
-	Serial2.println(" ***** Start system  *****");
-	Serial2.println(" ");
-
+	portFound = false;
 	Wire.begin();
 	if (!RTC.begin())                               // Настройка часов 
 		{
@@ -6417,7 +6436,7 @@ void setup()
 	regBank.set(22,0);                              // XP5-3     sensor "ГГC."
 	regBank.set(23,0);                              // XP3-3     sensor "ГГ-Радио1."
 	regBank.set(24,0);                              // XP4-3     sensor "ГГ-Радио2."
-	regBank.set(8,1);                               // Включить питание Камертон
+//	regBank.set(8,1);                               // Включить питание Камертон
 	UpdateRegs();                                   // Обновить информацию в регистрах
 
 	#if FASTADC                                     // Ускорить считывание аналогового канала
@@ -6451,14 +6470,16 @@ void setup()
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
 	resistor(1, 200);                                // Установить уровень сигнала
 	resistor(2, 200);                                // Установить уровень сигнала
-	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	preob_num_str();
 	list_file();                                     // Вывод списка файлов в СОМ порт  
-	//set_serial();                                    // Поиск СОМ порта подключения к компьютеру
-	MsTimer2::start();                               // Включить таймер прерывания
+	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
+//	MsTimer2::start();                               // Включить таймер прерывания
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
+//	wdt_enable (WDTO_8S);                            // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
 }
