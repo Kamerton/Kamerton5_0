@@ -2178,8 +2178,8 @@ namespace KamertonTest
 
         private void button5_Click(object sender, EventArgs e)                         // Закрыть сериал и протокол
         {
-
- 
+            if ((myProtocol != null))
+            { 
                 // Close protocol and serial port
                 myProtocol.closeProtocol();
                 //    // Indicate result on status line
@@ -2190,21 +2190,25 @@ namespace KamertonTest
                 Polltimer1.Enabled = false;
                 toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
+             }
           
         }
 
         private void button6_Click(object sender, EventArgs e)                        // Закрыть TCP и протокол
         {
-            // Close protocol and serial port
-            myProtocol.closeProtocol();
-            //    // Indicate result on status line
-            lblResult.Text = "Протокол закрыт";
-            //    // Disable button controls
-            button6.Enabled = false;
-            cmdOpenTCP.Enabled = true;
-            Polltimer1.Enabled = false;
-            toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-            toolStripStatusLabel1.BackColor = Color.Red;
+            if ((myProtocol != null))
+            {
+                // Close protocol and serial port
+                myProtocol.closeProtocol();
+                //    // Indicate result on status line
+                lblResult.Text = "Протокол закрыт";
+                //    // Disable button controls
+                button6.Enabled = false;
+                cmdOpenTCP.Enabled = true;
+                Polltimer1.Enabled = false;
+                toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+            }
         }
         #region label all
         private void label48_Click(object sender, EventArgs e)
