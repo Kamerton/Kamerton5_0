@@ -642,7 +642,6 @@ namespace KamertonTest
                 int res;
 
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
                 startRdReg = 46; // 40046 Адрес дата/время контроллера  
                 numRdRegs = 8;
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
@@ -4448,7 +4447,16 @@ namespace KamertonTest
 
         private void timerTestAll_Tick(object sender, EventArgs e)        // Тестирование программы общего теста
         {
+            short[] readVals = new short[125];
+            int slave;
+            int startRdReg;
+            int numRdRegs;
+            int res;
 
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+            startRdReg = 46; // 40046 Адрес дата/время контроллера  
+            numRdRegs = 8;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
             switch (TestN)  // Определить № теста
             {
                 default:

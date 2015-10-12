@@ -797,98 +797,7 @@ void flash_time()                                              // Программа обра
 void serialEvent3()
 {
 	wdt_reset();
-	//while (prer_Kmerton_Run) 
-	//{
-	////	char inChar = (char)Serial.read();
-	//}
-//	MsTimer2::stop();                                // Выключить таймер прерывания
-//	slave.run(); 
-//	MsTimer2::start();                               // Включить таймер прерывания
-/*
-	if (portFound == false)
-	{
-	Serial.println("COM port find...");
-	do
-	{
-
-			  //Read Buffer
-	  if (Serial3.available() == 5) 
-	  {
-		//Read buffer
-		inputByte_0 = Serial3.read();
-		delay(100);    
-		inputByte_1 = Serial3.read();
-		delay(100);      
-		inputByte_2 = Serial3.read();
-		delay(100);      
-		inputByte_3 = Serial3.read();
-		delay(100);
-		inputByte_4 = Serial3.read();   
-	  }
-	  //Check for start of Message
-	  if(inputByte_0 == 16)
-	  {       
-		   //Detect Command type
-		   switch (inputByte_1) 
-		   {
-			  case 127:
-				 //Set PIN and value
-				 switch (inputByte_2)
-				{
-				  case 4:
-					if(inputByte_3 == 255)
-					{
-					//  digitalWrite(ledPin_13, HIGH); 
-					  break;
-					}
-					else
-					{
-					 // digitalWrite(ledPin_13, LOW); 
-					  break;
-					}
-				  break;
-				} 
-				break;
-			  case 128:
-				//Say hello
-				Serial3.print("HELLO FROM KAMERTON ");
-				portFound = true;
-				Serial.println("COM port find OK!.");
-				break;
-			} 
-			//Clear Message bytes
-			inputByte_0 = 0;
-			inputByte_1 = 0;
-			inputByte_2 = 0;
-			inputByte_3 = 0;
-			inputByte_4 = 0;
-	   }
-
-	   delay(200);
-	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
-	   blink_red = !blink_red;
-	   digitalWrite(ledPin13,!digitalRead(ledPin13));
-	   MsTimer2::start();                               // Включить таймер прерывания
-	} while(portFound == false);
-
-	digitalWrite(ledPin13,LOW);
-	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
-	}
-
-	*/
-	//while(prer_Kmerton_Run == 1) {}                                // Подождать окончания прерывания
-	//	digitalWrite(ledPin13,HIGH);
-	// // digitalWrite(ledPin13,!digitalRead(ledPin13));               // Сроб импульс MODBUS
-	//	UpdateRegs();
-	//	slave.run(); 
-	//	Serial.println("slave.run");
-	////	control_command();
-	//	digitalWrite(ledPin13,LOW);
-	//while (Serial.available()) 
-	//{
-	//	char inChar = (char)Serial.read();
-	//}
-
+	// Сброс сторожевого таймера при наличии связи с ПК
 }
 void serial3_clear()
 { 
@@ -1348,7 +1257,7 @@ void list_file()
 	Serial.println();
 	file.close();
   }
-  Serial.println("Done!");
+  Serial.println("The end of the file list!");
 
 }
 
@@ -1590,16 +1499,20 @@ void control_command()
 	{
 		case 1:
 			 sensor_all_off();                                                      // Отключить все сенсоры
-			break;
+			 wdt_reset();
+			 break;
 		case 2:		
 			 sensor_all_on();                                                       // Включить все сенсоры
-				break;
+			 wdt_reset();
+			 break;
 		case 3:
 			 test_headset_instructor();
-				break;
+			 wdt_reset();
+			 break;
 		case 4:	
 			 test_headset_dispatcher();                                             //
-				break;
+			 wdt_reset();
+			 break;
 		case 5:
 			 test_MTT();                                                            //
 				break;
@@ -1646,6 +1559,7 @@ void control_command()
 				test_video();				 //
 				break;
 		default:
+			wdt_reset();
 		break;
 	 }
 	 regBank.set(adr_control_command,0);
@@ -3841,7 +3755,7 @@ void test_mikrophon()
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(1400);
+//	delay(1000);
 	wdt_reset();
 	measure_vol_max(analog_mag_phone,40298,298,180);                                // Измерить уровень сигнала на выходе mag phone  "Test Microphone ** Signal Mag phone      
 	measure_vol_max(analog_LineL,    40299,299,180);                                // Измерить уровень сигнала на выходе "Test Microphone ** Signal LineL                      ON  - ";  
@@ -4252,9 +4166,10 @@ void test_video()
 		}
 	}
 
-
+	delay(100);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[70])));                   // !!!!! 
-	if (regBank.get(40063) < 20 || regBank.get(40063) > 23)                             //   
+	if (regBank.get(40063) < 20 || regBank.get(40063) > 30)                             // if (regBank.get(40063) < 20 || regBank.get(40063) > 23)     
 	{
 		myFile.print(buffer);                                                       // 
 		myFile.print(regBank.get(40063));
@@ -4331,6 +4246,8 @@ void test_instr_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(1000);
 	UpdateRegs(); 
+	delay(100);
+	wdt_reset();
 //	byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
 //	byte i53 = regBank.get(40007);     
@@ -4423,6 +4340,8 @@ void test_instr_off()
 		  }
 
 		UpdateRegs(); 
+		delay(100);
+		wdt_reset();
 	   if(regBank.get(adr_reg_ind_CTS) != 0)                                        // Проверить включение PTT инструктора   CTS "Command PTT headset instructor (CTS)                        OFF - ";
 		  {
 			regcount = regBank.get(40220);                                          // адрес счетчика ошибки отключения PTT гарнитуры инструктора "Command PTT headset instructor (CTS)                        OFF - ";
@@ -4469,6 +4388,8 @@ void test_instr_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(1000);
 	UpdateRegs(); 
+	delay(100);
+	wdt_reset();
  
 	byte i52 = regBank.get(40006);     
 
@@ -4528,7 +4449,8 @@ void test_instr_on()
 		  }
 
 		UpdateRegs(); 
-
+		delay(100);
+		wdt_reset();
 	   if(regBank.get(adr_reg_ind_CTS)== 0)                                         // Проверить включение PTT инструктора   CTS "Command PTT headset instructor (CTS)                        ON  - ";
 		  {
 			regcount = regBank.get(40221);                                          // адрес счетчика ошибки отключения PTT гарнитуры инструктора "Command PTT headset instructor (CTS)                        ON  - ";
@@ -4583,6 +4505,7 @@ void test_disp_off()
 	UpdateRegs();                                                                   // Выполнить команду отключения сенсоров
 	delay(1000);
 	UpdateRegs(); 
+	wdt_reset();
 	//byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
@@ -4673,6 +4596,8 @@ void test_disp_off()
 		  }
 
 		UpdateRegs(); 
+		delay(100);
+		wdt_reset();
 	   if(regBank.get(adr_reg_ind_CTS) != 0)                                        // Проверить отключения PTT диспетчера   CTS "Command PTT headset instructor (CTS)                        OFF - ";
 		  {
 			regcount = regBank.get(40222);                                          // адрес счетчика   ошибки отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        OFF - ";
@@ -4719,6 +4644,7 @@ void test_disp_on()
 	UpdateRegs();                                                                   // Выполнить команду включения сенсоров
 	delay(1000);
 	UpdateRegs(); 
+	wdt_reset();
 	//byte i50 = regBank.get(40004);    
 	byte i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
@@ -4780,7 +4706,7 @@ void test_disp_on()
 		  }
 
 		UpdateRegs(); 
-
+		wdt_reset();
 	   if(regBank.get(adr_reg_ind_CTS)== 0)                                         // Проверить включение PTT диспетчера   "Command PTT headset dispatcher (CTS)                        ON  - ";
 		  {
 			regcount = regBank.get(40223);                                          // адрес счетчика ошибки  отключения PTT гарнитуры диспетчера "Command PTT headset instructor (CTS)                        ON  - ";
@@ -4839,7 +4765,7 @@ void test_MTT_off()
 	//byte i52 = regBank.get(40006);     
 	//byte i53 = regBank.get(40007);     
 	//byte i50 = regs_in[0];    
-
+	wdt_reset();
 		if(bitRead(i50,2) != 0)                                                     // XP1- 19 HaSs sensor контроля подключения трубки    "Sensor MTT                          XP1- 19 HaSs            OFF - ";
 		  {
 			regcount = regBank.get(40200);                                          // адрес счетчика ошибки                              "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -4868,6 +4794,7 @@ void test_MTT_off()
 		  }
 		   UpdateRegs(); 
 		   delay(1000);
+		   wdt_reset();
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
 		if(regBank.get(adr_reg_ind_CTS) != 0)                                       // Проверка  на отключение CTS MTT
 		  {
@@ -4895,7 +4822,7 @@ void test_MTT_off()
 				myFile.println(buffer);                                             // "Test MTT PTT    (CTS)                                       OFF - ";
 			   }                   
 		  }
-
+		wdt_reset();
 	   if(regBank.get(adr_reg_ind_DCD)!= 0)                                         // Проверить включение HangUp  DCD   "Test MTT HangUp (DCD)                                       OFF - ";
 		  {
 			regcount = regBank.get(40267);                                          // адрес счетчика ошибки отключения HangUp  DCD  "Test MTT HangUp (DCD)                                       OFF - ";
@@ -4939,7 +4866,9 @@ void test_MTT_on()
 
 	UpdateRegs(); 
 	delay(1000);
-	UpdateRegs(); 
+	UpdateRegs();
+	wdt_reset();
+
 	  // 1)  Проверка сенсора MTT на включение 
 	byte i50 = regBank.get(40004);    
 	//byte i52 = regBank.get(40006);     
@@ -4974,6 +4903,7 @@ void test_MTT_on()
 
 		delay(1000);
 		UpdateRegs(); 
+		wdt_reset();
 	  // 2)  Проверка  на отключение PTT  MTT (CTS)
 		if(regBank.get(adr_reg_ind_CTS) == 0)                                       // Проверка  на включение CTS MTT
 		  {
@@ -5038,6 +4968,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		unsigned int _porogV    = porogV;
 		int regcount = 0;
 		measure_volume(_istochnik);                                                 // Измерить уровень сигнала на выходе
+		wdt_reset();
 		switch (_adr_flagErr) 
 		{
 			case 230:
@@ -5231,6 +5162,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 
 		}
+		wdt_reset();
 		if(voltage10 > _porogV)                                                      // Проверить исправность канала
 			{
 				myFile.print(buffer); 
@@ -5262,6 +5194,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 					myFile.println(" V");
 				}
 			}  
+		wdt_reset();
 	delay(100);
 }
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
@@ -5273,6 +5206,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 	int regcount            = 0;
 
 	measure_volume(_istochnik);                                                 // Измерить уровень сигнала на выходе
+	wdt_reset();
 	switch (_adr_flagErr) 
 		{
 			case 224:
@@ -5330,7 +5264,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				strcpy_P(buffer, (char*)pgm_read_word(&(string_table_err[119])));   // "Test Radio1 ** Signal Radio2                                ON  - ";
 				break;
 		}
-	
+	wdt_reset();
 		if(voltage10 < _porogV)                                                     // Проверить исправность канала
 			{
 				myFile.print(buffer); 
@@ -5362,6 +5296,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 					myFile.println(" V");
 				}
 			} 
+		wdt_reset();
 		delay(100);
 }
 void measure_volume(int analog)
@@ -5371,6 +5306,7 @@ void measure_volume(int analog)
 	unsigned int    volume_minx = 0;
 //unsigned int Array_min[20];                         //
 //unsigned int Array_max[20];                         //
+	wdt_reset();
  int stix=10;
 	for (int sti = 0;sti<= stix; sti++)
 	  {
@@ -5392,7 +5328,7 @@ void measure_volume(int analog)
 			   volume_maxx += volume_max;
 			   volume_minx += volume_min;
 	   }
-
+	wdt_reset();
 		volume_fact = (volume_max) - (volume_min);
 		voltage = volume_fact * (5.0 / 1023.0);
 		voltage10 = voltage * 100;
@@ -5438,6 +5374,7 @@ void measure_power()
 	regBank.set(23,1);                           // XP3-3     sensor "ГГ-Радио1."
 	UpdateRegs();         
 	delay(200);
+	wdt_reset();
 	measure_volume_P(analog_14); 
 	regBank.set(40494,voltage10);   
 
@@ -5454,7 +5391,7 @@ void measure_power()
 	delay(200);
 	measure_volume_P(analog_14); 
 	regBank.set(40496,voltage10);   
-
+	wdt_reset();
 	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
 	UpdateRegs();         
 	delay(200);
@@ -6368,6 +6305,7 @@ void set_serial()
 
 	   delay(200);
 	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
+	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
@@ -6443,8 +6381,10 @@ void setup()
 		{
 			Serial.println("initialization failed!");
 		}
-	Serial.println("initialization done.");
-
+	else
+		{
+     		Serial.println("initialization done.");
+		}
  // Serial.println("Files found on the card (name, date and size in bytes): ");
 
   // list all files in the card with date and size
