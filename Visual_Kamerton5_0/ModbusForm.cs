@@ -92,6 +92,7 @@ namespace KamertonTest
             timer_Mic_test.Enabled = false;
             timerCTS.Enabled = false;
             timerTestAll.Enabled = false;
+            find_com_port.Enabled = false;
             radioButton1.Checked = true;
             serviceSet();
             _SerialMonitor = 0;
@@ -470,7 +471,8 @@ namespace KamertonTest
                     Polltimer1.Enabled = false;
                     timer_Mic_test.Enabled = false;
                     portFound = false;
-                    SetComPort();
+                    find_com_port.Enabled = true;
+                   // SetComPort();
                 }
 
           //  }
@@ -494,6 +496,7 @@ namespace KamertonTest
                         serial_connect();
                         lblResult1.Text = ("Подключен к " + currentPort.PortName);
                         toolStripStatusLabel3.Text = ("Подключен к " + currentPort.PortName);
+                        find_com_port.Enabled = false;
                         break;
                     }
                     else
@@ -604,7 +607,8 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 portFound = false;
-                SetComPort();
+                find_com_port.Enabled = true;
+               // SetComPort();
             }
            test_end1();
         }
@@ -699,7 +703,8 @@ namespace KamertonTest
                     timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
                     portFound = false;
-                    SetComPort();
+                    find_com_port.Enabled = true;
+                    //SetComPort();
                  }
 
                 label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
@@ -708,7 +713,9 @@ namespace KamertonTest
             }
             else
             {
-                SetComPort();
+                portFound = false;
+               // SetComPort();
+                find_com_port.Enabled = true;
             }
         }
 
@@ -1474,7 +1481,8 @@ namespace KamertonTest
                 // Polltimer1.Enabled = false;
                 timer_Mic_test.Enabled = false;
                 portFound = false;
-                SetComPort();
+                find_com_port.Enabled = true;
+               // SetComPort();
             }
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
@@ -1750,7 +1758,8 @@ namespace KamertonTest
                 //Polltimer1.Enabled = false;
                 timer_Mic_test.Enabled = false;
                 portFound = false;
-                SetComPort();
+                find_com_port.Enabled = true;
+                //SetComPort();
             }
 
 
@@ -1783,7 +1792,8 @@ namespace KamertonTest
                 timerCTS.Enabled = false;
                 timerTestAll.Enabled = false;
                 portFound = false;
-                SetComPort();
+                find_com_port.Enabled = true;
+               // SetComPort();
             }
 
 
@@ -3328,7 +3338,8 @@ namespace KamertonTest
                     timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
                     portFound = false;
-                    SetComPort();
+                    find_com_port.Enabled = true;
+                   // SetComPort();
                     return;
                 }
                 Thread.Sleep(50);
@@ -3371,7 +3382,8 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
                     portFound = false;
-                    SetComPort();
+                    find_com_port.Enabled = true;
+                   // SetComPort();
                     return;
                 }
                 Thread.Sleep(50);
@@ -4686,7 +4698,8 @@ namespace KamertonTest
                 toolStripStatusLabel1.Text = "    MODBUS ERROR (7) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 portFound = false;
-                SetComPort();
+                find_com_port.Enabled = true;
+               // SetComPort();
             }
 
             progressBar2.Value = 0;
@@ -5098,5 +5111,40 @@ namespace KamertonTest
             s = readVolt[0] * 2.51 / 100;
             label48.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
          }
+
+        private void find_com_port_Tick(object sender, EventArgs e)
+        {
+            if ((myProtocol != null))
+            {
+                // Close protocol and serial port
+                myProtocol.closeProtocol();
+                //    // Indicate result on status line
+                //lblResult.Text = "Протокол закрыт";
+                ////    // Disable button controls
+                //button5.Enabled = false;
+                //cmdOpenSerial.Enabled = true;
+                //Polltimer1.Enabled = false;
+                //toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+                //toolStripStatusLabel1.BackColor = Color.Red;
+                //toolStripStatusLabel3.Text = ("");
+                //portFound = false;
+            }
+
+
+            if (portFound == false)
+            {
+
+                toolStripStatusLabel4.Text = "Поиск COM порта";
+                SetComPort();
+                if (portFound == true)
+                {
+                    toolStripStatusLabel4.Text = "";
+                }
+                Polltimer1.Enabled = true;
+            }
+
+        }
+
+ 
      }
 }

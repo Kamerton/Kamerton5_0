@@ -88,6 +88,7 @@ void serial_print_date();
 void set_time();
 void flash_time();
 void serialEvent3();
+void serial3_clear();
 void prer_Kamerton();
 void sendPacketK ();
 void waiting_for_replyK();

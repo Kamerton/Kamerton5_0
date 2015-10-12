@@ -890,6 +890,33 @@ void serialEvent3()
 	//}
 
 }
+void serial3_clear()
+{ 
+	if (Serial3.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+			unsigned char buffer = 0;                      // Установить в начало чтения буфера
+
+			while (Serial3.available())
+				{
+				  if (overflowFlag)                        // Если буфер переполнен - очистить
+					 Serial3.read();
+				  else                                     // Размер буфера в норме, считать информацию
+					{
+					if (bufferK == BUFFER_SIZEK)           // Проверить размер буфера
+						{
+							overflowFlag = 1;              // Установить флаг превышения размера буфера
+						}
+						// regBank.set(40004+buffer,Serial1.read());
+						//regs_in[buffer] = Serial1.read(); 
+						buffer++;
+					}
+				}
+//			calculateCRC_In();
+		//	regBank.set(124,0);                              // Связь с "Камертон" установлена
+		   }
+
+}
 
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
 {
@@ -6282,12 +6309,11 @@ void test_system()
 
 void set_serial()
 {
-//	wdt_disable(); // бесполезная строка до которой не доходит выполнение при bootloop
+//	serial3_clear();
+// Поиск ком порта
 	Serial.println("COM port find...");
 	do
 	{
-
-			  //Read Buffer
 	  if (Serial3.available() == 5) 
 	  {
 		//Read buffer
@@ -6472,6 +6498,7 @@ void setup()
 	resistor(2, 200);                                // Установить уровень сигнала
 	preob_num_str();
 	list_file();                                     // Вывод списка файлов в СОМ порт  
+	clear_serial();
 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 //	MsTimer2::start();                               // Включить таймер прерывания
