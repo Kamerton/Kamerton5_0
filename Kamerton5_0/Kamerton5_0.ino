@@ -3749,8 +3749,8 @@ void test_mikrophon()
 
 
 		// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона +++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 60);                                                                // Установить уровень сигнала 60 мв
-	resistor(2, 60);                                                                // Установить уровень сигнала 60 мв
+	resistor(1, 200);                                                                // Установить уровень сигнала 60 мв
+	resistor(2, 200);                                                                // Установить уровень сигнала 60 мв
 	regBank.set(9,1);                                                               // Включить сигнал на вход микрофона Реле RL8 Звук на микрофон
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(1000);
@@ -3914,7 +3914,7 @@ void test_GG_Radio1()
 	measure_vol_min(analog_FrontR,    40301,301,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40302,302,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
 	measure_vol_min(analog_LineR,     40303,303,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40304,304,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+//	measure_vol_min(analog_mag_radio, 40304,304,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
 	measure_vol_min(analog_mag_phone, 40305,305,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
 	measure_vol_min(analog_ggs,       40306,306,35);                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
 	measure_vol_max(analog_gg_radio1, 40309,309,250);                               // Измерить уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
@@ -3963,7 +3963,7 @@ void test_GG_Radio2()
 	measure_vol_min(analog_FrontR,    40311,311,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
 	measure_vol_min(analog_LineL,     40312,312,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
 	measure_vol_min(analog_LineR,     40313,313,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
-	measure_vol_min(analog_mag_radio, 40314,314,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+//	measure_vol_min(analog_mag_radio, 40314,314,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
 	measure_vol_min(analog_mag_phone, 40315,315,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
 	measure_vol_min(analog_ggs,       40316,316,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
 	measure_vol_min(analog_gg_radio1, 40317,317,35);                                // Измерить уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
@@ -5301,7 +5301,7 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 }
 void measure_volume(int analog)
 {
-		volume1     = 0;
+	volume1     = 0;
 	unsigned int	volume_maxx = 0;
 	unsigned int    volume_minx = 0;
 //unsigned int Array_min[20];                         //
@@ -5328,20 +5328,18 @@ void measure_volume(int analog)
 			   volume_maxx += volume_max;
 			   volume_minx += volume_min;
 	   }
-	wdt_reset();
-		volume_fact = (volume_max) - (volume_min);
+	    wdt_reset();
+
+		volume_fact = (volume_maxx/stix) - (volume_minx/stix);
+	//	volume_fact = (volume_max) - (volume_min);
 		voltage = volume_fact * (5.0 / 1023.0);
 		voltage10 = voltage * 100;
-
 		Serial.print("volume_max - ");
 		Serial.print((volume_maxx/stix) * (5.0 / 1023.0));
 		Serial.print("- volume_min - ");
 		Serial.print((volume_minx /stix) * (5.0 / 1023.0));
 		Serial.print(" = ");
 		Serial.println(((volume_maxx/stix) -(volume_minx /stix)) * (5.0 / 1023.0));
-
-
-
 		//Serial.print("voltage - ");
 		//Serial.println(voltage10);
 }
