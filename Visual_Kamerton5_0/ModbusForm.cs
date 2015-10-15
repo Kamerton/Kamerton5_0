@@ -1499,7 +1499,8 @@ namespace KamertonTest
             int i;
             int res;
             bool[] coilVals = new bool[64];
-            bool[] coilArr = new bool[34];
+            bool[] coilArr = new bool[34]
+                ;
             bool[] coilSensor = new bool[64];
 
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
