@@ -144,6 +144,7 @@ void setup_regModbus();
 void test_system();
 void set_serial();
 void clear_serial();
+void clear_serial3();
 //
 //
 

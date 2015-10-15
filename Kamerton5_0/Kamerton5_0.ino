@@ -1515,31 +1515,40 @@ void control_command()
 			 break;
 		case 5:
 			 test_MTT();                                                            //
-				break;
+			 wdt_reset();
+			 break;
 		case 6:	
 			 test_tangR();                                                          //
-				break;
+			 wdt_reset();
+			 break;
 		case 7:
 			test_tangN();
-				break;
+			wdt_reset();
+			break;
 		case 8:				
 			 testGGS();
-				break;
+			 wdt_reset();
+			 break;
 		case 9:
 			 test_GG_Radio1();
-				break;
+			 wdt_reset();
+			 break;
 		case 10:	
 			 test_GG_Radio2();
-				break;
+			 wdt_reset();
+			 break;
 		case 11:				
 			 test_mikrophon();                                                      // Тестирование микрофона
-				break;
+			 wdt_reset();
+			 break;
 		case 12:
 			   FileOpen();
-				break;
+			  wdt_reset();
+			  break;
 		case 13:	
 			  FileClose();
-				break;
+			  wdt_reset();
+			  break;
 		case 14:
 			  set_clock();
 				break;
@@ -1551,9 +1560,11 @@ void control_command()
 				break;
 		case 17:
 				test_power();                                                    	// Проверить напряжение  питания
+				wdt_reset();
 				break;
 		case 18:
 				set_video();				 //
+				
 				break;
 		case 19:
 				test_video();				 //
@@ -5328,7 +5339,7 @@ void measure_volume(int analog)
 			   volume_maxx += volume_max;
 			   volume_minx += volume_min;
 	   }
-	    wdt_reset();
+		wdt_reset();
 
 		volume_fact = (volume_maxx/stix) - (volume_minx/stix);
 	//	volume_fact = (volume_max) - (volume_min);
@@ -6244,7 +6255,8 @@ void test_system()
 
 void set_serial()
 {
-//	serial3_clear();
+   clear_serial3();
+   delay(400);
 // Поиск ком порта
 	Serial.println("COM port find...");
 	do
@@ -6322,6 +6334,17 @@ void clear_serial()
 				}
 		   }
 }
+void clear_serial3()
+{
+  if (Serial3.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+
+			while (Serial3.available())
+				{
+					 Serial3.read();
+				}
+		   }
+}
 
 void setup()
 {
@@ -6381,7 +6404,7 @@ void setup()
 		}
 	else
 		{
-     		Serial.println("initialization done.");
+			Serial.println("initialization done.");
 		}
  // Serial.println("Files found on the card (name, date and size in bytes): ");
 

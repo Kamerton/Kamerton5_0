@@ -4458,6 +4458,102 @@ namespace KamertonTest
             startRdReg = 46; // 40046 Адрес дата/время контроллера  
             numRdRegs = 8;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+ 
+
+                  if (checkBoxPower.Checked || radioButton1.Checked)
+                    {
+                        test_power();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSensors1.Checked || radioButton1.Checked)
+                    {
+                        sensor_off();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSensors2.Checked || radioButton1.Checked)
+                    {
+                        sensor_on();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
+                    {
+                        test_instruktora();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
+                    {
+                        test_dispetchera();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenTrubka.Checked || radioButton1.Checked)
+                    {
+                        test_MTT();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
+                    {
+                        test_tangR();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenTangN.Checked || radioButton1.Checked)
+                    {
+                        test_tangN();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenGGS.Checked || radioButton1.Checked)
+                    {
+                        testGGS();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
+                    {
+                        test_GG_Radio1();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                  if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
+                    {
+                        test_GG_Radio2();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                 if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
+                    {
+                        test_mikrophon();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+                 if (checkBoxDisp.Checked || radioButton1.Checked)
+                    {
+                        test_valueDisp();
+                        progressBar2.Value += 1;
+                        label98.Text = ("" + progressBar2.Value);
+                        label98.Refresh();
+                    }
+       
+   
+            /*
             switch (TestN)  // Определить № теста
             {
                 default:
@@ -4582,8 +4678,8 @@ namespace KamertonTest
                     break;
 
             }
-
-            TestN++;                  // Увеличить счетчик проходов теста
+            */
+            TestN++;                                                     // Увеличить счетчик номера теста
 
             label98.Text = ("" + progressBar2.Value);
             if (progressBar2.Value == progressBar2.Maximum)
@@ -4592,8 +4688,8 @@ namespace KamertonTest
             }
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-
-            if (radioButton1.Checked & TestN == 13)
+            if (radioButton1.Checked)
+        //    if (radioButton1.Checked & TestN == 13)
             {
                 timerTestAll.Enabled = false;
                 textBox7.Text += ("Тест завершен" + "\r\n");
@@ -4602,7 +4698,8 @@ namespace KamertonTest
                 _All_Test_Stop = false;
                 Polltimer1.Enabled = true;
             }
-            if (radioButton2.Checked & TestN == 13)
+            if (radioButton2.Checked)
+       //     if (radioButton2.Checked & TestN == 13)
             {
                 timerTestAll.Enabled = true;
                 TestN = 0;
@@ -4611,7 +4708,7 @@ namespace KamertonTest
                 textBox7.Text += ("\r\n");
                 textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
                 textBox7.Text += ("\r\n");
-                Thread.Sleep(1500);
+                Thread.Sleep(500);
             }
         }
 
@@ -4640,61 +4737,61 @@ namespace KamertonTest
             textBox9.Refresh();
             //  0 в регистре означает завершение выполнения фрагмента проверки
             numRdRegs = 2;
-            startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
+            startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
             numCoils = 2;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-            if (coilArr[0] == true) //есть ошибка
-            {
-                // Обработка ошибки.
-                textBox7.Text += ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
-                timerTestAll.Enabled = false;
-                button9.BackColor = Color.Red;
-                button11.BackColor = Color.White;
-                label92.Text = ("");
-                textBox7.Text += ("Тест остановлен" + "\r\n");
-                progressBar2.Value = 0;
-             }
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
+            coilArr[0] = false;                                                                    // !!! Убрать, только для тестирования
+
+            if (coilArr[0] == true)                                                                //есть ошибка
+                {
+                    // Обработка ошибки.
+                    textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                    timerTestAll.Enabled = false;
+                    button9.BackColor = Color.Red;
+                    button11.BackColor = Color.White;
+                    label92.Text = ("");
+                    textBox7.Text += ("Тест остановлен" + "\r\n");
+                    progressBar2.Value = 0;
+                 }
             else
-            {
-               textBox7.Text += ("Связь со звуковой платой Камертон установлена." + "\r\n");
-            
+                {
+                   textBox7.Text += ("Связь со звуковой платой АУДИО установлена." + "\r\n");
+                   textBox7.Refresh();
+
+                   if (radioButton2.Checked)                                                               // Признак многократной роверки 
+                    {
+                        startCoil = 118;                                                                   // Признак многократной роверки установлен. Передать в контроллер
+                        res = myProtocol.writeCoil(slave, startCoil, true);
+                    }
+                    else
+                    {
+                        startCoil = 118;                                                                    // Признак многократной роверки снят.      Передать в контроллер
+                        res = myProtocol.writeCoil(slave, startCoil, false);
+                    }
+
+
+                    TestN = 0;                                                                              // Обнулить счетчик номера выполняемых тестов
+                    TestRepeatCount = 1;                                                                    // Установить начальный номер  счетчика проходов теста
+
+                    if (_All_Test_Stop)                                                                     // Проверить наличие завершения выполнения тестов
+                    {
+                        startWrReg = 120;                                                                   // Команда на 
+                        res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
+                        test_end1();
+                        startWrReg = 120;                                                                   // Команда на открытие файла отправлена
+                        res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
+                        textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
+                        textBox7.Refresh();
+                        //Thread.Sleep(400);
+                        test_end1();
+                        file_fakt_namber();
+                        //Thread.Sleep(400);
+                        test_end1();
+                        _All_Test_Stop = false;                                                             // Установить флаг запуска теста
+                    }
  
-            textBox7.Refresh();
-
-            if (radioButton2.Checked)
-            {
-                startCoil = 118;                                                                   // Признак многократной роверки передать в контроллер
-                res = myProtocol.writeCoil(slave, startCoil, true);
-            }
-            else
-            {
-                startCoil = 118;                                                                    // Признак многократной роверки передать в контроллер
-                res = myProtocol.writeCoil(slave, startCoil, false);
-            }
-
-
-            TestN = 0;                                                                              // Обнулить счетчик количества выполняемых тестов
-            TestRepeatCount = 1;                                                                    // Установить начальный номер  счетчика проходов теста
-
-            if (_All_Test_Stop)                                                                     // Проверить наличие завершения выполнения тестов
-            {
-                startWrReg = 120;                                                                   // Команда на 
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
-                test_end1();
-                startWrReg = 120;                                                                   // Команда на открытие файла отправлена
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
-                textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
-                textBox7.Refresh();
-                //Thread.Sleep(400);
-                test_end1();
-                file_fakt_namber();
-                //Thread.Sleep(400);
-                test_end1();
-                _All_Test_Stop = false;                                                             // Установить флаг запуска теста
-            }
- 
-            //-------------------------------------------------
-            timerTestAll.Enabled = true;
+                //-------------------------------------------------
+                timerTestAll.Enabled = true;
         }
 
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -4708,7 +4805,6 @@ namespace KamertonTest
                 toolStripStatusLabel1.BackColor = Color.Red;
                 portFound = false;
                 find_com_port.Enabled = true;
-               // SetComPort();
             }
 
             progressBar2.Value = 0;
