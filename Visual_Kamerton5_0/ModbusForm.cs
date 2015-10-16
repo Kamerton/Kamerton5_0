@@ -43,14 +43,19 @@ namespace KamertonTest
         private int startRdReg;
         private int res;
         private int TestN;
+        private int TestSum;
+        private int TestStep;
         private int TestRepeatCount;
         private int _SerialMonitor;
         static bool _All_Test_Stop = true;
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
+        private int[] test_step = new int[20];
+
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
+        bool testAllRun = false;
         //bool power_radio1 = false;
         //bool power_radio2 = false;
         //bool power_ggs = false;
@@ -4445,6 +4450,141 @@ namespace KamertonTest
         }
 
         //*******************************************
+        private void TestAllNew()
+        {
+            short[] readVals = new short[125];
+            int slave;
+            int startRdReg;
+            int numRdRegs;
+            int res;
+            testAllRun = true;
+
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+            startRdReg = 46; // 40046 Адрес дата/время контроллера  
+            numRdRegs = 8;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+
+
+            while (testAllRun)
+            {
+    
+
+                if (checkBoxPower.Checked || radioButton1.Checked)
+                {
+                    test_power();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                   // if(button9.Click()){}
+
+                }
+                if (checkBoxSensors1.Checked || radioButton1.Checked)
+                {
+                    sensor_off();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSensors2.Checked || radioButton1.Checked)
+                {
+                    sensor_on();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
+                {
+                    test_instruktora();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
+                {
+                    test_dispetchera();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenTrubka.Checked || radioButton1.Checked)
+                {
+                    test_MTT();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
+                {
+                    test_tangR();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenTangN.Checked || radioButton1.Checked)
+                {
+                    test_tangN();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenGGS.Checked || radioButton1.Checked)
+                {
+                    testGGS();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
+                {
+                    test_GG_Radio1();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
+                {
+                    test_GG_Radio2();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
+                {
+                    test_mikrophon();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+                if (checkBoxDisp.Checked || radioButton1.Checked)
+                {
+                    test_valueDisp();
+                    progressBar2.Value += 1;
+                    label98.Text = ("" + progressBar2.Value);
+                    label98.Refresh();
+                }
+
+                if (radioButton2.Checked)
+                //     if (radioButton2.Checked & TestN == 13)
+                {
+                    timerTestAll.Enabled = true;
+                    TestN = 0;
+                    TestRepeatCount++;
+                    if (TestRepeatCount > 32767) TestRepeatCount = 1;
+                    textBox7.Text += ("\r\n");
+                    textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
+                    textBox7.Text += ("\r\n");
+                    Thread.Sleep(500);
+                }
+
+        }
+
+
+
+        }
+
+
+
+
 
         private void timerTestAll_Tick(object sender, EventArgs e)        // Тестирование программы общего теста
         {
@@ -4453,108 +4593,16 @@ namespace KamertonTest
             int startRdReg;
             int numRdRegs;
             int res;
+            int TestNst;
 
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             startRdReg = 46; // 40046 Адрес дата/время контроллера  
             numRdRegs = 8;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
- 
 
-                  if (checkBoxPower.Checked || radioButton1.Checked)
-                    {
-                        test_power();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSensors1.Checked || radioButton1.Checked)
-                    {
-                        sensor_off();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSensors2.Checked || radioButton1.Checked)
-                    {
-                        sensor_on();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
-                    {
-                        test_instruktora();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
-                    {
-                        test_dispetchera();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenTrubka.Checked || radioButton1.Checked)
-                    {
-                        test_MTT();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
-                    {
-                        test_tangR();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenTangN.Checked || radioButton1.Checked)
-                    {
-                        test_tangN();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenGGS.Checked || radioButton1.Checked)
-                    {
-                        testGGS();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
-                    {
-                        test_GG_Radio1();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                  if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
-                    {
-                        test_GG_Radio2();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                 if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
-                    {
-                        test_mikrophon();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-                 if (checkBoxDisp.Checked || radioButton1.Checked)
-                    {
-                        test_valueDisp();
-                        progressBar2.Value += 1;
-                        label98.Text = ("" + progressBar2.Value);
-                        label98.Refresh();
-                    }
-       
-   
-            /*
-            switch (TestN)  // Определить № теста
+            TestNst = test_step[TestN];
+
+            switch (TestNst)  // Определить № теста
             {
                 default:
                 case 0:
@@ -4678,7 +4726,7 @@ namespace KamertonTest
                     break;
 
             }
-            */
+            
             TestN++;                                                     // Увеличить счетчик номера теста
 
             label98.Text = ("" + progressBar2.Value);
@@ -4688,18 +4736,41 @@ namespace KamertonTest
             }
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-            if (radioButton1.Checked)
-        //    if (radioButton1.Checked & TestN == 13)
+
+            if (radioButton1.Checked & TestN == TestStep)
             {
                 timerTestAll.Enabled = false;
-                textBox7.Text += ("Тест завершен" + "\r\n");
-                textBox7.Text += ("\r\n");
-
+                //textBox7.Text += ("Тест завершен" + "\r\n");
+                //textBox7.Text += ("\r\n");
                 _All_Test_Stop = false;
+                //-----
+         //       timerTestAll.Enabled = false;
+
+                ushort[] writeVals = new ushort[20];
+                bool[] coilArr = new bool[34];
+
+                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                button9.BackColor = Color.Red;
+                button11.BackColor = Color.White;
+                label92.Text = ("");
+       //         textBox7.Text += ("Тест остановлен" + "\r\n");
+                progressBar2.Value = 0;
+                startWrReg = 120;
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 13);                // Команда на закрытие файла отправлена
+                textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
+                textBox9.Refresh();
+                testAllRun = false;
+                textBox7.Text += "Тест окончен!";
+                textBox7.Refresh();
+                _All_Test_Stop = true;
+                Polltimer1.Enabled = true;
+                startCoil = 8;                                                             // Управление питанием платы "Камертон"
+                res = myProtocol.writeCoil(slave, startCoil, false);                       // Отключить питание платы "Камертон"
+
+                //-----
                 Polltimer1.Enabled = true;
             }
-            if (radioButton2.Checked)
-       //     if (radioButton2.Checked & TestN == 13)
+            if (radioButton2.Checked & TestN == TestStep)   // Повтор многократного теста
             {
                 timerTestAll.Enabled = true;
                 TestN = 0;
@@ -4708,7 +4779,7 @@ namespace KamertonTest
                 textBox7.Text += ("\r\n");
                 textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
                 textBox7.Text += ("\r\n");
-                Thread.Sleep(500);
+                Thread.Sleep(100);
             }
         }
 
@@ -4726,7 +4797,7 @@ namespace KamertonTest
             Thread.Sleep(1700);
             button11.BackColor = Color.Lime;
             button11.Refresh();
-            label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!");
+    //        label92.Text = ("Не забываем нажать кнопку [СТОП] после выполнения теста!");
             button9.BackColor = Color.LightSalmon;
             button9.Refresh();
             textBox7.Text = ("Выполняется полный  контроль звукового модуля Камертон " + "\r\n");
@@ -4762,13 +4833,115 @@ namespace KamertonTest
                     {
                         startCoil = 118;                                                                   // Признак многократной роверки установлен. Передать в контроллер
                         res = myProtocol.writeCoil(slave, startCoil, true);
+                        //for (int i = 0; i < 25; i++)                // очистить список тестов
+                        //{
+                        //    test_step[i] = 255;
+                        //}
+
+                        //---------------------------
+                        TestStep = 0;
+                       
+                        //while (TestSum <= 13)
+                        //   {
+
+                               if (checkBoxPower.Checked)
+                               {
+                                    test_step[TestStep] = 0;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSensors1.Checked)
+                               {
+                                   test_step[TestStep] = 1;
+                                   TestStep++;
+                               }
+
+                               if (checkBoxSensors2.Checked)
+                               {
+                                    test_step[TestStep] = 2;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenGar1instr.Checked)
+                               {
+                                   test_step[TestStep] = 3;
+                                   TestStep++;
+                               }
+
+                               if (checkBoxSenGar1disp.Checked)
+                               {
+                                    test_step[TestStep] = 4;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenTrubka.Checked)
+                               {
+                                    test_step[TestStep] = 5;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenTangRuch.Checked)
+                               {
+                                    test_step[TestStep] = 6;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenTangN.Checked)
+                               {
+                                    test_step[TestStep] = 7;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenGGS.Checked)
+                               {
+                                   test_step[TestStep] = 8;
+                                   TestStep++;
+                               }
+
+                               if (checkBoxSenGGRadio1.Checked)
+                               {
+                                   test_step[TestStep] = 9;
+                                   TestStep++;
+                               }
+
+                               if (checkBoxSenGGRadio2.Checked)
+                               {
+                                    test_step[TestStep] = 10;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxSenMicrophon.Checked)
+                               {
+                                    test_step[TestStep] = 11;
+                                    TestStep++;
+                               }
+
+                               if (checkBoxDisp.Checked)
+                               {
+                                    test_step[TestStep] = 12;
+                                    TestStep++;
+                               }
+                        //   }
+
+                       
+
+
+                        //----------------------------
+
+                    //   TestStep
+
                     }
                     else
                     {
                         startCoil = 118;                                                                    // Признак многократной роверки снят.      Передать в контроллер
                         res = myProtocol.writeCoil(slave, startCoil, false);
+                        for (int i = 0; i < 13; i++)                // очистить список тестов
+                        {
+                            test_step[i] = i;
+                        }
+                        TestStep = 13;
                     }
-
+ 
 
                     TestN = 0;                                                                              // Обнулить счетчик номера выполняемых тестов
                     TestRepeatCount = 1;                                                                    // Установить начальный номер  счетчика проходов теста
@@ -4782,16 +4955,15 @@ namespace KamertonTest
                         res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
                         textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                         textBox7.Refresh();
-                        //Thread.Sleep(400);
                         test_end1();
                         file_fakt_namber();
                         //Thread.Sleep(400);
                         test_end1();
                         _All_Test_Stop = false;                                                             // Установить флаг запуска теста
                     }
- 
-                //-------------------------------------------------
+     
                 timerTestAll.Enabled = true;
+            
         }
 
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -4832,6 +5004,7 @@ namespace KamertonTest
             // textBox9.Text = ("Стоп теста");
             textBox7.Refresh();
             textBox9.Refresh();
+            testAllRun = false;
             //    test_end();
 
             textBox7.Text += "Тест окончен!";
