@@ -6658,6 +6658,16 @@ void clear_serial3()
 void setup()
 {
 	wdt_disable(); // бесполезная строка до которой не доходит выполнение при bootloop
+	Wire.begin();
+	if (!RTC.begin())                               // Настройка часов 
+		{
+			Serial.println("RTC failed");
+			while(1);
+		};
+	setup_mcp();                                    // Настроить порты расширения  
+	mcp_Analog.digitalWrite(DTR, HIGH);             // Разрешение вывода (обмена)информации с Камертоном
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
+	mcp_Analog.digitalWrite(Front_led_Red, HIGH); 
 	Serial.begin(9600);                             // Подключение к USB ПК
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
@@ -6667,29 +6677,17 @@ void setup()
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
 	portFound = false;
-	Wire.begin();
-	if (!RTC.begin())                               // Настройка часов 
-		{
-			Serial.println("RTC failed");
-			while(1);
-		};
-
-  //reset device
-  AD9850.reset();                   //reset module
-  delay(1000);
-  AD9850.powerDown();               //set signal output to LOW
-  delay(100);
-  AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1kHz frequency
-  delay(1000); 
+	AD9850.reset();                   //reset module
+	delay(1000);
+	AD9850.powerDown();               //set signal output to LOW
+	delay(100);
+	AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1kHz frequency
+	delay(1000); 
 
 	// DateTime set_time = DateTime(15, 6, 15, 10, 51, 0); // Занести данные о времени в строку "set_time"
 	// RTC.adjust(set_time);                                // Записа
 	serial_print_date();
 	Serial.println(" ");
-	setup_mcp();                                    // Настроить порты расширения  
-	mcp_Analog.digitalWrite(DTR, HIGH);             // Разрешение вывода (обмена)информации с Камертоном
-	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
-	mcp_Analog.digitalWrite(Front_led_Red, HIGH); 
 	pinMode(ledPin13, OUTPUT);  
 	pinMode(ledPin12, OUTPUT);  
 	pinMode(ledPin11, OUTPUT);  
