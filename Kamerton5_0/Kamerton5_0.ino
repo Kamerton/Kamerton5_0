@@ -90,8 +90,8 @@ unsigned int volume_max  = 0;                       //
 unsigned int volume_min  = 0;                       //
 unsigned int volume_fact = 0;                       //
 unsigned int Array_volume[260];                     //
-unsigned int Array_min[20];                         //
-unsigned int Array_max[20];                         //
+unsigned int Array_min[40];                         //
+unsigned int Array_max[40];                         //
 unsigned int volume_porog_D = 40;                   // Максимальная величина порога при проверке исправности FrontL,FrontR
 unsigned int volume_porog_L = 200;                  // Минимальная величина порога при проверке исправности FrontL,FrontR
 float voltage ;
@@ -3129,11 +3129,12 @@ void test_headset_instructor()
 	test_instr_on();                                                                // Включить необходимые сенсоры, проверить состояние
 	//myFile.println("");
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 60);                                                                // Установить уровень сигнала 30 мв
-	resistor(2, 60);                                                                // Установить уровень сигнала 30 мв
+	resistor(1, 100);                                                                // Установить уровень сигнала 30 мв
+	resistor(2, 100);                                                                // Установить уровень сигнала 30 мв
 	regBank.set(2,1);                                                               // Подать сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(200);
+	delay(3000);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[4])));                    // "Signal headset instructor microphone 30mv     ON"            ;   
 	if (test_repeat == false)  myFile.println(buffer);                           // "Signal headset instructor microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
@@ -3157,7 +3158,8 @@ void test_headset_instructor()
 	regBank.set(15,0);                                                              // РТТ микрофона отключить
 	regBank.set(29,1);                                                              // ВКЛ XP1- 13 HeS2Ls Кнопка  ВКЛ флаг подключения гарнитуры инструктора 
 	UpdateRegs();                                                                   // 
-	delay(400);                                                                     //
+	delay(2000); 
+	wdt_reset();    //
 	byte i53 = regBank.get(40007);                                                  // Получить текущее состояние Камертона
 		if(bitRead(i53,4) == 0)                                                     // Реле RL4 XP1 12  HeS2e   Включение микрофона инструктора
 		  {
@@ -3187,7 +3189,8 @@ void test_headset_instructor()
 		  }
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[5])));                    // "Microphone headset instructor signal          ON"            ;  
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone headset instructor signal          ON"            ;    Звуковой сигнал подан на вход микрофона инструктора
-	delay(20);
+	delay(2000);
+	wdt_reset();
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,    40224,224,160);                                // Измерить уровень сигнала на выходе LineL      "Test headset instructor ** Signal LineL                     ON  - ";
 	measure_vol_max(analog_mag_phone,40226,226,160);                                // Измерить уровень сигнала на выходе mag phone  "Test headset instructor ** Signal Mag phone                 ON  - ";
@@ -3224,11 +3227,12 @@ void test_headset_dispatcher()
 	test_disp_off();                                                                // Отключить реле и сенсоры, прверить отключение
 	test_disp_on();                                                                 // Включить необходимые сенсоры, проверить состояние
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона ++++++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 60);                                                                // Установить уровень сигнала 30 мв
-	resistor(2, 60);                                                                // Установить уровень сигнала 30 мв
+	resistor(1, 100);                                                                // Установить уровень сигнала 30 мв
+	resistor(2, 100);                                                                // Установить уровень сигнала 30 мв
 	regBank.set(1,1);                                                               // Подать сигнал на вход микрофона диспетчера Mic1p
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(200);
+	delay(2000);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[13])));                   // "Signal headset dispatcher microphone 30mv     ON"            ;    
 	if (test_repeat == false)  myFile.println(buffer);                              // "Signal headset dispatcher microphone 30mv     ON"            ;   
 	//++++++++++++++++++++++++++++++++++ Проверить отсутствие сигнала на линиях FrontL FrontR +++++++++++++++++++++++++++++++++
@@ -3253,7 +3257,7 @@ void test_headset_dispatcher()
 	regBank.set(32,1);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 
 	UpdateRegs();                                                                   // 
-	delay(200);                                                                     //
+	delay(1000);                                                                     //
 
 	byte i53 = regBank.get(40007);     
 //	byte i5 = regs_in[3];                                                           // 
@@ -3287,7 +3291,8 @@ void test_headset_dispatcher()
 		  }
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[14])));                   // "Microphone headset dispatcher signal          ON" 
 	if (test_repeat == false) myFile.println(buffer);                               // "Microphone dispatcher signal ON"  Звуковой сигнал подан на вход микрофона диспетчера
-	delay(20);
+	delay(2000);
+	wdt_reset();
 	//+++++++++++++++++++++++++++ Проверить наличие сигнала на линиях LineL  mag phone  ++++++++++++++++++++++++++++++++++
 	measure_vol_max(analog_LineL,    40227,227,160);                                // Измерить уровень сигнала на выходе LineL     "Test headset dispatcher ** Signal LineL                     ON  - ";
 	measure_vol_max(analog_mag_phone,40229,229,160);                                // Измерить уровень сигнала на выходе mag phone "Test headset dispatcher ** Signal Mag phone                 ON  - ";
@@ -3327,7 +3332,8 @@ void test_MTT()
 	if (test_repeat == false)  myFile.println(buffer);                              // "Command sensor ON MTT  send!         
 	regBank.set(18,0);                                                              // XP1 - 20  HangUp  DCD Трубку поднять DCD должно быть в "0"
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(3000);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));
 	if (test_repeat == false)  myFile.println(buffer);                              // "Command  HangUp MTT OFF send!"
 	// ++++++++++++++++++++++++++++++++++ Проверить исправность канала динамиков на отсутствие наводок ++++++++++++++++++++++++
@@ -3346,7 +3352,7 @@ void test_MTT()
 	resistor(2, 130);                                                               // Установить уровень сигнала 60 мв
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(400);
+	delay(2000);
 	wdt_reset();
 	Serial.println(" test_MTT - on ");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[33])));                   // "Signal MTT microphone 30mv                    ON"            ;
@@ -3360,20 +3366,22 @@ void test_MTT()
 	measure_vol_min(analog_gg_radio1, 40257,257,35);                                // Измерить уровень сигнала на выходе GG Radio1 "Test MTT ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40258,258,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
 	// ++++++++++++++++++++++++++++++++++ Проверить наличие сигнала  ++++++++++++++++++++++++++++++++++++
-	measure_vol_max(analog_LineL,    40260,260,35);                                 // "Test MTT ** Signal LineL                                    ON  - ";  
-	measure_vol_max(analog_LineR,    40261,261,35);                                 // "Test MTT ** Signal LineR                                    ON  - ";  
-	measure_vol_max(analog_mag_phone,40262,262,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test MTT ** Signal Mag phone                                ON  - ";
+	//measure_vol_max(analog_LineL,    40260,260,35);                                 // "Test MTT ** Signal LineL                                    ON  - ";  
+	//measure_vol_max(analog_LineR,    40261,261,35);                                 // "Test MTT ** Signal LineR                                    ON  - ";  
+	//measure_vol_max(analog_mag_phone,40262,262,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test MTT ** Signal Mag phone                                ON  - ";
 	// +++++++++++++++++++++ Проверка реагирования вывода ГГС на сигнал HangUp  DCD ON +++++++++++++++++++++++++++++++++
 	regBank.set(3,0);                                                               // Отключить сигнал на вход микрофона трубки Mic3p
 	regBank.set(6,1);                                                               // Реле RL5. Подать звук Front L, Front R
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(200);
+	delay(3000);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[35])));                   //   
 	if (test_repeat == false) myFile.println(buffer);                               // "Signal FrontL, FrontR  ON                             - "
 	measure_vol_min(analog_ggs,       40256,256,30);                                // Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS                                      OFF - ";
 	regBank.set(18,1);                                                              // XP1 - 20  HangUp  DCD ON
 	UpdateRegs();                                                                   // Выполнить команду
-	delay(200);
+	delay(1000);
+	wdt_reset();
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[32])));                   // "Command HangUp ON  MTT                           send!"      ;
 	if (test_repeat == false) myFile.println(buffer);                               // "Command HangUp ON  MTT                           send!"      ;
 	measure_vol_max(analog_ggs,      40259,259,120);                                //  Измерить уровень сигнала на выходе GGS       "Test MTT ** Signal GGS             On      
@@ -5526,7 +5534,7 @@ void measure_volume(int analog)
 //unsigned int Array_min[20];                         //
 //unsigned int Array_max[20];                         //
 	wdt_reset();
- int stix=10;
+ int stix=30;
 	for (int sti = 0;sti<= stix; sti++)
 	  {
 		volume_max  = 0;
