@@ -170,6 +170,11 @@ int regcount_err        = 0;                                     // Переменная д
 
 
 
+
+
+
+
+
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
 #define chipSelect 49
@@ -282,6 +287,205 @@ const unsigned int adr_control_command    PROGMEM       = 40120; // Адрес переда
 const unsigned int adr_reg_count_err      PROGMEM       = 40121; // Адрес счетчика всех ошибок
 
 const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг установки
+
+
+//------------------------- Уровни пороговых значений сигналов при тестировании устройств--------------------------------------
+//++++++++++++++++++++++++++++ Заводские установки уровней порогов +++++++++++++++++++++++++++++++++++++
+
+const byte porog_instruktor[]    PROGMEM  = {30,30,35,35,35,35,35,35,35,35,35,150,150,35,35,35,35,35,35,35,254};
+/*
+		 //++++++++++++++++  Test headset instructor ++++++++++++++++++++++++++++
+30,			// 0                          // resistor(1, 30);     Установить уровень сигнала 30 мв
+30,			// 1                          // resistor(2, 30);     Установить уровень сигнала 30 мв
+35,			// 2                          // measure_vol_min(analog_FrontL,   40230,230,35);  уровень сигнала на выходе FrontL  
+35,			// 3                          // measure_vol_min(analog_FrontR,   40231,231,35);  уровень сигнала на выходе FrontR
+35,			// 4                          // measure_vol_min(analog_LineL,    40232,232,35);  уровень сигнала на выходе LineL 
+35,			// 5                          // measure_vol_min(analog_LineR,    40233,233,35);  уровень сигнала на выходе LineR
+35,			// 6                          // measure_vol_min(analog_mag_radio,40234,234,35);  уровень сигнала на выходе mag radio 
+35,			// 7                          // measure_vol_min(analog_mag_phone,40235,235,35);  уровень сигнала на выходе mag phone
+35,			// 8                          // measure_vol_min(analog_ggs,      40236,236,35);  уровень сигнала на выходе GGS 
+35,			// 9                          // measure_vol_min(analog_gg_radio1,40237,237,35);  уровень сигнала на выходе GG Radio1
+35,			// 10                         // measure_vol_min(analog_gg_radio2,40238,238,35);  уровень сигнала на выходе GG Radio2 
+			//---------- Сигнал на вход подан ---------------------
+150,    	// 11                         // measure_vol_max(analog_LineL,    40224,224,150); уровень сигнала на выходе LineL
+150,		// 12                         // measure_vol_max(analog_mag_phone,40226,226,150); уровень сигнала на выходе mag phone 
+35, 		// 13                         // measure_vol_min(analog_FrontL,   40230,230,35);  уровень сигнала на выходе FrontL 
+35,			// 14                         // measure_vol_min(analog_FrontR,   40231,231,35);  уровень сигнала на выходе FrontR 
+35,			// 15                         // measure_vol_min(analog_LineR,    40233,233,35);  уровень сигнала на выходе LineR 
+35,			// 16                         // measure_vol_min(analog_ggs,      40236,236,35);  уровень сигнала на выходе GGS 
+35,			// 17                         // measure_vol_min(analog_gg_radio1,40237,237,35);  уровень сигнала на выходе GG Radio1
+35			// 18                         // measure_vol_min(analog_gg_radio2,40238,238,35);  уровень сигнала на выходе GG Radio2
+};
+   */
+const byte  porog_dispatcher[]    PROGMEM = {
+
+		//	+++++++++++++Test headset dispatcher ++++++++++++++++++++++++++++++
+30,			// 0                          // resistor(1, 30);   Установить уровень сигнала 30 мв
+30,			// 1                          // resistor(2, 30);   Установить уровень сигнала 30 мв
+35,			// 2                          // measure_vol_min(analog_FrontL,   40240,240,35);  уровень сигнала на выходе FrontL 
+35,			// 3                          // measure_vol_min(analog_FrontR,   40241,241,35);  уровень сигнала на выходе FrontR
+35,			// 4                          // measure_vol_min(analog_LineL,    40242,242,35);  уровень сигнала на выходе LineL
+35,			// 5                          // measure_vol_min(analog_LineR,    40243,243,35);  уровень сигнала на выходе LineR
+35,			// 6                          // measure_vol_min(analog_mag_radio,40244,244,35);  уровень сигнала на выходе mag radio
+35,			// 7                          // measure_vol_min(analog_mag_phone,40245,245,35);  уровень сигнала на выходе mag phone
+35,			// 8                          // measure_vol_min(analog_ggs,      40246,246,35);  уровень сигнала на выходе GGS 
+35,			// 9                          // measure_vol_min(analog_gg_radio1,40247,247,35);  уровень сигнала на выходе GG Radio1
+35,			// 10                         // measure_vol_min(analog_gg_radio2,40248,248,35);  уровень сигнала на выходе GG Radio2 
+			// ++++++++++++++++++++++++++++++++++++++++ Включить микрофон инструктора ++++++++++++++++++++++++++++++++++++++++++++++++++
+200,		// 11                         // measure_vol_max(analog_LineL,    40227,227,200); уровень сигнала на выходе LineL
+200,		// 12                         // measure_vol_max(analog_mag_phone,40229,229,200); уровень сигнала на выходе mag phone
+35,			// 13                         // measure_vol_min(analog_FrontL,   40240,240,35);  уровень сигнала на выходе FrontL 
+35,			// 14                         // measure_vol_min(analog_FrontR,   40241,241,35);  уровень сигнала на выходе FrontR 
+35,			// 15                         // measure_vol_min(analog_LineR,    40243,243,35);  уровень сигнала на выходе LineR 
+35,			// 16                         // measure_vol_min(analog_ggs,      40246,246,35);  уровень сигнала на выходе GGS
+35,			// 17                         // measure_vol_min(analog_gg_radio1,40247,247,35);  уровень сигнала на выходе GG Radio1
+35			// 18                         // measure_vol_min(analog_gg_radio2,40248,248,35);  уровень сигнала на выходе GG Radio2
+};
+
+const byte  porog_MTT[]    PROGMEM = {
+	//++++++++++++++++++++++++++++++++++ Test MTT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+130,		// 0                          // resistor(1, 130);  Установить уровень сигнала 60 мв
+130,		// 1                          // resistor(2, 130);  Установить уровень сигнала 60 мв
+35,			// 2                          // measure_vol_min(analog_FrontL,    40250,250,35); уровень сигнала на выходе FrontL  
+35,			// 3                          // measure_vol_min(analog_FrontR,    40251,251,35); уровень сигнала на выходе FrontR 
+35,			// 4                          // measure_vol_min(analog_LineL,     40252,252,35); уровень сигнала на выходе LineL
+35,			// 5                          // measure_vol_min(analog_LineR,     40253,253,35); уровень сигнала на выходе LineR
+35,			// 6                          // measure_vol_min(analog_mag_radio, 40254,254,35); уровень сигнала на выходе mag radio
+35,			// 7                          // measure_vol_min(analog_mag_phone, 40255,255,35); уровень сигнала на выходе mag phone
+35,			// 8                          // measure_vol_min(analog_ggs,       40256,256,35); уровень сигнала на выходе GGS 
+35,			// 9                          // measure_vol_min(analog_gg_radio1, 40257,257,35); уровень сигнала на выходе GG Radio1
+35,			// 10                         // measure_vol_min(analog_gg_radio2, 40258,258,35); уровень сигнала на выходе GG Radio2 
+			//++++++++++++++++++++++++++++++++++ Сигнал подан на вход МТТ ++++++++++++++++++++++++++++++++++++++++++++
+35,			// 11                         // measure_vol_min(analog_FrontL,    40250,250,35); уровень сигнала на выходе FrontL
+35,			// 12                         // measure_vol_min(analog_FrontR,    40251,251,35); уровень сигнала на выходе FrontR
+35,			// 13                         // measure_vol_min(analog_LineL,     40252,252,25); уровень сигнала на выходе LineL
+35,			// 14                         // measure_vol_min(analog_mag_radio, 40254,254,35); уровень сигнала на выходе mag radio
+35,			// 15                         // measure_vol_min(analog_ggs,       40256,256,35); уровень сигнала на выходе GGS
+35,			// 16                         // measure_vol_min(analog_gg_radio1, 40257,257,35); уровень сигнала на выходе GG Radio1
+35,			// 17                         // measure_vol_min(analog_gg_radio2, 40258,258,35); уровень сигнала на выходе GG Radio2 
+135,		// 18                         // measure_vol_max(analog_LineL,    40260,260,35);  "Test MTT ** Signal LineL 
+135,		// 19                         // measure_vol_max(analog_LineR,    40261,261,35);  "Test MTT ** Signal LineR 
+100			// 20                         // measure_vol_max(analog_mag_phone,40262,262,90);  уровень сигнала на выходе mag phone
+};
+
+const byte  porog_Microphone[]    PROGMEM = {
+		//+++++++++++++++++++++++++++++++++ Test Microphone +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+200,		// 0                          // resistor(1, 200);  Установить уровень сигнала 60 мв
+200,		// 1                          // resistor(2, 200);  Установить уровень сигнала 60 мв
+35,			// 2                          // measure_vol_min(analog_FrontL,    40320,320,35); уровень сигнала на выходе FrontL
+35,			// 3                          // measure_vol_min(analog_FrontR,    40321,321,35); уровень сигнала на выходе FrontR 
+35,			// 4                          // measure_vol_min(analog_LineL,     40322,322,35); уровень сигнала на выходе LineL
+35,			// 5                          // measure_vol_min(analog_LineR,     40323,323,35); уровень сигнала на выходе LineR
+35,			// 6                          // measure_vol_min(analog_mag_radio, 40324,324,35); уровень сигнала на выходе mag radio
+35,			// 7                          // measure_vol_min(analog_mag_phone, 40325,325,35); уровень сигнала на выходе mag phone
+35,			// 8                          // measure_vol_min(analog_ggs,       40326,326,35); уровень сигнала на выходе GGS 
+35,			// 9                          // measure_vol_min(analog_gg_radio1, 40327,327,35); уровень сигнала на выходе GG Radio1
+35,			// 10                         // measure_vol_min(analog_gg_radio2, 40328,328,35); уровень сигнала на выходе GG Radio2
+			//++++++++++++++++++++++++++++++++++ Сигнал подан на вход микрофона ++++++++++++++++++++++++
+180,		// 11                         // measure_vol_max(analog_mag_phone, 40298,298,180);уровень сигнала на выходе mag phone
+180,		// 12                         // measure_vol_max(analog_LineL,     40299,299,180);уровень сигнала на выходе "Test Microphone ** Signal LineL 
+35,			// 13                         // measure_vol_min(analog_FrontL,    40320,320,35); уровень сигнала на выходе FrontL 
+35,			// 14                         // measure_vol_min(analog_FrontR,    40321,321,35); уровень сигнала на выходе FrontR
+35,			// 15                         // measure_vol_min(analog_LineR,     40323,323,35); уровень сигнала на выходе LineR
+35,			// 16                         // measure_vol_min(analog_mag_radio, 40324,324,35); уровень сигнала на выходе mag radio 
+35,			// 17                         // measure_vol_min(analog_ggs,       40326,326,35); уровень сигнала на выходе GGS
+35,			// 18                         // measure_vol_min(analog_gg_radio1, 40327,327,35); уровень сигнала на выходе GG Radio1
+35,         // 19                         // measure_vol_min(analog_gg_radio2, 40328,328,35); уровень сигнала на выходе GG Radio2
+};
+
+const byte  porog_GGS[]    PROGMEM = {
+	//++++++++++++++++++++++++++++++++ Test GGS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+250,		//  0                         // resistor(1, 250); Установить уровень сигнала xx мв
+250,		//  1                         // resistor(2, 250); Установить уровень сигнала xx мв
+	          	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+35, 		//  2                         // measure_vol_min(analog_FrontL,    40280,280,35); уровень сигнала на выходе "Test GGS ** Signal FrontL 
+35, 		//  3                         // measure_vol_min(analog_FrontR,    40281,281,35); уровень сигнала на выходе "Test GGS ** Signal FrontR        
+35, 		//  4                         // measure_vol_min(analog_LineL,     40282,282,35); уровень сигнала на выходе "Test GGS ** Signal LineL 
+35, 		//  5                         // measure_vol_min(analog_LineR,     40283,283,35); уровень сигнала на выходе "Test GGS ** Signal LineR 
+35, 		//  6                         // measure_vol_min(analog_mag_radio, 40284,284,35); уровень сигнала на выходе "Test GGS ** Signal mag radio
+35, 		//  7                         // measure_vol_min(analog_mag_phone, 40285,285,35); уровень сигнала на выходе "Test GGS ** Signal mag phone 
+35, 		//  8                         // measure_vol_min(analog_ggs,       40286,286,35); уровень сигнала на выходе "Test GGS ** Signal GGS    
+35, 		//  9                         // measure_vol_min(analog_gg_radio1, 40287,287,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio1   
+35, 		//  10                        // measure_vol_min(analog_gg_radio2, 40288,288,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio2
+               //++++++++++++++++++++++++++++++++++ Сигнал подан на вход GGS ++++++++++++++++++++++++
+200,		// 11    					  //measure_vol_max(analog_FrontL,    40290,290,40); уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
+200,		// 12  						  //measure_vol_max(analog_FrontR,    40291,291,40); уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
+35,			// 13						  //measure_vol_min(analog_LineL,     40282,282,35); уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+35,			// 14						  //measure_vol_min(analog_LineR,     40283,283,35); уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+35,			// 15						  //measure_vol_min(analog_mag_radio, 40284,284,35); уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+100,		// 16						  //measure_vol_max(analog_mag_phone, 40292,292,50); уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
+35,			// 17			     		  //measure_vol_max(analog_ggs,       40286,289,160); уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+35,			// 18						  //measure_vol_min(analog_gg_radio1, 40287,287,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+35,			// 19						  //measure_vol_min(analog_gg_radio2, 40288,288,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+
+40,			// 20						  //measure_vol_max(analog_FrontL,    40290,290,40); уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
+40,			// 21 						  //measure_vol_max(analog_FrontR,    40291,291,40); уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
+35,			// 22					      //measure_vol_min(analog_LineL,     40282,282,35); уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
+35,			// 23						  //measure_vol_min(analog_LineR,     40283,283,35); уровень сигнала на выходе "Test GGS ** Signal LineR                                    OFF - ";
+35,			// 24						  //measure_vol_min(analog_mag_radio, 40284,284,35); уровень сигнала на выходе "Test GGS ** Signal mag radio                                OFF - ";
+50,			// 25						  //measure_vol_max(analog_mag_phone, 40292,292,50); уровень сигнала на выходе "Test GGS ** Signal mag phone                                ON  - ";
+35,			// 26						  //measure_vol_min(analog_ggs,       40286,286,35); уровень сигнала на выходе "Test GGS ** Signal GGS                                      OFF - ";
+35,			// 27						  //measure_vol_min(analog_gg_radio1, 40287,287,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
+35			// 28						  //measure_vol_min(analog_gg_radio2, 40288,288,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
+};
+
+const byte  porog_Radio1[]    PROGMEM = {
+// ++++++++++++++++++++++++++++++++++++++ Test Radio1 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+250,		// 0							//resistor(1, 250);  Установить уровень сигнала xx мв
+250,		// 1							//resistor(2, 250);  Установить уровень сигнала xx мв
+                 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+35,			// 2							//measure_vol_min(analog_FrontL,    40300,300,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+35,			// 3							//measure_vol_min(analog_FrontR,    40301,301,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+35,			// 4							//measure_vol_min(analog_LineL,     40302,302,35); уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+35,			// 5							//measure_vol_min(analog_LineR,     40303,303,35); уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+35,			// 6							//measure_vol_min(analog_mag_radio, 40304,304,35); уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+35,			// 7							//measure_vol_min(analog_mag_phone, 40305,305,35); уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+35,			// 8							//measure_vol_min(analog_ggs,       40306,306,35); уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+35,			// 9							//measure_vol_min(analog_gg_radio1, 40307,307,35); уровень сигнала на выходе "Test Radio1 ** Signal GG Radio1                             OFF - ";
+35,			// 10							//measure_vol_min(analog_gg_radio2, 40308,308,35); Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
+				  //++++++++++++++++++++++++++++++++++ Сигнал подан на вход  Radio1 ++++++++++++++++++++++++
+35,			// 11							//measure_vol_min(analog_FrontL,    40300,300,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
+35,			// 12							//measure_vol_min(analog_FrontR,    40301,301,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
+35,			// 13							//measure_vol_min(analog_LineL,     40302,302,35); уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
+35,			// 14							//measure_vol_min(analog_LineR,     40303,303,35); уровень сигнала на выходе "Test Radio1 ** Signal LineR                                 OFF - ";
+35,			// 15							//measure_vol_min(analog_mag_radio, 40304,304,35); уровень сигнала на выходе "Test Radio1 ** Signal mag radio                             OFF - ";
+35,			// 16							//measure_vol_min(analog_mag_phone, 40305,305,35); уровень сигнала на выходе "Test Radio1 ** Signal mag phone                             OFF - ";
+35,			// 17							//measure_vol_min(analog_ggs,       40306,306,35); уровень сигнала на выходе "Test Radio1 ** Signal GGS                                   OFF - ";
+250,		// 18							//measure_vol_max(analog_gg_radio1, 40309,309,250);уровень сигнала на выходе "Test Radio1 ** Signal Radio1                                ON  - ";
+35			// 19							//measure_vol_min(analog_gg_radio2, 40308,308,35); уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2       
+};
+
+const byte  porog_Radio2[]    PROGMEM = {
+// ++++++++++++++++++++++++++++++++++++++ Test Radio2 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+250,		// 0							//resistor(1, 250);  Установить уровень сигнала xx мв
+250,		// 1							//resistor(2, 250);  Установить уровень сигнала xx мв
+                 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+35,			// 2							//measure_vol_min(analog_FrontL,    40310,310,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+35,			// 3							//measure_vol_min(analog_FrontR,    40311,311,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+35,			// 4							//measure_vol_min(analog_LineL,     40312,312,35); уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+35,			// 5							//measure_vol_min(analog_LineR,     40313,313,35); уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+35,			// 6 							//measure_vol_min(analog_mag_radio, 40314,314,35); уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+35,			// 7							//measure_vol_min(analog_mag_phone, 40315,315,35); уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+35,			// 8							//measure_vol_min(analog_ggs,       40316,316,35); уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+35,			// 9							//measure_vol_min(analog_gg_radio1, 40317,317,35); уровень сигнала на выходе "Test Radio2 ** Signal GG Radio1                             OFF - ";
+35,			// 10							//measure_vol_min(analog_gg_radio2, 40318,318,35); уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
+                    //++++++++++++++++++++++++++++++++++ Сигнал подан на вход  Radio2 ++++++++++++++++++++++++
+35,			// 11							//measure_vol_min(analog_FrontL,    40310,310,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
+35,			// 12							//measure_vol_min(analog_FrontR,    40311,311,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
+35,			// 13							//measure_vol_min(analog_LineL,     40312,312,35); уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
+35,			// 14							//measure_vol_min(analog_LineR,     40313,313,35); уровень сигнала на выходе "Test Radio2 ** Signal LineR                                 OFF - ";
+35,			// 15							//measure_vol_min(analog_mag_radio, 40314,314,35); уровень сигнала на выходе "Test Radio2 ** Signal mag radio                             OFF - ";
+35,			// 16							//measure_vol_min(analog_mag_phone, 40315,315,35); уровень сигнала на выходе "Test Radio2 ** Signal mag phone                             OFF - ";
+35,			// 17							//measure_vol_min(analog_ggs,       40316,316,35); уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
+35,			// 18							//measure_vol_min(analog_gg_radio1, 40317,317,35); уровень сигнала на выходе "Test Radio2 ** Signal Radio1                                ON  - ";
+250			// 19							//measure_vol_max(analog_gg_radio2, 40319,319,250);уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2        
+};
+
+
+
+
 
 //---------------------------Тексты сообщений   ---------------------------------------------------
 const char  txt_message0[]    PROGMEM            = "  Error! - ";                           
@@ -5460,7 +5664,45 @@ void i2c_test1()
 	}
 	
 }
+void save_mem_porog()
+{
+//char por_buffer[20] ;
 
+ /* for (int k = 0; k < 20; k++)
+  {
+     por_buffer[k] =  pgm_read_byte_near(porog_instruktor[k]);
+  }*/
+
+  /*strcpy_P(por_buffer, (char*)pgm_read_word(&(porog_instruktor)));
+  Serial.println(por_buffer);*/
+// strcpy_P(por_buffer, (byte*)pgm_read_byte(&(porog_instruktor)));
+
+// Test headset instructor  adr 0
+ // i2c_eeprom_write_page(0x50, 0, (byte *)por_buffer, sizeof(por_buffer));    // write to EEPROM 
+
+
+
+	//byte  temp_buffer[20] ;
+	//i2c_eeprom_read_buffer(deviceaddress, 0, temp_buffer, 20 );
+char str[30];
+
+snprintf(str,sizeof(str),"a[0]=%3d,a[1]=%3d,a[2]=%3d",pgm_read_byte_near(porog_instruktor[0])
+                                                       ,pgm_read_byte_near(porog_instruktor[1])
+                                                       ,pgm_read_byte_near(porog_instruktor[2]));
+
+
+
+
+	//for(int i=0; i<20;i++)
+	//{
+	//	Serial.print(i);
+	//	Serial.print("  ");
+	//	Serial.print(por_buffer[i]);
+	//	Serial.println("  ");
+	//	//Serial.println(temp_buffer[i]);
+	//}
+
+}
 
 
 void setup_mcp()

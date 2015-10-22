@@ -141,6 +141,7 @@ void measure_volume_P(int analog);
 void measure_power();
 void i2c_test();
 void i2c_test1();
+void save_mem_porog();
 void setup_mcp();
 void setup_resistor();
 void setup_regModbus();
