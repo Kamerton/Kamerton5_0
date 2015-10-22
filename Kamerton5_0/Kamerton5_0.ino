@@ -3348,8 +3348,8 @@ void test_MTT()
 	measure_vol_min(analog_gg_radio2, 40258,258,35);                                // Измерить уровень сигнала на выходе GG Radio2 "Test MTT ** Signal GG Radio2                                OFF - ";
 
 	// ++++++++++++++++++++++++++++++++++ Подать сигнал на вход микрофона MTT +++++++++++++++++++++++++++++++++++++++++++++++++
-	resistor(1, 130);                                                               // Установить уровень сигнала 60 мв
-	resistor(2, 130);                                                               // Установить уровень сигнала 60 мв
+	resistor(1, 255);                                                               // Установить уровень сигнала 60 мв
+	resistor(2, 255);                                                               // Установить уровень сигнала 60 мв
 	regBank.set(3,1);                                                               // Включить сигнал на вход микрофона трубки Mic3p
 	UpdateRegs();                                                                   // Выполнить команду
 	delay(2000);
@@ -3368,7 +3368,7 @@ void test_MTT()
 	// ++++++++++++++++++++++++++++++++++ Проверить наличие сигнала  ++++++++++++++++++++++++++++++++++++
 	//measure_vol_max(analog_LineL,    40260,260,35);                                 // "Test MTT ** Signal LineL                                    ON  - ";  
 	//measure_vol_max(analog_LineR,    40261,261,35);                                 // "Test MTT ** Signal LineR                                    ON  - ";  
-	//measure_vol_max(analog_mag_phone,40262,262,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test MTT ** Signal Mag phone                                ON  - ";
+	measure_vol_max(analog_mag_phone,40262,262,90);                                 // Измерить уровень сигнала на выходе mag phone  "Test MTT ** Signal Mag phone                                ON  - ";
 	// +++++++++++++++++++++ Проверка реагирования вывода ГГС на сигнал HangUp  DCD ON +++++++++++++++++++++++++++++++++
 	regBank.set(3,0);                                                               // Отключить сигнал на вход микрофона трубки Mic3p
 	regBank.set(6,1);                                                               // Реле RL5. Подать звук Front L, Front R
