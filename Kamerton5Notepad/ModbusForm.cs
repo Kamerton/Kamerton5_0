@@ -9,7 +9,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Globalization;
 using System.Threading;
-using Kamerton5_0;
+using Kamerton5Notepad;
 using System.Linq;
 using FieldTalk.Modbus.Master;
 //using System.Runtime.Serialization.Formatters.Binary;

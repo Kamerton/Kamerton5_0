@@ -2770,7 +2770,7 @@ namespace KamertonTest
             // 
             // button4
             // 
-            this.button4.BackgroundImage = global::Kamerton5_0.Properties.Resources.btSetCustom_Image;
+            this.button4.BackgroundImage = global::Kamerton5Notepad.Properties.Resources.btSetCustom_Image;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button4.Location = new System.Drawing.Point(226, 101);
             this.button4.Name = "button4";
@@ -2781,7 +2781,7 @@ namespace KamertonTest
             // 
             // button3
             // 
-            this.button3.BackgroundImage = global::Kamerton5_0.Properties.Resources.btSetSystem_Image;
+            this.button3.BackgroundImage = global::Kamerton5Notepad.Properties.Resources.btSetSystem_Image;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button3.Location = new System.Drawing.Point(226, 35);
             this.button3.Name = "button3";
