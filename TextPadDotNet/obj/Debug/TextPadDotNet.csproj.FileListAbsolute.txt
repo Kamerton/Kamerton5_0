@@ -1,0 +1,28 @@
+D:\Downloads\TextPadDotNet\bin\Debug\TextPadDotNet.exe.config
+D:\Downloads\TextPadDotNet\obj\Debug\TextPadDotNet.exe
+D:\Downloads\TextPadDotNet\bin\Debug\TextPadDotNet.exe
+D:\Downloads\TextPadDotNet\bin\Debug\TextPadDotNet.pdb
+D:\Downloads\TextPadDotNet\obj\Debug\ResolveAssemblyReference.cache
+D:\Downloads\TextPadDotNet\obj\Debug\Notepad.NET.AboutBox.resources
+D:\Downloads\TextPadDotNet\obj\Debug\Notepad.NET.FindDialog.resources
+D:\Downloads\TextPadDotNet\obj\Debug\Notepad.NET.FlickerFreeTextBox.resources
+D:\Downloads\TextPadDotNet\obj\Debug\Notepad.NET.Form1.resources
+D:\Downloads\TextPadDotNet\obj\Debug\Notepad.NET.MRUMenuItem.resources
+D:\Downloads\TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.1.tlog
+D:\Downloads\TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.4.tlog
+D:\Downloads\TextPadDotNet\obj\Debug\GenerateResource-ResGen.write.1.tlog
+D:\Downloads\TextPadDotNet\obj\Debug\TextPadDotNet.pdb
+D:\1 TextPadDotNet\bin\Debug\TextPadDotNet.exe.config
+D:\1 TextPadDotNet\bin\Debug\TextPadDotNet.exe
+D:\1 TextPadDotNet\bin\Debug\TextPadDotNet.pdb
+D:\1 TextPadDotNet\obj\Debug\ResolveAssemblyReference.cache
+D:\1 TextPadDotNet\obj\Debug\Notepad.NET.AboutBox.resources
+D:\1 TextPadDotNet\obj\Debug\Notepad.NET.FindDialog.resources
+D:\1 TextPadDotNet\obj\Debug\Notepad.NET.FlickerFreeTextBox.resources
+D:\1 TextPadDotNet\obj\Debug\Notepad.NET.Form1.resources
+D:\1 TextPadDotNet\obj\Debug\Notepad.NET.MRUMenuItem.resources
+D:\1 TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.1.tlog
+D:\1 TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.4.tlog
+D:\1 TextPadDotNet\obj\Debug\GenerateResource-ResGen.write.1.tlog
+D:\1 TextPadDotNet\obj\Debug\TextPadDotNet.exe
+D:\1 TextPadDotNet\obj\Debug\TextPadDotNet.pdb

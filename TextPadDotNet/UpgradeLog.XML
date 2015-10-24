@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="TextPadDotNet">
+</Property><Property Name="Файл решения" Value="D:\Downloads\TextPadDotNet\TextPadDotNet.sln">
+</Property><Property Name="Файл параметров пользователя" Value="D:\Downloads\TextPadDotNet\TextPadDotNet.suo">
+</Property><Property Name="Date" Value="24 октября 2015 г.">
+</Property><Property Name="Time" Value="0:01">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="TextPadDotNet.sln" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\TextPadDotNet.sln">
+</Event><Event ErrorLevel="0" Project="" Source="TextPadDotNet.suo" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\TextPadDotNet.suo">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="TextPadDotNet.csproj" Description="Успешно создана резервная копия файла проекта: D:\Downloads\TextPadDotNet1\Backup\TextPadDotNet.csproj">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="TextPadDotNet.csproj.user" Description="Резервная копия проекта успешно создана как D:\Downloads\TextPadDotNet1\Backup\TextPadDotNet.csproj.user">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="AboutBox.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\AboutBox.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="AssemblyInfo.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="ConfigHandler.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\ConfigHandler.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="FindDialog.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\FindDialog.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="FlickerFreeTextBox.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\FlickerFreeTextBox.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="Form1.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="MRUMenuItem.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\MRUMenuItem.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="TextBoxPrinter.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\TextBoxPrinter.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="Undoer.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\Undoer.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="VirtualFile.cs" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\VirtualFile.cs">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="App.config" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\App.config">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="App.ico" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\App.ico">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="AboutBox.resx" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\AboutBox.resx">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="FindDialog.resx" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\FindDialog.resx">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="FlickerFreeTextBox.resx" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\FlickerFreeTextBox.resx">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="Form1.resx" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="MRUMenuItem.resx" Description="Успешно создана резервная копия файла D:\Downloads\TextPadDotNet1\Backup\MRUMenuItem.resx">
+</Event><Event ErrorLevel="1" Project="TextPadDotNet" Source="TextPadDotNet.csproj" Description="Этот проект рассчитан на .NET Framework версии 2.0 или 3.0. Если проект будет использовать сборки, требующие более новую версию .NET Framework, возникнет ошибка построения. Чтобы изменить версию .NET Framework, выберите пункт &quot;Свойства&quot; в меню проекта, затем выберите новую версию в раскрывающемся списке &quot;.NET Framework&quot;. (В Visual Basic этот список находится на вкладке &quot;Компиляция&quot;, открываемой при нажатии кнопки &quot;Дополнительные параметры компилятора&quot;.)">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="TextPadDotNet.csproj" Description="Проект успешно преобразован">
+</Event><Event ErrorLevel="3" Project="TextPadDotNet" Source="TextPadDotNet.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="TextPadDotNet.sln" Description="Преобразование решения успешно завершено">
+</Event><Event ErrorLevel="3" Project="" Source="TextPadDotNet.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="TextPadDotNet" Source="TextPadDotNet.csproj" Description="Сканирование завершено: обновление для файлов проекта не требуется.">
+</Event></UpgradeLog>
