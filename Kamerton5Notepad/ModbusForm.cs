@@ -124,16 +124,49 @@ namespace KamertonTest
             switch (e.TabPageIndex)
             {
                 case 0:
-                    cmdOpenSerial.Enabled = true;
-                    SetComPort();
-                    Polltimer1.Enabled = false;
 
-                 //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
-                    break;
-                case 1:
-                 //   toolStripStatusLabel3.Text = ("Выбрана 2 вкладка");
-                    break;
-                case 2:
+
+
+                        cmdOpenSerial.Enabled = true;
+                        SetComPort();
+                        Polltimer1.Enabled = false;
+
+                        //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
+                        break;
+                        case 1:
+                        //   toolStripStatusLabel3.Text = ("Выбрана 2 вкладка");
+                        break;
+                        case 2:
+
+                                Polltimer1.Enabled = false;                                                // Запретить опрос состояния
+                                timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
+                                timerCTS.Enabled = false;
+                                timerTestAll.Enabled = false;
+
+                                bool[] coilVals = new bool[200];
+                                bool[] coilArr = new bool[2];
+                                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                                progressBar1.Value = 0;
+                                startCoil = 8;                                                             // Управление питанием платы "Камертон"
+                                res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
+                                Thread.Sleep(1700);
+                               // button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
+                               // button31.BackColor = Color.LightSalmon;
+                                label102.Text = "Выполняется контроль состояния сенсоров";
+                                label102.ForeColor = Color.DarkOliveGreen;
+
+                                numRdRegs = 2;
+                                startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
+                                numCoils = 2;
+                                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+                                if (coilArr[0] == true) //есть ошибка
+                                {
+                                // Обработка ошибки.
+                                textBox11.Text = ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                                }
+
+                                timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
+
                  //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
                     break;
                 case 3:
