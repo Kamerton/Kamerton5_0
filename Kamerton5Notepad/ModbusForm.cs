@@ -112,8 +112,53 @@ namespace KamertonTest
           //  findComPort();
            // serial_connect();
             SetComPort();
-            Polltimer1.Enabled = true;
+         //   Polltimer1.Enabled = true;
+
+            TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);
         }
+
+
+        private void TabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+
+            switch (e.TabPageIndex)
+            {
+                case 0:
+                    cmdOpenSerial.Enabled = true;
+                    SetComPort();
+                    Polltimer1.Enabled = false;
+
+                 //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
+                    break;
+                case 1:
+                 //   toolStripStatusLabel3.Text = ("Выбрана 2 вкладка");
+                    break;
+                case 2:
+                 //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
+                    break;
+                case 3:
+                 //   toolStripStatusLabel3.Text = ("Выбрана 4 вкладка");
+                    break;
+                case 4:
+                 //   toolStripStatusLabel3.Text = ("Выбрана 5 вкладка");
+                    break;
+                case 5:
+
+                    cmdOpenSerial.Enabled = false;
+                     //if (myProtocol.isOpen())
+                     //   myProtocol.closeProtocol();
+                  //  myProtocol = null;
+                    Polltimer1.Enabled = false;
+                 //   toolStripStatusLabel3.Text = ("Выбрана 6 вкладка");
+                    break;
+
+                default:
+                   // toolStripStatusLabel3.Text = ("Шойтан, как ты сюда попал?");
+                    break;
+            }
+
+        }
+
 
         private delegate void SetTextDeleg(string text);                  //             
 
@@ -2111,8 +2156,8 @@ namespace KamertonTest
         private void tabPage4_Click(object sender, EventArgs e)
         {
           //  Polltimer1.Enabled = true;
-              Polltimer1.Enabled = false;
-              toolStripStatusLabel3.Text = ("Notepad : " );
+              //Polltimer1.Enabled = false;
+              //toolStripStatusLabel3.Text = ("Notepad : " );
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
