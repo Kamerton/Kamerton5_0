@@ -43,7 +43,7 @@ namespace KamertonTest
         private int startRdReg;
         private int res;
         private int TestN;
-        private int TestSum;
+     //   private int TestSum;
         private int TestStep;
         private int TestRepeatCount;
         private int _SerialMonitor;
@@ -2108,7 +2108,12 @@ namespace KamertonTest
         {
 
         }
-
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+          //  Polltimer1.Enabled = true;
+              Polltimer1.Enabled = false;
+              toolStripStatusLabel3.Text = ("Notepad : " );
+        }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
 
@@ -4787,6 +4792,9 @@ namespace KamertonTest
 
         private void button11_Click_1(object sender, EventArgs e)         //Старт полного теста
         {
+            if ((myProtocol != null))
+            {
+
             Polltimer1.Enabled = false;
             timer_Mic_test.Enabled = false;
             timer_byte_set.Enabled = false;
@@ -4973,6 +4981,17 @@ namespace KamertonTest
                 find_com_port.Enabled = true;
             }
 
+
+        }
+            // конец проверки
+            else
+            {
+
+                textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
+
+
+            }
+
             progressBar2.Value = 0;
 
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
@@ -4981,32 +5000,48 @@ namespace KamertonTest
 
         private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
         {
-            timerTestAll.Enabled = false;
 
-            ushort[] writeVals = new ushort[20];
-            bool[] coilArr = new bool[34];
+            if ((myProtocol != null))
+            {
 
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            button9.BackColor = Color.Red;
-            button11.BackColor = Color.White;
-            label92.Text = ("");
-            textBox7.Text += ("Тест остановлен" + "\r\n");
-            progressBar2.Value = 0;
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
-            textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
-            // textBox9.Text = ("Стоп теста");
-            textBox7.Refresh();
-            textBox9.Refresh();
-            testAllRun = false;
-            //    test_end();
 
-            textBox7.Text += "Тест окончен!";
+                timerTestAll.Enabled = false;
 
-            _All_Test_Stop = true;
-            Polltimer1.Enabled = true;
-            startCoil = 8;                                               // Управление питанием платы "Камертон"
-            res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
+                ushort[] writeVals = new ushort[20];
+                bool[] coilArr = new bool[34];
+
+                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                button9.BackColor = Color.Red;
+                button11.BackColor = Color.White;
+                label92.Text = ("");
+                textBox7.Text += ("Тест остановлен" + "\r\n");
+                progressBar2.Value = 0;
+                startWrReg = 120;
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
+                textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
+                // textBox9.Text = ("Стоп теста");
+                textBox7.Refresh();
+                textBox9.Refresh();
+                testAllRun = false;
+                //    test_end();
+
+                textBox7.Text += "Тест окончен!";
+
+                _All_Test_Stop = true;
+                Polltimer1.Enabled = true;
+                startCoil = 8;                                               // Управление питанием платы "Камертон"
+                res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
+
+
+            }
+
+            else
+            {
+
+                textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
+            
+            
+            }
         }
 
         private void label92_Click(object sender, EventArgs e)
