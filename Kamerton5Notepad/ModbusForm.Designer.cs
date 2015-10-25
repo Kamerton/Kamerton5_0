@@ -316,12 +316,16 @@ namespace KamertonTest
             this.txtStartWrReg = new System.Windows.Forms.TextBox();
             this.Label14 = new System.Windows.Forms.Label();
             this.txtSlave = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Polltimer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer_Mic_test = new System.Windows.Forms.Timer(this.components);
             this.timer_byte_set = new System.Windows.Forms.Timer(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
@@ -329,7 +333,28 @@ namespace KamertonTest
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
             this.find_com_port = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFilePageSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditRedo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuEditCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormat = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatFont = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -354,6 +379,8 @@ namespace KamertonTest
             this.TabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
             this.GroupBox4.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -367,6 +394,7 @@ namespace KamertonTest
             this.TabControl1.Controls.Add(this.tabPage5);
             this.TabControl1.Controls.Add(this.TabPage1);
             this.TabControl1.Controls.Add(this.TabPage2);
+            this.TabControl1.Controls.Add(this.tabPage4);
             this.TabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TabControl1.Location = new System.Drawing.Point(0, 2);
             this.TabControl1.Name = "TabControl1";
@@ -3524,6 +3552,45 @@ namespace KamertonTest
             this.txtSlave.TabIndex = 0;
             this.txtSlave.Text = "1";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.richTextBox2);
+            this.tabPage4.Controls.Add(this.menuStrip1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(987, 613);
+            this.tabPage4.TabIndex = 7;
+            this.tabPage4.Text = "Редактор файлов";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile,
+            this.menuEdit,
+            this.menuFormat,
+            this.menuHelp});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(987, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuFile
+            // 
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFileNew,
+            this.menuFileOpen,
+            this.menuFileSave,
+            this.menuFileSaveAs,
+            this.toolStripSeparator1,
+            this.menuFilePageSetup,
+            this.menuFilePrint,
+            this.menuFileExit});
+            this.menuFile.Name = "menuFile";
+            this.menuFile.Size = new System.Drawing.Size(35, 20);
+            this.menuFile.Text = "&File";
+            // 
             // Polltimer1
             // 
             this.Polltimer1.Enabled = true;
@@ -3562,6 +3629,11 @@ namespace KamertonTest
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(86, 17);
             this.toolStripStatusLabel3.Text = "COM port status";
             // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
+            // 
             // timer_byte_set
             // 
             this.timer_byte_set.Interval = 300;
@@ -3591,10 +3663,151 @@ namespace KamertonTest
             this.find_com_port.Interval = 2000;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
             // 
-            // toolStripStatusLabel4
+            // menuFileNew
             // 
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
+            this.menuFileNew.Name = "menuFileNew";
+            this.menuFileNew.Size = new System.Drawing.Size(152, 22);
+            this.menuFileNew.Text = "&New";
+            // 
+            // menuFileOpen
+            // 
+            this.menuFileOpen.Name = "menuFileOpen";
+            this.menuFileOpen.Size = new System.Drawing.Size(152, 22);
+            this.menuFileOpen.Text = "&Open...";
+            // 
+            // menuFileSave
+            // 
+            this.menuFileSave.Name = "menuFileSave";
+            this.menuFileSave.Size = new System.Drawing.Size(152, 22);
+            this.menuFileSave.Text = "&Save";
+            // 
+            // menuFileSaveAs
+            // 
+            this.menuFileSaveAs.Name = "menuFileSaveAs";
+            this.menuFileSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.menuFileSaveAs.Text = "Save &As...";
+            // 
+            // menuFilePageSetup
+            // 
+            this.menuFilePageSetup.Name = "menuFilePageSetup";
+            this.menuFilePageSetup.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePageSetup.Text = "Page Set&up...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // menuFilePrint
+            // 
+            this.menuFilePrint.Name = "menuFilePrint";
+            this.menuFilePrint.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePrint.Text = "&Print...";
+            // 
+            // menuFileExit
+            // 
+            this.menuFileExit.Name = "menuFileExit";
+            this.menuFileExit.Size = new System.Drawing.Size(152, 22);
+            this.menuFileExit.Text = "&Exit";
+            // 
+            // menuEdit
+            // 
+            this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuEditUndo,
+            this.menuEditRedo,
+            this.toolStripSeparator2,
+            this.menuEditCut,
+            this.menuEditCopy,
+            this.menuEditPaste,
+            this.menuEditDelete,
+            this.menuEditSelectAll});
+            this.menuEdit.Name = "menuEdit";
+            this.menuEdit.Size = new System.Drawing.Size(37, 20);
+            this.menuEdit.Text = "&Edit";
+            // 
+            // menuEditUndo
+            // 
+            this.menuEditUndo.Name = "menuEditUndo";
+            this.menuEditUndo.Size = new System.Drawing.Size(152, 22);
+            this.menuEditUndo.Text = "&Undo";
+            // 
+            // menuEditRedo
+            // 
+            this.menuEditRedo.Name = "menuEditRedo";
+            this.menuEditRedo.Size = new System.Drawing.Size(152, 22);
+            this.menuEditRedo.Text = "&Redo";
+            // 
+            // menuEditCut
+            // 
+            this.menuEditCut.Name = "menuEditCut";
+            this.menuEditCut.Size = new System.Drawing.Size(152, 22);
+            this.menuEditCut.Text = "C&ut";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // menuEditCopy
+            // 
+            this.menuEditCopy.Name = "menuEditCopy";
+            this.menuEditCopy.Size = new System.Drawing.Size(152, 22);
+            this.menuEditCopy.Text = "&Copy";
+            // 
+            // menuEditPaste
+            // 
+            this.menuEditPaste.Name = "menuEditPaste";
+            this.menuEditPaste.Size = new System.Drawing.Size(152, 22);
+            this.menuEditPaste.Text = "&Paste";
+            // 
+            // menuEditDelete
+            // 
+            this.menuEditDelete.Name = "menuEditDelete";
+            this.menuEditDelete.Size = new System.Drawing.Size(152, 22);
+            this.menuEditDelete.Text = "&Delete";
+            // 
+            // menuEditSelectAll
+            // 
+            this.menuEditSelectAll.Name = "menuEditSelectAll";
+            this.menuEditSelectAll.Size = new System.Drawing.Size(152, 22);
+            this.menuEditSelectAll.Text = "&Select All";
+            // 
+            // menuFormat
+            // 
+            this.menuFormat.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormatFont});
+            this.menuFormat.Name = "menuFormat";
+            this.menuFormat.Size = new System.Drawing.Size(53, 20);
+            this.menuFormat.Text = "F&ormat";
+            // 
+            // menuFormatFont
+            // 
+            this.menuFormatFont.Name = "menuFormatFont";
+            this.menuFormatFont.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatFont.Text = "&Font...";
+            // 
+            // menuHelp
+            // 
+            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuHelpAbout});
+            this.menuHelp.Name = "menuHelp";
+            this.menuHelp.Size = new System.Drawing.Size(40, 20);
+            this.menuHelp.Text = "&Help";
+            // 
+            // menuHelpAbout
+            // 
+            this.menuHelpAbout.Name = "menuHelpAbout";
+            this.menuHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this.menuHelpAbout.Text = "&About";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 24);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(987, 589);
+            this.richTextBox2.TabIndex = 1;
+            this.richTextBox2.Text = "";
             // 
             // Form1
             // 
@@ -3643,6 +3856,10 @@ namespace KamertonTest
             this.GroupBox5.ResumeLayout(false);
             this.GroupBox5.PerformLayout();
             this.GroupBox4.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -3953,6 +4170,31 @@ namespace KamertonTest
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Timer find_com_port;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuFile;
+        private System.Windows.Forms.ToolStripMenuItem menuFileNew;
+        private System.Windows.Forms.ToolStripMenuItem menuFileOpen;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSave;
+        private System.Windows.Forms.ToolStripMenuItem menuFileSaveAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem menuFilePageSetup;
+        private System.Windows.Forms.ToolStripMenuItem menuFilePrint;
+        private System.Windows.Forms.ToolStripMenuItem menuFileExit;
+        private System.Windows.Forms.ToolStripMenuItem menuEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuEditUndo;
+        private System.Windows.Forms.ToolStripMenuItem menuEditRedo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem menuEditCut;
+        private System.Windows.Forms.ToolStripMenuItem menuEditCopy;
+        private System.Windows.Forms.ToolStripMenuItem menuEditPaste;
+        private System.Windows.Forms.ToolStripMenuItem menuEditDelete;
+        private System.Windows.Forms.ToolStripMenuItem menuEditSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem menuFormat;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatFont;
+        private System.Windows.Forms.ToolStripMenuItem menuHelp;
+        private System.Windows.Forms.ToolStripMenuItem menuHelpAbout;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

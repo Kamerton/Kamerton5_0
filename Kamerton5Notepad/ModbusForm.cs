@@ -61,6 +61,8 @@ namespace KamertonTest
         //bool power_ggs = false;
         SerialPort currentPort;
 
+        // Установки Notepad
+
         public Form1()
         {
             InitializeComponent();
@@ -5414,7 +5416,8 @@ namespace KamertonTest
             }
 
         }
-
+// Notepad
+  
  
      }
 }
