@@ -399,6 +399,48 @@ namespace KamertonTest
             this.label74 = new System.Windows.Forms.Label();
             this.button60 = new System.Windows.Forms.Button();
             this.button76 = new System.Windows.Forms.Button();
+            this.button82 = new System.Windows.Forms.Button();
+            this.button83 = new System.Windows.Forms.Button();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label86 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.label88 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label115 = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
+            this.label136 = new System.Windows.Forms.Label();
+            this.label137 = new System.Windows.Forms.Label();
+            this.label138 = new System.Windows.Forms.Label();
+            this.label148 = new System.Windows.Forms.Label();
+            this.label150 = new System.Windows.Forms.Label();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.textBox43 = new System.Windows.Forms.TextBox();
+            this.textBox44 = new System.Windows.Forms.TextBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -427,6 +469,7 @@ namespace KamertonTest
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -761,7 +804,7 @@ namespace KamertonTest
             this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox16.Location = new System.Drawing.Point(19, 134);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(202, 472);
+            this.groupBox16.Size = new System.Drawing.Size(202, 470);
             this.groupBox16.TabIndex = 0;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Настройка проверки сенсоров";
@@ -3902,16 +3945,58 @@ namespace KamertonTest
             this.groupBox9.Controls.Add(this.textBox1);
             this.groupBox9.Location = new System.Drawing.Point(239, 9);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(214, 597);
+            this.groupBox9.Size = new System.Drawing.Size(214, 595);
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Проверка гарнитуры инструктора";
             // 
             // groupBox10
             // 
-            this.groupBox10.Location = new System.Drawing.Point(468, 15);
+            this.groupBox10.Controls.Add(this.button82);
+            this.groupBox10.Controls.Add(this.button83);
+            this.groupBox10.Controls.Add(this.label66);
+            this.groupBox10.Controls.Add(this.label75);
+            this.groupBox10.Controls.Add(this.label76);
+            this.groupBox10.Controls.Add(this.label77);
+            this.groupBox10.Controls.Add(this.label79);
+            this.groupBox10.Controls.Add(this.label86);
+            this.groupBox10.Controls.Add(this.label87);
+            this.groupBox10.Controls.Add(this.label88);
+            this.groupBox10.Controls.Add(this.label89);
+            this.groupBox10.Controls.Add(this.textBox22);
+            this.groupBox10.Controls.Add(this.textBox27);
+            this.groupBox10.Controls.Add(this.textBox28);
+            this.groupBox10.Controls.Add(this.textBox29);
+            this.groupBox10.Controls.Add(this.textBox30);
+            this.groupBox10.Controls.Add(this.textBox31);
+            this.groupBox10.Controls.Add(this.textBox32);
+            this.groupBox10.Controls.Add(this.textBox33);
+            this.groupBox10.Controls.Add(this.label101);
+            this.groupBox10.Controls.Add(this.label103);
+            this.groupBox10.Controls.Add(this.label104);
+            this.groupBox10.Controls.Add(this.label108);
+            this.groupBox10.Controls.Add(this.label115);
+            this.groupBox10.Controls.Add(this.label125);
+            this.groupBox10.Controls.Add(this.label133);
+            this.groupBox10.Controls.Add(this.label136);
+            this.groupBox10.Controls.Add(this.label137);
+            this.groupBox10.Controls.Add(this.label138);
+            this.groupBox10.Controls.Add(this.label148);
+            this.groupBox10.Controls.Add(this.label150);
+            this.groupBox10.Controls.Add(this.textBox34);
+            this.groupBox10.Controls.Add(this.textBox35);
+            this.groupBox10.Controls.Add(this.textBox36);
+            this.groupBox10.Controls.Add(this.textBox37);
+            this.groupBox10.Controls.Add(this.textBox38);
+            this.groupBox10.Controls.Add(this.textBox39);
+            this.groupBox10.Controls.Add(this.textBox40);
+            this.groupBox10.Controls.Add(this.textBox41);
+            this.groupBox10.Controls.Add(this.textBox42);
+            this.groupBox10.Controls.Add(this.textBox43);
+            this.groupBox10.Controls.Add(this.textBox44);
+            this.groupBox10.Location = new System.Drawing.Point(469, 9);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(197, 585);
+            this.groupBox10.Size = new System.Drawing.Size(214, 595);
             this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Проверка гарнитуры диспетчера";
@@ -4258,6 +4343,346 @@ namespace KamertonTest
             this.button76.UseVisualStyleBackColor = true;
             this.button76.Click += new System.EventHandler(this.button76_Click_1);
             // 
+            // button82
+            // 
+            this.button82.Location = new System.Drawing.Point(12, 568);
+            this.button82.Name = "button82";
+            this.button82.Size = new System.Drawing.Size(75, 23);
+            this.button82.TabIndex = 44;
+            this.button82.Text = "Обновить";
+            this.button82.UseVisualStyleBackColor = true;
+            // 
+            // button83
+            // 
+            this.button83.Location = new System.Drawing.Point(109, 568);
+            this.button83.Name = "button83";
+            this.button83.Size = new System.Drawing.Size(75, 23);
+            this.button83.TabIndex = 84;
+            this.button83.Text = "Сохранить";
+            this.button83.UseVisualStyleBackColor = true;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(9, 337);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(175, 13);
+            this.label66.TabIndex = 83;
+            this.label66.Text = "Уровни шумов с сигналом   (мВ.)";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(8, 540);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(59, 13);
+            this.label75.TabIndex = 82;
+            this.label75.Text = "ГГ Радио2";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(7, 514);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(59, 13);
+            this.label76.TabIndex = 81;
+            this.label76.Text = "ГГ Радио1";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(8, 488);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(26, 13);
+            this.label77.TabIndex = 80;
+            this.label77.Text = "ГГС";
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Location = new System.Drawing.Point(8, 358);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(68, 13);
+            this.label79.TabIndex = 79;
+            this.label79.Text = "mag / phone";
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(8, 462);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(35, 13);
+            this.label86.TabIndex = 78;
+            this.label86.Text = "LineR";
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(8, 384);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(33, 13);
+            this.label87.TabIndex = 77;
+            this.label87.Text = "LineL";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(8, 436);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(39, 13);
+            this.label88.TabIndex = 76;
+            this.label88.Text = "FrontR";
+            // 
+            // label89
+            // 
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(8, 410);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(37, 13);
+            this.label89.TabIndex = 75;
+            this.label89.Text = "FrontL";
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new System.Drawing.Point(159, 537);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(40, 20);
+            this.textBox22.TabIndex = 74;
+            // 
+            // textBox27
+            // 
+            this.textBox27.Location = new System.Drawing.Point(159, 511);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(40, 20);
+            this.textBox27.TabIndex = 73;
+            // 
+            // textBox28
+            // 
+            this.textBox28.Location = new System.Drawing.Point(159, 485);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(40, 20);
+            this.textBox28.TabIndex = 72;
+            // 
+            // textBox29
+            // 
+            this.textBox29.Location = new System.Drawing.Point(159, 355);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(40, 20);
+            this.textBox29.TabIndex = 71;
+            // 
+            // textBox30
+            // 
+            this.textBox30.Location = new System.Drawing.Point(159, 459);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(40, 20);
+            this.textBox30.TabIndex = 70;
+            // 
+            // textBox31
+            // 
+            this.textBox31.Location = new System.Drawing.Point(159, 381);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(40, 20);
+            this.textBox31.TabIndex = 69;
+            // 
+            // textBox32
+            // 
+            this.textBox32.Location = new System.Drawing.Point(159, 433);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(40, 20);
+            this.textBox32.TabIndex = 68;
+            // 
+            // textBox33
+            // 
+            this.textBox33.Location = new System.Drawing.Point(159, 407);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(40, 20);
+            this.textBox33.TabIndex = 67;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(14, 80);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(179, 13);
+            this.label101.TabIndex = 66;
+            this.label101.Text = "Уровни шумов без сигнала   (мВ.)";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(8, 307);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(59, 13);
+            this.label103.TabIndex = 65;
+            this.label103.Text = "ГГ Радио2";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(8, 281);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(59, 13);
+            this.label104.TabIndex = 64;
+            this.label104.Text = "ГГ Радио1";
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(8, 255);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(26, 13);
+            this.label108.TabIndex = 63;
+            this.label108.Text = "ГГС";
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Location = new System.Drawing.Point(8, 229);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(68, 13);
+            this.label115.TabIndex = 62;
+            this.label115.Text = "mag / phone";
+            // 
+            // label125
+            // 
+            this.label125.AutoSize = true;
+            this.label125.Location = new System.Drawing.Point(8, 203);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(58, 13);
+            this.label125.TabIndex = 61;
+            this.label125.Text = "mag /radio";
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Location = new System.Drawing.Point(8, 177);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(35, 13);
+            this.label133.TabIndex = 60;
+            this.label133.Text = "LineR";
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Location = new System.Drawing.Point(8, 151);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(33, 13);
+            this.label136.TabIndex = 59;
+            this.label136.Text = "LineL";
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Location = new System.Drawing.Point(8, 125);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(39, 13);
+            this.label137.TabIndex = 58;
+            this.label137.Text = "FrontR";
+            // 
+            // label138
+            // 
+            this.label138.AutoSize = true;
+            this.label138.Location = new System.Drawing.Point(8, 99);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(37, 13);
+            this.label138.TabIndex = 57;
+            this.label138.Text = "FrontL";
+            // 
+            // label148
+            // 
+            this.label148.AutoSize = true;
+            this.label148.Location = new System.Drawing.Point(6, 55);
+            this.label148.Name = "label148";
+            this.label148.Size = new System.Drawing.Size(150, 13);
+            this.label148.TabIndex = 56;
+            this.label148.Text = "Уровень сиг. на вх.№2 (мВ.)";
+            // 
+            // label150
+            // 
+            this.label150.AutoSize = true;
+            this.label150.Location = new System.Drawing.Point(6, 29);
+            this.label150.Name = "label150";
+            this.label150.Size = new System.Drawing.Size(150, 13);
+            this.label150.TabIndex = 55;
+            this.label150.Text = "Уровень сиг. на вх.№1 (мВ.)";
+            // 
+            // textBox34
+            // 
+            this.textBox34.Location = new System.Drawing.Point(159, 304);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(40, 20);
+            this.textBox34.TabIndex = 54;
+            // 
+            // textBox35
+            // 
+            this.textBox35.Location = new System.Drawing.Point(159, 278);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(40, 20);
+            this.textBox35.TabIndex = 53;
+            // 
+            // textBox36
+            // 
+            this.textBox36.Location = new System.Drawing.Point(159, 252);
+            this.textBox36.Name = "textBox36";
+            this.textBox36.Size = new System.Drawing.Size(40, 20);
+            this.textBox36.TabIndex = 52;
+            // 
+            // textBox37
+            // 
+            this.textBox37.Location = new System.Drawing.Point(159, 226);
+            this.textBox37.Name = "textBox37";
+            this.textBox37.Size = new System.Drawing.Size(40, 20);
+            this.textBox37.TabIndex = 51;
+            // 
+            // textBox38
+            // 
+            this.textBox38.Location = new System.Drawing.Point(159, 200);
+            this.textBox38.Name = "textBox38";
+            this.textBox38.Size = new System.Drawing.Size(40, 20);
+            this.textBox38.TabIndex = 50;
+            // 
+            // textBox39
+            // 
+            this.textBox39.Location = new System.Drawing.Point(159, 174);
+            this.textBox39.Name = "textBox39";
+            this.textBox39.Size = new System.Drawing.Size(40, 20);
+            this.textBox39.TabIndex = 49;
+            // 
+            // textBox40
+            // 
+            this.textBox40.Location = new System.Drawing.Point(159, 148);
+            this.textBox40.Name = "textBox40";
+            this.textBox40.Size = new System.Drawing.Size(40, 20);
+            this.textBox40.TabIndex = 48;
+            // 
+            // textBox41
+            // 
+            this.textBox41.Location = new System.Drawing.Point(159, 122);
+            this.textBox41.Name = "textBox41";
+            this.textBox41.Size = new System.Drawing.Size(40, 20);
+            this.textBox41.TabIndex = 47;
+            // 
+            // textBox42
+            // 
+            this.textBox42.Location = new System.Drawing.Point(159, 96);
+            this.textBox42.Name = "textBox42";
+            this.textBox42.Size = new System.Drawing.Size(40, 20);
+            this.textBox42.TabIndex = 46;
+            // 
+            // textBox43
+            // 
+            this.textBox43.Location = new System.Drawing.Point(159, 52);
+            this.textBox43.Name = "textBox43";
+            this.textBox43.Size = new System.Drawing.Size(40, 20);
+            this.textBox43.TabIndex = 45;
+            // 
+            // textBox44
+            // 
+            this.textBox44.Location = new System.Drawing.Point(159, 26);
+            this.textBox44.Name = "textBox44";
+            this.textBox44.Size = new System.Drawing.Size(40, 20);
+            this.textBox44.TabIndex = 43;
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -4313,6 +4738,8 @@ namespace KamertonTest
             this.statusStrip1.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4690,6 +5117,48 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button82;
+        private System.Windows.Forms.Button button83;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.Label label87;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.TextBox textBox30;
+        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.Label label115;
+        private System.Windows.Forms.Label label125;
+        private System.Windows.Forms.Label label133;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.Label label138;
+        private System.Windows.Forms.Label label148;
+        private System.Windows.Forms.Label label150;
+        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox textBox37;
+        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox textBox39;
+        private System.Windows.Forms.TextBox textBox40;
+        private System.Windows.Forms.TextBox textBox41;
+        private System.Windows.Forms.TextBox textBox42;
+        private System.Windows.Forms.TextBox textBox43;
+        private System.Windows.Forms.TextBox textBox44;
     }
 }
 
