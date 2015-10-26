@@ -317,8 +317,30 @@ namespace KamertonTest
             this.Label14 = new System.Windows.Forms.Label();
             this.txtSlave = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuFilePageSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditRedo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuEditCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEditSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormat = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatFont = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Polltimer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -333,28 +355,6 @@ namespace KamertonTest
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
             this.find_com_port = new System.Windows.Forms.Timer(this.components);
-            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFilePageSetup = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditRedo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditCut = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuEditCopy = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuEditSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFormat = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFormatFont = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -386,9 +386,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -645,7 +645,7 @@ namespace KamertonTest
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 15);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 21);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(192, 368);
             this.richTextBox1.TabIndex = 2;
@@ -666,9 +666,9 @@ namespace KamertonTest
             // 
             this.groupBox18.Controls.Add(this.label134);
             this.groupBox18.Controls.Add(this.label95);
-            this.groupBox18.Location = new System.Drawing.Point(339, 20);
+            this.groupBox18.Location = new System.Drawing.Point(19, 21);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(202, 430);
+            this.groupBox18.Size = new System.Drawing.Size(202, 98);
             this.groupBox18.TabIndex = 1;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "Управление файлами";
@@ -712,9 +712,9 @@ namespace KamertonTest
             this.groupBox16.Controls.Add(this.checkBoxSenGGRadio1);
             this.groupBox16.Controls.Add(this.checkBoxSenAll);
             this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox16.Location = new System.Drawing.Point(21, 20);
+            this.groupBox16.Location = new System.Drawing.Point(19, 134);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(284, 430);
+            this.groupBox16.Size = new System.Drawing.Size(232, 430);
             this.groupBox16.TabIndex = 0;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Настройка проверки сенсоров";
@@ -2758,9 +2758,9 @@ namespace KamertonTest
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult1.Location = new System.Drawing.Point(1, 393);
             this.lblResult1.Name = "lblResult1";
@@ -2889,9 +2889,9 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label78.Location = new System.Drawing.Point(1, 513);
             this.label78.Name = "label78";
@@ -2902,9 +2902,9 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(3, 464);
             this.lblResult.Name = "lblResult";
@@ -2921,7 +2921,7 @@ namespace KamertonTest
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-    "т открыт, никаких изменений не может быть сделано";
+                "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox3
             // 
@@ -3406,8 +3406,8 @@ namespace KamertonTest
             // 
             // GroupBox5
             // 
-            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox5.Controls.Add(this.txtWriteVal8);
             this.GroupBox5.Controls.Add(this.txtWriteVal7);
             this.GroupBox5.Controls.Add(this.txtWriteVal6);
@@ -3489,9 +3489,9 @@ namespace KamertonTest
             // 
             // GroupBox4
             // 
-            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupBox4.Controls.Add(this.lblReadValues);
             this.GroupBox4.Location = new System.Drawing.Point(12, 88);
             this.GroupBox4.Name = "GroupBox4";
@@ -3502,9 +3502,9 @@ namespace KamertonTest
             // 
             // lblReadValues
             // 
-            this.lblReadValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReadValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReadValues.Location = new System.Drawing.Point(7, 15);
             this.lblReadValues.Name = "lblReadValues";
             this.lblReadValues.Size = new System.Drawing.Size(944, 422);
@@ -3512,8 +3512,8 @@ namespace KamertonTest
             // 
             // lblResult2
             // 
-            this.lblResult2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult2.Location = new System.Drawing.Point(12, 617);
             this.lblResult2.Name = "lblResult2";
             this.lblResult2.Size = new System.Drawing.Size(953, 20);
@@ -3563,6 +3563,15 @@ namespace KamertonTest
             this.tabPage4.Text = "Редактор файлов";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 24);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(987, 589);
+            this.richTextBox2.TabIndex = 1;
+            this.richTextBox2.Text = "";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3590,6 +3599,143 @@ namespace KamertonTest
             this.menuFile.Name = "menuFile";
             this.menuFile.Size = new System.Drawing.Size(35, 20);
             this.menuFile.Text = "&File";
+            // 
+            // menuFileNew
+            // 
+            this.menuFileNew.Name = "menuFileNew";
+            this.menuFileNew.Size = new System.Drawing.Size(152, 22);
+            this.menuFileNew.Text = "&New";
+            // 
+            // menuFileOpen
+            // 
+            this.menuFileOpen.Name = "menuFileOpen";
+            this.menuFileOpen.Size = new System.Drawing.Size(152, 22);
+            this.menuFileOpen.Text = "&Open...";
+            // 
+            // menuFileSave
+            // 
+            this.menuFileSave.Name = "menuFileSave";
+            this.menuFileSave.Size = new System.Drawing.Size(152, 22);
+            this.menuFileSave.Text = "&Save";
+            // 
+            // menuFileSaveAs
+            // 
+            this.menuFileSaveAs.Name = "menuFileSaveAs";
+            this.menuFileSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.menuFileSaveAs.Text = "Save &As...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // menuFilePageSetup
+            // 
+            this.menuFilePageSetup.Name = "menuFilePageSetup";
+            this.menuFilePageSetup.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePageSetup.Text = "Page Set&up...";
+            // 
+            // menuFilePrint
+            // 
+            this.menuFilePrint.Name = "menuFilePrint";
+            this.menuFilePrint.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePrint.Text = "&Print...";
+            // 
+            // menuFileExit
+            // 
+            this.menuFileExit.Name = "menuFileExit";
+            this.menuFileExit.Size = new System.Drawing.Size(152, 22);
+            this.menuFileExit.Text = "&Exit";
+            // 
+            // menuEdit
+            // 
+            this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuEditUndo,
+            this.menuEditRedo,
+            this.toolStripSeparator2,
+            this.menuEditCut,
+            this.menuEditCopy,
+            this.menuEditPaste,
+            this.menuEditDelete,
+            this.menuEditSelectAll});
+            this.menuEdit.Name = "menuEdit";
+            this.menuEdit.Size = new System.Drawing.Size(37, 20);
+            this.menuEdit.Text = "&Edit";
+            // 
+            // menuEditUndo
+            // 
+            this.menuEditUndo.Name = "menuEditUndo";
+            this.menuEditUndo.Size = new System.Drawing.Size(128, 22);
+            this.menuEditUndo.Text = "&Undo";
+            // 
+            // menuEditRedo
+            // 
+            this.menuEditRedo.Name = "menuEditRedo";
+            this.menuEditRedo.Size = new System.Drawing.Size(128, 22);
+            this.menuEditRedo.Text = "&Redo";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+            // 
+            // menuEditCut
+            // 
+            this.menuEditCut.Name = "menuEditCut";
+            this.menuEditCut.Size = new System.Drawing.Size(128, 22);
+            this.menuEditCut.Text = "C&ut";
+            // 
+            // menuEditCopy
+            // 
+            this.menuEditCopy.Name = "menuEditCopy";
+            this.menuEditCopy.Size = new System.Drawing.Size(128, 22);
+            this.menuEditCopy.Text = "&Copy";
+            // 
+            // menuEditPaste
+            // 
+            this.menuEditPaste.Name = "menuEditPaste";
+            this.menuEditPaste.Size = new System.Drawing.Size(128, 22);
+            this.menuEditPaste.Text = "&Paste";
+            // 
+            // menuEditDelete
+            // 
+            this.menuEditDelete.Name = "menuEditDelete";
+            this.menuEditDelete.Size = new System.Drawing.Size(128, 22);
+            this.menuEditDelete.Text = "&Delete";
+            // 
+            // menuEditSelectAll
+            // 
+            this.menuEditSelectAll.Name = "menuEditSelectAll";
+            this.menuEditSelectAll.Size = new System.Drawing.Size(128, 22);
+            this.menuEditSelectAll.Text = "&Select All";
+            // 
+            // menuFormat
+            // 
+            this.menuFormat.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormatFont});
+            this.menuFormat.Name = "menuFormat";
+            this.menuFormat.Size = new System.Drawing.Size(53, 20);
+            this.menuFormat.Text = "F&ormat";
+            // 
+            // menuFormatFont
+            // 
+            this.menuFormatFont.Name = "menuFormatFont";
+            this.menuFormatFont.Size = new System.Drawing.Size(119, 22);
+            this.menuFormatFont.Text = "&Font...";
+            // 
+            // menuHelp
+            // 
+            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuHelpAbout});
+            this.menuHelp.Name = "menuHelp";
+            this.menuHelp.Size = new System.Drawing.Size(40, 20);
+            this.menuHelp.Text = "&Help";
+            // 
+            // menuHelpAbout
+            // 
+            this.menuHelpAbout.Name = "menuHelpAbout";
+            this.menuHelpAbout.Size = new System.Drawing.Size(114, 22);
+            this.menuHelpAbout.Text = "&About";
             // 
             // Polltimer1
             // 
@@ -3662,152 +3808,6 @@ namespace KamertonTest
             this.find_com_port.Enabled = true;
             this.find_com_port.Interval = 2000;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
-            // 
-            // menuFileNew
-            // 
-            this.menuFileNew.Name = "menuFileNew";
-            this.menuFileNew.Size = new System.Drawing.Size(152, 22);
-            this.menuFileNew.Text = "&New";
-            // 
-            // menuFileOpen
-            // 
-            this.menuFileOpen.Name = "menuFileOpen";
-            this.menuFileOpen.Size = new System.Drawing.Size(152, 22);
-            this.menuFileOpen.Text = "&Open...";
-            // 
-            // menuFileSave
-            // 
-            this.menuFileSave.Name = "menuFileSave";
-            this.menuFileSave.Size = new System.Drawing.Size(152, 22);
-            this.menuFileSave.Text = "&Save";
-            // 
-            // menuFileSaveAs
-            // 
-            this.menuFileSaveAs.Name = "menuFileSaveAs";
-            this.menuFileSaveAs.Size = new System.Drawing.Size(152, 22);
-            this.menuFileSaveAs.Text = "Save &As...";
-            // 
-            // menuFilePageSetup
-            // 
-            this.menuFilePageSetup.Name = "menuFilePageSetup";
-            this.menuFilePageSetup.Size = new System.Drawing.Size(152, 22);
-            this.menuFilePageSetup.Text = "Page Set&up...";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // menuFilePrint
-            // 
-            this.menuFilePrint.Name = "menuFilePrint";
-            this.menuFilePrint.Size = new System.Drawing.Size(152, 22);
-            this.menuFilePrint.Text = "&Print...";
-            // 
-            // menuFileExit
-            // 
-            this.menuFileExit.Name = "menuFileExit";
-            this.menuFileExit.Size = new System.Drawing.Size(152, 22);
-            this.menuFileExit.Text = "&Exit";
-            // 
-            // menuEdit
-            // 
-            this.menuEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuEditUndo,
-            this.menuEditRedo,
-            this.toolStripSeparator2,
-            this.menuEditCut,
-            this.menuEditCopy,
-            this.menuEditPaste,
-            this.menuEditDelete,
-            this.menuEditSelectAll});
-            this.menuEdit.Name = "menuEdit";
-            this.menuEdit.Size = new System.Drawing.Size(37, 20);
-            this.menuEdit.Text = "&Edit";
-            // 
-            // menuEditUndo
-            // 
-            this.menuEditUndo.Name = "menuEditUndo";
-            this.menuEditUndo.Size = new System.Drawing.Size(152, 22);
-            this.menuEditUndo.Text = "&Undo";
-            // 
-            // menuEditRedo
-            // 
-            this.menuEditRedo.Name = "menuEditRedo";
-            this.menuEditRedo.Size = new System.Drawing.Size(152, 22);
-            this.menuEditRedo.Text = "&Redo";
-            // 
-            // menuEditCut
-            // 
-            this.menuEditCut.Name = "menuEditCut";
-            this.menuEditCut.Size = new System.Drawing.Size(152, 22);
-            this.menuEditCut.Text = "C&ut";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // menuEditCopy
-            // 
-            this.menuEditCopy.Name = "menuEditCopy";
-            this.menuEditCopy.Size = new System.Drawing.Size(152, 22);
-            this.menuEditCopy.Text = "&Copy";
-            // 
-            // menuEditPaste
-            // 
-            this.menuEditPaste.Name = "menuEditPaste";
-            this.menuEditPaste.Size = new System.Drawing.Size(152, 22);
-            this.menuEditPaste.Text = "&Paste";
-            // 
-            // menuEditDelete
-            // 
-            this.menuEditDelete.Name = "menuEditDelete";
-            this.menuEditDelete.Size = new System.Drawing.Size(152, 22);
-            this.menuEditDelete.Text = "&Delete";
-            // 
-            // menuEditSelectAll
-            // 
-            this.menuEditSelectAll.Name = "menuEditSelectAll";
-            this.menuEditSelectAll.Size = new System.Drawing.Size(152, 22);
-            this.menuEditSelectAll.Text = "&Select All";
-            // 
-            // menuFormat
-            // 
-            this.menuFormat.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFormatFont});
-            this.menuFormat.Name = "menuFormat";
-            this.menuFormat.Size = new System.Drawing.Size(53, 20);
-            this.menuFormat.Text = "F&ormat";
-            // 
-            // menuFormatFont
-            // 
-            this.menuFormatFont.Name = "menuFormatFont";
-            this.menuFormatFont.Size = new System.Drawing.Size(152, 22);
-            this.menuFormatFont.Text = "&Font...";
-            // 
-            // menuHelp
-            // 
-            this.menuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuHelpAbout});
-            this.menuHelp.Name = "menuHelp";
-            this.menuHelp.Size = new System.Drawing.Size(40, 20);
-            this.menuHelp.Text = "&Help";
-            // 
-            // menuHelpAbout
-            // 
-            this.menuHelpAbout.Name = "menuHelpAbout";
-            this.menuHelpAbout.Size = new System.Drawing.Size(152, 22);
-            this.menuHelpAbout.Text = "&About";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(0, 24);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(987, 589);
-            this.richTextBox2.TabIndex = 1;
-            this.richTextBox2.Text = "";
             // 
             // Form1
             // 
