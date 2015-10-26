@@ -5527,6 +5527,23 @@ namespace KamertonTest
             }
 
         }
+
+        private void button76_Click_1(object sender, EventArgs e)  // Обновить уровни порогов инструктора
+        {
+
+        }
+
+        private void button60_Click_1(object sender, EventArgs e)  // Сохранить уровни порогов инструктора
+        {
+
+        }
+
+
+
+
+
+
+  
 // Notepad
   
  
