@@ -1702,7 +1702,9 @@ void control_command()
 	17 - test_power();                                                    	// Проверить напряжение  питания
 	18 - set_video();				 //
 	19 - test_video();				 //
-
+	20 - Записать уровни порогов заводские
+	21 - Записать уровни порогов пользовательские
+	22 - Получить уровни порогов пользовательские
 
 	*/
 	UpdateRegs() ;
@@ -1770,7 +1772,7 @@ void control_command()
 			  set_clock();
 				break;
 		case 15:
-			 set_rezistor();
+			  set_rezistor();
 				break;
 		case 16:
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
@@ -1780,11 +1782,20 @@ void control_command()
 				wdt_reset();
 				break;
 		case 18:
-				set_video();				 //
+				set_video();				              //
 				
 				break;
 		case 19:
-				test_video();				 //
+				test_video();				              //
+				break;
+        case 20:                                           // Записать уровни порогов заводские
+				default_mem_porog();
+				break;
+        case 21:                                           // 	21 - Записать уровни порогов пользовательские
+				set_mem_porog();
+				break;
+        case 22:                                           // 22 - Получить уровни порогов пользовательские
+				read_mem_porog();
 				break;
 		default:
 			wdt_reset();
@@ -4106,8 +4117,6 @@ void testGGS()
 	measure_vol_min(analog_gg_radio1, 40287,287,i2c_eeprom_read_byte(deviceaddress,adr_porog_GGS + 26));                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio1                                OFF - ";
 	measure_vol_min(analog_gg_radio2, 40288,288,i2c_eeprom_read_byte(deviceaddress,adr_porog_GGS + 27));                                // Измерить уровень сигнала на выходе "Test GGS ** Signal GG Radio2                                OFF - ";
 
-	
-
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
 	UpdateRegs();    
 	delay(300);
@@ -5409,12 +5418,12 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		}
 		wdt_reset();
 		
-		Serial.print("voltage - ");
+	/*	Serial.print("voltage - ");
 		Serial.print(voltage);
 		Serial.print(" voltage10 - ");
 		Serial.print(voltage10);
 		Serial.print(" porogV - ");
-		Serial.println(_porogV);
+		Serial.println(_porogV);*/
 
 		if(voltage10 > _porogV)                                                      // Проверить исправность канала
 			{
@@ -5698,7 +5707,7 @@ void i2c_test1()
 	}
 	
 }
-void save_mem_porog()  // Запись заводских установок уровней порога
+void default_mem_porog()  // Запись заводских установок уровней порога
 {
  byte por_buffer[30] ;
  // ---------------- porog_instruktor
@@ -5765,6 +5774,103 @@ void save_mem_porog()  // Запись заводских установок уровней порога
 	delay(100);
 }
 
+void set_mem_porog()
+{
+	int n_test_mem ;
+	n_test_mem = regBank.get(40128); 
+
+	switch (n_test_mem)
+	{
+
+		case 1:                                                      // headset_instructor
+			    set_mem_regBank(adr_porog_instruktor , 19);
+				break;
+		case 2:
+				 set_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
+				break;
+		case 3:
+				set_mem_regBank(adr_porog_MTT , 21);                //MTT                                                    	// Проверить напряжение  питания
+				break;
+		case 4:
+				set_mem_regBank(adr_porog_Microphone, 20);          //mikrophon		              //
+				break;
+		case 5:
+				set_mem_regBank(adr_porog_GGS , 28);                //GGS			              //
+				break;
+        case 6:                                           
+				set_mem_regBank(adr_porog_Radio1 , 20);             //Radio1
+				break;
+        case 7:                                                                // 	
+				set_mem_regBank(adr_porog_Radio2 , 20);             //Radio2
+				break;
+ 		default:
+			    break;
+		break;
+
+	}
+	wdt_reset();
+	regBank.set(40128,0);   
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	delay(200);
+}
+void set_mem_regBank(int adr_mem , int step_mem)
+{
+	int _adr_mem = adr_mem;
+	int _step_mem = step_mem;
+	for (int i = 0; i < _step_mem;i++)
+		{
+			i2c_eeprom_write_byte(deviceaddress, _adr_mem + i, regBank.get(40130)+i);
+		}
+}
+
+void read_mem_porog()
+{
+	int n_test_mem ;
+	n_test_mem = regBank.get(40129); 
+
+	switch (n_test_mem)
+	{
+
+		case 1:                                                      // headset_instructor
+			    read_mem_regBank(adr_porog_instruktor , 19);
+				break;
+		case 2:
+				 read_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
+				break;
+		case 3:
+				read_mem_regBank(adr_porog_MTT , 21);                //MTT                                                    	// Проверить напряжение  питания
+				break;
+		case 4:
+				read_mem_regBank(adr_porog_Microphone, 20);          //mikrophon		              //
+				break;
+		case 5:
+				read_mem_regBank(adr_porog_GGS , 28);                //GGS			              //
+				break;
+        case 6:                                           
+				read_mem_regBank(adr_porog_Radio1 , 20);             //Radio1
+				break;
+        case 7:                                                                // 	
+				read_mem_regBank(adr_porog_Radio2 , 20);             //Radio2
+				break;
+ 		default:
+			    break;
+		break;
+
+	}
+	wdt_reset();
+	regBank.set(40129,0);  
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	delay(200);
+}
+void read_mem_regBank(int adr_mem , int step_mem)
+{
+	int _adr_mem = adr_mem;
+	int _step_mem = step_mem;
+	for (int i = 0; i < _step_mem;i++)
+	{
+	  regBank.set(40130+i,i2c_eeprom_read_byte(deviceaddress,_adr_mem +i));   
+	}
+}
 
 void setup_mcp()
 {
@@ -6272,11 +6378,41 @@ modbus registers follow the following format
 	regBank.add(40125);  //  
 	regBank.add(40126);  //  
 	regBank.add(40127);  //  
-	regBank.add(40128);  //  
-	regBank.add(40129);  //  
+	regBank.add(40128);  //  Адрес программы проверки передать в ПК
+	regBank.add(40129);  //  Адрес программы проверки получить из ПК
 
-	regBank.add(40130);  //  
-	regBank.add(40131);  //  
+	regBank.add(40130);  //  Регистры временного хранения для передачи уровней порогов
+	regBank.add(40131);  //
+	regBank.add(40132);  //  
+	regBank.add(40133);  //
+    regBank.add(40134);  //  
+	regBank.add(40135);  //
+    regBank.add(40136);  //  
+	regBank.add(40137);  //
+    regBank.add(40138);  //  
+	regBank.add(40139);  //
+
+	regBank.add(40140);  //  
+	regBank.add(40141);  //
+	regBank.add(40142);  //  
+	regBank.add(40143);  //
+    regBank.add(40144);  //  
+	regBank.add(40145);  //
+    regBank.add(40146);  //  
+	regBank.add(40147);  //
+    regBank.add(40148);  //  
+	regBank.add(40149);  //
+
+	regBank.add(40150);  //  
+	regBank.add(40151);  //
+	regBank.add(40152);  //  
+	regBank.add(40153);  //
+    regBank.add(40154);  //  
+	regBank.add(40155);  //
+    regBank.add(40156);  //  
+	regBank.add(40157);  //
+    regBank.add(40158);  //  
+	regBank.add(40159);  //
 
 
 	regBank.add(40200);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";
@@ -6817,7 +6953,7 @@ void setup()
 	list_file();                                     // Вывод списка файлов в СОМ порт  
 	clear_serial();
  
-	save_mem_porog();
+	default_mem_porog();
 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
