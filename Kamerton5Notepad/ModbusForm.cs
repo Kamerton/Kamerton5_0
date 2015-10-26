@@ -5537,7 +5537,65 @@ namespace KamertonTest
         {
 
         }
+        private void read_urovn_instruktora()
+        {
+            ushort[] read_urovn = new ushort[10];
+            numRdRegs = 2;
+            ushort[] writeVals = new ushort[2];
 
+            startWrReg = 129;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 1);                // 22 - Получить уровни порогов пользовательские
+            Thread.Sleep(250);
+            startWrReg = 120;
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 22);                // 22 - Получить уровни порогов пользовательские
+            Thread.Sleep(250);
+            test_end1();
+
+            startRdReg = 130;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, read_urovn, numRdRegs);
+
+
+
+            //ushort[] readVals = new ushort[10];
+            //ushort[] readVolt = new ushort[10];
+            //bool[] coilArr = new bool[10];
+            //startRdReg = 200;
+            //numRdRegs = 5;
+
+            //for (int i_reg = 0; i_reg < 13; i_reg++)
+            //{
+            //    res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
+            //    if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            //    {
+            //        toolStripStatusLabel1.Text = "    MODBUS ON    ";
+            //        toolStripStatusLabel1.BackColor = Color.Lime;
+
+            //        for (int i_temp = 0; i_temp < 5; i_temp++)
+            //        {
+            //            readVals_all[startRdReg + i_temp - 200] = readVals[i_temp];
+            //        }
+            //        startRdReg += 5;
+            //    }
+
+            //    res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
+            //    if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            //    {
+            //        toolStripStatusLabel1.Text = "    MODBUS ON    ";
+            //        toolStripStatusLabel1.BackColor = Color.Lime;
+
+            //        for (int i_temp = 0; i_temp < 5; i_temp++)
+            //        {
+            //            readVals_all[startRdReg + i_temp - 200] = readVals[i_temp];
+            //        }
+            //        startRdReg += 5;
+            //    }
+            //}
+
+
+
+
+
+        }
 
 
 
