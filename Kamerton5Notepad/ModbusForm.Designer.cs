@@ -29,6 +29,7 @@ namespace KamertonTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label92 = new System.Windows.Forms.Label();
@@ -412,7 +413,9 @@ namespace KamertonTest
             this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFilePageSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFilePrintPreview = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditUndo = new System.Windows.Forms.ToolStripMenuItem();
@@ -441,6 +444,11 @@ namespace KamertonTest
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
             this.find_com_port = new System.Windows.Forms.Timer(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4469,6 +4477,7 @@ namespace KamertonTest
             this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
             // 
             // menuFile
             // 
@@ -4479,7 +4488,9 @@ namespace KamertonTest
             this.menuFileSaveAs,
             this.toolStripSeparator1,
             this.menuFilePageSetup,
+            this.menuFilePrintPreview,
             this.menuFilePrint,
+            this.toolStripSeparator3,
             this.menuFileExit});
             this.menuFile.Name = "menuFile";
             this.menuFile.Size = new System.Drawing.Size(35, 20);
@@ -4490,24 +4501,28 @@ namespace KamertonTest
             this.menuFileNew.Name = "menuFileNew";
             this.menuFileNew.Size = new System.Drawing.Size(152, 22);
             this.menuFileNew.Text = "&New";
+            this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // menuFileOpen
             // 
             this.menuFileOpen.Name = "menuFileOpen";
             this.menuFileOpen.Size = new System.Drawing.Size(152, 22);
             this.menuFileOpen.Text = "&Open...";
+            this.menuFileOpen.Click += new System.EventHandler(this.menuFileOpen_Click);
             // 
             // menuFileSave
             // 
             this.menuFileSave.Name = "menuFileSave";
             this.menuFileSave.Size = new System.Drawing.Size(152, 22);
             this.menuFileSave.Text = "&Save";
+            this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
             // 
             // menuFileSaveAs
             // 
             this.menuFileSaveAs.Name = "menuFileSaveAs";
             this.menuFileSaveAs.Size = new System.Drawing.Size(152, 22);
             this.menuFileSaveAs.Text = "Save &As...";
+            this.menuFileSaveAs.Click += new System.EventHandler(this.menuFileSaveAs_Click);
             // 
             // toolStripSeparator1
             // 
@@ -4519,18 +4534,33 @@ namespace KamertonTest
             this.menuFilePageSetup.Name = "menuFilePageSetup";
             this.menuFilePageSetup.Size = new System.Drawing.Size(152, 22);
             this.menuFilePageSetup.Text = "Page Set&up...";
+            this.menuFilePageSetup.Click += new System.EventHandler(this.menuFilePageSetup_Click);
+            // 
+            // menuFilePrintPreview
+            // 
+            this.menuFilePrintPreview.Name = "menuFilePrintPreview";
+            this.menuFilePrintPreview.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePrintPreview.Text = "PrintPreview";
+            this.menuFilePrintPreview.Click += new System.EventHandler(this.menuFilePrintPreview_Click);
             // 
             // menuFilePrint
             // 
             this.menuFilePrint.Name = "menuFilePrint";
             this.menuFilePrint.Size = new System.Drawing.Size(152, 22);
             this.menuFilePrint.Text = "&Print...";
+            this.menuFilePrint.Click += new System.EventHandler(this.menuFilePrint_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // menuFileExit
             // 
             this.menuFileExit.Name = "menuFileExit";
             this.menuFileExit.Size = new System.Drawing.Size(152, 22);
             this.menuFileExit.Text = "&Exit";
+            this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
             // menuEdit
             // 
@@ -4552,12 +4582,14 @@ namespace KamertonTest
             this.menuEditUndo.Name = "menuEditUndo";
             this.menuEditUndo.Size = new System.Drawing.Size(128, 22);
             this.menuEditUndo.Text = "&Undo";
+            this.menuEditUndo.Click += new System.EventHandler(this.menuEditUndo_Click);
             // 
             // menuEditRedo
             // 
             this.menuEditRedo.Name = "menuEditRedo";
             this.menuEditRedo.Size = new System.Drawing.Size(128, 22);
             this.menuEditRedo.Text = "&Redo";
+            this.menuEditRedo.Click += new System.EventHandler(this.menuEditRedo_Click);
             // 
             // toolStripSeparator2
             // 
@@ -4569,30 +4601,35 @@ namespace KamertonTest
             this.menuEditCut.Name = "menuEditCut";
             this.menuEditCut.Size = new System.Drawing.Size(128, 22);
             this.menuEditCut.Text = "C&ut";
+            this.menuEditCut.Click += new System.EventHandler(this.menuEditCut_Click);
             // 
             // menuEditCopy
             // 
             this.menuEditCopy.Name = "menuEditCopy";
             this.menuEditCopy.Size = new System.Drawing.Size(128, 22);
             this.menuEditCopy.Text = "&Copy";
+            this.menuEditCopy.Click += new System.EventHandler(this.menuEditCopy_Click);
             // 
             // menuEditPaste
             // 
             this.menuEditPaste.Name = "menuEditPaste";
             this.menuEditPaste.Size = new System.Drawing.Size(128, 22);
             this.menuEditPaste.Text = "&Paste";
+            this.menuEditPaste.Click += new System.EventHandler(this.menuEditPaste_Click);
             // 
             // menuEditDelete
             // 
             this.menuEditDelete.Name = "menuEditDelete";
             this.menuEditDelete.Size = new System.Drawing.Size(128, 22);
             this.menuEditDelete.Text = "&Delete";
+            this.menuEditDelete.Click += new System.EventHandler(this.menuEditDelete_Click);
             // 
             // menuEditSelectAll
             // 
             this.menuEditSelectAll.Name = "menuEditSelectAll";
             this.menuEditSelectAll.Size = new System.Drawing.Size(128, 22);
             this.menuEditSelectAll.Text = "&Select All";
+            this.menuEditSelectAll.Click += new System.EventHandler(this.menuEditSelectAll_Click);
             // 
             // menuFormat
             // 
@@ -4607,6 +4644,7 @@ namespace KamertonTest
             this.menuFormatFont.Name = "menuFormatFont";
             this.menuFormatFont.Size = new System.Drawing.Size(119, 22);
             this.menuFormatFont.Text = "&Font...";
+            this.menuFormatFont.Click += new System.EventHandler(this.menuFormatFont_Click);
             // 
             // menuHelp
             // 
@@ -4621,6 +4659,7 @@ namespace KamertonTest
             this.menuHelpAbout.Name = "menuHelpAbout";
             this.menuHelpAbout.Size = new System.Drawing.Size(114, 22);
             this.menuHelpAbout.Text = "&About";
+            this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
             // 
             // Polltimer1
             // 
@@ -4682,6 +4721,7 @@ namespace KamertonTest
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Text files|*.txt|All files|*.*";
             // 
             // timerCTS
             // 
@@ -4693,6 +4733,31 @@ namespace KamertonTest
             this.find_com_port.Enabled = true;
             this.find_com_port.Interval = 2000;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileName = "151000.txt";
+            this.saveFileDialog1.Filter = "TXT files|*.txt";
+            // 
+            // pageSetupDialog1
+            // 
+            this.pageSetupDialog1.Document = this.printDocument1;
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.Document = this.printDocument1;
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Form1
             // 
@@ -5170,6 +5235,13 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox42;
         private System.Windows.Forms.TextBox textBox43;
         private System.Windows.Forms.TextBox textBox44;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.ToolStripMenuItem menuFilePrintPreview;
     }
 }
 
