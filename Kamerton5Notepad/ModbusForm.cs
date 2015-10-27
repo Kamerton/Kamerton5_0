@@ -5889,7 +5889,7 @@ namespace KamertonTest
             colontitulPen.Dispose();
         }
 
-
+        private bool m_DocumentChanged = false;
 
 
 
