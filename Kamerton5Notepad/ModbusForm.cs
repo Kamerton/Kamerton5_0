@@ -5783,7 +5783,111 @@ namespace KamertonTest
             }
             m_myReader.Close();
         }
+        /// <summary>
+        /// Обработка события PrintPage
+        /// </summary>
+        private void PrintPageEventHandler(object sender,
+          System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            int lineCount = 0;       // счетчик строк
+            float linesPerPage = 0;  // количество строк на одной странице
+            float yLinePosition = 0; // текущая позиция при печати по 
+            // вертикальной оси
+            string currentLine = null;  // текст текущей строки
 
+            // Шрифт для печати текста
+            Font printFont = this.richTextBox2.Font;
+
+            // Кисть для печати текста
+            SolidBrush printBrush = new SolidBrush(Color.Black);
+
+            // Размер отступа слева
+            float leftMargin = e.MarginBounds.Left;
+
+            // Размер отступа сверху
+            float topMargin = e.MarginBounds.Top +
+               3 * printFont.GetHeight(e.Graphics);
+
+            // Вычисляем количество строк на одной странице с учетом отступа
+            linesPerPage = (e.MarginBounds.Height -
+               6 * printFont.GetHeight(e.Graphics)) /
+               printFont.GetHeight(e.Graphics);
+
+            // Цикл печати всех строк страницы
+            while (lineCount < linesPerPage &&
+               ((currentLine = m_myReader.ReadLine()) != null))
+            {
+                // Вычисляем позицию очередной распечатываемой строки
+                yLinePosition = topMargin + (lineCount *
+                  printFont.GetHeight(e.Graphics));
+
+                // Печатаем очередную строку
+                e.Graphics.DrawString(currentLine, printFont, printBrush,
+                  leftMargin, yLinePosition, new StringFormat());
+
+                // Переходим к следующей строке
+                lineCount++;
+            }
+
+            // Печать колонтитулов страницы
+
+            // Номер текущей страницы
+            string sPageNumber = "Page " + m_PrintPageNumber.ToString();
+
+            // Вычисляем размеры прямоугольной области, занимаемой верхним 
+            // колонтитулом страницы
+            SizeF stringSize = new SizeF();
+            stringSize = e.Graphics.MeasureString(sPageNumber, printFont,
+               e.MarginBounds.Right - e.MarginBounds.Left);
+
+            // Печатаем номер страницы
+            e.Graphics.DrawString(sPageNumber, printFont, printBrush,
+               e.MarginBounds.Right - stringSize.Width, e.MarginBounds.Top,
+               new StringFormat());
+
+            // Печатаем имя файла документа
+            e.Graphics.DrawString(this.Text, printFont, printBrush,
+               e.MarginBounds.Left, e.MarginBounds.Top, new StringFormat());
+
+            // Кисть для рисования горизонтальной линии, 
+            // отделяющей верхний колонтитул
+            Pen colontitulPen = new Pen(Color.Black);
+            colontitulPen.Width = 2;
+
+            // Рисуем верхнюю линию
+            e.Graphics.DrawLine(colontitulPen,
+               leftMargin,
+               e.MarginBounds.Top + printFont.GetHeight(e.Graphics) + 3,
+               e.MarginBounds.Right, e.MarginBounds.Top +
+               printFont.GetHeight(e.Graphics) + 3);
+
+            // Рисуем линию, отделяющую нижний колонтитул документа
+            e.Graphics.DrawLine(colontitulPen,
+               leftMargin, e.MarginBounds.Bottom - 3,
+               e.MarginBounds.Right, e.MarginBounds.Bottom - 3);
+
+            // Печатаем текст нижнего колонтитула
+            e.Graphics.DrawString(
+            "Аудио - 1, (c) Александр Мосейчук, http://www.decima.ru",
+               printFont, printBrush,
+               e.MarginBounds.Left, e.MarginBounds.Bottom, new StringFormat());
+
+            // Если напечатаны не все строки документа, 
+            // переходим к следующей странице
+            if (currentLine != null)
+            {
+                e.HasMorePages = true;
+                m_PrintPageNumber++;
+            }
+
+            // Иначе завершаем печать страницы
+            else
+                e.HasMorePages = false;
+
+            // Освобождаем ненужные более ресурсы
+            printBrush.Dispose();
+            colontitulPen.Dispose();
+        }
 
 
 
