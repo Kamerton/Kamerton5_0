@@ -5612,7 +5612,7 @@ namespace KamertonTest
 
         private void menuFileOpen_Click(object sender, EventArgs e)
         {
-            MenuFileOpen();  
+            MenuFileOpen();   
         }
 
         private void menuFileSave_Click(object sender, EventArgs e)
@@ -5627,7 +5627,7 @@ namespace KamertonTest
 
         private void menuFilePageSetup_Click(object sender, EventArgs e)
         {
-            MenuFilePageSetup();    
+              
         }
 
         private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -5689,6 +5689,8 @@ namespace KamertonTest
         {
 
         }
+
+
         /// <summary>
         /// Открытие существующего файла
         /// </summary>
@@ -5727,20 +5729,6 @@ namespace KamertonTest
 
             }
         }
-
-
-        /// <summary>
-        /// Настройка параметров страницы
-        /// </summary>
-        private void MenuFilePageSetup()
-        {
-            pageSetupDialog1.ShowDialog();
-        }
-
-
-
-
-
 
 
 
