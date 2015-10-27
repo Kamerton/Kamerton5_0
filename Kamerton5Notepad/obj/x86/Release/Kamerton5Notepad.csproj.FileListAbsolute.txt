@@ -1,0 +1,17 @@
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.exe.config
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.exe.manifest
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.application
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.exe
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.pdb
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\mbusmaster.net.dll
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\ResolveAssemblyReference.cache
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\KamertonTest.Form1.resources
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.Properties.Resources.resources
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.Resource1.resources
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\GenerateResource.read.1.tlog
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\GenerateResource.write.1.tlog
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.TrustInfo.xml
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe.manifest
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.application
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
+E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.pdb
