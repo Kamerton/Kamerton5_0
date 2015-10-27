@@ -43,7 +43,7 @@ namespace KamertonTest
         private int startRdReg;
         private int res;
         private int TestN;
-        private int TestSum;
+       // private int TestSum;
         private int TestStep;
         private int TestRepeatCount;
         private int _SerialMonitor;
