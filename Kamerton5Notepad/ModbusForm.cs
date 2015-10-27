@@ -5627,17 +5627,16 @@ namespace KamertonTest
 
         private void menuFilePageSetup_Click(object sender, EventArgs e)
         {
-              
+            MenuFilePageSetup();    
         }
-
-        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuFilePrintPreview_Click(object sender, EventArgs e)
         {
-
+            MenuFilePrintPreview();
         }
-
+     
         private void menuFilePrint_Click(object sender, EventArgs e)
         {
-
+            MenuFilePrint();
         }
 
         private void menuFileExit_Click(object sender, EventArgs e)
@@ -5730,10 +5729,60 @@ namespace KamertonTest
             }
         }
 
+        /// <summary>
+        /// Ќастройка параметров страницы
+        /// </summary>
+        private void MenuFilePageSetup()
+        {
+            pageSetupDialog1.ShowDialog();
+        }
+        /// <summary>
+        /// StringReader дл€ печати содержимого редактора текста
+        /// </summary>
+        private StringReader m_myReader;
 
+        /// <summary>
+        /// Ќомер текущей распечатываемой страницы документа
+        /// </summary>
+        private uint m_PrintPageNumber;
 
+ 
+         //<summary>
+         //ѕредварительный просмотр перед печатью документа
+         //</summary>
+        private void MenuFilePrintPreview()
+        {
+            m_PrintPageNumber = 1;
 
+            string strText = this.richTextBox2.Text;
+            m_myReader = new StringReader(strText);
+            Margins margins = new Margins(100, 50, 50, 50);
 
+            printDocument1.DefaultPageSettings.Margins = margins;
+            printPreviewDialog1.ShowDialog();
+
+            m_myReader.Close();
+        }
+
+        /// <summary>
+        /// ѕечать документа
+        /// </summary>
+        private void MenuFilePrint()
+        {
+            m_PrintPageNumber = 1;
+
+            string strText = this.richTextBox2.Text;
+            m_myReader = new StringReader(strText);
+
+            Margins margins = new Margins(100, 50, 50, 50);
+            printDocument1.DefaultPageSettings.Margins = margins;
+
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.printDocument1.Print();
+            }
+            m_myReader.Close();
+        }
 
 
 

@@ -413,7 +413,7 @@ namespace KamertonTest
             this.menuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFilePageSetup = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFilePrintPreview = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFilePrint = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -4477,6 +4477,7 @@ namespace KamertonTest
             this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
             // 
             // menuFile
             // 
@@ -4487,7 +4488,7 @@ namespace KamertonTest
             this.menuFileSaveAs,
             this.toolStripSeparator1,
             this.menuFilePageSetup,
-            this.printPreviewToolStripMenuItem,
+            this.menuFilePrintPreview,
             this.menuFilePrint,
             this.toolStripSeparator3,
             this.menuFileExit});
@@ -4535,12 +4536,12 @@ namespace KamertonTest
             this.menuFilePageSetup.Text = "Page Set&up...";
             this.menuFilePageSetup.Click += new System.EventHandler(this.menuFilePageSetup_Click);
             // 
-            // printPreviewToolStripMenuItem
+            // menuFilePrintPreview
             // 
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.printPreviewToolStripMenuItem.Text = "PrintPreview";
-            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
+            this.menuFilePrintPreview.Name = "menuFilePrintPreview";
+            this.menuFilePrintPreview.Size = new System.Drawing.Size(152, 22);
+            this.menuFilePrintPreview.Text = "PrintPreview";
+            this.menuFilePrintPreview.Click += new System.EventHandler(this.menuFilePrintPreview_Click);
             // 
             // menuFilePrint
             // 
@@ -5240,7 +5241,7 @@ namespace KamertonTest
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuFilePrintPreview;
     }
 }
 
