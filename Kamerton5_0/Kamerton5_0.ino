@@ -4465,13 +4465,13 @@ void measure_mks()
   unsigned long duration = 0;
   unsigned long duration1 = 0;
   duration = pulseIn(A12, HIGH);
-  for (int imp = 0;imp < 10; imp++)
-  {
-   duration = pulseIn(A12, HIGH);
-   duration1 += duration;
-  }
-  duration = duration1/10;
- // Serial.println(duration);
+	  for (int imp = 0;imp < 10; imp++)
+	  {
+	   duration = pulseIn(A12, HIGH);
+	   duration1 += duration;
+	  }
+	  duration = duration1/10;
+  Serial.println(duration);
   regBank.set(40063,duration);                          // ѕередать длительность импульса €ркости в программу
 }
 
