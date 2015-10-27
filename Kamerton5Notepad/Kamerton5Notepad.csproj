@@ -78,24 +78,23 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>DABCF7DB1CCBEA5BC1C0608DA6CF612D1580F034</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>480F428D5C1C884C6F5FA72AA8DCB12E5C27D56D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Kamerton5Notepad_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Kamerton5Notepad_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Kamerton5Notepad_2_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>kcontrol2.ico</ApplicationIcon>
@@ -190,7 +189,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Kamerton5Notepad_TemporaryKey.pfx" />
+    <None Include="Kamerton5Notepad_2_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\btSetCustom.Image.png" />
     <None Include="Resources\btSetSystem.Image.png" />

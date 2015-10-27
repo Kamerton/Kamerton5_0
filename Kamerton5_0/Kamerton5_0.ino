@@ -6807,13 +6807,13 @@ void set_serial()
 			inputByte_4 = 0;
 	   }
 
-	   delay(200);
+	   delay(400);
 	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
-	wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	digitalWrite(ledPin13,LOW);
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }
@@ -6824,7 +6824,7 @@ void clear_serial()
 
 			while (Serial.available())
 				{
-					 Serial1.read();
+					 Serial.read();
 				}
 		   }
 }
