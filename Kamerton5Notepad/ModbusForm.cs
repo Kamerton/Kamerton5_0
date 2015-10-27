@@ -3966,7 +3966,7 @@ namespace KamertonTest
             }
             if (coilArr_all[69] != false)
             {
-                temp_disp = readVolt_all[69];
+                temp_disp = readVolt_all[69];        // 
                 textBox8.Text += ("Длительность импульса регулировки яркости дисплея < = \t< = " + readVals_all[69] + ">  " + temp_disp + " мкс\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 269, false);
@@ -4401,10 +4401,14 @@ namespace KamertonTest
             if (coilArr_all[129] != false)
             {
                 temp_disp = readVolt_all[129];
-                textBox8.Text += ("Код регулировки яркости дисплея не совпадает   \t< = " + readVals_all[128] + ">  " + temp_disp + " \r\n");
+                textBox8.Text += ("Код регулировки яркости дисплея не совпадает   \t< = " + readVals_all[129] + ">  " + temp_disp + " \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 329, false);
             }
+
+
+
+
             res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
         }
         private void error_list1()

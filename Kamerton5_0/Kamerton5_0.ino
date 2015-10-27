@@ -4414,8 +4414,8 @@ void test_video()
 
 	delay(100);
 	wdt_reset();
-	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[70])));                   // !!!!! 
-	if (regBank.get(40063) < 15 || regBank.get(40063) > 30)                         // 
+	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[70])));                   // 
+	if (regBank.get(40063) < 18 || regBank.get(40063) > 26)                         // Диапазон измерения длительности импульса яркости
 	{
 		myFile.print(buffer);                                                       // 
 		myFile.print(regBank.get(40063));
@@ -4425,7 +4425,7 @@ void test_video()
 		regcount++;
 		regBank.set(40269,regcount); 
 		regBank.set(120,1);  
-		regBank.set(40469,regcount); 
+		regBank.set(40469,regBank.get(40063));                   // Передать длительность импульса в ПК
 	}
 
 	else
@@ -6299,7 +6299,9 @@ modbus registers follow the following format
 	regBank.add(40060);  // Адрес хранения величины сигнала резисторами
 	regBank.add(40061);  // Адрес хранения величины яркости для управления
 	regBank.add(40062);  // Адрес хранения величины яркости для передачи в программу
-	regBank.add(40063);  // Адрес хранения длительности импульса яркости для передачи в программу
+	regBank.add(40063);  // Адрес хранения длительности импульса яркости для передачи в программу ПК
+
+
 	/*
 	regBank.add(40061); // адрес счетчика ошибки
 	regBank.add(40062); // адрес счетчика ошибки
@@ -6570,9 +6572,9 @@ modbus registers follow the following format
 	regBank.add(40404);                         // Aдрес напряжение ADC14 напряжение 12/3 вольт Radio2
 	regBank.add(40405);                         // Aдрес напряжение ADC14 напряжение 12/3 вольт ГГС
 	regBank.add(40406);                         // Aдрес напряжение ADC15 напряжение светодиода 3,6 вольта
-	regBank.add(40407);                         // Aдрес счетчика  
-	regBank.add(40408);                         // Aдрес счетчика  
-	regBank.add(40409);                         // Aдрес счетчика  
+	regBank.add(40407);                         // Aдрес 
+	regBank.add(40408);                         // Aдрес 
+	regBank.add(40409);                         // Aдрес  
 
 	regBank.add(40410);                         // Aдрес счетчика 
 	regBank.add(40411);                         // Aдрес счетчика  
@@ -6638,7 +6640,7 @@ modbus registers follow the following format
 	regBank.add(40466);                         // 
 	regBank.add(40467);                         // Aдрес данных измерения "Test MTT HangUp (DCD)                                       OFF - ";
 	regBank.add(40468);                         // Aдрес данных измерения "Test MTT HangUp (DCD)                                       ON  - ";
-	regBank.add(40469);                         //  
+	regBank.add(40469);                         // Длительность импульса регулировки яркости дисплея
 
 	regBank.add(40470);                         // Aдрес данных измерения "Command PTT1 tangenta ruchnaja (CTS)                        OFF - ";
 	regBank.add(40471);                         // Aдрес данных измерения "Command PTT2 tangenta ruchnaja (DCR)                        OFF - ";
@@ -6704,7 +6706,7 @@ modbus registers follow the following format
 	regBank.add(40526);                         // Aдрес данных измерения "Test Microphone ** Signal GGS                               OFF - ";
 	regBank.add(40527);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio1                         OFF - ";
 	regBank.add(40528);                         // Aдрес данных измерения "Test Microphone ** Signal GG Radio2                         OFF - ";
-	regBank.add(40529);                         // 
+	regBank.add(40529);                         // Код регулировки яркости дисплея
 	regBank.add(40530);                         // 
 
 

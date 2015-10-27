@@ -774,6 +774,7 @@ namespace KamertonTest
             this.groupBox10.TabIndex = 6;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Проверка гарнитуры диспетчера";
+            this.groupBox10.Visible = false;
             // 
             // button82
             // 
@@ -1166,6 +1167,7 @@ namespace KamertonTest
             this.groupBox9.TabIndex = 5;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Проверка гарнитуры инструктора";
+            this.groupBox9.Visible = false;
             // 
             // button76
             // 
@@ -1523,6 +1525,7 @@ namespace KamertonTest
             this.groupBox8.TabIndex = 4;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Сервисная информация";
+            this.groupBox8.Visible = false;
             // 
             // richTextBox1
             // 
@@ -1541,6 +1544,7 @@ namespace KamertonTest
             this.button1.TabIndex = 3;
             this.button1.Text = "Получить ошибки";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox18
