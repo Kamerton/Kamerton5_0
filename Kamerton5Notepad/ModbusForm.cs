@@ -5542,7 +5542,7 @@ namespace KamertonTest
         {
 
         }
-        private void read_urovn_instruktora()
+        private void read_urovn_instruktora()    //  Получить данные по уровням порогов при проверке гарнитуры инструктора
         {
             ushort[] read_urovn = new ushort[10];
             numRdRegs = 2;
@@ -5607,6 +5607,8 @@ namespace KamertonTest
 
         private void menuFileNew_Click(object sender, EventArgs e)
         {
+            if (m_DocumentChanged)
+                MenuFileSaveAs();
             richTextBox2.Clear();
         }
 
@@ -5622,7 +5624,13 @@ namespace KamertonTest
 
         private void menuFileSaveAs_Click(object sender, EventArgs e)
         {
-            MenuFileSaveAs();
+            if (saveFileDialog1.ShowDialog() ==
+            System.Windows.Forms.DialogResult.OK &&
+            saveFileDialog1.FileName.Length > 0)
+            {
+                richTextBox2.SaveFile(saveFileDialog1.FileName);
+                m_DocumentChanged = false;
+            }
         }
 
         private void menuFilePageSetup_Click(object sender, EventArgs e)
@@ -5641,7 +5649,9 @@ namespace KamertonTest
 
         private void menuFileExit_Click(object sender, EventArgs e)
         {
-
+            if (m_DocumentChanged)
+                MenuFileSaveAs();
+            this.Close();
         }
 
         private void menuEditUndo_Click(object sender, EventArgs e)
@@ -5704,7 +5714,7 @@ namespace KamertonTest
                     richTextBox2.LoadFile(openFileDialog1.FileName,
                        RichTextBoxStreamType.RichText);
                 }
-                catch (System.ArgumentException ex)
+                catch (System.ArgumentException e)
                 {
                     richTextBox2.LoadFile(openFileDialog1.FileName,
                        RichTextBoxStreamType.PlainText);
@@ -5891,9 +5901,28 @@ namespace KamertonTest
 
         private bool m_DocumentChanged = false;
 
+        private void richTextBox2_TextChanged(object sender, System.EventArgs e)
+        {
+            m_DocumentChanged = true;
+        }
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (m_DocumentChanged)
+        //        MenuFileSaveAs();
 
-
+        //    if (disposing)
+        //    {
+        //        if (components != null)
+        //        {
+        //            components.Dispose();
+        //        }
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
 
 
