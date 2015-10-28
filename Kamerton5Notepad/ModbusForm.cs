@@ -5654,37 +5654,37 @@ namespace KamertonTest
 
         private void menuEditUndo_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Undo();
         }
 
         private void menuEditRedo_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Redo();
         }
 
         private void menuEditCut_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Cut();
         }
 
         private void menuEditCopy_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Copy();
         }
 
         private void menuEditPaste_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Paste();
         }
 
         private void menuEditDelete_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.Cut();
         }
 
         private void menuEditSelectAll_Click(object sender, EventArgs e)
         {
-
+            richTextBox2.SelectAll();
         }
 
         private void menuFormatFont_Click(object sender, EventArgs e)
@@ -5845,7 +5845,7 @@ namespace KamertonTest
             // Печать колонтитулов страницы
 
             // Номер текущей страницы
-            string sPageNumber = "Page " + m_PrintPageNumber.ToString();
+            string sPageNumber = "Страница " + m_PrintPageNumber.ToString();
 
             // Вычисляем размеры прямоугольной области, занимаемой верхним 
             // колонтитулом страницы
@@ -5881,7 +5881,7 @@ namespace KamertonTest
 
             // Печатаем текст нижнего колонтитула
             e.Graphics.DrawString(
-            "Аудио - 1, (c) Александр Мосейчук, http://www.decima.ru",
+            "Аудио - 1, (c), http://www.decima.ru",
                printFont, printBrush,
                e.MarginBounds.Left, e.MarginBounds.Bottom, new StringFormat());
 
@@ -5901,26 +5901,6 @@ namespace KamertonTest
             printBrush.Dispose();
             colontitulPen.Dispose();
         }
-
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (m_DocumentChanged)
-        //        MenuFileSaveAs();
-
-        //    if (disposing)
-        //    {
-        //        if (components != null)
-        //        {
-        //            components.Dispose();
-        //        }
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
 
 
 
