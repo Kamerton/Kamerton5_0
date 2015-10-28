@@ -4483,7 +4483,6 @@ namespace KamertonTest
             this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.Visible = false;
             // 
             // menuFile
             // 
@@ -4748,6 +4747,10 @@ namespace KamertonTest
             // pageSetupDialog1
             // 
             this.pageSetupDialog1.Document = this.printDocument1;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // printDialog1
             // 
@@ -5154,7 +5157,6 @@ namespace KamertonTest
         private System.Windows.Forms.ToolStripMenuItem menuFormatFont;
         private System.Windows.Forms.ToolStripMenuItem menuHelp;
         private System.Windows.Forms.ToolStripMenuItem menuHelpAbout;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button button76;
@@ -5248,6 +5250,7 @@ namespace KamertonTest
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ToolStripMenuItem menuFilePrintPreview;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 
