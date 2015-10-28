@@ -4752,6 +4752,7 @@ namespace KamertonTest
             // printDocument1
             // 
             this.printDocument1.DocumentName = "SimpleNotepad Document";
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // printPreviewDialog1
             // 
