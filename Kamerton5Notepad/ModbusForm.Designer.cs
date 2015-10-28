@@ -451,10 +451,10 @@ namespace KamertonTest
             this.timerCTS = new System.Windows.Forms.Timer(this.components);
             this.find_com_port = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4744,18 +4744,14 @@ namespace KamertonTest
             this.saveFileDialog1.FileName = "151000.txt";
             this.saveFileDialog1.Filter = "TXT files|*.txt";
             // 
-            // pageSetupDialog1
-            // 
-            this.pageSetupDialog1.Document = this.printDocument1;
-            // 
-            // printDocument1
-            // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
-            // 
             // printDialog1
             // 
             this.printDialog1.Document = this.printDocument1;
             this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.DocumentName = "SimpleNotepad Document";
             // 
             // printPreviewDialog1
             // 
@@ -4767,6 +4763,10 @@ namespace KamertonTest
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
+            // 
+            // pageSetupDialog1
+            // 
+            this.pageSetupDialog1.Document = this.printDocument1;
             // 
             // Form1
             // 
@@ -5245,12 +5245,12 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox44;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintDialog printDialog1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ToolStripMenuItem menuFilePrintPreview;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
     }
 }
 
