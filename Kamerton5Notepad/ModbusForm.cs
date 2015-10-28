@@ -5692,7 +5692,10 @@ namespace KamertonTest
 
         private void menuFormatFont_Click(object sender, EventArgs e)
         {
-
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox2.SelectionFont = fontDialog1.Font;
+            }
         }
 
         private void menuHelpAbout_Click(object sender, EventArgs e)
@@ -5925,32 +5928,114 @@ namespace KamertonTest
 
         private void menuFormatCharacterStyleStrikeout_Click(object sender, EventArgs e)
         {
-
+            SetStrikeout();
         }
 
         private void fontDialog1_Apply(object sender, EventArgs e)
         {
-            if (fontDialog1.ShowDialog() == DialogResult.OK)
+ 
+        }
+
+        private void menuFormatColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                richTextBox2.SelectionFont = fontDialog1.Font;
+                richTextBox2.SelectionColor = colorDialog1.Color;
+            }
+        }
+
+        private void menuFormatCharacterStyleBold_Click(object sender, EventArgs e)
+        {
+            SetBold();
+        }
+
+    
+
+        private void menuFormatCharacterStyleItalic_Click_1(object sender, EventArgs e)
+        {
+            SetItalic();
+        }
+
+        private void menuFormatCharacterStyleUnderline_Click(object sender, EventArgs e)
+        {
+            SetUnderline();
+        }
+
+        /// <summary>
+        /// Установка стиля символов Bold
+        /// </summary>
+        private void SetBold()
+        {
+            if (richTextBox2.SelectionFont != null)
+            {
+                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+
+                if (richTextBox2.SelectionFont.Bold == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Bold;
+                }
+
+                richTextBox2.SelectionFont = new Font(
+                  currentFont.FontFamily, currentFont.Size, newFontStyle);
+
+                CheckMenuFontCharacterStyle();
+            }
+        }
+
+        /// <summary>
+        /// Установка отметки строк меню Font->CharacterStyle
+        /// </summary>
+        private void CheckMenuFontCharacterStyle()
+        {
+            if (richTextBox2.SelectionFont.Bold == true)
+            {
+                menuFormatCharacterStyleBold.Checked = true;
+            }
+            else
+            {
+                menuFormatCharacterStyleBold.Checked = false;
+            }
+
+            if (richTextBox2.SelectionFont.Italic == true)
+            {
+                menuFormatCharacterStyleItalic.Checked = true;
+            }
+            else
+            {
+                menuFormatCharacterStyleItalic.Checked = false;
+            }
+
+            if (richTextBox2.SelectionFont.Underline == true)
+            {
+                menuFormatCharacterStyleUnderline.Checked = true;
+            }
+            else
+            {
+                menuFormatCharacterStyleUnderline.Checked = false;
+            }
+
+            if (richTextBox2.SelectionFont.Strikeout == true)
+            {
+                menuFormatCharacterStyleStrikeout.Checked = true;
+            }
+            else
+            {
+                menuFormatCharacterStyleStrikeout.Checked = false;
             }
         }
 
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (m_DocumentChanged)
-        //        MenuFileSaveAs();
-
-        //    if (disposing && (components != null))
-        //    {
-        //        components.Dispose();
-        //    }
-        //    base.Dispose(disposing);
 
 
 
-        //}
+
+
+
 
 
 
