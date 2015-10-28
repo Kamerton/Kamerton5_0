@@ -5923,6 +5923,11 @@ namespace KamertonTest
             m_DocumentChanged = true; 
         }
 
+        private void menuFormatCharacterStyleStrikeout_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         //protected override void Dispose(bool disposing)
         //{

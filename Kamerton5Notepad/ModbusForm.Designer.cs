@@ -455,6 +455,17 @@ namespace KamertonTest
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.menuFormatColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatCharacterStyle = new System.Windows.Forms.ToolStripMenuItem();
+            this.paragraphAlignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuFormatCharacterStyleBold = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatCharacterStyleInalic = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatCharacterStyleUnderline = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatCharacterStyleStrikeout = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatParagraphLeft = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatParagraphRight = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFormatParagraphCenter = new System.Windows.Forms.ToolStripMenuItem();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4640,7 +4651,11 @@ namespace KamertonTest
             // menuFormat
             // 
             this.menuFormat.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFormatFont});
+            this.menuFormatFont,
+            this.menuFormatColor,
+            this.toolStripSeparator4,
+            this.menuFormatCharacterStyle,
+            this.paragraphAlignmentToolStripMenuItem});
             this.menuFormat.Name = "menuFormat";
             this.menuFormat.Size = new System.Drawing.Size(53, 20);
             this.menuFormat.Text = "F&ormat";
@@ -4648,7 +4663,7 @@ namespace KamertonTest
             // menuFormatFont
             // 
             this.menuFormatFont.Name = "menuFormatFont";
-            this.menuFormatFont.Size = new System.Drawing.Size(119, 22);
+            this.menuFormatFont.Size = new System.Drawing.Size(185, 22);
             this.menuFormatFont.Text = "&Font...";
             this.menuFormatFont.Click += new System.EventHandler(this.menuFormatFont_Click);
             // 
@@ -4769,6 +4784,81 @@ namespace KamertonTest
             // pageSetupDialog1
             // 
             this.pageSetupDialog1.Document = this.printDocument1;
+            // 
+            // menuFormatColor
+            // 
+            this.menuFormatColor.Name = "menuFormatColor";
+            this.menuFormatColor.Size = new System.Drawing.Size(185, 22);
+            this.menuFormatColor.Text = "C&olor..";
+            // 
+            // menuFormatCharacterStyle
+            // 
+            this.menuFormatCharacterStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormatCharacterStyleBold,
+            this.menuFormatCharacterStyleInalic,
+            this.menuFormatCharacterStyleUnderline,
+            this.menuFormatCharacterStyleStrikeout});
+            this.menuFormatCharacterStyle.Name = "menuFormatCharacterStyle";
+            this.menuFormatCharacterStyle.Size = new System.Drawing.Size(185, 22);
+            this.menuFormatCharacterStyle.Text = "&Character Style";
+            // 
+            // paragraphAlignmentToolStripMenuItem
+            // 
+            this.paragraphAlignmentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormatParagraphLeft,
+            this.menuFormatParagraphRight,
+            this.menuFormatParagraphCenter});
+            this.paragraphAlignmentToolStripMenuItem.Name = "paragraphAlignmentToolStripMenuItem";
+            this.paragraphAlignmentToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.paragraphAlignmentToolStripMenuItem.Text = "&Paragraph Alignment";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(182, 6);
+            // 
+            // menuFormatCharacterStyleBold
+            // 
+            this.menuFormatCharacterStyleBold.Name = "menuFormatCharacterStyleBold";
+            this.menuFormatCharacterStyleBold.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleBold.Text = "&Bold";
+            // 
+            // menuFormatCharacterStyleInalic
+            // 
+            this.menuFormatCharacterStyleInalic.Name = "menuFormatCharacterStyleInalic";
+            this.menuFormatCharacterStyleInalic.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleInalic.Text = "&Inalic";
+            // 
+            // menuFormatCharacterStyleUnderline
+            // 
+            this.menuFormatCharacterStyleUnderline.Name = "menuFormatCharacterStyleUnderline";
+            this.menuFormatCharacterStyleUnderline.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleUnderline.Text = "&Underline";
+            // 
+            // menuFormatCharacterStyleStrikeout
+            // 
+            this.menuFormatCharacterStyleStrikeout.Name = "menuFormatCharacterStyleStrikeout";
+            this.menuFormatCharacterStyleStrikeout.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleStrikeout.Text = "&Strikeout";
+            this.menuFormatCharacterStyleStrikeout.Click += new System.EventHandler(this.menuFormatCharacterStyleStrikeout_Click);
+            // 
+            // menuFormatParagraphLeft
+            // 
+            this.menuFormatParagraphLeft.Name = "menuFormatParagraphLeft";
+            this.menuFormatParagraphLeft.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatParagraphLeft.Text = "&Left";
+            // 
+            // menuFormatParagraphRight
+            // 
+            this.menuFormatParagraphRight.Name = "menuFormatParagraphRight";
+            this.menuFormatParagraphRight.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatParagraphRight.Text = "&Right";
+            // 
+            // menuFormatParagraphCenter
+            // 
+            this.menuFormatParagraphCenter.Name = "menuFormatParagraphCenter";
+            this.menuFormatParagraphCenter.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatParagraphCenter.Text = "&Center";
             // 
             // Form1
             // 
@@ -5253,6 +5343,17 @@ namespace KamertonTest
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatColor;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatCharacterStyle;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatCharacterStyleBold;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatCharacterStyleInalic;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatCharacterStyleUnderline;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatCharacterStyleStrikeout;
+        private System.Windows.Forms.ToolStripMenuItem paragraphAlignmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphLeft;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphRight;
+        private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphCenter;
     }
 }
 
