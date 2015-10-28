@@ -5649,6 +5649,9 @@ namespace KamertonTest
         {
             if (m_DocumentChanged)
                 MenuFileSaveAs();
+            richTextBox2.Clear();
+            //if (m_DocumentChanged)
+            //    MenuFileSaveAs();
           //  this.Close();
         }
 
@@ -5739,11 +5742,6 @@ namespace KamertonTest
 
 
         private bool m_DocumentChanged = false;
-
-        private void richTextBox2_TextChanged(object sender, System.EventArgs e)
-        {
-            m_DocumentChanged = true;
-        }
 
         /// <summary>
         /// Настройка параметров страницы
@@ -5918,6 +5916,11 @@ namespace KamertonTest
                 }
             }
             base.Dispose(disposing);
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+            m_DocumentChanged = true; 
         }
 
 
