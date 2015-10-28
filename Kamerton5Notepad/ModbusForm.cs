@@ -6029,6 +6029,86 @@ namespace KamertonTest
             }
         }
 
+        /// <summary>
+        /// Установка стиля символов Italic
+        /// </summary>
+        private void SetItalic()
+        {
+            if (richTextBox2.SelectionFont != null)
+            {
+                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+                CheckMenuFontCharacterStyle();
+
+                if (richTextBox2.SelectionFont.Italic == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Italic;
+                }
+
+                richTextBox2.SelectionFont = new Font(
+                  currentFont.FontFamily, currentFont.Size, newFontStyle);
+
+                CheckMenuFontCharacterStyle();
+            }
+        }
+
+        /// <summary>
+        /// Установка стиля символов Underline
+        /// </summary>
+        private void SetUnderline()
+        {
+            if (richTextBox2.SelectionFont != null)
+            {
+                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+                CheckMenuFontCharacterStyle();
+
+                if (richTextBox2.SelectionFont.Underline == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Underline;
+                }
+
+                richTextBox2.SelectionFont = new Font(
+                  currentFont.FontFamily, currentFont.Size, newFontStyle);
+
+                CheckMenuFontCharacterStyle();
+            }
+        }
+
+        /// <summary>
+        /// Установка стиля символов Strikeout
+        /// </summary>
+        private void SetStrikeout()
+        {
+            if (richTextBox2.SelectionFont != null)
+            {
+                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
+                System.Drawing.FontStyle newFontStyle;
+
+                if (richTextBox2.SelectionFont.Strikeout == true)
+                {
+                    newFontStyle = FontStyle.Regular;
+                }
+                else
+                {
+                    newFontStyle = FontStyle.Strikeout;
+                }
+
+                richTextBox2.SelectionFont = new Font(
+                  currentFont.FontFamily, currentFont.Size, newFontStyle);
+
+                CheckMenuFontCharacterStyle();
+            }
+        }
+
 
 
 
