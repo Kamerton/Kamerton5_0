@@ -4841,7 +4841,6 @@ namespace KamertonTest
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.FileName = "15100000.txt";
             this.saveFileDialog1.Filter = "TXT files|*.txt";
             // 
             // printDialog1
