@@ -5928,6 +5928,14 @@ namespace KamertonTest
 
         }
 
+        private void fontDialog1_Apply(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox2.SelectionFont = fontDialog1.Font;
+            }
+        }
+
 
         //protected override void Dispose(bool disposing)
         //{

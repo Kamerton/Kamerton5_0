@@ -466,6 +466,8 @@ namespace KamertonTest
             this.menuFormatParagraphLeft = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFormatParagraphRight = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFormatParagraphCenter = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4860,6 +4862,10 @@ namespace KamertonTest
             this.menuFormatParagraphCenter.Size = new System.Drawing.Size(152, 22);
             this.menuFormatParagraphCenter.Text = "&Center";
             // 
+            // fontDialog1
+            // 
+            this.fontDialog1.Apply += new System.EventHandler(this.fontDialog1_Apply);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -5354,6 +5360,8 @@ namespace KamertonTest
         private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphLeft;
         private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphRight;
         private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphCenter;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
