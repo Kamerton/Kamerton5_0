@@ -107,6 +107,7 @@ void time_control_get();
 void list_file();
 void file_print_date();
 void resistor(int resist, int valresist);
+void controlFileName();
 void FileOpen();
 void FileClose();
 void file_name();

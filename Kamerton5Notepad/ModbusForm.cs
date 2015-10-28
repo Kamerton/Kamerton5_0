@@ -57,9 +57,7 @@ namespace KamertonTest
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
         bool testAllRun = false;
-        //bool power_radio1 = false;
-        //bool power_radio2 = false;
-        //bool power_ggs = false;
+ 
         SerialPort currentPort;
 
         public Form1()
@@ -74,7 +72,7 @@ namespace KamertonTest
         //                                8,
         //                                StopBits.One);
 
-        const string fileName = "Kamerton log.txt";
+        string fileName = "Kamerton log.txt";
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -131,7 +129,25 @@ namespace KamertonTest
                         //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
                         break;
                 case 1:
-                        //   toolStripStatusLabel3.Text = ("Выбрана 2 вкладка");
+                        Polltimer1.Enabled = true;
+                        ushort[] writeVals = new ushort[2];
+                        bool[] coilArr = new bool[4];
+                        startWrReg = 120;
+                        res = myProtocol.writeSingleRegister(slave, startWrReg, 23); // Контроль имени файла
+
+                        if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                        {
+                            toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                            toolStripStatusLabel1.BackColor = Color.Lime;
+                        }
+
+                        else
+                        {
+                            toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
+                            toolStripStatusLabel1.BackColor = Color.Red;
+                        }
+                        Thread.Sleep(250);
+                       // test_end1();
                         break;
                 case 2:
 
@@ -182,9 +198,9 @@ namespace KamertonTest
                  //   toolStripStatusLabel3.Text = ("Выбрана 6 вкладка");
                     break;
 
-                default:
-                   // toolStripStatusLabel3.Text = ("Шойтан, как ты сюда попал?");
-                    break;
+                //default:
+                //   // toolStripStatusLabel3.Text = ("Шойтан, как ты сюда попал?");
+                //    break;
             }
 
         }
@@ -736,10 +752,15 @@ namespace KamertonTest
                     label83.Text = "";
                     label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
-                    startRdReg = 112; // 40046 Адрес дата/время контроллера  
+                    startWrReg = 120;
+                    res = myProtocol.writeSingleRegister(slave, startWrReg, 23); // Контроль имени файла
+
+
+                    startRdReg = 112; // 40112 Адрес дата/время контроллера  
                     numRdRegs = 4;
                     res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                     lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
                     {
                         toolStripStatusLabel1.Text = "    MODBUS ON    ";
@@ -3451,7 +3472,7 @@ namespace KamertonTest
             ushort[] readVals = new ushort[2];
             bool[] coilArr = new bool[2];
             startRdReg = 120;                                    //regBank.add(40120);  // adr_control_command Адрес передачи комманд на выполнение
-            //  0 в регистре означает завершение выполнения фрагмента проверки
+                                                                 //  0 в регистре означает завершение выполнения фрагмента проверки
             numRdRegs = 2;
             do
             {
@@ -5037,7 +5058,10 @@ namespace KamertonTest
                         textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
                         textBox7.Refresh();
                         test_end1();
-                        file_fakt_namber();
+                        file_fakt_namber();                                                                 // Отобразить имя текущего файла
+                        num_string();
+                        Create_File();
+                       
                         //Thread.Sleep(400);
                         test_end1();
                         _All_Test_Stop = false;                                                             // Установить флаг запуска теста
@@ -5077,13 +5101,77 @@ namespace KamertonTest
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
 
+        private void num_string()
+        {
+
+            short[] readVals = new short[125];
+            int startRdReg;
+            int numRdRegs;
+            int res;
+            string s0 = "";
+            string s1 = "";
+            string s2 = "";
+            string s3 = "";
+            startRdReg = 112; // 40112 
+            numRdRegs = 4;
+            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
+            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+            {
+                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                toolStripStatusLabel1.BackColor = Color.Lime;
+
+                label134.Text = "";
+                label134.Text = (label134.Text + readVals[0]);
+                s0 = (readVals[0].ToString());
+
+                if (readVals[1] < 10)
+                {
+                    label134.Text += ("0" + readVals[1]);
+                    s1 = ("0" + readVals[1].ToString());
+                }
+                else
+                {
+                    label134.Text += (readVals[1]);
+                    s1 = (readVals[1].ToString());
+                }
+                if (readVals[2] < 10)
+                {
+                    label134.Text += ("0" + readVals[2]);
+                   s2 = ("0" + readVals[2].ToString());
+                }
+                else
+                {
+                    label134.Text += (readVals[2]);
+                    s2 = (readVals[2].ToString());
+                }
+                if (readVals[3] < 10)
+                {
+                    label134.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
+                    s3 = ("0" + readVals[3].ToString());
+                }
+                else
+                {
+                    label134.Text += (readVals[3] + ".TXT"+"\r\n");
+                    s3 = (readVals[3].ToString());
+                }
+
+            }
+           fileName = (s0 + s1 + s2 + s3 + ".TXT");
+
+           openFileDialog1.FileName = fileName;
+
+          // label134.Text += fileName;
+        }
+
+
+
         private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
         {
 
             if ((myProtocol != null))
             {
-
-
                 timerTestAll.Enabled = false;
 
                 ushort[] writeVals = new ushort[20];
@@ -5099,6 +5187,9 @@ namespace KamertonTest
                 res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
                 textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
                 // textBox9.Text = ("Стоп теста");
+                Save_File();
+                Read_File();
+
                 textBox7.Refresh();
                 textBox9.Refresh();
                 testAllRun = false;
@@ -5116,10 +5207,7 @@ namespace KamertonTest
 
             else
             {
-
                 textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
-            
-            
             }
         }
 
@@ -5140,6 +5228,33 @@ namespace KamertonTest
             }
 
         }
+        private void Create_File()
+        {
+            if (!File.Exists(fileName))
+            {
+                File.Create(fileName).Close();
+            }
+            else
+            {
+                MessageBox.Show("Файл уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Save_File()
+        {
+            File.WriteAllText(fileName, textBox8.Text);
+        }
+        private void Read_File()
+        {
+            if (File.Exists(fileName))
+            {
+                richTextBox2.Text = File.ReadAllText(fileName);
+            }
+            else
+            {
+                MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
         private void button13_Click(object sender, EventArgs e)          // Удалить файл 
         {
@@ -5650,10 +5765,7 @@ namespace KamertonTest
             if (m_DocumentChanged)
                 MenuFileSaveAs();
             richTextBox2.Clear();
-            //if (m_DocumentChanged)
-            //    MenuFileSaveAs();
-          //  this.Close();
-        }
+         }
 
         private void menuEditUndo_Click(object sender, EventArgs e)
         {
@@ -5700,7 +5812,8 @@ namespace KamertonTest
 
         private void menuHelpAbout_Click(object sender, EventArgs e)
         {
-
+            Form dlgAbout = new HelpAboutForm();
+            dlgAbout.ShowDialog();
         }
 
 
@@ -5709,12 +5822,14 @@ namespace KamertonTest
         /// </summary>
         private void MenuFileOpen()
         {
+            openFileDialog1.FileName = fileName;
             if (openFileDialog1.ShowDialog() ==
                System.Windows.Forms.DialogResult.OK &&
                openFileDialog1.FileName.Length > 0)
             {
                 try
                 {
+
                     richTextBox2.LoadFile(openFileDialog1.FileName,
                        RichTextBoxStreamType.RichText);
                 }
@@ -5733,6 +5848,7 @@ namespace KamertonTest
         /// </summary>
         private void MenuFileSaveAs()
         {
+            openFileDialog1.FileName = fileName;
             if (saveFileDialog1.ShowDialog() ==
                System.Windows.Forms.DialogResult.OK &&
             saveFileDialog1.FileName.Length > 0)
@@ -6107,6 +6223,21 @@ namespace KamertonTest
 
                 CheckMenuFontCharacterStyle();
             }
+        }
+
+        private void menuFormatParagraphLeft_Click(object sender, EventArgs e)
+        {
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Left;
+        }
+
+        private void menuFormatParagraphRight_Click(object sender, EventArgs e)
+        {
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Right;
+        }
+
+        private void menuFormatParagraphCenter_Click(object sender, EventArgs e)
+        {
+            richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
         }
 
 

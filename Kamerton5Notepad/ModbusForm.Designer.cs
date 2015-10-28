@@ -4478,6 +4478,7 @@ namespace KamertonTest
             // richTextBox2
             // 
             this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox2.Location = new System.Drawing.Point(0, 24);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(987, 589);
@@ -4695,28 +4696,28 @@ namespace KamertonTest
             // menuFormatCharacterStyleBold
             // 
             this.menuFormatCharacterStyleBold.Name = "menuFormatCharacterStyleBold";
-            this.menuFormatCharacterStyleBold.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleBold.Size = new System.Drawing.Size(130, 22);
             this.menuFormatCharacterStyleBold.Text = "&Bold";
             this.menuFormatCharacterStyleBold.Click += new System.EventHandler(this.menuFormatCharacterStyleBold_Click);
             // 
             // menuFormatCharacterStyleItalic
             // 
             this.menuFormatCharacterStyleItalic.Name = "menuFormatCharacterStyleItalic";
-            this.menuFormatCharacterStyleItalic.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleItalic.Size = new System.Drawing.Size(130, 22);
             this.menuFormatCharacterStyleItalic.Text = "&Italic";
             this.menuFormatCharacterStyleItalic.Click += new System.EventHandler(this.menuFormatCharacterStyleItalic_Click_1);
             // 
             // menuFormatCharacterStyleUnderline
             // 
             this.menuFormatCharacterStyleUnderline.Name = "menuFormatCharacterStyleUnderline";
-            this.menuFormatCharacterStyleUnderline.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleUnderline.Size = new System.Drawing.Size(130, 22);
             this.menuFormatCharacterStyleUnderline.Text = "&Underline";
             this.menuFormatCharacterStyleUnderline.Click += new System.EventHandler(this.menuFormatCharacterStyleUnderline_Click);
             // 
             // menuFormatCharacterStyleStrikeout
             // 
             this.menuFormatCharacterStyleStrikeout.Name = "menuFormatCharacterStyleStrikeout";
-            this.menuFormatCharacterStyleStrikeout.Size = new System.Drawing.Size(152, 22);
+            this.menuFormatCharacterStyleStrikeout.Size = new System.Drawing.Size(130, 22);
             this.menuFormatCharacterStyleStrikeout.Text = "&Strikeout";
             this.menuFormatCharacterStyleStrikeout.Click += new System.EventHandler(this.menuFormatCharacterStyleStrikeout_Click);
             // 
@@ -4735,18 +4736,21 @@ namespace KamertonTest
             this.menuFormatParagraphLeft.Name = "menuFormatParagraphLeft";
             this.menuFormatParagraphLeft.Size = new System.Drawing.Size(118, 22);
             this.menuFormatParagraphLeft.Text = "&Left";
+            this.menuFormatParagraphLeft.Click += new System.EventHandler(this.menuFormatParagraphLeft_Click);
             // 
             // menuFormatParagraphRight
             // 
             this.menuFormatParagraphRight.Name = "menuFormatParagraphRight";
             this.menuFormatParagraphRight.Size = new System.Drawing.Size(118, 22);
             this.menuFormatParagraphRight.Text = "&Right";
+            this.menuFormatParagraphRight.Click += new System.EventHandler(this.menuFormatParagraphRight_Click);
             // 
             // menuFormatParagraphCenter
             // 
             this.menuFormatParagraphCenter.Name = "menuFormatParagraphCenter";
             this.menuFormatParagraphCenter.Size = new System.Drawing.Size(118, 22);
             this.menuFormatParagraphCenter.Text = "&Center";
+            this.menuFormatParagraphCenter.Click += new System.EventHandler(this.menuFormatParagraphCenter_Click);
             // 
             // menuHelp
             // 
@@ -4822,7 +4826,6 @@ namespace KamertonTest
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Text files|*.txt|All files|*.*";
             // 
             // timerCTS
@@ -4838,7 +4841,7 @@ namespace KamertonTest
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.FileName = "151000.txt";
+            this.saveFileDialog1.FileName = "15100000.txt";
             this.saveFileDialog1.Filter = "TXT files|*.txt";
             // 
             // printDialog1

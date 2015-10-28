@@ -1523,6 +1523,42 @@ void resistor(int resist, int valresist)
 			//Wire.requestFrom(address_AD5252, 1, true);  // Считать состояние движка резистора 
 			//level_resist = Wire.read();                 // sends potentiometer value byte  
 }
+
+void controlFileName()
+{
+  int temp_file_name = 0;
+  preob_num_str();
+  while (sd.exists(fileName)) 
+  {
+	if (fileName[BASE_NAME_SIZE + 1] != '9') 
+	{
+	  fileName[BASE_NAME_SIZE + 1]++;
+	}
+	else if (fileName[BASE_NAME_SIZE] != '9') 
+	{
+	  fileName[BASE_NAME_SIZE + 1] = '0';
+	  fileName[BASE_NAME_SIZE]++;
+	}
+	else 
+	{
+		regBank.set(122,1);                              // Флаг ошибки  открытия файла
+	}
+  }
+ 
+  temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48); // преобразование символьного номера файла в числа
+ 
+  if (temp_file_name == 0)
+  {
+     regBank.set(adr_reg_file_name,temp_file_name);   
+  }
+  else
+  {
+	  regBank.set(adr_reg_file_name,temp_file_name-1); 
+  }
+
+  delay(200);
+  regBank.set(adr_control_command,0);  
+}
 void FileOpen()
 {
   int temp_file_name = 0;
@@ -1545,7 +1581,7 @@ void FileOpen()
   }
 
  
-  temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48);
+  temp_file_name = ((fileName[BASE_NAME_SIZE]-48)*10) + (fileName[BASE_NAME_SIZE + 1]-48); // преобразование символьного номера файла в числа
   regBank.set(adr_reg_file_name,temp_file_name);      
 //  i2c_eeprom_write_byte(0x50, adr_file_name_count,temp_file_name);                 // при смене даты счетчик номера файла сбросить в "0"
 
@@ -1625,6 +1661,7 @@ void file_name()
 	}
 	else 
 	{
+		Serial.println("Can't create file name");
 //	  sdError("Can't create file name");
 	}
   }
@@ -1635,8 +1672,7 @@ void file_name()
   Serial.println(fileName);
   myFile.close();
   Serial.println("done.");
-  
-} 
+ } 
 void preob_num_str() // Программа формирования имени файла, состоящего из текущей даты и счетчика файлов
 {
 	DateTime now = RTC.now();
@@ -1705,7 +1741,7 @@ void control_command()
 	20 - Записать уровни порогов заводские
 	21 - Записать уровни порогов пользовательские
 	22 - Получить уровни порогов пользовательские
-
+	23 - Контроль имени файла
 	*/
 	UpdateRegs() ;
 
@@ -1796,6 +1832,9 @@ void control_command()
 				break;
         case 22:                                           // 22 - Получить уровни порогов пользовательские
 				read_mem_porog();
+				break;
+        case 23:   
+				controlFileName();                         // Контроль имени файла
 				break;
 		default:
 			wdt_reset();
