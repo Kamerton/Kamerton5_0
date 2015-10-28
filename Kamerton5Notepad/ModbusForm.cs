@@ -5649,7 +5649,7 @@ namespace KamertonTest
         {
             if (m_DocumentChanged)
                 MenuFileSaveAs();
-            this.Close();
+          //  this.Close();
         }
 
         private void menuEditUndo_Click(object sender, EventArgs e)
@@ -5902,10 +5902,39 @@ namespace KamertonTest
             colontitulPen.Dispose();
         }
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose(bool disposing)
+        {
+            if (m_DocumentChanged)
+                MenuFileSaveAs();
+
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose(disposing);
+        }
+
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (m_DocumentChanged)
+        //        MenuFileSaveAs();
+
+        //    if (disposing && (components != null))
+        //    {
+        //        components.Dispose();
+        //    }
+        //    base.Dispose(disposing);
 
 
 
-
+        //}
 
 
 

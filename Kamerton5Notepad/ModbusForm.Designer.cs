@@ -11,20 +11,20 @@ namespace KamertonTest
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (m_DocumentChanged)
-                MenuFileSaveAs();
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (m_DocumentChanged)
+        //        MenuFileSaveAs();
 
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+        //    if (disposing && (components != null))
+        //    {
+        //        components.Dispose();
+        //    }
+        //    base.Dispose(disposing);
 
 
 
-        }
+        //}
 
         #region Windows Form Designer generated code
 
