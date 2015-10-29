@@ -218,25 +218,6 @@ namespace KamertonTest
             System.IO.Directory.CreateDirectory(pathString);
             string fileName = System.IO.Path.GetRandomFileName();
             pathString = System.IO.Path.Combine(pathString, fileName);
-
-
-
-            //if (!System.IO.File.Exists(pathString))
-            //{
-            //    using (System.IO.FileStream fs = System.IO.File.Create(pathString))
-            //    {
-            //        //for (byte i = 0; i < 100; i++)
-            //        //{
-            //        //    fs.WriteByte(i);
-            //        //}
-            //    }
-            //}
-            //else
-            //{
-            //    Console.WriteLine("File \"{0}\" already exists.", fileName);
-            //    return;
-            //}
-
         }
 
 
@@ -2240,9 +2221,6 @@ namespace KamertonTest
         }
         private void tabPage4_Click(object sender, EventArgs e)
         {
-          //  Polltimer1.Enabled = true;
-              //Polltimer1.Enabled = false;
-              //toolStripStatusLabel3.Text = ("Notepad : " );
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
@@ -4950,13 +4928,28 @@ namespace KamertonTest
             textBox9.Text = ("");
             textBox8.Refresh();
             textBox9.Refresh();
+
+
+            startCoil = 125;   
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+            if (coilArr[0] == false) //есть ошибка
+            {
+                // Обработка ошибки.
+                textBox7.Text += ("Ошибка! SD память не установлена " + "\r\n");
+                textBox7.Text += ("Проверка остановлена. Установите  SD память " + "\r\n");
+                textBox7.Refresh();
+                Polltimer1.Enabled = true;
+            }
+            else
+            {
+            textBox7.Text += ("SD память установлена " + "\r\n");
+            textBox7.Refresh();
             //  0 в регистре означает завершение выполнения фрагмента проверки
             numRdRegs = 2;
             startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
             numCoils = 2;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
            // coilArr[0] = false;                                                                    // !!! Убрать, только для тестирования
-
             if (coilArr[0] == true)                                                                //есть ошибка
                 {
                     // Обработка ошибки.
@@ -4967,6 +4960,7 @@ namespace KamertonTest
                     label92.Text = ("");
                     textBox7.Text += ("Тест остановлен" + "\r\n");
                     progressBar2.Value = 0;
+                    Polltimer1.Enabled = false;
                  }
             else
                 {
@@ -5103,8 +5097,8 @@ namespace KamertonTest
      
                 timerTestAll.Enabled = true;
             
-        }
-
+          }
+         }
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
                 toolStripStatusLabel1.Text = "    MODBUS ON    ";
