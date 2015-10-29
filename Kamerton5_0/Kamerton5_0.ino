@@ -1027,6 +1027,7 @@ void sendPacketK ()
 	for (int i = 0; i <3; i++)
 		{
 			Serial1.write(regs_out[i]);
+			regBank.set(40001+i,regs_out[i]);
 		}
 }
 void waiting_for_replyK()                                  // Чтение данных из Камертона
@@ -6295,7 +6296,7 @@ modbus registers follow the following format
 	//regBank.add(30055);  // байт 4 прием бит 7 - Камертон   "0" 
 
 
-
+	//regBank.set(40004+buffer,Serial1.read());
 	regBank.add(40000);  // 
 	regBank.add(40001);  // 
 	regBank.add(40002);  // 
@@ -6939,6 +6940,8 @@ void setup()
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
+
+	//regBank.set(40004+buffer,Serial1.read());
 
 	regBank.set(21,0);                              // XP2-2     sensor "Маг."  
 	regBank.set(22,0);                              // XP5-3     sensor "ГГC."
