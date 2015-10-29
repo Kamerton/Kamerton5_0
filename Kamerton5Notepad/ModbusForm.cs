@@ -130,83 +130,112 @@ namespace KamertonTest
 
                         //cmdOpenSerial.Enabled = true;
                         //SetComPort();
-                        //Polltimer1.Enabled = false;
-
+  
+                        progressBar1.Value = 0;
+                        timer_byte_set.Enabled = false;
+                        Polltimer1.Enabled = true;
+                        startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                        if ((myProtocol != null))
+                            {
+                               res = myProtocol.writeCoil(slave, startCoil, false);                      // Отключить питание платы "Камертон"
+                            }
+                         else
+                            {
+                                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                            }
                         //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
                         break;
                 case 1:
-                        Polltimer1.Enabled = true;
+                        timer_byte_set.Enabled = false;                                            // Выполнение программы при переходе на вторую вкладку
                         ushort[] writeVals = new ushort[2];
                         bool[] coilArr = new bool[4];
                         startWrReg = 120;
-                        res = myProtocol.writeSingleRegister(slave, startWrReg, 23); // Контроль имени файла
-
-                        if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                        if ((myProtocol != null))
                         {
-                            toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                            toolStripStatusLabel1.BackColor = Color.Lime;
-                        }
+                            res = myProtocol.writeSingleRegister(slave, startWrReg, 23);              // Контроль имени файла
 
+                            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                            {
+                                toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                                toolStripStatusLabel1.BackColor = Color.Lime;
+                            }
+
+                            else
+                            {
+                                toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
+                                toolStripStatusLabel1.BackColor = Color.Red;
+                            }
+
+                        }
                         else
                         {
-                            toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
-                            toolStripStatusLabel1.BackColor = Color.Red;
+                            textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+
                         }
+
                         Thread.Sleep(250);
                        // test_end1();
-                        break;
+                       //   toolStripStatusLabel3.Text = ("Выбрана 2 вкладка");
+                        Polltimer1.Enabled = true;  
+                       break;
                 case 2:
 
-                        //Polltimer1.Enabled = false;                                                // Запретить опрос состояния
-                        //timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
-                        //timerCTS.Enabled = false;
-                        //timerTestAll.Enabled = false;
+                    Polltimer1.Enabled = false;                                                // Запретить опрос состояния
+                    timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
+                    timerCTS.Enabled = false;                                                  // !!!  Удалить везде
+                    timerTestAll.Enabled = false;
+                    timer_byte_set.Enabled = false;
+                    bool[] coilArrA = new bool[2];
+                    slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                    progressBar1.Value = 0;
+                    startCoil = 8;                                                             // Управление питанием платы "Камертон"
+                    if ((myProtocol != null))
+                    {
+                        res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
+                        Thread.Sleep(1700);
+                        button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
+                        button31.BackColor = Color.LightSalmon;
+                        label102.Text = "Выполняется контроль состояния сенсоров";
+                        label102.ForeColor = Color.DarkOliveGreen;
+                        numRdRegs = 2;
+                        startCoil = 124;                                                            // regBank.add(124);  
+                        numCoils = 2;
+                        res = myProtocol.readCoils(slave, startCoil, coilArrA, numCoils);            // Проверить Адрес 124  индикации подключения к модулю Аудио-1
+                        if (coilArrA[0] == true) //есть ошибка
+                        {
+                            textBox11.Text = ("Связь с модулем Аудио-1  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                        }
 
-                        //bool[] coilVals = new bool[200];
-                        //bool[] coilArr = new bool[2];
-                        //slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                        //progressBar1.Value = 0;
-                        //startCoil = 8;                                                             // Управление питанием платы "Камертон"
-                        //res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
-                        //Thread.Sleep(1700);
-                        //// button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
-                        //// button31.BackColor = Color.LightSalmon;
-                        //label102.Text = "Выполняется контроль состояния сенсоров";
-                        //label102.ForeColor = Color.DarkOliveGreen;
+                    }
+                    else
+                    {
+                        textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                    
+                    }
 
-                        //numRdRegs = 2;
-                        //startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
-                        //numCoils = 2;
-                        //res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-                        //if (coilArr[0] == true) //есть ошибка
-                        //{
-                        //// Обработка ошибки.
-                        //textBox11.Text = ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
-                        //}
-
-                        //timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
-
-                 //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
+                  
+                    timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
+                    //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
                     break;
                 case 3:
-                 //   toolStripStatusLabel3.Text = ("Выбрана 4 вкладка");
+                    timer_byte_set.Enabled = false;
+                    Polltimer1.Enabled = true;
+                    //   toolStripStatusLabel3.Text = ("Выбрана 4 вкладка");
                     break;
                 case 4:
-                 //   toolStripStatusLabel3.Text = ("Выбрана 5 вкладка");
+                    timer_byte_set.Enabled = false;
+                    Polltimer1.Enabled = true;
+                    //   toolStripStatusLabel3.Text = ("Выбрана 5 вкладка");
                     break;
                 case 5:
-                  //  System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
-                   // cmdOpenSerial.Enabled = false;
-                    // if (myProtocol.isOpen())
-                    //    myProtocol.closeProtocol();
-                    //myProtocol = null;
-                   // Polltimer1.Enabled = false;
-                 //   toolStripStatusLabel3.Text = ("Выбрана 6 вкладка");
+                    timer_byte_set.Enabled = false;
+                    Polltimer1.Enabled = true;
+                    //   toolStripStatusLabel3.Text = ("Выбрана 6 вкладка");
                     break;
 
-                //default:
-                //   // toolStripStatusLabel3.Text = ("Шойтан, как ты сюда попал?");
-                //    break;
+                default:
+
+                break;
             }
 
         }
@@ -735,7 +764,7 @@ namespace KamertonTest
         #endregion
 
         #region timer all
-        private void Polltimer1_Tick(object sender, EventArgs e)           // Выполняет контроль MODBUS и часов
+        private void Polltimer1_Tick(object sender, EventArgs e)                    // Выполняет контроль MODBUS и часов
         {
             if (portFound == true)
             {
@@ -746,8 +775,10 @@ namespace KamertonTest
                 int res;
 
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                startRdReg = 46; // 40046 Адрес дата/время контроллера  
+                startRdReg = 46;                                                     // 40046 Адрес дата/время контроллера  
                 numRdRegs = 8;
+      
+                
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -759,10 +790,9 @@ namespace KamertonTest
                     label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
                     startWrReg = 120;
-                    res = myProtocol.writeSingleRegister(slave, startWrReg, 23); // Контроль имени файла
+                    res = myProtocol.writeSingleRegister(slave, startWrReg, 23);      // Контроль имени файла
 
-
-                    startRdReg = 112; // 40112 Адрес дата/время контроллера  
+                    startRdReg = 112;                                                 // 40112 Адрес дата/время контроллера  
                     numRdRegs = 4;
                     res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                     lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
@@ -817,8 +847,7 @@ namespace KamertonTest
 
                 label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                 toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
-                //  timer_Mic_test.Enabled = false;
-            }
+             }
             else
             {
                 portFound = false;
@@ -851,749 +880,760 @@ namespace KamertonTest
             bool[] Dec_bin = new bool[64];
             startRdReg = 1;
             numRdRegs = 7;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);    // 03  Считать число из регистров по адресу  40000 -49999
-            label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
+
+            if ((myProtocol != null))
             {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-                for (int bite_x = 0; bite_x < 7; bite_x++)
+                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);    //  Считать число из регистров по адресу  40001 -40007
+                label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));  // В регистрах байты обмена прибора с модулем с Аудио - 1
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
-                    // textBox11.Text += (bite_x + "  ");
-                    decimalNum = readVals[bite_x];
-                    //    textBox11.Text += (decimalNum +  "\r\n");
-                    while (decimalNum > 0)
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                    for (int bite_x = 0; bite_x < 7; bite_x++)
                     {
-                        binaryHolder = decimalNum % 2;
-                        binaryResult += binaryHolder;
-                        decimalNum = decimalNum / 2;
-                    }
-
-                    int len_str = binaryResult.Length;
-
-                    while (len_str < 8)
-                    {
-                        binaryResult += 0;
-                        len_str++;
-                    }
-
-                    //****************** Перемена битов ***************************
-                    //binaryArray = binaryResult.ToCharArray();
-                    //Array.Reverse(binaryArray);
-                    //binaryResult = new string(binaryArray);
-                    //*************************************************************
-
-                    //  textBox11.Text = (textBox11.Text + (binaryResult + "\r\n"));
-
-                    for (i = 0; i < 8; i++)                         // 
-                    {
-                        if (binaryResult[i] == '1')
+                        // textBox11.Text += (bite_x + "  ");
+                        decimalNum = readVals[bite_x];
+                        //    textBox11.Text += (decimalNum +  "\r\n");
+                        while (decimalNum > 0)
                         {
-                            Dec_bin[i + (8 * bite_x)] = true;
+                            binaryHolder = decimalNum % 2;
+                            binaryResult += binaryHolder;
+                            decimalNum = decimalNum / 2;
                         }
-                        else
+
+                        int len_str = binaryResult.Length;
+
+                        while (len_str < 8)
                         {
-                            Dec_bin[i + (8 * bite_x)] = false;
+                            binaryResult += 0;
+                            len_str++;
                         }
-                        //   textBox11.Text = (textBox11.Text + (Dec_bin[i+(8*bite_x)] + " "));
+
+                        //****************** Перемена битов ***************************
+                        //binaryArray = binaryResult.ToCharArray();
+                        //Array.Reverse(binaryArray);
+                        //binaryResult = new string(binaryArray);
+                        //*************************************************************
+
+                        //  textBox11.Text = (textBox11.Text + (binaryResult + "\r\n"));
+
+                        for (i = 0; i < 8; i++)                         // 
+                        {
+                            if (binaryResult[i] == '1')
+                            {
+                                Dec_bin[i + (8 * bite_x)] = true;
+                            }
+                            else
+                            {
+                                Dec_bin[i + (8 * bite_x)] = false;
+                            }
+                            //   textBox11.Text = (textBox11.Text + (Dec_bin[i+(8*bite_x)] + " "));
+                        }
+                        binaryResult = "";
+                        //textBox11.Text += ("\r\n");
                     }
-                    binaryResult = "";
-                    //textBox11.Text += ("\r\n");
+
                 }
 
+                //*************************** Вывод состояния битов Камертона *****************************************
+
+                label30.Text = "";
+                label31.Text = "";
+                label32.Text = "";
+
+                label33.Text = "";
+                label34.Text = "";
+                label35.Text = "";
+                label36.Text = "";
+
+                for (i = 7; i >= 0; i--)
+                {
+                    if (Dec_bin[i] == true)
+                    {
+                        label30.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label30.Text += ("0" + "  ");
+                    }
+                    if (Dec_bin[i + 8] == true)
+                    {
+                        label31.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label31.Text += ("0" + "  ");
+                    }
+
+
+                    if (Dec_bin[i + 16] == true)
+                    {
+                        label32.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label32.Text += ("0" + "  ");
+                    }
+
+                    if (Dec_bin[i + 24] == true)
+                    {
+                        label33.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label33.Text += ("0" + "  ");
+                    }
+
+                    if (Dec_bin[i + 32] == true)
+                    {
+                        label34.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label34.Text += ("0" + "  ");
+                    }
+
+                    if (Dec_bin[i + 40] == true)
+                    {
+                        label35.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label35.Text += ("0" + "  ");
+                    }
+                    if (Dec_bin[i + 48] == true)
+                    {
+                        label36.Text += ("1" + "  ");
+                    }
+                    else
+                    {
+                        label36.Text += ("0" + "  ");
+                    }
+                }
+
+                //***********************************************************************************
+
+                if (Dec_bin[24] == false) // 30024 флаг подключения ГГ Радио2
+                {
+                    //label103.BackColor = Color.Red;
+                    //label103.Text = "0";
+                }
+                else
+                {
+                    //label103.BackColor = Color.Lime;
+                    //label103.Text = "1";
+                }
+                if (Dec_bin[25] == false) // 30025 флаг подключения ГГ Радио1
+                {
+                    //label104.BackColor = Color.Red;
+                    //label104.Text = "0";
+                }
+                else
+                {
+                    //label104.BackColor = Color.Lime;
+                    //label104.Text = "1";
+                }
+
+                if (Dec_bin[26] == false) // 30026 флаг подключения трубки
+                {
+                    label105.BackColor = Color.Red;
+                    label105.Text = "0";
+                }
+                else
+                {
+                    label105.BackColor = Color.Lime;
+                    label105.Text = "1";
+                }
+
+                if (Dec_bin[27] == false)   // 30027 флаг подключения ручной тангенты
+                {
+                    label106.BackColor = Color.Red;
+                    label106.Text = "0";
+                }
+                else
+                {
+                    label106.BackColor = Color.Lime;
+                    label106.Text = "1";
+                }
+
+                if (Dec_bin[28] == false)  // 30028 флаг подключения педали
+                {
+                    label107.BackColor = Color.Red;
+                    label107.Text = "0";
+                }
+                else
+                {
+                    label107.BackColor = Color.Lime;
+                    label107.Text = "1";
+                }
+
+                if (Dec_bin[40] == false) // 30040  флаг подключения магнитофона
+                {
+                    //label108.BackColor = Color.Red;
+                    //label108.Text = "0";
+                }
+                else
+                {
+                    //label108.BackColor = Color.Lime;
+                    //label108.Text = "1";
+                }
+
+                if (Dec_bin[41] == false) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
+                {
+                    label109.BackColor = Color.Red;
+                    label109.Text = "0";
+                }
+                else
+                {
+                    label109.BackColor = Color.Lime;
+                    label109.Text = "1";
+                }
+
+                if (Dec_bin[42] == false) // 30042  флаг подключения гарнитуры инструктора
+                {
+                    label110.BackColor = Color.Red;
+                    label110.Text = "0";
+                }
+                else
+                {
+                    label110.BackColor = Color.Lime;
+                    label110.Text = "1";
+                }
+
+                if (Dec_bin[43] == false) // 30043  флаг подключения гарнитуры диспетчера с 2 наушниками
+                {
+                    label111.BackColor = Color.Red;
+                    label111.Text = "0";
+                }
+                else
+                {
+                    label111.BackColor = Color.Lime;
+                    label111.Text = "1";
+                }
+
+                if (Dec_bin[44] == false) // 30044  флаг подключения гарнитуры диспетчера
+                {
+                    label112.BackColor = Color.Red;
+                    label112.Text = "0";
+                }
+                else
+                {
+                    label112.BackColor = Color.Lime;
+                    label112.Text = "1";
+                }
+
+                if (Dec_bin[45] == false) // 30045  флаг подключения микрофона XS1 - 6 Sence
+                {
+                    label113.BackColor = Color.Red;
+                    label113.Text = "0";
+                }
+                else
+                {
+                    label113.BackColor = Color.Lime;
+                    label113.Text = "1";
+                }
+
+                if (Dec_bin[46] == false) //  30046  флаг подключения ГГС
+                {
+                    //label115.BackColor = Color.Red;
+                    //label115.Text = "0";
+                }
+                else
+                {
+                    //label115.BackColor = Color.Lime;
+                    //label115.Text = "1";
+                }
+
+
+                if (Dec_bin[52] == false) // 30052   флаг выключения ГГС (Mute)
+                {
+                    label144.BackColor = Color.Red;
+                    label144.Text = "0";
+                }
+                else
+                {
+                    label144.BackColor = Color.Lime;
+                    label144.Text = "1";
+                }
+
+                if (Dec_bin[53] == false) // 30053   флаг радиопередачи
+                {
+                    label143.BackColor = Color.Red;
+                    label143.Text = "0";
+                }
+                else
+                {
+                    label143.BackColor = Color.Lime;
+                    label143.Text = "1";
+                }
+
+                if (Dec_bin[54] == false) // 30054   флаг управления микрофонами гарнитур
+                {
+                    label142.BackColor = Color.Red;
+                    label142.Text = "0";
+                }
+                else
+                {
+                    label142.BackColor = Color.Lime;
+                    label142.Text = "1";
+                }
+
+                //********************Вторая колонка ********************
+                startCoil = 1;  //  regBank.add(00001-9);   Отображение соостояния реле 0-7
+                numCoils = 8;
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+
+                    if (coilArr[0] == true)                              //   Реле RL0
+                    {
+                        button37.BackColor = Color.Lime;
+                        button48.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button48.BackColor = Color.Red;
+                        button37.BackColor = Color.White;
+                    }
+                    if (coilArr[1] == true)                              //   Реле RL1
+                    {
+                        button40.BackColor = Color.Lime;
+                        button53.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button53.BackColor = Color.Red;
+                        button40.BackColor = Color.White;
+                    }
+                    if (coilArr[2] == true)                              //   Реле RL2
+                    {
+                        button44.BackColor = Color.Lime;
+                        button79.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button79.BackColor = Color.Red;
+                        button44.BackColor = Color.White;
+                    }
+                    if (coilArr[3] == true)                              //   Реле RL3
+                    {
+                        button49.BackColor = Color.Lime;
+                        button66.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button66.BackColor = Color.Red;
+                        button49.BackColor = Color.White;
+                    }
+                    if (coilArr[4] == true)                              //   Реле RL4
+                    {
+                        button38.BackColor = Color.Lime;
+                        button52.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button52.BackColor = Color.Red;
+                        button38.BackColor = Color.White;
+                    }
+                    if (coilArr[5] == true)                              //   Реле RL5
+                    {
+                        button71.BackColor = Color.Lime;
+                        button47.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button47.BackColor = Color.Red;
+                        button71.BackColor = Color.White;
+                    }
+                    if (coilArr[6] == true)                              //   Реле RL6
+                    {
+                        button69.BackColor = Color.Lime;
+                        button42.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button42.BackColor = Color.Red;
+                        button69.BackColor = Color.White;
+                    }
+                    if (coilArr[7] == true)                              //   Реле RL7
+                    {
+                        button51.BackColor = Color.Lime;
+                        button45.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button45.BackColor = Color.Red;
+                        button51.BackColor = Color.White;
+                    }
+
+                }
+
+                startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
+                numCoils = 8;
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+
+                    if (coilArr[0] == true)                              //   Реле RL8 Звук на микрофон regBank.add(9)
+                    {
+                        button46.BackColor = Color.Lime;
+                        button50.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button50.BackColor = Color.Red;
+                        button46.BackColor = Color.White;
+                    }
+                    if (coilArr[1] == true)                              //   Реле RL9  XP1 10 regBank.add(10)
+                    {
+                        button27.BackColor = Color.Lime;
+                        button30.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button30.BackColor = Color.Red;
+                        button27.BackColor = Color.White;
+                    }
+
+                    if (coilArr[2] == true)                              //   Свободен regBank.add(11)
+                    {
+                        button2.BackColor = Color.Lime;
+                        button81.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button81.BackColor = Color.Red;
+                        button2.BackColor = Color.White;
+                    }
+
+                    if (coilArr[3] == true)                                //   Свободен regBank.add(12)
+                    {
+                        //button27.BackColor = Color.Lime;
+                        //button30.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        //button30.BackColor = Color.Red;
+                        //button27.BackColor = Color.White;
+                    }
+
+
+                    if (coilArr[4] == true)                             // XP8 - 2  Sence Танг н. regBank.add(13)
+                    {
+                        button59.BackColor = Color.Lime;
+                        button74.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button74.BackColor = Color.Red;
+                        button59.BackColor = Color.White;
+                    }
+                    if (coilArr[5] == true)                             //XP8 - 1  PTT Танг н. regBank.add(14)
+                    {
+                        button39.BackColor = Color.Lime;
+                        button41.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button41.BackColor = Color.Red;
+                        button39.BackColor = Color.White;
+                    }
+                    if (coilArr[6] == true)                             // XS1 - 5   PTT Мик  regBank.add(15)
+                    {
+                        button7.BackColor = Color.Lime;
+                        button18.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button18.BackColor = Color.Red;
+                        button7.BackColor = Color.White;
+                    }
+                    if (coilArr[7] == true)                             // XS1 - 6 Sence Мик. regBank.add(16)
+                    {
+                        button33.BackColor = Color.Lime;
+                        button34.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button34.BackColor = Color.Red;
+                        button33.BackColor = Color.White;
+                    }
+                }
+
+                startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
+                numCoils = 8;
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    if (coilArr[0] == true)                             // XP7 4 PTT2 Танг. р.  regBank.add(17)
+                    {
+                        button14.BackColor = Color.Lime;
+                        button29.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button29.BackColor = Color.Red;
+                        button14.BackColor = Color.White;
+                    }
+                    if (coilArr[1] == true)                             // XP1 - 20  HangUp  DCD regBank.add(18)
+                    {
+                        button19.BackColor = Color.Lime;
+                        button26.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button26.BackColor = Color.Red;
+                        button19.BackColor = Color.White;
+                    }
+                    if (coilArr[2] == true)                             // J8-11     XP7 2 Sence  Танг. р. regBank.add(19)
+                    {
+                        button58.BackColor = Color.Lime;
+                        button72.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button72.BackColor = Color.Red;
+                        button58.BackColor = Color.White;
+                    }
+                    if (coilArr[3] == true)                             //  XP7 1 PTT1 Танг. р.  regBank.add(20)
+                    {
+                        button10.BackColor = Color.Lime;
+                        button23.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button23.BackColor = Color.Red;
+                        button10.BackColor = Color.White;
+                    }
+                    if (coilArr[4] == true)                             // XP2-2    Sence "Маг." 
+                    {
+                        //button60.BackColor = Color.Lime;
+                        //button76.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        //button76.BackColor = Color.Red;
+                        //button60.BackColor = Color.White;
+                    }
+                    if (coilArr[5] == true)                             // XP5-3    Sence "ГГC."
+                    {
+                        button35.BackColor = Color.Lime;
+                        button36.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button36.BackColor = Color.Red;
+                        button35.BackColor = Color.White;
+                    }
+                    if (coilArr[6] == true)                             // XP3-3    Sence "ГГ-Радио1."
+                    {
+                        button56.BackColor = Color.Lime;
+                        button68.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button68.BackColor = Color.Red;
+                        button56.BackColor = Color.White;
+                    }
+                    if (coilArr[7] == true)                             // XP4-3    Sence "ГГ-Радио2."
+                    {
+                        button55.BackColor = Color.Lime;
+                        button67.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button67.BackColor = Color.Red;
+                        button55.BackColor = Color.White;
+                    }
+
+                }
+
+                startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
+                numCoils = 8;
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
+                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+
+
+                    if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
+                    {
+                        button57.BackColor = Color.Lime;
+                        button70.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button70.BackColor = Color.Red;
+                        button57.BackColor = Color.White;
+                    }
+
+                    if (coilArr[1] == true)                             // XP1- 17 HaSPTT    CTS DSR вкл. 
+                    {
+                        button16.BackColor = Color.Lime;
+                        button20.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button20.BackColor = Color.Red;
+                        button16.BackColor = Color.White;
+                    }
+
+
+
+                    if (coilArr[2] == true)                             // XP1- 16 HeS2Rs    флаг подключения гарнитуры инструктора с 2 наушниками
+                    {
+                        button61.BackColor = Color.Lime;
+                        button78.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button78.BackColor = Color.Red;
+                        button61.BackColor = Color.White;
+                    }
+
+
+                    if (coilArr[3] == true)                             // XP1- 15 HeS2PTT   CTS вкл
+                    {
+                        button28.BackColor = Color.Lime;
+                        button17.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button17.BackColor = Color.Red;
+                        button28.BackColor = Color.White;
+                    }
+
+                    if (coilArr[4] == true)                             //    XP1- 13 HeS2Ls    флаг подключения гарнитуры инструктора 
+                    {
+                        button62.BackColor = Color.Lime;
+                        button77.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button77.BackColor = Color.Red;
+                        button62.BackColor = Color.White;
+                    }
+
+                    if (coilArr[5] == true)                             //    XP1- 6  HeS1PTT   CTS вкл
+                    {
+                        button8.BackColor = Color.Lime;
+                        button22.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button22.BackColor = Color.Red;
+                        button8.BackColor = Color.White;
+                    }
+
+                    if (coilArr[6] == true)                             //   XP1- 5  HeS1Rs    Флаг подкючения гарнитуры диспетчера с 2 наушниками
+                    {
+                        button63.BackColor = Color.Lime;
+                        button75.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button75.BackColor = Color.Red;
+                        button63.BackColor = Color.White;
+                    }
+
+                    if (coilArr[7] == true)                             //    XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
+                    {
+                        button64.BackColor = Color.Lime;
+                        button73.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        button73.BackColor = Color.Red;
+                        button64.BackColor = Color.White;
+                    }
+
+
+                }
+
+                startCoil = 81;  // Флаг 
+                numCoils = 4;
+                res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
+                lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    if (coilArr[0] == false) // бит CTS - 1x81 
+                    {
+                        label156.BackColor = Color.Red;
+                        label156.Text = "1";
+                    }
+                    else
+                    {
+                        label156.BackColor = Color.Lime;
+                        label156.Text = "0";
+                    }
+                    if (coilArr[1] == false) // бит DSR - 1x82  
+                    {
+                        label155.BackColor = Color.Red;
+                        label155.Text = "1";
+                    }
+                    else
+                    {
+                        label155.BackColor = Color.Lime;
+                        label155.Text = "0";
+                    }
+                    if (coilArr[2] == false) // // бит DCD -  1x83
+                    {
+                        label152.BackColor = Color.Red;
+                        label152.Text = "1";
+                    }
+                    else
+                    {
+                        label152.BackColor = Color.Lime;
+                        label152.Text = "0";
+                    }
+
+                }
+
+                progressBar1.Value += 1;
+                label114.Text = ("" + progressBar1.Value);
+                if (progressBar1.Value == progressBar1.Maximum)
+                {
+                    progressBar1.Value = 0;
+                }
+
+                if ((res == BusProtocolErrors.FTALK_SUCCESS))
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                    label83.Text = "";
+                    label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
+                }
+                else
+                {
+                    toolStripStatusLabel1.Text = "    MODBUS ERROR (1)  ";
+                    toolStripStatusLabel1.BackColor = Color.Red;
+                    // Polltimer1.Enabled = false;
+                    timer_Mic_test.Enabled = false;
+                    portFound = false;
+                    find_com_port.Enabled = true;
+                    // SetComPort();
+                }
+                label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+                toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
             }
 
-            //*************************** Вывод состояния битов Камертона *****************************************
-
-            label30.Text = "";
-            label31.Text = "";
-            label32.Text = "";
-
-            label33.Text = "";
-            label34.Text = "";
-            label35.Text = "";
-            label36.Text = "";
-
-            for (i = 7; i >= 0; i--)
-            {
-                if (Dec_bin[i] == true)
-                {
-                    label30.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label30.Text += ("0" + "  ");
-                }
-                if (Dec_bin[i + 8] == true)
-                {
-                    label31.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label31.Text += ("0" + "  ");
-                }
-
-
-                if (Dec_bin[i + 16] == true)
-                {
-                    label32.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label32.Text += ("0" + "  ");
-                }
-
-                if (Dec_bin[i + 24] == true)
-                {
-                    label33.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label33.Text += ("0" + "  ");
-                }
-
-                if (Dec_bin[i + 32] == true)
-                {
-                    label34.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label34.Text += ("0" + "  ");
-                }
-
-                if (Dec_bin[i + 40] == true)
-                {
-                    label35.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label35.Text += ("0" + "  ");
-                }
-                if (Dec_bin[i + 48] == true)
-                {
-                    label36.Text += ("1" + "  ");
-                }
-                else
-                {
-                    label36.Text += ("0" + "  ");
-                }
-            }
-
-            //***********************************************************************************
-
-            if (Dec_bin[24] == false) // 30024 флаг подключения ГГ Радио2
-            {
-                //label103.BackColor = Color.Red;
-                //label103.Text = "0";
-            }
             else
             {
-                //label103.BackColor = Color.Lime;
-                //label103.Text = "1";
-            }
-            if (Dec_bin[25] == false) // 30025 флаг подключения ГГ Радио1
-            {
-                //label104.BackColor = Color.Red;
-                //label104.Text = "0";
-            }
-            else
-            {
-                //label104.BackColor = Color.Lime;
-                //label104.Text = "1";
-            }
-
-            if (Dec_bin[26] == false) // 30026 флаг подключения трубки
-            {
-                label105.BackColor = Color.Red;
-                label105.Text = "0";
-            }
-            else
-            {
-                label105.BackColor = Color.Lime;
-                label105.Text = "1";
-            }
-
-            if (Dec_bin[27] == false)   // 30027 флаг подключения ручной тангенты
-            {
-                label106.BackColor = Color.Red;
-                label106.Text = "0";
-            }
-            else
-            {
-                label106.BackColor = Color.Lime;
-                label106.Text = "1";
-            }
-
-            if (Dec_bin[28] == false)  // 30028 флаг подключения педали
-            {
-                label107.BackColor = Color.Red;
-                label107.Text = "0";
-            }
-            else
-            {
-                label107.BackColor = Color.Lime;
-                label107.Text = "1";
-            }
-
-            if (Dec_bin[40] == false) // 30040  флаг подключения магнитофона
-            {
-                //label108.BackColor = Color.Red;
-                //label108.Text = "0";
-            }
-            else
-            {
-                //label108.BackColor = Color.Lime;
-                //label108.Text = "1";
-            }
-
-            if (Dec_bin[41] == false) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
-            {
-                label109.BackColor = Color.Red;
-                label109.Text = "0";
-            }
-            else
-            {
-                label109.BackColor = Color.Lime;
-                label109.Text = "1";
-            }
-
-            if (Dec_bin[42] == false) // 30042  флаг подключения гарнитуры инструктора
-            {
-                label110.BackColor = Color.Red;
-                label110.Text = "0";
-            }
-            else
-            {
-                label110.BackColor = Color.Lime;
-                label110.Text = "1";
-            }
-
-            if (Dec_bin[43] == false) // 30043  флаг подключения гарнитуры диспетчера с 2 наушниками
-            {
-                label111.BackColor = Color.Red;
-                label111.Text = "0";
-            }
-            else
-            {
-                label111.BackColor = Color.Lime;
-                label111.Text = "1";
-            }
-
-            if (Dec_bin[44] == false) // 30044  флаг подключения гарнитуры диспетчера
-            {
-                label112.BackColor = Color.Red;
-                label112.Text = "0";
-            }
-            else
-            {
-                label112.BackColor = Color.Lime;
-                label112.Text = "1";
-            }
-
-            if (Dec_bin[45] == false) // 30045  флаг подключения микрофона XS1 - 6 Sence
-            {
-                label113.BackColor = Color.Red;
-                label113.Text = "0";
-            }
-            else
-            {
-                label113.BackColor = Color.Lime;
-                label113.Text = "1";
-            }
-
-            if (Dec_bin[46] == false) //  30046  флаг подключения ГГС
-            {
-                //label115.BackColor = Color.Red;
-                //label115.Text = "0";
-            }
-            else
-            {
-                //label115.BackColor = Color.Lime;
-                //label115.Text = "1";
-            }
-
-
-            if (Dec_bin[52] == false) // 30052   флаг выключения ГГС (Mute)
-            {
-                label144.BackColor = Color.Red;
-                label144.Text = "0";
-            }
-            else
-            {
-                label144.BackColor = Color.Lime;
-                label144.Text = "1";
-            }
-
-            if (Dec_bin[53] == false) // 30053   флаг радиопередачи
-            {
-                label143.BackColor = Color.Red;
-                label143.Text = "0";
-            }
-            else
-            {
-                label143.BackColor = Color.Lime;
-                label143.Text = "1";
-            }
-
-            if (Dec_bin[54] == false) // 30054   флаг управления микрофонами гарнитур
-            {
-                label142.BackColor = Color.Red;
-                label142.Text = "0";
-            }
-            else
-            {
-                label142.BackColor = Color.Lime;
-                label142.Text = "1";
-            }
-
-            //********************Вторая колонка ********************
-            startCoil = 1;  //  regBank.add(00001-9);   Отображение соостояния реле 0-7
-            numCoils = 8;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                if (coilArr[0] == true)                              //   Реле RL0
-                {
-                    button37.BackColor = Color.Lime;
-                    button48.BackColor = Color.White;
-                }
-                else
-                {
-                    button48.BackColor = Color.Red;
-                    button37.BackColor = Color.White;
-                }
-                if (coilArr[1] == true)                              //   Реле RL1
-                {
-                    button40.BackColor = Color.Lime;
-                    button53.BackColor = Color.White;
-                }
-                else
-                {
-                    button53.BackColor = Color.Red;
-                    button40.BackColor = Color.White;
-                }
-                if (coilArr[2] == true)                              //   Реле RL2
-                {
-                    button44.BackColor = Color.Lime;
-                    button79.BackColor = Color.White;
-                }
-                else
-                {
-                    button79.BackColor = Color.Red;
-                    button44.BackColor = Color.White;
-                }
-                if (coilArr[3] == true)                              //   Реле RL3
-                {
-                    button49.BackColor = Color.Lime;
-                    button66.BackColor = Color.White;
-                }
-                else
-                {
-                    button66.BackColor = Color.Red;
-                    button49.BackColor = Color.White;
-                }
-                if (coilArr[4] == true)                              //   Реле RL4
-                {
-                    button38.BackColor = Color.Lime;
-                    button52.BackColor = Color.White;
-                }
-                else
-                {
-                    button52.BackColor = Color.Red;
-                    button38.BackColor = Color.White;
-                }
-                if (coilArr[5] == true)                              //   Реле RL5
-                {
-                    button71.BackColor = Color.Lime;
-                    button47.BackColor = Color.White;
-                }
-                else
-                {
-                    button47.BackColor = Color.Red;
-                    button71.BackColor = Color.White;
-                }
-                if (coilArr[6] == true)                              //   Реле RL6
-                {
-                    button69.BackColor = Color.Lime;
-                    button42.BackColor = Color.White;
-                }
-                else
-                {
-                    button42.BackColor = Color.Red;
-                    button69.BackColor = Color.White;
-                }
-                if (coilArr[7] == true)                              //   Реле RL7
-                {
-                    button51.BackColor = Color.Lime;
-                    button45.BackColor = Color.White;
-                }
-                else
-                {
-                    button45.BackColor = Color.Red;
-                    button51.BackColor = Color.White;
-                }
+                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
 
             }
 
-            startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
-            numCoils = 8;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                if (coilArr[0] == true)                              //   Реле RL8 Звук на микрофон regBank.add(9)
-                {
-                    button46.BackColor = Color.Lime;
-                    button50.BackColor = Color.White;
-                }
-                else
-                {
-                    button50.BackColor = Color.Red;
-                    button46.BackColor = Color.White;
-                }
-                if (coilArr[1] == true)                              //   Реле RL9  XP1 10 regBank.add(10)
-                {
-                    button27.BackColor = Color.Lime;
-                    button30.BackColor = Color.White;
-                }
-                else
-                {
-                    button30.BackColor = Color.Red;
-                    button27.BackColor = Color.White;
-                }
-
-                if (coilArr[2] == true)                              //   Свободен regBank.add(11)
-                {
-                    button2.BackColor = Color.Lime;
-                    button81.BackColor = Color.White;
-                }
-                else
-                {
-                    button81.BackColor = Color.Red;
-                    button2.BackColor = Color.White;
-                }
-
-                if (coilArr[3] == true)                                //   Свободен regBank.add(12)
-                {
-                    //button27.BackColor = Color.Lime;
-                    //button30.BackColor = Color.White;
-                }
-                else
-                {
-                    //button30.BackColor = Color.Red;
-                    //button27.BackColor = Color.White;
-                }
-
-
-                if (coilArr[4] == true)                             // XP8 - 2  Sence Танг н. regBank.add(13)
-                {
-                    button59.BackColor = Color.Lime;
-                    button74.BackColor = Color.White;
-                }
-                else
-                {
-                    button74.BackColor = Color.Red;
-                    button59.BackColor = Color.White;
-                }
-                if (coilArr[5] == true)                             //XP8 - 1  PTT Танг н. regBank.add(14)
-                {
-                    button39.BackColor = Color.Lime;
-                    button41.BackColor = Color.White;
-                }
-                else
-                {
-                    button41.BackColor = Color.Red;
-                    button39.BackColor = Color.White;
-                }
-                if (coilArr[6] == true)                             // XS1 - 5   PTT Мик  regBank.add(15)
-                {
-                    button7.BackColor = Color.Lime;
-                    button18.BackColor = Color.White;
-                }
-                else
-                {
-                    button18.BackColor = Color.Red;
-                    button7.BackColor = Color.White;
-                }
-                if (coilArr[7] == true)                             // XS1 - 6 Sence Мик. regBank.add(16)
-                {
-                    button33.BackColor = Color.Lime;
-                    button34.BackColor = Color.White;
-                }
-                else
-                {
-                    button34.BackColor = Color.Red;
-                    button33.BackColor = Color.White;
-                }
-            }
-
-            startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
-            numCoils = 8;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                if (coilArr[0] == true)                             // XP7 4 PTT2 Танг. р.  regBank.add(17)
-                {
-                    button14.BackColor = Color.Lime;
-                    button29.BackColor = Color.White;
-                }
-                else
-                {
-                    button29.BackColor = Color.Red;
-                    button14.BackColor = Color.White;
-                }
-                if (coilArr[1] == true)                             // XP1 - 20  HangUp  DCD regBank.add(18)
-                {
-                    button19.BackColor = Color.Lime;
-                    button26.BackColor = Color.White;
-                }
-                else
-                {
-                    button26.BackColor = Color.Red;
-                    button19.BackColor = Color.White;
-                }
-                if (coilArr[2] == true)                             // J8-11     XP7 2 Sence  Танг. р. regBank.add(19)
-                {
-                    button58.BackColor = Color.Lime;
-                    button72.BackColor = Color.White;
-                }
-                else
-                {
-                    button72.BackColor = Color.Red;
-                    button58.BackColor = Color.White;
-                }
-                if (coilArr[3] == true)                             //  XP7 1 PTT1 Танг. р.  regBank.add(20)
-                {
-                    button10.BackColor = Color.Lime;
-                    button23.BackColor = Color.White;
-                }
-                else
-                {
-                    button23.BackColor = Color.Red;
-                    button10.BackColor = Color.White;
-                }
-                if (coilArr[4] == true)                             // XP2-2    Sence "Маг." 
-                {
-                    //button60.BackColor = Color.Lime;
-                    //button76.BackColor = Color.White;
-                }
-                else
-                {
-                    //button76.BackColor = Color.Red;
-                    //button60.BackColor = Color.White;
-                }
-                if (coilArr[5] == true)                             // XP5-3    Sence "ГГC."
-                {
-                    button35.BackColor = Color.Lime;
-                    button36.BackColor = Color.White;
-                }
-                else
-                {
-                    button36.BackColor = Color.Red;
-                    button35.BackColor = Color.White;
-                }
-                if (coilArr[6] == true)                             // XP3-3    Sence "ГГ-Радио1."
-                {
-                    button56.BackColor = Color.Lime;
-                    button68.BackColor = Color.White;
-                }
-                else
-                {
-                    button68.BackColor = Color.Red;
-                    button56.BackColor = Color.White;
-                }
-                if (coilArr[7] == true)                             // XP4-3    Sence "ГГ-Радио2."
-                {
-                    button55.BackColor = Color.Lime;
-                    button67.BackColor = Color.White;
-                }
-                else
-                {
-                    button67.BackColor = Color.Red;
-                    button55.BackColor = Color.White;
-                }
-
-            }
-
-            startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
-            numCoils = 8;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-
-                if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
-                {
-                    button57.BackColor = Color.Lime;
-                    button70.BackColor = Color.White;
-                }
-                else
-                {
-                    button70.BackColor = Color.Red;
-                    button57.BackColor = Color.White;
-                }
-
-                if (coilArr[1] == true)                             // XP1- 17 HaSPTT    CTS DSR вкл. 
-                {
-                    button16.BackColor = Color.Lime;
-                    button20.BackColor = Color.White;
-                }
-                else
-                {
-                    button20.BackColor = Color.Red;
-                    button16.BackColor = Color.White;
-                }
-
-
-
-                if (coilArr[2] == true)                             // XP1- 16 HeS2Rs    флаг подключения гарнитуры инструктора с 2 наушниками
-                {
-                    button61.BackColor = Color.Lime;
-                    button78.BackColor = Color.White;
-                }
-                else
-                {
-                    button78.BackColor = Color.Red;
-                    button61.BackColor = Color.White;
-                }
-
-
-                if (coilArr[3] == true)                             // XP1- 15 HeS2PTT   CTS вкл
-                {
-                    button28.BackColor = Color.Lime;
-                    button17.BackColor = Color.White;
-                }
-                else
-                {
-                    button17.BackColor = Color.Red;
-                    button28.BackColor = Color.White;
-                }
-
-                if (coilArr[4] == true)                             //    XP1- 13 HeS2Ls    флаг подключения гарнитуры инструктора 
-                {
-                    button62.BackColor = Color.Lime;
-                    button77.BackColor = Color.White;
-                }
-                else
-                {
-                    button77.BackColor = Color.Red;
-                    button62.BackColor = Color.White;
-                }
-
-                if (coilArr[5] == true)                             //    XP1- 6  HeS1PTT   CTS вкл
-                {
-                    button8.BackColor = Color.Lime;
-                    button22.BackColor = Color.White;
-                }
-                else
-                {
-                    button22.BackColor = Color.Red;
-                    button8.BackColor = Color.White;
-                }
-
-                if (coilArr[6] == true)                             //   XP1- 5  HeS1Rs    Флаг подкючения гарнитуры диспетчера с 2 наушниками
-                {
-                    button63.BackColor = Color.Lime;
-                    button75.BackColor = Color.White;
-                }
-                else
-                {
-                    button75.BackColor = Color.Red;
-                    button63.BackColor = Color.White;
-                }
-
-                if (coilArr[7] == true)                             //    XP1- 1  HeS1Ls    Флаг подкючения гарнитуры диспетчера
-                {
-                    button64.BackColor = Color.Lime;
-                    button73.BackColor = Color.White;
-                }
-                else
-                {
-                    button73.BackColor = Color.Red;
-                    button64.BackColor = Color.White;
-                }
-
-
-            }
-
-            startCoil = 81;  // Флаг 
-            numCoils = 4;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                if (coilArr[0] == false) // бит CTS - 1x81 
-                {
-                    label156.BackColor = Color.Red;
-                    label156.Text = "1";
-                }
-                else
-                {
-                    label156.BackColor = Color.Lime;
-                    label156.Text = "0";
-                }
-                if (coilArr[1] == false) // бит DSR - 1x82  
-                {
-                    label155.BackColor = Color.Red;
-                    label155.Text = "1";
-                }
-                else
-                {
-                    label155.BackColor = Color.Lime;
-                    label155.Text = "0";
-                }
-                if (coilArr[2] == false) // // бит DCD -  1x83
-                {
-                    label152.BackColor = Color.Red;
-                    label152.Text = "1";
-                }
-                else
-                {
-                    label152.BackColor = Color.Lime;
-                    label152.Text = "0";
-                }
-
-            }
-
-            progressBar1.Value += 1;
-            label114.Text = ("" + progressBar1.Value);
-            if (progressBar1.Value == progressBar1.Maximum)
-            {
-                progressBar1.Value = 0;
-            }
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-                label83.Text = "";
-                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR (1)  ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                // Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                portFound = false;
-                find_com_port.Enabled = true;
-               // SetComPort();
-            }
-            label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
         private void timerCTS_Tick(object sender, EventArgs e)
         {
@@ -2243,25 +2283,33 @@ namespace KamertonTest
             int numVal = -1;
 
             //    string command = DateTime.Parse(label80.Text, CultureInfo.CurrentCulture).ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
+           if ((myProtocol != null))
+            {
+                string command = label80.Text;
+                numVal = Convert.ToInt32(command.Substring(0, 2), CultureInfo.CurrentCulture);
+                writeVals[0] = (ushort)numVal;   // 
+                numVal = Convert.ToInt32(command.Substring(3, 2), CultureInfo.CurrentCulture);
+                writeVals[1] = (ushort)numVal;   // 
+                numVal = Convert.ToInt32(command.Substring(6, 4), CultureInfo.CurrentCulture);
+                writeVals[2] = (ushort)numVal;   // 
+                numVal = Convert.ToInt32(command.Substring(11, 2), CultureInfo.CurrentCulture);
+                writeVals[3] = (ushort)numVal;   // 
+                numVal = Convert.ToInt32(command.Substring(14, 2), CultureInfo.CurrentCulture);
+                writeVals[4] = (ushort)numVal;   // 
 
-            string command = label80.Text;
-            numVal = Convert.ToInt32(command.Substring(0, 2), CultureInfo.CurrentCulture);
-            writeVals[0] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(3, 2), CultureInfo.CurrentCulture);
-            writeVals[1] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(6, 4), CultureInfo.CurrentCulture);
-            writeVals[2] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(11, 2), CultureInfo.CurrentCulture);
-            writeVals[3] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(14, 2), CultureInfo.CurrentCulture);
-            writeVals[4] = (ushort)numVal;   // 
+                startWrReg = 52;
+                numWrRegs = 6;   //
+                res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+                startWrReg = 120;
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                          // Записать системное время
+            }
+            else
+            {
+                label78.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
 
-            startWrReg = 52;
-            numWrRegs = 6;   //
+            }
 
-            res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                          // Записать системное время
+
         }
 
         private void button4_Click(object sender, EventArgs e)                         // Записать пользовательское время
@@ -2275,27 +2323,32 @@ namespace KamertonTest
             int numWrRegs;   //
 
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
             int numVal = -1;
+            if ((myProtocol != null))
+                {
+                    string command = dateTimePicker1.Value.ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
 
-            string command = dateTimePicker1.Value.ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
-
-            numVal = Convert.ToInt32(command.Substring(0, 2), CultureInfo.CurrentCulture);
-            writeVals[0] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(2, 2), CultureInfo.CurrentCulture);
-            writeVals[1] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(4, 4), CultureInfo.CurrentCulture);
-            writeVals[2] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(8, 2), CultureInfo.CurrentCulture);
-            writeVals[3] = (ushort)numVal;   // 
-            numVal = Convert.ToInt32(command.Substring(10, 2), CultureInfo.CurrentCulture);
-            writeVals[4] = (ushort)numVal;   // 
-
-            startWrReg = 52;
-            numWrRegs = 6;   //
-            res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-            startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                       // Записать новое время пользователя
+                    numVal = Convert.ToInt32(command.Substring(0, 2), CultureInfo.CurrentCulture);
+                    writeVals[0] = (ushort)numVal;   // 
+                    numVal = Convert.ToInt32(command.Substring(2, 2), CultureInfo.CurrentCulture);
+                    writeVals[1] = (ushort)numVal;   // 
+                    numVal = Convert.ToInt32(command.Substring(4, 4), CultureInfo.CurrentCulture);
+                    writeVals[2] = (ushort)numVal;   // 
+                    numVal = Convert.ToInt32(command.Substring(8, 2), CultureInfo.CurrentCulture);
+                    writeVals[3] = (ushort)numVal;   // 
+                    numVal = Convert.ToInt32(command.Substring(10, 2), CultureInfo.CurrentCulture);
+                    writeVals[4] = (ushort)numVal;   // 
+                    startWrReg = 52;
+                    numWrRegs = 6;   //
+                    res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+                    startWrReg = 120;
+                    res = myProtocol.writeSingleRegister(slave, startWrReg, 14);                       // Записать новое время пользователя
+                }
+           else
+                {
+                    label78.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                    
+                }
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -2599,36 +2652,43 @@ namespace KamertonTest
 
             }
         }
-
-        private void button32_Click(object sender, EventArgs e)                        //Старт теста "Байты обмена с Камертон"
+//  
+        private void button32_Click(object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
         {
             Polltimer1.Enabled = false;                                                // Запретить опрос состояния
-            timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона
-            timerCTS.Enabled = false;
+            timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
+            timerCTS.Enabled = false;                                                  // !!!  Удалить везде
             timerTestAll.Enabled = false;
-
-
-            bool[] coilVals = new bool[200];
             bool[] coilArr = new bool[2];
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             progressBar1.Value = 0;
             startCoil = 8;                                                             // Управление питанием платы "Камертон"
-            res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
-            Thread.Sleep(1700);
-            button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
-            button31.BackColor = Color.LightSalmon;
-            label102.Text = "Выполняется контроль состояния сенсоров";
-            label102.ForeColor = Color.DarkOliveGreen;
+            if ((myProtocol != null))
+                {
 
-            numRdRegs = 2;
-            startCoil = 124;                                                                      // regBank.add(120);  Флаг индикации возникновения любой ошибки
-            numCoils = 2;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
-            if (coilArr[0] == true) //есть ошибка
+                    res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
+                    Thread.Sleep(1700);
+                    button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
+                    button31.BackColor = Color.LightSalmon;
+                    label102.Text = "Выполняется контроль состояния сенсоров";
+                    label102.ForeColor = Color.DarkOliveGreen;
+
+                    numRdRegs = 2;
+                    startCoil = 124;                                                            // regBank.add(124);  
+                    numCoils = 2;
+                    res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);            // Проверить Адрес 124  индикации подключения к модулю Аудио-1
+                    if (coilArr[0] == true) //есть ошибка
+                    {
+                        // Обработка ошибки.
+                        textBox11.Text = ("Связь с модулем Аудио-1  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                    }
+                }
+            else
             {
-                // Обработка ошибки.
-                textBox11.Text = ("Связь со звуковой платой Камертон НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+
             }
+
 
             timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
@@ -2636,9 +2696,9 @@ namespace KamertonTest
 
         private void button31_Click(object sender, EventArgs e)                       //Останов теста "Байты обмена с Камертон"
         {
-            startCoil = 33; // Остановить тест CTS
+            //startCoil = 33; // Остановить тест CTS
 
-            res = myProtocol.writeCoil(slave, startCoil, false);
+            //res = myProtocol.writeCoil(slave, startCoil, false);
             button31.BackColor = Color.Red;
             button32.BackColor = Color.White;
             label102.Text = "Контроль состояния сенсоров ОСТАНОВЛЕН";
@@ -2648,7 +2708,16 @@ namespace KamertonTest
             Polltimer1.Enabled = true;
             textBox11.Text = "";
             startCoil = 8;                                                            // Управление питанием платы "Камертон"
-            res = myProtocol.writeCoil(slave, startCoil, false);                      // Отключить питание платы "Камертон"
+            if ((myProtocol != null))
+                {
+                    res = myProtocol.writeCoil(slave, startCoil, false);                      // Отключить питание платы "Камертон"
+                }
+
+            else
+                {
+                    textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                    
+                }
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
@@ -3038,7 +3107,7 @@ namespace KamertonTest
         #endregion
 
         #region Test all
-        // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-26)
+        // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-23)
         //
 
         private void sensor_off()// 
@@ -4920,144 +4989,144 @@ namespace KamertonTest
             startCoil = 125;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 125  индикации возникновения ошибки SD память
             if (coilArr[0] == false) //есть ошибка
-            {
-                // Обработка ошибки.
-                textBox7.Text += ("Ошибка! SD память не установлена " + "\r\n");
-                textBox7.Text += ("Проверка остановлена. Установите  SD память " + "\r\n");
-                textBox7.Refresh();
-                Polltimer1.Enabled = true;
-            }
-            else
-            {
-            textBox7.Text += ("SD память установлена " + "\r\n");
-            textBox7.Refresh();
-            //  0 в регистре означает завершение выполнения фрагмента проверки
-            numRdRegs = 2;
-            startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
-            numCoils = 2;
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-           // coilArr[0] = false;                                                                    // !!! Убрать, только для тестирования
-            if (coilArr[0] == true)                                                                //есть ошибка
                 {
                     // Обработка ошибки.
-                    textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
-                    timerTestAll.Enabled = false;
-                    button9.BackColor = Color.Red;
-                    button11.BackColor = Color.White;
-                    label92.Text = ("");
-                    textBox7.Text += ("Тест остановлен" + "\r\n");
-                    progressBar2.Value = 0;
-                    Polltimer1.Enabled = false;
-                 }
+                    textBox7.Text += ("Ошибка! SD память не установлена " + "\r\n");
+                    textBox7.Text += ("Проверка остановлена. Установите  SD память " + "\r\n");
+                    textBox7.Refresh();
+                    Polltimer1.Enabled = true;
+                }
             else
                 {
-                   textBox7.Text += ("Связь со звуковой платой АУДИО установлена." + "\r\n");
-                   textBox7.Refresh();
-
-                   if (radioButton2.Checked)                                                               // Признак многократной роверки 
+                textBox7.Text += ("SD память установлена " + "\r\n");
+                textBox7.Refresh();
+                //  0 в регистре означает завершение выполнения фрагмента проверки
+                numRdRegs = 2;
+                startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
+                numCoils = 2;
+                res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
+               // coilArr[0] = false;                                                                    // !!! Убрать, только для тестирования
+                if (coilArr[0] == true)                                                                //есть ошибка
                     {
-                        startCoil = 118;                                                                   // Признак многократной роверки установлен. Передать в контроллер
-                        res = myProtocol.writeCoil(slave, startCoil, true);
-                        //for (int i = 0; i < 25; i++)                // очистить список тестов
-                        //{
-                        //    test_step[i] = 255;
-                        //}
-
-                        //---------------------------
-                        TestStep = 0;
-                       
-                        //while (TestSum <= 13)
-                        //   {
-
-                               if (checkBoxPower.Checked)
-                               {
-                                    test_step[TestStep] = 0;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSensors1.Checked)
-                               {
-                                   test_step[TestStep] = 1;
-                                   TestStep++;
-                               }
-
-                               if (checkBoxSensors2.Checked)
-                               {
-                                    test_step[TestStep] = 2;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenGar1instr.Checked)
-                               {
-                                   test_step[TestStep] = 3;
-                                   TestStep++;
-                               }
-
-                               if (checkBoxSenGar1disp.Checked)
-                               {
-                                    test_step[TestStep] = 4;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenTrubka.Checked)
-                               {
-                                    test_step[TestStep] = 5;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenTangRuch.Checked)
-                               {
-                                    test_step[TestStep] = 6;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenTangN.Checked)
-                               {
-                                    test_step[TestStep] = 7;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenGGS.Checked)
-                               {
-                                   test_step[TestStep] = 8;
-                                   TestStep++;
-                               }
-
-                               if (checkBoxSenGGRadio1.Checked)
-                               {
-                                   test_step[TestStep] = 9;
-                                   TestStep++;
-                               }
-
-                               if (checkBoxSenGGRadio2.Checked)
-                               {
-                                    test_step[TestStep] = 10;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxSenMicrophon.Checked)
-                               {
-                                    test_step[TestStep] = 11;
-                                    TestStep++;
-                               }
-
-                               if (checkBoxDisp.Checked)
-                               {
-                                    test_step[TestStep] = 12;
-                                    TestStep++;
-                               }
-  
-                     }
-                  else
-                    {
-                        startCoil = 118;                                                                    // Признак многократной роверки снят.      Передать в контроллер
-                        res = myProtocol.writeCoil(slave, startCoil, false);
-                        for (int i = 0; i < 13; i++)                // очистить список тестов
-                        {
-                            test_step[i] = i;
-                        }
-                        TestStep = 13;
+                        // Обработка ошибки.
+                        textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                        timerTestAll.Enabled = false;
+                        button9.BackColor = Color.Red;
+                        button11.BackColor = Color.White;
+                        label92.Text = ("");
+                        textBox7.Text += ("Тест остановлен" + "\r\n");
+                        progressBar2.Value = 0;
+                        Polltimer1.Enabled = false;
                     }
+                else
+                    {
+                       textBox7.Text += ("Связь со звуковой платой АУДИО установлена." + "\r\n");
+                       textBox7.Refresh();
+
+                       if (radioButton2.Checked)                                                               // Признак многократной роверки 
+                        {
+                            startCoil = 118;                                                                   // Признак многократной роверки установлен. Передать в контроллер
+                            res = myProtocol.writeCoil(slave, startCoil, true);
+                            //for (int i = 0; i < 25; i++)                // очистить список тестов
+                            //{
+                            //    test_step[i] = 255;
+                            //}
+
+                            //---------------------------
+                            TestStep = 0;
+                       
+                            //while (TestSum <= 13)
+                            //   {
+
+                                   if (checkBoxPower.Checked)
+                                   {
+                                        test_step[TestStep] = 0;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSensors1.Checked)
+                                   {
+                                       test_step[TestStep] = 1;
+                                       TestStep++;
+                                   }
+
+                                   if (checkBoxSensors2.Checked)
+                                   {
+                                        test_step[TestStep] = 2;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenGar1instr.Checked)
+                                   {
+                                       test_step[TestStep] = 3;
+                                       TestStep++;
+                                   }
+
+                                   if (checkBoxSenGar1disp.Checked)
+                                   {
+                                        test_step[TestStep] = 4;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenTrubka.Checked)
+                                   {
+                                        test_step[TestStep] = 5;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenTangRuch.Checked)
+                                   {
+                                        test_step[TestStep] = 6;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenTangN.Checked)
+                                   {
+                                        test_step[TestStep] = 7;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenGGS.Checked)
+                                   {
+                                       test_step[TestStep] = 8;
+                                       TestStep++;
+                                   }
+
+                                   if (checkBoxSenGGRadio1.Checked)
+                                   {
+                                       test_step[TestStep] = 9;
+                                       TestStep++;
+                                   }
+
+                                   if (checkBoxSenGGRadio2.Checked)
+                                   {
+                                        test_step[TestStep] = 10;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxSenMicrophon.Checked)
+                                   {
+                                        test_step[TestStep] = 11;
+                                        TestStep++;
+                                   }
+
+                                   if (checkBoxDisp.Checked)
+                                   {
+                                        test_step[TestStep] = 12;
+                                        TestStep++;
+                                   }
+  
+                        }
+                    else
+                        {
+                            startCoil = 118;                                                                    // Признак многократной роверки снят.      Передать в контроллер
+                            res = myProtocol.writeCoil(slave, startCoil, false);
+                            for (int i = 0; i < 13; i++)                // очистить список тестов
+                            {
+                                test_step[i] = i;
+                            }
+                            TestStep = 13;
+                        }
  
 
                     TestN = 0;                                                                              // Обнулить счетчик номера выполняемых тестов
@@ -5142,42 +5211,39 @@ namespace KamertonTest
                 s0 = (readVals[0].ToString());
 
                 if (readVals[1] < 10)
-                {
-                    label134.Text += ("0" + readVals[1]);
-                    s1 = ("0" + readVals[1].ToString());
-                }
+                    {
+                        label134.Text += ("0" + readVals[1]);
+                        s1 = ("0" + readVals[1].ToString());
+                    }
                 else
-                {
-                    label134.Text += (readVals[1]);
-                    s1 = (readVals[1].ToString());
-                }
+                    {
+                        label134.Text += (readVals[1]);
+                        s1 = (readVals[1].ToString());
+                    }
                 if (readVals[2] < 10)
-                {
-                    label134.Text += ("0" + readVals[2]);
-                   s2 = ("0" + readVals[2].ToString());
-                }
+                    {
+                        label134.Text += ("0" + readVals[2]);
+                       s2 = ("0" + readVals[2].ToString());
+                    }
                 else
-                {
-                    label134.Text += (readVals[2]);
-                    s2 = (readVals[2].ToString());
-                }
+                    {
+                        label134.Text += (readVals[2]);
+                        s2 = (readVals[2].ToString());
+                    }
                 if (readVals[3] < 10)
-                {
-                    label134.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
-                    s3 = ("0" + readVals[3].ToString());
-                }
+                    {
+                        label134.Text += ("0" + readVals[3] + ".TXT" + "\r\n");
+                        s3 = ("0" + readVals[3].ToString());
+                    }
                 else
-                {
-                    label134.Text += (readVals[3] + ".TXT"+"\r\n");
-                    s3 = (readVals[3].ToString());
-                }
+                    {
+                        label134.Text += (readVals[3] + ".TXT"+"\r\n");
+                        s3 = (readVals[3].ToString());
+                    }
 
             }
            fileName = (s0 + s1 + s2 + s3 + ".TXT");
-
            openFileDialog1.FileName = fileName;
-
-          // label134.Text += fileName;
         }
 
 
@@ -5216,8 +5282,6 @@ namespace KamertonTest
                 Polltimer1.Enabled = true;
                 startCoil = 8;                                               // Управление питанием платы "Камертон"
                 res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
-
-
             }
 
             else
@@ -5693,6 +5757,11 @@ namespace KamertonTest
         private void button84_Click(object sender, EventArgs e)
         {
              System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+        }
+
+        private void timer_Mic_test_Tick(object sender, EventArgs e)
+        {
+            //  Удалить
         }
 
 
