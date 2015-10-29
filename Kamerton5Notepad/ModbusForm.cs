@@ -96,11 +96,11 @@ namespace KamertonTest
             cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
             cmbCommand.SelectedIndex = 0;
-            Polltimer1.Enabled = false;
             timer_byte_set.Enabled = false;
             timer_Mic_test.Enabled = false;
             timerCTS.Enabled = false;
             timerTestAll.Enabled = false;
+            Polltimer1.Enabled = false;
             find_com_port.Enabled = false;
             radioButton1.Checked = true;
             serviceSet();
@@ -141,7 +141,9 @@ namespace KamertonTest
                             }
                          else
                             {
-                                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                                Polltimer1.Enabled = false;
+                                find_com_port.Enabled = true;
                             }
                         //   toolStripStatusLabel3.Text = ("Выбрана 1 вкладка");
                         break;
@@ -169,8 +171,9 @@ namespace KamertonTest
                         }
                         else
                         {
-                            textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-
+                            toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                            Polltimer1.Enabled = false;
+                            find_com_port.Enabled = true;                        
                         }
 
                         Thread.Sleep(250);
@@ -209,8 +212,9 @@ namespace KamertonTest
                     }
                     else
                     {
-                        textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-                    
+                        toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                        Polltimer1.Enabled = false;
+                        find_com_port.Enabled = true;
                     }
 
                   
@@ -218,6 +222,8 @@ namespace KamertonTest
                     //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
                     break;
                 case 3:
+
+                    timerTestAll.Enabled = false;
                     timer_byte_set.Enabled = false;
                     Polltimer1.Enabled = true;
                     //   toolStripStatusLabel3.Text = ("Выбрана 4 вкладка");
@@ -777,8 +783,10 @@ namespace KamertonTest
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                 startRdReg = 46;                                                     // 40046 Адрес дата/время контроллера  
                 numRdRegs = 8;
-      
-                
+
+         if ((myProtocol != null))
+            {
+               
                 res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                 lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -847,6 +855,14 @@ namespace KamertonTest
 
                 label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                 toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
+            }
+            else
+            {
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                Polltimer1.Enabled = false;
+                find_com_port.Enabled = true;
+            }
+
              }
             else
             {
@@ -858,6 +874,13 @@ namespace KamertonTest
 
         private void timer_byte_set_Tick(object sender, EventArgs e)
         {
+
+            timer_byte_set.Enabled = false;
+            timer_Mic_test.Enabled = false;
+            timerCTS.Enabled = false;
+            timerTestAll.Enabled = false;
+            find_com_port.Enabled = false;
+
             short[] readVals = new short[124];
             int slave;
             int startRdReg;
@@ -1630,14 +1653,20 @@ namespace KamertonTest
 
             else
             {
-                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                Polltimer1.Enabled = false;
+                find_com_port.Enabled = true;
             }
 
         }
         private void timerCTS_Tick(object sender, EventArgs e)
         {
 
+            Polltimer1.Enabled = false;                                                // Запретить опрос состояния
+            timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
+            timerCTS.Enabled = false;                                                  // !!!  Удалить везде
+            timerTestAll.Enabled = false;
+            timer_byte_set.Enabled = false;
             // short[] writeVals = new short[32];
             short[] readVals = new short[124];
             int slave;
@@ -2305,8 +2334,9 @@ namespace KamertonTest
             }
             else
             {
-                label78.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                Polltimer1.Enabled = false;
+                find_com_port.Enabled = true;
             }
 
 
@@ -2346,8 +2376,9 @@ namespace KamertonTest
                 }
            else
                 {
-                    label78.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-                    
+                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    Polltimer1.Enabled = false;
+                    find_com_port.Enabled = true;
                 }
         }
 
@@ -2685,8 +2716,9 @@ namespace KamertonTest
                 }
             else
             {
-                textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                Polltimer1.Enabled = false;
+                find_com_port.Enabled = true;
             }
 
 
@@ -2715,9 +2747,10 @@ namespace KamertonTest
 
             else
                 {
-                    textBox11.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
-                    
-                }
+                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    Polltimer1.Enabled = false;
+                    find_com_port.Enabled = true;
+               }
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
@@ -5547,6 +5580,9 @@ namespace KamertonTest
                 textBox5.BackColor = Color.White;
             }
             startWrReg = 61;                                                                       // 40060 Адрес хранения величины сигнала
+            if ((myProtocol != null))
+            {
+         
             res = myProtocol.writeSingleRegister(slave, startWrReg, (short)tempK);
          
             startWrReg = 120;                                                                      // 
@@ -5556,25 +5592,34 @@ namespace KamertonTest
             numRdRegs = 2;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);     // 40200 Считать счетчики ошибок  
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-                string s1 = readVals[0].ToString();                                             // Преобразование числа в строку
-                label43.Text = (s1);
-
-                if (readVals[1] != 0)
                 {
-                    string s2 = readVals[1].ToString();                                        // Преобразование числа в строку
-                    label41.Text = (s2);
-                    label42.Text = "мкс";
-                }
-                else
-                {
-                    label41.Text = "3,3";
-                    label42.Text = "вольта";
-                }
+                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
+                    toolStripStatusLabel1.BackColor = Color.Lime;
+
+                    string s1 = readVals[0].ToString();                                             // Преобразование числа в строку
+                    label43.Text = (s1);
+
+                    if (readVals[1] != 0)
+                    {
+                        string s2 = readVals[1].ToString();                                        // Преобразование числа в строку
+                        label41.Text = (s2);
+                        label42.Text = "мкс";
+                    }
+                    else
+                    {
+                        label41.Text = "3,3";
+                        label42.Text = "вольта";
+                    }
+                 }
+
              }
+            else
+            {
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                Polltimer1.Enabled = false;
+                find_com_port.Enabled = true;
+            }
+
         }
 
         private void label40_Click(object sender, EventArgs e)
