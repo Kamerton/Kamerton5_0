@@ -117,7 +117,7 @@ namespace KamertonTest
             SetComPort();
             Polltimer1.Enabled = true;
 
-            TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);
+            TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
 
 
@@ -212,7 +212,7 @@ namespace KamertonTest
         }
 
   
-        private delegate void SetTextDeleg(string text);                  //             
+        private delegate void SetTextDeleg(string text);                   //             
 
         void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -5084,7 +5084,7 @@ namespace KamertonTest
      
                 timerTestAll.Enabled = true;
             
-          }
+           }
          }
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
