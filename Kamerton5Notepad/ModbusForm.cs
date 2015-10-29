@@ -142,6 +142,7 @@ namespace KamertonTest
                          else
                             {
                                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                                toolStripStatusLabel4.ForeColor = Color.Red;
                                 Polltimer1.Enabled = false;
                                 find_com_port.Enabled = true;
                             }
@@ -172,6 +173,7 @@ namespace KamertonTest
                         else
                         {
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                            toolStripStatusLabel4.ForeColor = Color.Red;
                             Polltimer1.Enabled = false;
                             find_com_port.Enabled = true;                        
                         }
@@ -213,6 +215,7 @@ namespace KamertonTest
                     else
                     {
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                        toolStripStatusLabel4.ForeColor = Color.Red;
                         Polltimer1.Enabled = false;
                         find_com_port.Enabled = true;
                     }
@@ -859,6 +862,7 @@ namespace KamertonTest
             else
             {
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 find_com_port.Enabled = true;
             }
@@ -1654,6 +1658,7 @@ namespace KamertonTest
             else
             {
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 find_com_port.Enabled = true;
             }
@@ -2335,6 +2340,7 @@ namespace KamertonTest
             else
             {
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 find_com_port.Enabled = true;
             }
@@ -2377,6 +2383,7 @@ namespace KamertonTest
            else
                 {
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    toolStripStatusLabel4.ForeColor = Color.Red;
                     Polltimer1.Enabled = false;
                     find_com_port.Enabled = true;
                 }
@@ -2717,6 +2724,7 @@ namespace KamertonTest
             else
             {
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 find_com_port.Enabled = true;
             }
@@ -2748,6 +2756,7 @@ namespace KamertonTest
             else
                 {
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    toolStripStatusLabel4.ForeColor = Color.Red;
                     Polltimer1.Enabled = false;
                     find_com_port.Enabled = true;
                }
@@ -5616,6 +5625,7 @@ namespace KamertonTest
             else
             {
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 find_com_port.Enabled = true;
             }
@@ -5725,6 +5735,7 @@ namespace KamertonTest
             {
 
                 toolStripStatusLabel4.Text = "Поиск COM порта";
+                toolStripStatusLabel4.ForeColor = Color.Black;
                 SetComPort();
                 if (portFound == true)
                 {
