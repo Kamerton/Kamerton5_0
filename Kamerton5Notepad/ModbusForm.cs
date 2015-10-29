@@ -189,7 +189,7 @@ namespace KamertonTest
                  //   toolStripStatusLabel3.Text = ("Выбрана 5 вкладка");
                     break;
                 case 5:
-
+                  //  System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
                    // cmdOpenSerial.Enabled = false;
                     // if (myProtocol.isOpen())
                     //    myProtocol.closeProtocol();
@@ -6238,6 +6238,14 @@ namespace KamertonTest
         private void menuFormatParagraphCenter_Click(object sender, EventArgs e)
         {
             richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
+        }
+
+        private void блокнот1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // Process.Start("prog.exe C:\file.txt"); // C:\file.txt - параметр
+
+            System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+
         }
 
 

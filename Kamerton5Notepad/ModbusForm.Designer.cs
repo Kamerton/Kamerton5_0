@@ -468,6 +468,8 @@ namespace KamertonTest
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.блокнотToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.блокнот1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -4492,7 +4494,8 @@ namespace KamertonTest
             this.menuFile,
             this.menuEdit,
             this.menuFormat,
-            this.menuHelp});
+            this.menuHelp,
+            this.блокнотToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(987, 24);
@@ -4871,6 +4874,21 @@ namespace KamertonTest
             // fontDialog1
             // 
             this.fontDialog1.Apply += new System.EventHandler(this.fontDialog1_Apply);
+            // 
+            // блокнотToolStripMenuItem
+            // 
+            this.блокнотToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.блокнот1ToolStripMenuItem});
+            this.блокнотToolStripMenuItem.Name = "блокнотToolStripMenuItem";
+            this.блокнотToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.блокнотToolStripMenuItem.Text = "Блокнот";
+            // 
+            // блокнот1ToolStripMenuItem
+            // 
+            this.блокнот1ToolStripMenuItem.Name = "блокнот1ToolStripMenuItem";
+            this.блокнот1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.блокнот1ToolStripMenuItem.Text = "Блокнот1";
+            this.блокнот1ToolStripMenuItem.Click += new System.EventHandler(this.блокнот1ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -5368,6 +5386,8 @@ namespace KamertonTest
         private System.Windows.Forms.ToolStripMenuItem menuFormatParagraphCenter;
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem блокнотToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem блокнот1ToolStripMenuItem;
     }
 }
 

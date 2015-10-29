@@ -26,3 +26,19 @@ D:\1 TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.4.tlog
 D:\1 TextPadDotNet\obj\Debug\GenerateResource-ResGen.write.1.tlog
 D:\1 TextPadDotNet\obj\Debug\TextPadDotNet.exe
 D:\1 TextPadDotNet\obj\Debug\TextPadDotNet.pdb
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\bin\Debug\TextPadDotNet.exe.config
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\TextPadDotNet.exe
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\TextPadDotNet.pdb
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\bin\Debug\TextPadDotNet.exe
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\bin\Debug\TextPadDotNet.pdb
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\ResolveAssemblyReference.cache
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\Notepad.NET.AboutBox.resources
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\Notepad.NET.FindDialog.resources
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\Notepad.NET.FlickerFreeTextBox.resources
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\Notepad.NET.Form1.resources
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\Notepad.NET.MRUMenuItem.resources
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.1.tlog
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\GenerateResource-ResGen.read.4.tlog
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\GenerateResource.read.1.tlog
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\GenerateResource-ResGen.write.1.tlog
+E:\1 SVN Kamerton5_0\trunk\TextPadDotNet\obj\Debug\GenerateResource.write.1.tlog
