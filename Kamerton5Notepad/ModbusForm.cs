@@ -5255,7 +5255,6 @@ namespace KamertonTest
         {
            pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
             System.IO.Directory.CreateDirectory(pathString);
-          //  string fileName = System.IO.Path.GetRandomFileName();
             pathString = System.IO.Path.Combine(pathString, fileName);
 
 
@@ -5279,7 +5278,6 @@ namespace KamertonTest
         private void Read_File()
         {
             pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-      //      System.IO.Directory.CreateDirectory(pathString);
             pathString = System.IO.Path.Combine(pathString, fileName);
 
             if (File.Exists(pathString))
