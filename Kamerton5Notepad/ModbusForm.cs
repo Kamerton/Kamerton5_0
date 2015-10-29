@@ -44,7 +44,6 @@ namespace KamertonTest
         private int startRdReg;
         private int res;
         private int TestN;
-     //   private int TestSum;
         private int TestStep;
         private int TestRepeatCount;
         private int _SerialMonitor;
@@ -58,7 +57,7 @@ namespace KamertonTest
         bool portFound = false;
         bool testAllRun = false;
         string fileName = "Kamerton log.txt";
-        static string folderName = @"c:\Audio log";
+        static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
 
         SerialPort currentPort;
@@ -5264,7 +5263,7 @@ namespace KamertonTest
             }
             else
             {
-                MessageBox.Show("Файл уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Файл уже существует!  " + pathString, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -5286,7 +5285,7 @@ namespace KamertonTest
             }
             else
             {
-                MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Файл НЕ существует!  " + pathString, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

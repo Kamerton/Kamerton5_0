@@ -126,12 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelpAboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HelpAboutForm.Designer.cs">
-      <DependentUpon>HelpAboutForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ModbusForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,9 +146,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HelpAboutForm.resx">
-      <DependentUpon>HelpAboutForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ModbusForm.resx">
       <DependentUpon>ModbusForm.cs</DependentUpon>
       <SubType>Designer</SubType>

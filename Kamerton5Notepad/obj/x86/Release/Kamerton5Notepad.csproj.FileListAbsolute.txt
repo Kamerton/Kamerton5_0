@@ -15,4 +15,3 @@ E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.application
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.pdb
-E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.HelpAboutForm.resources

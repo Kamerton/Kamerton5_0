@@ -6064,7 +6064,7 @@ modbus registers follow the following format
 	regBank.add(122);                         // Флаг индикации открытия файла
 	regBank.add(123);                         // Флаг индикации закрытия файла
 	regBank.add(124);                         // Флаг индикации связи с модулем "Камертон"
-	regBank.add(125);                         //  
+	regBank.add(125);                         // Флаг индикации инициализации SD памяти
 	regBank.add(126);                         //  
 	regBank.add(127);                         //  
 	regBank.add(128);                         //  
@@ -6929,20 +6929,7 @@ void setup()
 	digitalWrite(kn3Nano, HIGH);
 
 	setup_resistor();                               // Начальные установки резистора
-	Serial.print("Initializing SD card...");
-	pinMode(49, OUTPUT);
-	if (!sd.begin(chipSelect)) 
-		{
-			Serial.println("initialization failed!");
-		}
-	else
-		{
-			Serial.println("initialization done.");
-		}
- // Serial.println("Files found on the card (name, date and size in bytes): ");
 
-  // list all files in the card with date and size
-  //sd.ls (LS_R | LS_DATE | LS_SIZE);
  
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 
@@ -6984,7 +6971,24 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	} 
+    Serial.print("Initializing SD card...");
+	pinMode(49, OUTPUT);
+	if (!sd.begin(chipSelect)) 
+		{
+			Serial.println("initialization SD failed!");
+			regBank.set(125,0); 
+		}
+	else
+		{
+			Serial.println("initialization SD successfully.");
+			regBank.set(125,1); 
+		}
+ // Serial.println("Files found on the card (name, date and size in bytes): ");
 
+  // list all files in the card with date and size
+  //sd.ls (LS_R | LS_DATE | LS_SIZE);
+ 
+	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 	regBank.set(40120,0);                            // 
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
