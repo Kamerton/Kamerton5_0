@@ -6854,7 +6854,7 @@ void set_serial()
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
-	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	digitalWrite(ledPin13,LOW);
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }

@@ -57,10 +57,13 @@ namespace KamertonTest
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
         bool testAllRun = false;
- 
+        string fileName = "Kamerton log.txt";
+        static string folderName = @"c:\Audio log";
+        string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+
         SerialPort currentPort;
 
-        public Form1()
+         public Form1()
         {
             InitializeComponent();
             LoadListboxes();
@@ -72,8 +75,11 @@ namespace KamertonTest
         //                                8,
         //                                StopBits.One);
 
-        string fileName = "Kamerton log.txt";
-
+         //   string folderName = @"c:\Audio log";
+            //string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            //System.IO.Directory.CreateDirectory(pathString);
+            //string fileName = System.IO.Path.GetRandomFileName();
+            //pathString = System.IO.Path.Combine(pathString, fileName);
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -108,6 +114,7 @@ namespace KamertonTest
             // _serialPort.Open();
           //  findComPort();
            // serial_connect();
+           // MakeDirectory();
             SetComPort();
             Polltimer1.Enabled = true;
 
@@ -202,6 +209,34 @@ namespace KamertonTest
                 //   // toolStripStatusLabel3.Text = ("Шойтан, как ты сюда попал?");
                 //    break;
             }
+
+        }
+
+        private void MakeDirectory()
+        {
+            string folderName = @"c:\Audio log";
+            string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            System.IO.Directory.CreateDirectory(pathString);
+            string fileName = System.IO.Path.GetRandomFileName();
+            pathString = System.IO.Path.Combine(pathString, fileName);
+
+
+
+            //if (!System.IO.File.Exists(pathString))
+            //{
+            //    using (System.IO.FileStream fs = System.IO.File.Create(pathString))
+            //    {
+            //        //for (byte i = 0; i < 100; i++)
+            //        //{
+            //        //    fs.WriteByte(i);
+            //        //}
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("File \"{0}\" already exists.", fileName);
+            //    return;
+            //}
 
         }
 
@@ -5216,77 +5251,45 @@ namespace KamertonTest
 
         }
 
-        private void button12_Click(object sender, EventArgs e)          // Создать файл
-        {
-            if (!File.Exists(fileName))
-            {
-                File.Create(fileName).Close();
-            }
-            else
-            {
-                MessageBox.Show("Файл уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
         private void Create_File()
         {
-            if (!File.Exists(fileName))
+           pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            System.IO.Directory.CreateDirectory(pathString);
+          //  string fileName = System.IO.Path.GetRandomFileName();
+            pathString = System.IO.Path.Combine(pathString, fileName);
+
+
+            if (!System.IO.File.Exists(pathString))
             {
-                File.Create(fileName).Close();
+                File.Create(pathString).Close();
             }
             else
             {
                 MessageBox.Show("Файл уже существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
         private void Save_File()
         {
-            File.WriteAllText(fileName, textBox8.Text);
+            pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            System.IO.Directory.CreateDirectory(pathString);
+            pathString = System.IO.Path.Combine(pathString, fileName);
+            File.WriteAllText(pathString, textBox8.Text);
         }
         private void Read_File()
         {
-            if (File.Exists(fileName))
+            pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+      //      System.IO.Directory.CreateDirectory(pathString);
+            pathString = System.IO.Path.Combine(pathString, fileName);
+
+            if (File.Exists(pathString))
             {
-                richTextBox2.Text = File.ReadAllText(fileName);
+                textBox45.Text = File.ReadAllText(pathString);
             }
             else
             {
                 MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-
-        private void button13_Click(object sender, EventArgs e)          // Удалить файл 
-        {
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-            else
-            {
-                //MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-        }
-
-        private void button21_Click(object sender, EventArgs e)          // Записать текст в файл 
-        {
-
-            File.WriteAllText(fileName, textBox9.Text);
-        }
-
-        private void button15_Click(object sender, EventArgs e)          // Прочитать файл
-        {
-            if (File.Exists(fileName))
-            {
-                textBox9.Text = File.ReadAllText(fileName);
-            }
-            else
-            {
-                MessageBox.Show("Файл НЕ существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
         }
 
         private void label145_Click(object sender, EventArgs e)
@@ -5708,544 +5711,17 @@ namespace KamertonTest
             //        startRdReg += 5;
             //    }
             //}
-
-
-
-
-
         }
 
-
-        // Редактор Notepad
-
-        private void menuFileNew_Click(object sender, EventArgs e)
+        private void button84_Click(object sender, EventArgs e)
         {
-            if (m_DocumentChanged)
-                MenuFileSaveAs();
-            richTextBox2.Clear();
-        }
-
-        private void menuFileOpen_Click(object sender, EventArgs e)
-        {
-            MenuFileOpen();   
-        }
-
-        private void menuFileSave_Click(object sender, EventArgs e)
-        {
-            MenuFileSaveAs();
-        }
-
-        private void menuFileSaveAs_Click(object sender, EventArgs e)
-        {
-            if (saveFileDialog1.ShowDialog() ==
-            System.Windows.Forms.DialogResult.OK &&
-            saveFileDialog1.FileName.Length > 0)
-            {
-                richTextBox2.SaveFile(saveFileDialog1.FileName);
-                m_DocumentChanged = false;
-            }
-        }
-
-        private void menuFilePageSetup_Click(object sender, EventArgs e)
-        {
-            MenuFilePageSetup();    
-        }
-        private void menuFilePrintPreview_Click(object sender, EventArgs e)
-        {
-            MenuFilePrintPreview(); 
-        }
-     
-        private void menuFilePrint_Click(object sender, EventArgs e)
-        {
-            MenuFilePrint(); 
-        }
-
-        private void menuFileExit_Click(object sender, EventArgs e)
-        {
-            if (m_DocumentChanged)
-                MenuFileSaveAs();
-            richTextBox2.Clear();
-         }
-
-        private void menuEditUndo_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Undo();
-        }
-
-        private void menuEditRedo_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Redo();
-        }
-
-        private void menuEditCut_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Cut();
-        }
-
-        private void menuEditCopy_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Copy();
-        }
-
-        private void menuEditPaste_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Paste();
-        }
-
-        private void menuEditDelete_Click(object sender, EventArgs e)
-        {
-            richTextBox2.Cut();
-        }
-
-        private void menuEditSelectAll_Click(object sender, EventArgs e)
-        {
-            richTextBox2.SelectAll();
-        }
-
-        private void menuFormatFont_Click(object sender, EventArgs e)
-        {
-            if (fontDialog1.ShowDialog() == DialogResult.OK)
-            {
-                richTextBox2.SelectionFont = fontDialog1.Font;
-            }
-        }
-
-        private void menuHelpAbout_Click(object sender, EventArgs e)
-        {
-            Form dlgAbout = new HelpAboutForm();
-            dlgAbout.ShowDialog();
-        }
-
-
-        /// <summary>
-        /// Открытие существующего файла
-        /// </summary>
-        private void MenuFileOpen()
-        {
-            openFileDialog1.FileName = fileName;
-            if (openFileDialog1.ShowDialog() ==
-               System.Windows.Forms.DialogResult.OK &&
-               openFileDialog1.FileName.Length > 0)
-            {
-                try
-                {
-
-                    richTextBox2.LoadFile(openFileDialog1.FileName,
-                       RichTextBoxStreamType.RichText);
-                }
-                catch (System.ArgumentException e)
-                {
-                    richTextBox2.LoadFile(openFileDialog1.FileName,
-                       RichTextBoxStreamType.PlainText);
-                }
-
-                this.Text = "Файл [" + openFileDialog1.FileName + "]";
-            }
-        }
-
-        /// <summary>
-        /// Сохранение документа в новом файле
-        /// </summary>
-        private void MenuFileSaveAs()
-        {
-            openFileDialog1.FileName = fileName;
-            if (saveFileDialog1.ShowDialog() ==
-               System.Windows.Forms.DialogResult.OK &&
-            saveFileDialog1.FileName.Length > 0)
-            {
-                richTextBox2.SaveFile(saveFileDialog1.FileName);
-                this.Text = "Файл [" + saveFileDialog1.FileName + "]";
-
-            }
-        }
-
-
-        private bool m_DocumentChanged = false;
-
-        /// <summary>
-        /// Настройка параметров страницы
-        /// </summary>
-        private void MenuFilePageSetup()
-        {
-            pageSetupDialog1.ShowDialog();
-        }
-
-        /// <summary>
-        /// StringReader для печати содержимого редактора текста
-        /// </summary>
-        private StringReader m_myReader;
-
-        /// <summary>
-        /// Номер текущей распечатываемой страницы документа
-        /// </summary>
-        private uint m_PrintPageNumber;
-
-        /// <summary>
-        /// Предварительный просмотр перед печатью документа
-        /// </summary>
-        private void MenuFilePrintPreview()
-        {
-            m_PrintPageNumber = 1;
-
-            string strText = this.richTextBox2.Text;
-            m_myReader = new StringReader(strText);
-            Margins margins = new Margins(100, 50, 50, 50);
-
-            printDocument1.DefaultPageSettings.Margins = margins;
-            printPreviewDialog1.ShowDialog();
-
-            m_myReader.Close();
-        }
-
-        /// <summary>
-        /// Печать документа
-        /// </summary>
-        private void MenuFilePrint()
-        {
-            m_PrintPageNumber = 1;
-
-            string strText = this.richTextBox2.Text;
-            m_myReader = new StringReader(strText);
-
-            Margins margins = new Margins(100, 50, 50, 50);
-            printDocument1.DefaultPageSettings.Margins = margins;
-
-            if (printDialog1.ShowDialog() == DialogResult.OK)
-            {
-                this.printDocument1.Print();
-            }
-            m_myReader.Close();
-        }
-
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            int lineCount = 0;       // счетчик строк
-            float linesPerPage = 0;  // количество строк на одной странице
-            float yLinePosition = 0; // текущая позиция при печати по 
-            // вертикальной оси
-            string currentLine = null;  // текст текущей строки
-
-            // Шрифт для печати текста
-            Font printFont = this.richTextBox2.Font;
-
-            // Кисть для печати текста
-            SolidBrush printBrush = new SolidBrush(Color.Black);
-
-            // Размер отступа слева
-            float leftMargin = e.MarginBounds.Left;
-
-            // Размер отступа сверху
-            float topMargin = e.MarginBounds.Top +
-               3 * printFont.GetHeight(e.Graphics);
-
-            // Вычисляем количество строк на одной странице с учетом отступа
-            linesPerPage = (e.MarginBounds.Height -
-               6 * printFont.GetHeight(e.Graphics)) /
-               printFont.GetHeight(e.Graphics);
-
-            // Цикл печати всех строк страницы
-            while (lineCount < linesPerPage &&
-               ((currentLine = m_myReader.ReadLine()) != null))
-            {
-                // Вычисляем позицию очередной распечатываемой строки
-                yLinePosition = topMargin + (lineCount *
-                  printFont.GetHeight(e.Graphics));
-
-                // Печатаем очередную строку
-                e.Graphics.DrawString(currentLine, printFont, printBrush,
-                  leftMargin, yLinePosition, new StringFormat());
-
-                // Переходим к следующей строке
-                lineCount++;
-            }
-
-            // Печать колонтитулов страницы
-
-            // Номер текущей страницы
-            string sPageNumber = "Страница " + m_PrintPageNumber.ToString();
-
-            // Вычисляем размеры прямоугольной области, занимаемой верхним 
-            // колонтитулом страницы
-            SizeF stringSize = new SizeF();
-            stringSize = e.Graphics.MeasureString(sPageNumber, printFont,
-               e.MarginBounds.Right - e.MarginBounds.Left);
-
-            // Печатаем номер страницы
-            e.Graphics.DrawString(sPageNumber, printFont, printBrush,
-               e.MarginBounds.Right - stringSize.Width, e.MarginBounds.Top,
-               new StringFormat());
-
-            // Печатаем имя файла документа
-            e.Graphics.DrawString(this.Text, printFont, printBrush,
-               e.MarginBounds.Left, e.MarginBounds.Top, new StringFormat());
-
-            // Кисть для рисования горизонтальной линии, 
-            // отделяющей верхний колонтитул
-            Pen colontitulPen = new Pen(Color.Black);
-            colontitulPen.Width = 2;
-
-            // Рисуем верхнюю линию
-            e.Graphics.DrawLine(colontitulPen,
-               leftMargin,
-               e.MarginBounds.Top + printFont.GetHeight(e.Graphics) + 3,
-               e.MarginBounds.Right, e.MarginBounds.Top +
-               printFont.GetHeight(e.Graphics) + 3);
-
-            // Рисуем линию, отделяющую нижний колонтитул документа
-            e.Graphics.DrawLine(colontitulPen,
-               leftMargin, e.MarginBounds.Bottom - 3,
-               e.MarginBounds.Right, e.MarginBounds.Bottom - 3);
-
-            // Печатаем текст нижнего колонтитула
-            e.Graphics.DrawString(
-            "Аудио - 1, (c), http://www.decima.ru",
-               printFont, printBrush,
-               e.MarginBounds.Left, e.MarginBounds.Bottom, new StringFormat());
-
-            // Если напечатаны не все строки документа, 
-            // переходим к следующей странице
-            if (currentLine != null)
-            {
-                e.HasMorePages = true;
-                m_PrintPageNumber++;
-            }
-
-            // Иначе завершаем печать страницы
-            else
-                e.HasMorePages = false;
-
-            // Освобождаем ненужные более ресурсы
-            printBrush.Dispose();
-            colontitulPen.Dispose();
-        }
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        protected override void Dispose(bool disposing)
-        {
-            if (m_DocumentChanged)
-                MenuFileSaveAs();
-
-            if (disposing)
-            {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-            }
-            base.Dispose(disposing);
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-            m_DocumentChanged = true; 
-        }
-
-        private void menuFormatCharacterStyleStrikeout_Click(object sender, EventArgs e)
-        {
-            SetStrikeout();
-        }
-
-        private void fontDialog1_Apply(object sender, EventArgs e)
-        {
- 
-        }
-
-        private void menuFormatColor_Click(object sender, EventArgs e)
-        {
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
-            {
-                richTextBox2.SelectionColor = colorDialog1.Color;
-            }
-        }
-
-        private void menuFormatCharacterStyleBold_Click(object sender, EventArgs e)
-        {
-            SetBold();
-        }
-
-    
-
-        private void menuFormatCharacterStyleItalic_Click_1(object sender, EventArgs e)
-        {
-            SetItalic();
-        }
-
-        private void menuFormatCharacterStyleUnderline_Click(object sender, EventArgs e)
-        {
-            SetUnderline();
-        }
-
-        /// <summary>
-        /// Установка стиля символов Bold
-        /// </summary>
-        private void SetBold()
-        {
-            if (richTextBox2.SelectionFont != null)
-            {
-                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-
-                if (richTextBox2.SelectionFont.Bold == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Bold;
-                }
-
-                richTextBox2.SelectionFont = new Font(
-                  currentFont.FontFamily, currentFont.Size, newFontStyle);
-
-                CheckMenuFontCharacterStyle();
-            }
-        }
-
-        /// <summary>
-        /// Установка отметки строк меню Font->CharacterStyle
-        /// </summary>
-        private void CheckMenuFontCharacterStyle()
-        {
-            if (richTextBox2.SelectionFont.Bold == true)
-            {
-                menuFormatCharacterStyleBold.Checked = true;
-            }
-            else
-            {
-                menuFormatCharacterStyleBold.Checked = false;
-            }
-
-            if (richTextBox2.SelectionFont.Italic == true)
-            {
-                menuFormatCharacterStyleItalic.Checked = true;
-            }
-            else
-            {
-                menuFormatCharacterStyleItalic.Checked = false;
-            }
-
-            if (richTextBox2.SelectionFont.Underline == true)
-            {
-                menuFormatCharacterStyleUnderline.Checked = true;
-            }
-            else
-            {
-                menuFormatCharacterStyleUnderline.Checked = false;
-            }
-
-            if (richTextBox2.SelectionFont.Strikeout == true)
-            {
-                menuFormatCharacterStyleStrikeout.Checked = true;
-            }
-            else
-            {
-                menuFormatCharacterStyleStrikeout.Checked = false;
-            }
-        }
-
-        /// <summary>
-        /// Установка стиля символов Italic
-        /// </summary>
-        private void SetItalic()
-        {
-            if (richTextBox2.SelectionFont != null)
-            {
-                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-                CheckMenuFontCharacterStyle();
-
-                if (richTextBox2.SelectionFont.Italic == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Italic;
-                }
-
-                richTextBox2.SelectionFont = new Font(
-                  currentFont.FontFamily, currentFont.Size, newFontStyle);
-
-                CheckMenuFontCharacterStyle();
-            }
-        }
-
-        /// <summary>
-        /// Установка стиля символов Underline
-        /// </summary>
-        private void SetUnderline()
-        {
-            if (richTextBox2.SelectionFont != null)
-            {
-                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-                CheckMenuFontCharacterStyle();
-
-                if (richTextBox2.SelectionFont.Underline == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Underline;
-                }
-
-                richTextBox2.SelectionFont = new Font(
-                  currentFont.FontFamily, currentFont.Size, newFontStyle);
-
-                CheckMenuFontCharacterStyle();
-            }
-        }
-
-        /// <summary>
-        /// Установка стиля символов Strikeout
-        /// </summary>
-        private void SetStrikeout()
-        {
-            if (richTextBox2.SelectionFont != null)
-            {
-                System.Drawing.Font currentFont = richTextBox2.SelectionFont;
-                System.Drawing.FontStyle newFontStyle;
-
-                if (richTextBox2.SelectionFont.Strikeout == true)
-                {
-                    newFontStyle = FontStyle.Regular;
-                }
-                else
-                {
-                    newFontStyle = FontStyle.Strikeout;
-                }
-
-                richTextBox2.SelectionFont = new Font(
-                  currentFont.FontFamily, currentFont.Size, newFontStyle);
-
-                CheckMenuFontCharacterStyle();
-            }
-        }
-
-        private void menuFormatParagraphLeft_Click(object sender, EventArgs e)
-        {
-            richTextBox2.SelectionAlignment = HorizontalAlignment.Left;
-        }
-
-        private void menuFormatParagraphRight_Click(object sender, EventArgs e)
-        {
-            richTextBox2.SelectionAlignment = HorizontalAlignment.Right;
-        }
-
-        private void menuFormatParagraphCenter_Click(object sender, EventArgs e)
-        {
-            richTextBox2.SelectionAlignment = HorizontalAlignment.Center;
-        }
-
-        private void блокнот1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           // Process.Start("prog.exe C:\file.txt"); // C:\file.txt - параметр
+            //string folderName = @"c:\Audio log";
+            //string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            //System.IO.Directory.CreateDirectory(pathString);
+            ////  string fileName = System.IO.Path.GetRandomFileName();
+            //pathString = System.IO.Path.Combine(pathString, fileName);
 
             System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
-
         }
 
 
