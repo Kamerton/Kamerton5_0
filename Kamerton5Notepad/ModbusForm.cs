@@ -3038,8 +3038,8 @@ namespace KamertonTest
         #endregion
 
         #region Test all
-        // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-12)
-        // далее отправить команду (true) вызова  теста по адресу 38
+        // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-26)
+        //
 
         private void sensor_off()// 
         {
@@ -4692,10 +4692,6 @@ namespace KamertonTest
 
         }
 
-
-
-
-
         private void timerTestAll_Tick(object sender, EventArgs e)        // Тестирование программы общего теста
         {
             short[] readVals = new short[125];
@@ -4920,9 +4916,9 @@ namespace KamertonTest
             textBox8.Refresh();
             textBox9.Refresh();
 
-
-            startCoil = 125;   
-            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
+            numCoils = 2;
+            startCoil = 125;
+            res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 125  индикации возникновения ошибки SD память
             if (coilArr[0] == false) //есть ошибка
             {
                 // Обработка ошибки.
@@ -5441,7 +5437,6 @@ namespace KamertonTest
         {
 
         }
-
   
         private void checkBoxSensors1_CheckedChanged(object sender, EventArgs e)
         {
@@ -5697,13 +5692,7 @@ namespace KamertonTest
 
         private void button84_Click(object sender, EventArgs e)
         {
-            //string folderName = @"c:\Audio log";
-            //string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-            //System.IO.Directory.CreateDirectory(pathString);
-            ////  string fileName = System.IO.Path.GetRandomFileName();
-            //pathString = System.IO.Path.Combine(pathString, fileName);
-
-            System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+             System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
         }
 
 

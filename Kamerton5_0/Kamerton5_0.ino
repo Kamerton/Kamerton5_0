@@ -6977,12 +6977,12 @@ void setup()
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
-			regBank.set(125,0); 
+			regBank.set(125,false); 
 		}
 	else
 		{
 			Serial.println("initialization SD successfully.");
-			regBank.set(125,1); 
+			regBank.set(125,true); 
 		}
  // Serial.println("Files found on the card (name, date and size in bytes): ");
 
