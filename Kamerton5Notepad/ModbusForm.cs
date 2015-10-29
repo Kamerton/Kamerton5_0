@@ -2691,7 +2691,7 @@ namespace KamertonTest
             }
         }
 //  
-        private void button32_Click(object sender, EventArgs e)                       //Старт теста "Байты обмена с Камертон"
+        private void button32_Click(object sender, EventArgs e)                        //Старт теста "Байты обмена с Камертон"
         {
             Polltimer1.Enabled = false;                                                // Запретить опрос состояния
             timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
@@ -2703,7 +2703,6 @@ namespace KamertonTest
             startCoil = 8;                                                             // Управление питанием платы "Камертон"
             if ((myProtocol != null))
                 {
-
                     res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
                     Thread.Sleep(1700);
                     button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
@@ -2722,12 +2721,12 @@ namespace KamertonTest
                     }
                 }
             else
-            {
-                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
-                toolStripStatusLabel4.ForeColor = Color.Red;
-                Polltimer1.Enabled = false;
-                find_com_port.Enabled = true;
-            }
+                {
+                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    toolStripStatusLabel4.ForeColor = Color.Red;
+                    Polltimer1.Enabled = false;
+                    find_com_port.Enabled = true;
+                }
 
 
             timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            

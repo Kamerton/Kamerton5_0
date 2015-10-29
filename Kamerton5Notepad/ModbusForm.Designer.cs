@@ -2171,6 +2171,7 @@ namespace KamertonTest
             this.button31.TabIndex = 41;
             this.button31.Text = "Стоп";
             this.button31.UseVisualStyleBackColor = true;
+            this.button31.Visible = false;
             this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // button32
@@ -2181,6 +2182,7 @@ namespace KamertonTest
             this.button32.TabIndex = 40;
             this.button32.Text = "Старт";
             this.button32.UseVisualStyleBackColor = true;
+            this.button32.Visible = false;
             this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // groupBox13
