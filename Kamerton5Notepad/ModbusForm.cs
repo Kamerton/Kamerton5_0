@@ -211,16 +211,7 @@ namespace KamertonTest
 
         }
 
-        private void MakeDirectory()
-        {
-            string folderName = @"c:\Audio log";
-            string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-            System.IO.Directory.CreateDirectory(pathString);
-            string fileName = System.IO.Path.GetRandomFileName();
-            pathString = System.IO.Path.Combine(pathString, fileName);
-        }
-
-
+  
         private delegate void SetTextDeleg(string text);                  //             
 
         void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)

@@ -15,3 +15,6 @@ E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.application
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
 E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.pdb
+D:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\bin\x86\Release\Kamerton5Notepad.exe.config
+D:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.exe
+D:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\obj\x86\Release\Kamerton5Notepad.pdb
