@@ -1613,19 +1613,12 @@ void FileOpen()
 	myFile.println ("");
 	myFile.print ("Report of test module Audio-1 N ");
 	byte y[4];                                //Чтение из памяти текущих данных счетчика 
-			y[3]= regBank.get(40010);
-			y[2]= regBank.get(40011);
-			y[1]= regBank.get(40012);
-			y[0]= regBank.get(40013);
+		y[3]= regBank.get(40010);
+		y[2]= regBank.get(40011);
+		y[1]= regBank.get(40012);
+		y[0]= regBank.get(40013);
 		number_audio = (unsigned long&) y;       // Сложить восстановленные текущие данные в count_colwater_old
-
-
-
-
 	myFile.print (number_audio);
-	//myFile.print (regBank.get(40011));
-	//myFile.print (regBank.get(40012));
-	//myFile.print (regBank.get(40013));
 	myFile.println ("");
 	myFile.println ("");
 	myFile.println ("");

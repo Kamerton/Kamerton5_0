@@ -4871,7 +4871,6 @@ namespace KamertonTest
                             TestStep = 13;
                         }
  
-
                     TestN = 0;                                                                              // Обнулить счетчик номера выполняемых тестов
                     TestRepeatCount = 1;                                                                    // Установить начальный номер  счетчика проходов теста
 
@@ -4883,12 +4882,13 @@ namespace KamertonTest
                         startWrReg = 120;                                                                   // Команда на открытие файла отправлена
                         res = myProtocol.writeSingleRegister(slave, startWrReg, 12);                        // Команда на открытие файла отправлена
                         textBox9.Text += ("Команда на открытие файла отправлена" + "\r\n");
-                        textBox7.Refresh();
+                        textBox9.Refresh();
                         test_end1();
                         file_fakt_namber();                                                                 // Отобразить имя текущего файла
                         num_string();
                         Create_File();
-                       
+                        textBox8.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" + "\r\n");
+                        textBox8.Refresh();
                         //Thread.Sleep(400);
                         test_end1();
                         _All_Test_Stop = false;                                                             // Установить флаг запуска теста
@@ -4910,16 +4910,11 @@ namespace KamertonTest
                 portFound = false;
                 find_com_port.Enabled = true;
             }
-
-
         }
             // конец проверки
             else
             {
-
                 textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
-
-
             }
 
             progressBar2.Value = 0;
