@@ -4993,48 +4993,21 @@ namespace KamertonTest
         {
            
             ushort[] writeVals = new ushort[20];
-            bool[] coilVals = new bool[2];
-            int slave;                           //
-            int res;
-            int startWrReg;
             int numWrRegs;   //
 
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-            int numVal = -1;
-
-            //    string command = DateTime.Parse(label80.Text, CultureInfo.CurrentCulture).ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
-
-                //string command = textBox46.Text;
-                //numVal = Convert.ToInt32(command.Substring(0, 1), CultureInfo.CurrentCulture);
-                //writeVals[0] = (ushort)numVal;   // 
-                //numVal = Convert.ToInt32(command.Substring(1, 1), CultureInfo.CurrentCulture);
-                //writeVals[1] = (ushort)numVal;   // 
-                //numVal = Convert.ToInt32(command.Substring(1, 2), CultureInfo.CurrentCulture);
-                //writeVals[2] = (ushort)numVal;   // 
-                //numVal = Convert.ToInt32(command.Substring(6, 2), CultureInfo.CurrentCulture);
-                //writeVals[3] = (ushort)numVal;   // 
-                //numVal = Convert.ToInt32(command.Substring(8, 2), CultureInfo.CurrentCulture);
-
-                //writeVals[4] = (ushort)numVal;   // 
+   //         slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                 startWrReg = 10;
                 numWrRegs = 4;   //
-                res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
-
-
-
-
+  
                 int.Parse(textBox46.Text);
                 num_module_audio1 = Convert.ToInt32(textBox46.Text);
                 byte[] data = BitConverter.GetBytes(num_module_audio1);
-                //  ushort data1 =  data;
-
+                //     Array.Reverse(data);
                 writeVals[0] = (ushort)data[0];
                 writeVals[1] = (ushort)data[1];
                 writeVals[2] = (ushort)data[2];
                 writeVals[3] = (ushort)data[3];
-
-           ////     Array.Reverse(data);
+      
            //     string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
            //     textBox9.Text = (hex);
            //     textBox9.Refresh();
