@@ -4989,9 +4989,9 @@ namespace KamertonTest
            openFileDialog1.FileName = fileName;
         }
 
-        private void num_module_audio()
+        private void num_module_audio()     // Ввод номера платы Аудио 1 и передача его в Камертон 5
         {
-           
+        
             ushort[] writeVals = new ushort[20];
             int numWrRegs;   //
 
@@ -5002,15 +5002,15 @@ namespace KamertonTest
                 int.Parse(textBox46.Text);
                 num_module_audio1 = Convert.ToInt32(textBox46.Text);
                 byte[] data = BitConverter.GetBytes(num_module_audio1);
-                //     Array.Reverse(data);
+                Array.Reverse(data);
                 writeVals[0] = (ushort)data[0];
                 writeVals[1] = (ushort)data[1];
                 writeVals[2] = (ushort)data[2];
                 writeVals[3] = (ushort)data[3];
-      
-           //     string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
-           //     textBox9.Text = (hex);
-           //     textBox9.Refresh();
+
+                //string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
+                //textBox9.Text = (hex);
+                //textBox9.Refresh();
    
                 res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
          }

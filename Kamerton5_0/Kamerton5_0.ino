@@ -1609,11 +1609,18 @@ void FileOpen()
 	regBank.set(adr_Time_Test_minute, 0); 
 	regBank.set(adr_Time_Test_second, 0); 
 	myFile.println ("");
+	myFile.print ("Report of test module Audio-1 N ");
+	myFile.println ("");
+	myFile.println ("");
+	myFile.print (regBank.get(40010));
+	myFile.print (regBank.get(40011));
+	myFile.print (regBank.get(40012));
+	myFile.print (regBank.get(40013));
+	myFile.println ("");
 	myFile.print ("Start test   ");
 	file_print_date();
 	myFile.println ("");
 	regBank.set(122,0);                              // Флаг индикации открытия файла                                   
-
 	delay(100);
    }
   regBank.set(adr_control_command,0);  
