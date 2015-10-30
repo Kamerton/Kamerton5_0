@@ -97,6 +97,8 @@ unsigned int volume_porog_L = 200;                  // ћинимальна€ величина поро
 float voltage ;
 //float voltage_test = 0.60;                        // порог величины синусоиды звука
 unsigned int  voltage10 ;
+unsigned long number_audio = 0;   
+
 
 #define FASTADC 1                                   // ”скорение считывани€ аналогового сигнала
 // defines for setting and clearing register bits
@@ -1610,12 +1612,22 @@ void FileOpen()
 	regBank.set(adr_Time_Test_second, 0); 
 	myFile.println ("");
 	myFile.print ("Report of test module Audio-1 N ");
+	byte y[4];                                //„тение из пам€ти текущих данных счетчика 
+			y[3]= regBank.get(40010);
+			y[2]= regBank.get(40011);
+			y[1]= regBank.get(40012);
+			y[0]= regBank.get(40013);
+		number_audio = (unsigned long&) y;       // —ложить восстановленные текущие данные в count_colwater_old
+
+
+
+
+	myFile.print (number_audio);
+	//myFile.print (regBank.get(40011));
+	//myFile.print (regBank.get(40012));
+	//myFile.print (regBank.get(40013));
 	myFile.println ("");
 	myFile.println ("");
-	myFile.print (regBank.get(40010));
-	myFile.print (regBank.get(40011));
-	myFile.print (regBank.get(40012));
-	myFile.print (regBank.get(40013));
 	myFile.println ("");
 	myFile.print ("Start test   ");
 	file_print_date();
