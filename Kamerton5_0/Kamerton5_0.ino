@@ -6301,20 +6301,20 @@ modbus registers follow the following format
 
 	//regBank.set(40004+buffer,Serial1.read());
 	regBank.add(40000);  // 
-	regBank.add(40001);  // 
-	regBank.add(40002);  // 
-	regBank.add(40003);  // 
-	regBank.add(40004);  // 
-	regBank.add(40005);  // 
-	regBank.add(40006);  // 
-	regBank.add(40007);  // 
+	regBank.add(40001);  // Регистры обмена с Аудио 1
+	regBank.add(40002);  // Регистры обмена с Аудио 1
+	regBank.add(40003);  // Регистры обмена с Аудио 1
+	regBank.add(40004);  // Регистры обмена с Аудио 1
+	regBank.add(40005);  // Регистры обмена с Аудио 1
+	regBank.add(40006);  // Регистры обмена с Аудио 1
+	regBank.add(40007);  // Регистры обмена с Аудио 1
 	regBank.add(40008);  // 
 	regBank.add(40009);  // 
 
-	regBank.add(40010);  // 
-	regBank.add(40011);  // 
-	regBank.add(40012);  // 
-	regBank.add(40013);  // 
+	regBank.add(40010);  // №  Аудио 1
+	regBank.add(40011);  // №  Аудио 1
+	regBank.add(40012);  // №  Аудио 1
+	regBank.add(40013);  // №  Аудио 1
 	regBank.add(40014);  // 
 	regBank.add(40015);  // 
 	regBank.add(40016);  // 

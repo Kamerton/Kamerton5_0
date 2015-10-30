@@ -52,7 +52,7 @@ namespace KamertonTest
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         private int[] test_step = new int[20];
-        private long num_module_audio1 = 0;
+        private int num_module_audio1 = 0;
 
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
@@ -4991,17 +4991,56 @@ namespace KamertonTest
 
         private void num_module_audio()
         {
-            string s = "";
-            //s = string textBox46;
-            //num_module_audio1 = Convert.ToInt64(textBox46);
-            num_module_audio1 = Convert.ToInt64(s);
-            byte[] data = BitConverter.GetBytes(num_module_audio1);
-            Array.Reverse(data);
-            string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
-            textBox9.Text = (hex);
-            textBox9.Refresh();
-            MessageBox.Show(hex);
-        }
+           
+            ushort[] writeVals = new ushort[20];
+            bool[] coilVals = new bool[2];
+            int slave;                           //
+            int res;
+            int startWrReg;
+            int numWrRegs;   //
+
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+
+            int numVal = -1;
+
+            //    string command = DateTime.Parse(label80.Text, CultureInfo.CurrentCulture).ToString("ddMMyyyyHHmmss", CultureInfo.CurrentCulture);
+
+                //string command = textBox46.Text;
+                //numVal = Convert.ToInt32(command.Substring(0, 1), CultureInfo.CurrentCulture);
+                //writeVals[0] = (ushort)numVal;   // 
+                //numVal = Convert.ToInt32(command.Substring(1, 1), CultureInfo.CurrentCulture);
+                //writeVals[1] = (ushort)numVal;   // 
+                //numVal = Convert.ToInt32(command.Substring(1, 2), CultureInfo.CurrentCulture);
+                //writeVals[2] = (ushort)numVal;   // 
+                //numVal = Convert.ToInt32(command.Substring(6, 2), CultureInfo.CurrentCulture);
+                //writeVals[3] = (ushort)numVal;   // 
+                //numVal = Convert.ToInt32(command.Substring(8, 2), CultureInfo.CurrentCulture);
+
+                //writeVals[4] = (ushort)numVal;   // 
+                startWrReg = 10;
+                numWrRegs = 4;   //
+                res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+
+
+
+
+                int.Parse(textBox46.Text);
+                num_module_audio1 = Convert.ToInt32(textBox46.Text);
+                byte[] data = BitConverter.GetBytes(num_module_audio1);
+                //  ushort data1 =  data;
+
+                writeVals[0] = (ushort)data[0];
+                writeVals[1] = (ushort)data[1];
+                writeVals[2] = (ushort)data[2];
+                writeVals[3] = (ushort)data[3];
+
+           //     Array.Reverse(data);
+                string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
+                textBox9.Text = (hex);
+                textBox9.Refresh();
+   
+                res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
+         }
 
         private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
         {
@@ -5492,6 +5531,47 @@ namespace KamertonTest
         private void button84_Click(object sender, EventArgs e)
         {
              System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+        }
+
+        private void textBox46_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+             e.Handled = true;    
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+                e.Handled = true;  
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+                e.Handled = true;  
+        }
+
+        private void txtTimeout_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTimeout_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+                e.Handled = true;  
+        }
+
+        private void txtPollDelay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+                e.Handled = true;  
+        }
+
+        private void txtTCPPort_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
+                e.Handled = true;  
         }
      }
 

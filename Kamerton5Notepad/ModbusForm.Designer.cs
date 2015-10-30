@@ -402,6 +402,8 @@ namespace KamertonTest
             this.checkBoxSenGGRadio1 = new System.Windows.Forms.CheckBox();
             this.checkBoxSenAll = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label165 = new System.Windows.Forms.Label();
+            this.textBox46 = new System.Windows.Forms.TextBox();
             this.label157 = new System.Windows.Forms.Label();
             this.button84 = new System.Windows.Forms.Button();
             this.label92 = new System.Windows.Forms.Label();
@@ -421,8 +423,6 @@ namespace KamertonTest
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.textBox46 = new System.Windows.Forms.TextBox();
-            this.label165 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
@@ -1095,6 +1095,7 @@ namespace KamertonTest
             this.txtTCPPort.Size = new System.Drawing.Size(66, 20);
             this.txtTCPPort.TabIndex = 9;
             this.txtTCPPort.Text = "502";
+            this.txtTCPPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTCPPort_KeyPress);
             // 
             // GroupBox2
             // 
@@ -1321,6 +1322,8 @@ namespace KamertonTest
             this.txtTimeout.Size = new System.Drawing.Size(66, 20);
             this.txtTimeout.TabIndex = 0;
             this.txtTimeout.Text = "1000";
+            this.txtTimeout.TextChanged += new System.EventHandler(this.txtTimeout_TextChanged);
+            this.txtTimeout.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTimeout_KeyPress);
             // 
             // txtPollDelay
             // 
@@ -1329,6 +1332,7 @@ namespace KamertonTest
             this.txtPollDelay.Size = new System.Drawing.Size(66, 20);
             this.txtPollDelay.TabIndex = 11;
             this.txtPollDelay.Text = "0";
+            this.txtPollDelay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPollDelay_KeyPress);
             // 
             // Label9
             // 
@@ -1435,6 +1439,7 @@ namespace KamertonTest
             this.textBox5.TabIndex = 59;
             this.textBox5.Text = "20";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
             // 
             // textBox4
             // 
@@ -1444,6 +1449,7 @@ namespace KamertonTest
             this.textBox4.TabIndex = 54;
             this.textBox4.Text = "20";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // textBox11
             // 
@@ -4282,6 +4288,26 @@ namespace KamertonTest
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Полный тест";
             // 
+            // label165
+            // 
+            this.label165.AutoSize = true;
+            this.label165.Location = new System.Drawing.Point(346, 47);
+            this.label165.Name = "label165";
+            this.label165.Size = new System.Drawing.Size(132, 13);
+            this.label165.TabIndex = 24;
+            this.label165.Text = "Ввод № платы \"Аудио 1\"";
+            // 
+            // textBox46
+            // 
+            this.textBox46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox46.Location = new System.Drawing.Point(366, 14);
+            this.textBox46.Name = "textBox46";
+            this.textBox46.Size = new System.Drawing.Size(100, 21);
+            this.textBox46.TabIndex = 23;
+            this.textBox46.Text = "0";
+            this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox46.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox46_KeyPress);
+            // 
             // label157
             // 
             this.label157.AutoSize = true;
@@ -4490,25 +4516,6 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 610);
             this.textBox45.TabIndex = 0;
-            // 
-            // textBox46
-            // 
-            this.textBox46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox46.Location = new System.Drawing.Point(366, 14);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.Size = new System.Drawing.Size(100, 21);
-            this.textBox46.TabIndex = 23;
-            this.textBox46.Text = "0";
-            this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label165
-            // 
-            this.label165.AutoSize = true;
-            this.label165.Location = new System.Drawing.Point(346, 47);
-            this.label165.Name = "label165";
-            this.label165.Size = new System.Drawing.Size(132, 13);
-            this.label165.TabIndex = 24;
-            this.label165.Text = "Ввод № платы \"Аудио 1\"";
             // 
             // Form1
             // 
