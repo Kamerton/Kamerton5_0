@@ -5034,10 +5034,10 @@ namespace KamertonTest
                 writeVals[2] = (ushort)data[2];
                 writeVals[3] = (ushort)data[3];
 
-           //     Array.Reverse(data);
-                string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
-                textBox9.Text = (hex);
-                textBox9.Refresh();
+           ////     Array.Reverse(data);
+           //     string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
+           //     textBox9.Text = (hex);
+           //     textBox9.Refresh();
    
                 res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
          }
