@@ -1091,6 +1091,7 @@ namespace KamertonTest
             // txtTCPPort
             // 
             this.txtTCPPort.Location = new System.Drawing.Point(76, 23);
+            this.txtTCPPort.MaxLength = 6;
             this.txtTCPPort.Name = "txtTCPPort";
             this.txtTCPPort.Size = new System.Drawing.Size(66, 20);
             this.txtTCPPort.TabIndex = 9;
@@ -1318,6 +1319,7 @@ namespace KamertonTest
             // txtTimeout
             // 
             this.txtTimeout.Location = new System.Drawing.Point(76, 26);
+            this.txtTimeout.MaxLength = 5;
             this.txtTimeout.Name = "txtTimeout";
             this.txtTimeout.Size = new System.Drawing.Size(66, 20);
             this.txtTimeout.TabIndex = 0;
@@ -1328,6 +1330,7 @@ namespace KamertonTest
             // txtPollDelay
             // 
             this.txtPollDelay.Location = new System.Drawing.Point(76, 92);
+            this.txtPollDelay.MaxLength = 3;
             this.txtPollDelay.Name = "txtPollDelay";
             this.txtPollDelay.Size = new System.Drawing.Size(66, 20);
             this.txtPollDelay.TabIndex = 11;
@@ -1434,6 +1437,7 @@ namespace KamertonTest
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(692, 23);
+            this.textBox5.MaxLength = 3;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(54, 20);
             this.textBox5.TabIndex = 59;
@@ -1444,6 +1448,7 @@ namespace KamertonTest
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(692, 114);
+            this.textBox4.MaxLength = 2;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(54, 20);
             this.textBox4.TabIndex = 54;
@@ -4301,6 +4306,7 @@ namespace KamertonTest
             // 
             this.textBox46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox46.Location = new System.Drawing.Point(366, 14);
+            this.textBox46.MaxLength = 9;
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new System.Drawing.Size(100, 21);
             this.textBox46.TabIndex = 23;
