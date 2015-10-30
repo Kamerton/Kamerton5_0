@@ -421,6 +421,8 @@ namespace KamertonTest
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox45 = new System.Windows.Forms.TextBox();
+            this.textBox46 = new System.Windows.Forms.TextBox();
+            this.label165 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
@@ -4259,6 +4261,8 @@ namespace KamertonTest
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage3.Controls.Add(this.label165);
+            this.tabPage3.Controls.Add(this.textBox46);
             this.tabPage3.Controls.Add(this.label157);
             this.tabPage3.Controls.Add(this.button84);
             this.tabPage3.Controls.Add(this.label92);
@@ -4486,6 +4490,25 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 610);
             this.textBox45.TabIndex = 0;
+            // 
+            // textBox46
+            // 
+            this.textBox46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox46.Location = new System.Drawing.Point(366, 14);
+            this.textBox46.Name = "textBox46";
+            this.textBox46.Size = new System.Drawing.Size(100, 21);
+            this.textBox46.TabIndex = 23;
+            this.textBox46.Text = "0";
+            this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label165
+            // 
+            this.label165.AutoSize = true;
+            this.label165.Location = new System.Drawing.Point(346, 47);
+            this.label165.Name = "label165";
+            this.label165.Size = new System.Drawing.Size(132, 13);
+            this.label165.TabIndex = 24;
+            this.label165.Text = "¬вод є платы \"јудио 1\"";
             // 
             // Form1
             // 
@@ -4935,6 +4958,8 @@ namespace KamertonTest
         private System.Windows.Forms.Button button84;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TextBox textBox45;
+        private System.Windows.Forms.Label label165;
+        private System.Windows.Forms.TextBox textBox46;
     }
 }
 

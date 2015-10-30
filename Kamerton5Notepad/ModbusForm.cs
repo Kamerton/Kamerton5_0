@@ -52,6 +52,7 @@ namespace KamertonTest
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         private int[] test_step = new int[20];
+        private long num_module_audio1 = 0;
 
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
@@ -4726,6 +4727,7 @@ namespace KamertonTest
             startWrReg = 120;                                                                   // Команда на 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 24);                        // Команда на проверку наличия SD памяти
             test_end1();
+            num_module_audio();                                                                // Преобразование номера модуля Аудио 1
             numCoils = 2;
             startCoil = 125;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 125  индикации возникновения ошибки SD память
@@ -4985,6 +4987,20 @@ namespace KamertonTest
             }
            fileName = (s0 + s1 + s2 + s3 + ".TXT");
            openFileDialog1.FileName = fileName;
+        }
+
+        private void num_module_audio()
+        {
+            string s = "";
+            //s = string textBox46;
+            //num_module_audio1 = Convert.ToInt64(textBox46);
+            num_module_audio1 = Convert.ToInt64(s);
+            byte[] data = BitConverter.GetBytes(num_module_audio1);
+            Array.Reverse(data);
+            string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
+            textBox9.Text = (hex);
+            textBox9.Refresh();
+            MessageBox.Show(hex);
         }
 
         private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
@@ -5478,4 +5494,7 @@ namespace KamertonTest
              System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
         }
      }
+
+
+
 }
