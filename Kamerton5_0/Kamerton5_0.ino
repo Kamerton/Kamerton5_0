@@ -1837,6 +1837,9 @@ void control_command()
         case 23:   
 				controlFileName();                         // Контроль имени файла
 				break;
+        case 24:   
+				 set_SD();                                 // Проверка SD памяти
+                break;
 		default:
 			wdt_reset();
 		break;
@@ -6883,6 +6886,37 @@ void clear_serial3()
 		   }
 }
 
+void set_SD()
+{
+		if (!sd.begin(chipSelect)) 
+		{
+			//Serial.println("initialization SD failed!");
+			regBank.set(125,false); 
+		}
+	else
+		{
+			  myFile = sd.open("example.txt", FILE_WRITE);
+			  myFile.close();
+
+			  // Check to see if the file exists:
+			  if (sd.exists("example.txt")) 
+			  {
+				  regBank.set(125,true); 
+				  sd.remove("example.txt");
+			   // Serial.println("example.txt exists.");
+			  }
+			  else 
+			  {
+			   // Serial.println("example.txt doesn't exist.");
+				regBank.set(125,false); 
+			  }
+	    	}
+
+	UpdateRegs(); 
+	delay(100);
+	regBank.set(adr_control_command,0);  
+}
+
 void setup()
 {
 	wdt_disable(); // бесполезная строка до которой не доходит выполнение при bootloop
@@ -6931,9 +6965,6 @@ void setup()
 	digitalWrite(kn3Nano, HIGH);
 
 	setup_resistor();                               // Начальные установки резистора
-
- 
-	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 
 	setup_regModbus();                              // Настройка регистров MODBUS
 
@@ -6987,6 +7018,8 @@ void setup()
 			Serial.println("initialization SD successfully.");
 			regBank.set(125,true); 
 		}
+
+	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
  // Serial.println("Files found on the card (name, date and size in bytes): ");
 
   // list all files in the card with date and size

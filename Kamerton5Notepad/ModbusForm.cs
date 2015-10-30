@@ -97,8 +97,6 @@ namespace KamertonTest
             cmbRetry.SelectedIndex = 2;
             cmbCommand.SelectedIndex = 0;
             timer_byte_set.Enabled = false;
-            timer_Mic_test.Enabled = false;
-            timerCTS.Enabled = false;
             timerTestAll.Enabled = false;
             Polltimer1.Enabled = false;
             find_com_port.Enabled = false;
@@ -184,12 +182,9 @@ namespace KamertonTest
                         Polltimer1.Enabled = true;  
                        break;
                 case 2:
-
+                    
                     Polltimer1.Enabled = false;                                                // Запретить опрос состояния
-                    timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
-                    timerCTS.Enabled = false;                                                  // !!!  Удалить везде
                     timerTestAll.Enabled = false;
-                    timer_byte_set.Enabled = false;
                     bool[] coilArrA = new bool[2];
                     slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                     progressBar1.Value = 0;
@@ -197,9 +192,9 @@ namespace KamertonTest
                     if ((myProtocol != null))
                     {
                         res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
-                        Thread.Sleep(1700);
-                        button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
-                        button31.BackColor = Color.LightSalmon;
+                        Thread.Sleep(1000);
+                        //button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
+                        //button31.BackColor = Color.LightSalmon;
                         label102.Text = "Выполняется контроль состояния сенсоров";
                         label102.ForeColor = Color.DarkOliveGreen;
                         numRdRegs = 2;
@@ -222,7 +217,8 @@ namespace KamertonTest
 
                   
                     timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
-                    //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
+                               
+                //   toolStripStatusLabel3.Text = ("Выбрана 3 вкладка");
                     break;
                 case 3:
 
@@ -611,7 +607,6 @@ namespace KamertonTest
                     toolStripStatusLabel1.Text = "    MODBUS ERROR (6) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
-                    timer_Mic_test.Enabled = false;
                     portFound = false;
                     find_com_port.Enabled = true;
                    // SetComPort();
@@ -848,8 +843,6 @@ namespace KamertonTest
                     toolStripStatusLabel1.Text = "    MODBUS ERROR (9) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     timer_byte_set.Enabled = false;
-                    timer_Mic_test.Enabled = false;
-                    timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
                     portFound = false;
                     find_com_port.Enabled = true;
@@ -875,13 +868,43 @@ namespace KamertonTest
                 find_com_port.Enabled = true;
             }
         }
+        private void find_com_port_Tick(object sender, EventArgs e)
+        {
+            if ((myProtocol != null))
+            {
+                // Close protocol and serial port
+                myProtocol.closeProtocol();
+                //    // Indicate result on status line
+                //lblResult.Text = "Протокол закрыт";
+                ////    // Disable button controls
+                //button5.Enabled = false;
+                //cmdOpenSerial.Enabled = true;
+                //Polltimer1.Enabled = false;
+                //toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+                //toolStripStatusLabel1.BackColor = Color.Red;
+                //toolStripStatusLabel3.Text = ("");
+                //portFound = false;
+            }
 
+
+            if (portFound == false)
+            {
+
+                toolStripStatusLabel4.Text = "Поиск COM порта";
+                toolStripStatusLabel4.ForeColor = Color.Black;
+                SetComPort();
+                if (portFound == true)
+                {
+                    toolStripStatusLabel4.Text = "";
+                }
+                Polltimer1.Enabled = true;
+            }
+
+        }
         private void timer_byte_set_Tick(object sender, EventArgs e)
         {
 
-            timer_byte_set.Enabled = false;
-            timer_Mic_test.Enabled = false;
-            timerCTS.Enabled = false;
+          //  timer_byte_set.Enabled = false;
             timerTestAll.Enabled = false;
             find_com_port.Enabled = false;
 
@@ -1646,7 +1669,6 @@ namespace KamertonTest
                     toolStripStatusLabel1.Text = "    MODBUS ERROR (1)  ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     // Polltimer1.Enabled = false;
-                    timer_Mic_test.Enabled = false;
                     portFound = false;
                     find_com_port.Enabled = true;
                     // SetComPort();
@@ -1663,325 +1685,6 @@ namespace KamertonTest
                 find_com_port.Enabled = true;
             }
 
-        }
-        private void timerCTS_Tick(object sender, EventArgs e)
-        {
-
-            Polltimer1.Enabled = false;                                                // Запретить опрос состояния
-            timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
-            timerCTS.Enabled = false;                                                  // !!!  Удалить везде
-            timerTestAll.Enabled = false;
-            timer_byte_set.Enabled = false;
-            // short[] writeVals = new short[32];
-            short[] readVals = new short[124];
-            int slave;
-            int startRdReg;
-            int numRdRegs;
-            int startCoil;
-            int numCoils;
-            int i;
-            int res;
-            bool[] coilVals = new bool[64];
-            bool[] coilArr = new bool[34]
-                ;
-            bool[] coilSensor = new bool[64];
-
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-            startRdReg = 1;
-            numRdRegs = 56;
-
-            res = myProtocol.readInputRegisters(slave, startRdReg, readVals, numRdRegs);
-            label78.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-
-                //  Первый байт
-
-                label30.Text = "";
-                label31.Text = "";
-                label32.Text = "";
-
-                label33.Text = "";
-                label34.Text = "";
-                label35.Text = "";
-                label36.Text = "";
-
-
-                for (i = 7; i >= 0; i--)
-                {
-                    label30.Text = (label30.Text + (readVals[i] + "  "));
-                    label31.Text = (label31.Text + (readVals[i + 8] + "  "));
-                    label32.Text = (label32.Text + (readVals[i + 16] + "  "));
-
-                    label33.Text = (label33.Text + (readVals[i + 24] + "  "));
-                    label34.Text = (label34.Text + (readVals[i + 32] + "  "));
-                    label35.Text = (label35.Text + (readVals[i + 40] + "  "));
-                    label36.Text = (label36.Text + (readVals[i + 48] + "  "));
-                }
-                if (readVals[24] == 0) // 30024 флаг подключения ГГ Радио2
-                {
-                    //label103.BackColor = Color.Red;
-                    //label103.Text = "0";
-                }
-                else
-                {
-                    //label103.BackColor = Color.Lime;
-                    //label103.Text = "1";
-                }
-                if (readVals[25] == 0) // 30025 флаг подключения ГГ Радио1
-                {
-                    //label104.BackColor = Color.Red;
-                    //label104.Text = "0";
-                }
-                else
-                {
-                    //label104.BackColor = Color.Lime;
-                    //label104.Text = "1";
-                }
-
-                if (readVals[26] == 0) // 30026 флаг подключения трубки
-                {
-                    label105.BackColor = Color.Red;
-                    label105.Text = "0";
-                }
-                else
-                {
-                    label105.BackColor = Color.Lime;
-                    label105.Text = "1";
-                }
-
-                if (readVals[27] == 0)   // 30027 флаг подключения ручной тангенты
-                {
-                    label106.BackColor = Color.Red;
-                    label106.Text = "0";
-                }
-                else
-                {
-                    label106.BackColor = Color.Lime;
-                    label106.Text = "1";
-                }
-
-                if (readVals[28] == 0)  // 30028 флаг подключения педали
-                {
-                    label107.BackColor = Color.Red;
-                    label107.Text = "0";
-                }
-                else
-                {
-                    label107.BackColor = Color.Lime;
-                    label107.Text = "1";
-                }
-
-                if (readVals[40] == 0) // 30040  флаг подключения магнитофона
-                {
-                    //label108.BackColor = Color.Red;
-                    //label108.Text = "0";
-                }
-                else
-                {
-                    //label108.BackColor = Color.Lime;
-                    //label108.Text = "1";
-                }
-
-                if (readVals[41] == 0) // 30041  флаг подключения гарнитуры инструктора 2 наушниками
-                {
-                    label109.BackColor = Color.Red;
-                    label109.Text = "0";
-                }
-                else
-                {
-                    label109.BackColor = Color.Lime;
-                    label109.Text = "1";
-                }
-
-                if (readVals[42] == 0) // 30042  флаг подключения гарнитуры инструктора
-                {
-                    label110.BackColor = Color.Red;
-                    label110.Text = "0";
-                }
-                else
-                {
-                    label110.BackColor = Color.Lime;
-                    label110.Text = "1";
-                }
-
-                if (readVals[43] == 0) // 30043  флаг подключения гарнитуры диспетчера с 2 наушниками
-                {
-                    label111.BackColor = Color.Red;
-                    label111.Text = "0";
-                }
-                else
-                {
-                    label111.BackColor = Color.Lime;
-                    label111.Text = "1";
-                }
-
-                if (readVals[44] == 0) // 30044  флаг подключения гарнитуры диспетчера
-                {
-                    label112.BackColor = Color.Red;
-                    label112.Text = "0";
-                }
-                else
-                {
-                    label112.BackColor = Color.Lime;
-                    label112.Text = "1";
-                }
-
-                if (readVals[45] == 0) // 30045  флаг подключения микрофона XS1 - 6 Sence
-                {
-                    label113.BackColor = Color.Red;
-                    label113.Text = "0";
-                }
-                else
-                {
-                    label113.BackColor = Color.Lime;
-                    label113.Text = "1";
-                }
-
-                if (readVals[46] == 0) //  30046  флаг подключения ГГС
-                {
-                    //label115.BackColor = Color.Red;
-                    //label115.Text = "0";
-                }
-                else
-                {
-                    //label115.BackColor = Color.Lime;
-                    //label115.Text = "1";
-                }
-
-
-                if (readVals[47] == 0) // 30047   флаг выключения ГГС (Mute)
-                {
-                    label144.BackColor = Color.Red;
-                    label144.Text = "0";
-                }
-                else
-                {
-                    label144.BackColor = Color.Lime;
-                    label144.Text = "1";
-                }
-
-                if (readVals[48] == 0) // 30048   флаг радиопередачи
-                {
-                    label143.BackColor = Color.Red;
-                    label143.Text = "0";
-                }
-                else
-                {
-                    label143.BackColor = Color.Lime;
-                    label143.Text = "1";
-                }
-
-                if (readVals[49] == 0) // 30049   флаг управления микрофонами гарнитур
-                {
-                    label142.BackColor = Color.Red;
-                    label142.Text = "0";
-                }
-                else
-                {
-                    label142.BackColor = Color.Lime;
-                    label142.Text = "1";
-                }
-            }
-
-
-
-
-
-            startCoil = 81;  // Флаг выполнения полного теста
-            numCoils = 4;
-            res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-            lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                if (coilArr[0] == false) // бит CTS - 1x80   
-                {
-                    label156.BackColor = Color.Red;
-                    label156.Text = "1";
-                }
-                else
-                {
-                    label156.BackColor = Color.Lime;
-                    label156.Text = "0";
-                }
-                if (coilArr[1] == false) // бит DSR - 1x81   
-                {
-                    label155.BackColor = Color.Red;
-                    label155.Text = "1";
-                }
-                else
-                {
-                    label155.BackColor = Color.Lime;
-                    label155.Text = "0";
-                }
-                if (coilArr[2] == false) // // бит DCD -  1x82 
-                {
-                    label152.BackColor = Color.Red;
-                    label152.Text = "1";
-                }
-                else
-                {
-                    label152.BackColor = Color.Lime;
-                    label152.Text = "0";
-                }
-
-            }
-
-
-            if ((res != BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR (2) ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                //Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                portFound = false;
-                find_com_port.Enabled = true;
-                //SetComPort();
-            }
-
-
-
-            progressBar1.Value += 1;
-            label114.Text = ("" + progressBar1.Value);
-            if (progressBar1.Value == progressBar1.Maximum)
-            {
-                progressBar1.Value = 0;
-            }
-
-
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                toolStripStatusLabel1.BackColor = Color.Lime;
-
-                label83.Text = "";
-                label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-            }
-
-
-            else
-            {
-                toolStripStatusLabel1.Text = "    MODBUS ERROR (3) ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                // Polltimer1.Enabled = false;
-                timer_Mic_test.Enabled = false;
-                timer_byte_set.Enabled = false;
-                timerCTS.Enabled = false;
-                timerTestAll.Enabled = false;
-                portFound = false;
-                find_com_port.Enabled = true;
-               // SetComPort();
-            }
-
-
-            label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
-            toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
 
 
@@ -2694,8 +2397,6 @@ namespace KamertonTest
         private void button32_Click(object sender, EventArgs e)                        //Старт теста "Байты обмена с Камертон"
         {
             Polltimer1.Enabled = false;                                                // Запретить опрос состояния
-            timer_Mic_test.Enabled = false;                                            // Запретить тест микрофона   !!!  Удалить везде
-            timerCTS.Enabled = false;                                                  // !!!  Удалить везде
             timerTestAll.Enabled = false;
             bool[] coilArr = new bool[2];
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
@@ -3555,8 +3256,6 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     Polltimer1.Enabled = false;
                     timer_byte_set.Enabled = false;
-                    timer_Mic_test.Enabled = false;
-                    timerCTS.Enabled = false;
                     timerTestAll.Enabled = false;
                     portFound = false;
                     find_com_port.Enabled = true;
@@ -5005,7 +4704,6 @@ namespace KamertonTest
             {
 
             Polltimer1.Enabled = false;
-            timer_Mic_test.Enabled = false;
             timer_byte_set.Enabled = false;
             ushort[] writeVals = new ushort[200];
             bool[] coilArr = new bool[200];
@@ -5025,28 +4723,30 @@ namespace KamertonTest
             textBox9.Text = ("");
             textBox8.Refresh();
             textBox9.Refresh();
-
+            startWrReg = 120;                                                                   // Команда на 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 24);                        // Команда на проверку наличия SD памяти
+            test_end1();
             numCoils = 2;
             startCoil = 125;
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 125  индикации возникновения ошибки SD память
             if (coilArr[0] == false) //есть ошибка
                 {
                     // Обработка ошибки.
-                    textBox7.Text += ("Ошибка! SD память не установлена " + "\r\n");
-                    textBox7.Text += ("Проверка остановлена. Установите  SD память " + "\r\n");
-                    textBox7.Refresh();
+                    textBox9.Text += ("Ошибка! SD память не установлена " + "\r\n");
+                    textBox9.Text += ("Проверка остановлена. Установите  SD память " + "\r\n");
+                    textBox9.Refresh();
                     Polltimer1.Enabled = true;
                 }
             else
                 {
-                textBox7.Text += ("SD память установлена " + "\r\n");
-                textBox7.Refresh();
+                textBox9.Text += ("SD память установлена " + "\r\n");
+                textBox9.Refresh();
                 //  0 в регистре означает завершение выполнения фрагмента проверки
                 numRdRegs = 2;
                 startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-               // coilArr[0] = false;                                                                    // !!! Убрать, только для тестирования
+               // coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
                 if (coilArr[0] == true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
@@ -5286,8 +4986,6 @@ namespace KamertonTest
            fileName = (s0 + s1 + s2 + s3 + ".TXT");
            openFileDialog1.FileName = fileName;
         }
-
-
 
         private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
         {
@@ -5711,40 +5409,6 @@ namespace KamertonTest
             label48.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
          }
 
-        private void find_com_port_Tick(object sender, EventArgs e)
-        {
-            if ((myProtocol != null))
-            {
-                // Close protocol and serial port
-                myProtocol.closeProtocol();
-                //    // Indicate result on status line
-                //lblResult.Text = "Протокол закрыт";
-                ////    // Disable button controls
-                //button5.Enabled = false;
-                //cmdOpenSerial.Enabled = true;
-                //Polltimer1.Enabled = false;
-                //toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                //toolStripStatusLabel1.BackColor = Color.Red;
-                //toolStripStatusLabel3.Text = ("");
-                //portFound = false;
-            }
-
-
-            if (portFound == false)
-            {
-
-                toolStripStatusLabel4.Text = "Поиск COM порта";
-                toolStripStatusLabel4.ForeColor = Color.Black;
-                SetComPort();
-                if (portFound == true)
-                {
-                    toolStripStatusLabel4.Text = "";
-                }
-                Polltimer1.Enabled = true;
-            }
-
-        }
-
         private void button76_Click_1(object sender, EventArgs e)  // Обновить уровни порогов инструктора
         {
 
@@ -5813,22 +5477,5 @@ namespace KamertonTest
         {
              System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
         }
-
-        private void timer_Mic_test_Tick(object sender, EventArgs e)
-        {
-            //  Удалить
-        }
-
-
-
-
-
-
-
-
-
-
-
-
      }
 }

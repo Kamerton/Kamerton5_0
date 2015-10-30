@@ -154,6 +154,7 @@ void test_system();
 void set_serial();
 void clear_serial();
 void clear_serial3();
+void set_SD();
 //
 //
 
