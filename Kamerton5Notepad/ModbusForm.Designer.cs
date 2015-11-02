@@ -518,7 +518,7 @@ namespace KamertonTest
             // find_com_port
             // 
             this.find_com_port.Enabled = true;
-            this.find_com_port.Interval = 5000;
+            this.find_com_port.Interval = 4500;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
             // 
             // saveFileDialog1
@@ -4510,7 +4510,7 @@ namespace KamertonTest
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(987, 613);
             this.tabPage4.TabIndex = 7;
-            this.tabPage4.Text = "Отчет проверки";
+            this.tabPage4.Text = "Содержимое файла отчета";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // textBox45
