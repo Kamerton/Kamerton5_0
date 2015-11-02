@@ -518,7 +518,7 @@ namespace KamertonTest
             // find_com_port
             // 
             this.find_com_port.Enabled = true;
-            this.find_com_port.Interval = 2000;
+            this.find_com_port.Interval = 5000;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
             // 
             // saveFileDialog1
@@ -4296,16 +4296,16 @@ namespace KamertonTest
             // label165
             // 
             this.label165.AutoSize = true;
-            this.label165.Location = new System.Drawing.Point(346, 47);
+            this.label165.Location = new System.Drawing.Point(340, 20);
             this.label165.Name = "label165";
-            this.label165.Size = new System.Drawing.Size(132, 13);
+            this.label165.Size = new System.Drawing.Size(114, 13);
             this.label165.TabIndex = 24;
-            this.label165.Text = "Ввод № платы \"Аудио 1\"";
+            this.label165.Text = "Модуль  \"Аудио 1\" №";
             // 
             // textBox46
             // 
             this.textBox46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox46.Location = new System.Drawing.Point(366, 14);
+            this.textBox46.Location = new System.Drawing.Point(460, 17);
             this.textBox46.MaxLength = 9;
             this.textBox46.Name = "textBox46";
             this.textBox46.Size = new System.Drawing.Size(100, 21);

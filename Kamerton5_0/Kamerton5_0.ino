@@ -6807,6 +6807,7 @@ void test_system()
 
 void set_serial()
 {
+	wdt_disable(); //
    clear_serial3();
    delay(400);
 // Поиск ком порта
@@ -6864,14 +6865,14 @@ void set_serial()
 			inputByte_3 = 0;
 			inputByte_4 = 0;
 	   }
-	   clear_serial3();
+	  // clear_serial3();
 	   delay(1000);
  	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
-	wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	digitalWrite(ledPin13,LOW);
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }
@@ -7057,6 +7058,7 @@ void setup()
 	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
+	wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 }
 
 void loop()
