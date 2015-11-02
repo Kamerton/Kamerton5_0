@@ -4527,7 +4527,7 @@ void measure_mks()
 	   duration1 += duration;
 	  }
 	  duration = duration1/10;
-  Serial.println(duration);
+  //Serial.println(duration);
   regBank.set(40063,duration);                          // ѕередать длительность импульса €ркости в программу
 }
 
@@ -6864,9 +6864,9 @@ void set_serial()
 			inputByte_3 = 0;
 			inputByte_4 = 0;
 	   }
-
-	   delay(400);
-	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
+	   clear_serial3();
+	   delay(1000);
+ 	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
