@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="212480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="212992">
       <assemblyIdentity name="Kamerton5Notepad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>FL44ybv6Y8Ps9OZViqtYkgERoi4=</dsig:DigestValue>
+        <dsig:DigestValue>iGtxrb8Rrx7+k6VaFzvovPFB7RQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
