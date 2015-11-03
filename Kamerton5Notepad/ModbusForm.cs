@@ -3475,7 +3475,7 @@ namespace KamertonTest
             if (coilArr_all[1] != false)
             {
                 textBox8.Text += ("Сенсор Тангента ручная не отключился                      \t< = " + readVals_all[1] + ">\r\n");
-               textBox48.Text
+                textBox48.Text += ("Сенсор Тангента ручная не отключился                      \t< = " + readVals_all[1] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 201, false);
             }
@@ -3483,7 +3483,7 @@ namespace KamertonTest
             if (coilArr_all[2] != false)
             {
                 textBox8.Text += ("Сенсор Тангента ножная не отключился                      \t< = " + readVals_all[2] + ">\r\n");
-                textBox48.Text
+                textBox48.Text+= ("Сенсор Тангента ножная не отключился                      \t< = " + readVals_all[2] + ">\r\n");
                 textBox8.Refresh();
                 textBox8.Refresh(); res = myProtocol.writeCoil(slave, 202, false);
             }
@@ -3491,49 +3491,49 @@ namespace KamertonTest
             if (coilArr_all[3] != false)
             {
                 textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился\t< = " + readVals_all[3] + ">\r\n");
-                textBox48.Text
+                textBox48.Text+= ("Сенсор гарнитуры инструктора с 2 наушниками  не отключился\t< = " + readVals_all[3] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 203, false);
             }
             if (coilArr_all[4] != false)
             {
                 textBox8.Text += ("Сенсор гарнитуры инструктора  не отключился               \t< = " + readVals_all[4] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор гарнитуры инструктора  не отключился               \t< = " + readVals_all[4] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 204, false);
             }
             if (coilArr_all[5] != false)
             {
                 textBox8.Text += ("Сенсор диспетчера с 2 наушниками не отключился            \t< = " + readVals_all[5] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор диспетчера с 2 наушниками не отключился            \t< = " + readVals_all[5] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 205, false);
             }
             if (coilArr_all[6] != false)
             {
                 textBox8.Text += ("Сенсор диспетчера не отключился                               \t< = " + readVals_all[6] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор диспетчера не отключился                               \t< = " + readVals_all[6] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 206, false);
             }
             if (coilArr_all[7] != false)
             {
                 textBox8.Text += ("Сенсор Микрофона не отключился                                \t< = " + readVals_all[7] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор Микрофона не отключился                                \t< = " + readVals_all[7] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 207, false);
             }
             if (coilArr_all[8] != false)
             {
                 textBox8.Text += ("Микрофон инструктора не отключился                           \t< = " + readVals_all[8] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Микрофон инструктора не отключился                           \t< = " + readVals_all[8] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 208, false);
             }
             if (coilArr_all[9] != false)
             {
                 textBox8.Text += ("Микрофон диспетчера не отключился                            \t< = " + readVals_all[9] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Микрофон диспетчера не отключился                            \t< = " + readVals_all[9] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 209, false);
             }
@@ -3541,7 +3541,7 @@ namespace KamertonTest
             if (coilArr_all[10] != false)
             {
                 textBox8.Text += ("Сенсор  трубки не включился                                   \t< = " + readVals_all[10] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор  трубки не включился                                   \t< = " + readVals_all[10] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 210, false);
             }
@@ -3549,7 +3549,7 @@ namespace KamertonTest
             if (coilArr_all[11] != false)
             {
                 textBox8.Text += ("Сенсор Тангента ручная не включился                       \t< = " + readVals_all[11] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор Тангента ручная не включился                       \t< = " + readVals_all[11] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 211, false);
             }
@@ -3557,7 +3557,7 @@ namespace KamertonTest
             if (coilArr_all[12] != false)
             {
                 textBox8.Text += ("Сенсор Тангента ножная не включился                       \t< = " + readVals_all[12] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор Тангента ножная не включился                       \t< = " + readVals_all[12] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 212, false);
             }
@@ -3565,48 +3565,49 @@ namespace KamertonTest
             if (coilArr_all[13] != false)
             {
                 textBox8.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился \t< = " + readVals_all[13] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  не включился \t< = " + readVals_all[13] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 213, false);
             }
             if (coilArr_all[14] != false)
             {
                 textBox8.Text += ("Сенсор гарнитуры инструктора  не включился                \t< = " + readVals_all[14] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор гарнитуры инструктора  не включился                \t< = " + readVals_all[14] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 214, false);
             }
             if (coilArr_all[15] != false)
             {
                 textBox8.Text += ("Сенсор диспетчера с 2 наушниками не включился          \t< = " + readVals_all[15] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор диспетчера с 2 наушниками не включился          \t< = " + readVals_all[15] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 215, false);
             }
             if (coilArr_all[16] != false)
             {
                 textBox8.Text += ("Сенсор диспетчера не включился                               \t< = " + readVals_all[16] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сенсор диспетчера не включился                               \t< = " + readVals_all[16] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 216, false);
             }
             if (coilArr_all[17] != false)
             {
                 textBox8.Text += ("Сенсор Микрофона не включился                                \t< = " + readVals_all[17] + ">\r\n");
+                textBox48.Text += ("Сенсор Микрофона не включился                                \t< = " + readVals_all[17] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 217, false);
             }
             if (coilArr_all[18] != false)
             {
                 textBox8.Text += ("Микрофон инструктора не включился                            \t< = " + readVals_all[18] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Микрофон инструктора не включился                            \t< = " + readVals_all[18] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 218, false);
             }
             if (coilArr_all[19] != false)
             {
                 textBox8.Text += ("Микрофон диспетчера не включился                             \t< = " + readVals_all[19] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("Микрофон диспетчера не включился                             \t< = " + readVals_all[19] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 219, false);
             }
@@ -3614,7 +3615,7 @@ namespace KamertonTest
             if (coilArr_all[20] != false)
             {
                 textBox8.Text += ("PTT инструктора не отключился                                \t< = " + readVals_all[20] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("PTT инструктора не отключился                                \t< = " + readVals_all[20] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 220, false);
             }
@@ -3622,7 +3623,7 @@ namespace KamertonTest
             if (coilArr_all[21] != false)
             {
                 textBox8.Text += ("PTT инструктора не включился                                 \t< = " + readVals_all[21] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("PTT инструктора не включился                                 \t< = " + readVals_all[21] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 221, false);
             }
@@ -3630,7 +3631,7 @@ namespace KamertonTest
             if (coilArr_all[22] != false)
             {
                 textBox8.Text += ("PTT диспетчера не отключился                                 \t< = " + readVals_all[22] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("PTT диспетчера не отключился                                 \t< = " + readVals_all[22] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 222, false);
             }
@@ -3638,7 +3639,7 @@ namespace KamertonTest
             if (coilArr_all[23] != false)
             {
                 textBox8.Text += ("PTT диспетчера не включился                                 \t< = " + readVals_all[23] + ">\r\n");
-                textBox48.Text
+                textBox48.Text += ("PTT диспетчера не включился                                 \t< = " + readVals_all[23] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 223, false);
             }
@@ -3646,22 +3647,23 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[24];
                 textBox8.Text += ("Сигнал инструктора LineL отсутствует                      \t< = " + readVals_all[24] + ">  " + temp_disp / 100 + " V \r\n");
-                textBox48.Text
+                textBox48.Text += ("Сигнал инструктора LineL отсутствует                      \t< = " + readVals_all[24] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 224, false);
             }
             if (coilArr_all[25] != false)
             {
                 temp_disp = readVolt_all[25];
-                textBox48.Text
+                textBox48.Text += ("Сигнал инструктора LineR отсутствует                      \t< = " + readVals_all[25] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Text += ("Сигнал инструктора LineR отсутствует                      \t< = " + readVals_all[25] + ">  " + temp_disp / 100 + " V \r\n");
+                textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 225, false);
             }
             if (coilArr_all[26] != false)
             {
                 temp_disp = readVolt_all[26];
                 textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует       \t< = " + readVals_all[26] + ">  " + temp_disp / 100 + " V \r\n");
-                textBox48.Text
+                textBox48.Text+= ("Сигнал инструктора на разъеме Маг phone отсутствует       \t< = " + readVals_all[26] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 226, false);
             }
@@ -3669,7 +3671,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[27];
                 textBox8.Text += ("Сигнал диспетчера LineL отсутствует                       \t< = " + readVals_all[27] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сигнал диспетчера LineL отсутствует                       \t< = " + readVals_all[27] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 227, false);
             }
@@ -3677,7 +3679,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[28];
                 textBox8.Text += ("Сигнал диспетчера LineR отсутствует                       \t< = " + readVals_all[28] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сигнал диспетчера LineR отсутствует                       \t< = " + readVals_all[28] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 228, false);
             }
@@ -3685,7 +3687,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[29];
                 textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует        \t< = " + readVals_all[29] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует        \t< = " + readVals_all[29] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 229, false);
             }
@@ -3694,7 +3696,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[30];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал FrontL     \tOFF          \t< = " + readVals_all[30] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontL     \tOFF          \t< = " + readVals_all[30] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 230, false);
             }
@@ -3703,7 +3705,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[31];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR     \tOFF         \t< = " + readVals_all[31] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR     \tOFF         \t< = " + readVals_all[31] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 231, false);
             }
@@ -3712,7 +3714,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[32];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал LineL        \tOFF        \t< = " + readVals_all[32] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineL        \tOFF        \t< = " + readVals_all[32] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 232, false);
             }
@@ -3721,7 +3723,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[33];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал LineR    \tOFF        \t< = " + readVals_all[33] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineR    \tOFF        \t< = " + readVals_all[33] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 233, false);
             }
@@ -3729,7 +3731,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[34];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал mag radio    \tOFF        \t< = " + readVals_all[34] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag radio    \tOFF        \t< = " + readVals_all[34] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 234, false);
             }
@@ -3737,7 +3739,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[35];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал mag phone    \tOFF        \t< = " + readVals_all[35] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag phone    \tOFF        \t< = " + readVals_all[35] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 235, false);
             }
@@ -3745,7 +3747,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[36];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал ГГС          \tOFF        \t< = " + readVals_all[36] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГС          \tOFF        \t< = " + readVals_all[36] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 236, false);
             }
@@ -3753,7 +3755,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[37];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио1    \tOFF        \t< = " + readVals_all[37] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио1    \tOFF        \t< = " + readVals_all[37] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 237, false);
             }
@@ -3761,7 +3763,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[38];
                 textBox8.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио2    \tOFF        \t< = " + readVals_all[38] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио2    \tOFF        \t< = " + readVals_all[38] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 238, false);
             }
@@ -3769,7 +3771,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[39];
                 textBox8.Text += ("Ошибка! Ток устройства не в норме  < = " + readVals_all[38] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Ошибка! Ток устройства не в норме  < = " + readVals_all[38] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 239, false);
             }
@@ -3778,7 +3780,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[40];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал FrontL     \tOFF          \t< = " + readVals_all[40] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал FrontL     \tOFF          \t< = " + readVals_all[40] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 240, false);
             }
@@ -3787,7 +3789,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[41];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал FrontR      \tOFF         \t< = " + readVals_all[41] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал FrontR      \tOFF         \t< = " + readVals_all[41] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 241, false);
             }
@@ -3796,7 +3798,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[42];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал LineL       \tOFF         \t< = " + readVals_all[42] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал LineL       \tOFF         \t< = " + readVals_all[42] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 242, false);
             }
@@ -3805,7 +3807,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[43];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал LineR       \tOFF         \t< = " + readVals_all[43] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал LineR       \tOFF         \t< = " + readVals_all[43] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 243, false);
             }
@@ -3813,7 +3815,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[44];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал mag radio    \tOFF        \t< = " + readVals_all[44] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал mag radio    \tOFF        \t< = " + readVals_all[44] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 244, false);
             }
@@ -3821,7 +3823,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[45];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал mag phone    \tOFF        \t< = " + readVals_all[45] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал mag phone    \tOFF        \t< = " + readVals_all[45] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 245, false);
             }
@@ -3829,7 +3831,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[46];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГС          \tOFF        \t< = " + readVals_all[46] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГС          \tOFF        \t< = " + readVals_all[46] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 246, false);
             }
@@ -3837,7 +3839,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[47];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГ Радио1    \tOFF        \t< = " + readVals_all[47] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГ Радио1    \tOFF        \t< = " + readVals_all[47] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 247, false);
             }
@@ -3845,7 +3847,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[48];
                 textBox8.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГ Радио2    \tOFF        \t< = " + readVals_all[48] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест гарнитуры диспетчера ** Сигнал ГГ Радио2    \tOFF        \t< = " + readVals_all[48] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 248, false);
             }
@@ -3853,7 +3855,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[49];
                 textBox8.Text += ("Ошибка! Ток устройства не в норме                             \t< = " + readVals_all[49] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Ошибка! Ток устройства не в норме                             \t< = " + readVals_all[49] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 249, false);
             }
@@ -3862,7 +3864,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[50];
                 textBox8.Text += ("Тест МТТ (трубки) ** Сигнал FrontL                      \tOFF        \t< = " + readVals_all[50] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест МТТ (трубки) ** Сигнал FrontL                      \tOFF        \t< = " + readVals_all[50] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 250, false);
             }
@@ -3871,7 +3873,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[51];
                 textBox8.Text += ("Тест МТТ (трубки) ** Сигнал FrontR                      \tOFF        \t< = " + readVals_all[51] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест МТТ (трубки) ** Сигнал FrontR                      \tOFF        \t< = " + readVals_all[51] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 251, false);
             }
@@ -3880,7 +3882,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[52];
                 textBox8.Text += ("Тест МТТ (трубки) ** Сигнал LineL                       \tOFF        \t< = " + readVals_all[52] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест МТТ (трубки) ** Сигнал LineL                       \tOFF        \t< = " + readVals_all[52] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 252, false);
             }
@@ -3889,7 +3891,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[53];
                 textBox8.Text += ("Тест МТТ (трубки) ** Сигнал LineR                       \tOFF        \t< = " + readVals_all[53] + ">  " + temp_disp / 100 + " V\r\n");
-                textBox48.Text
+                textBox48.Text += ("Тест МТТ (трубки) ** Сигнал LineR                       \tOFF        \t< = " + readVals_all[53] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 253, false);
             }
