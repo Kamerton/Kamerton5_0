@@ -423,6 +423,8 @@ namespace KamertonTest
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox45 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.textBox47 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.TabPage2.SuspendLayout();
             this.GroupBox5.SuspendLayout();
@@ -451,6 +453,7 @@ namespace KamertonTest
             this.groupBox19.SuspendLayout();
             this.TabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // Polltimer1
@@ -518,7 +521,7 @@ namespace KamertonTest
             // find_com_port
             // 
             this.find_com_port.Enabled = true;
-            this.find_com_port.Interval = 4500;
+            this.find_com_port.Interval = 8000;
             this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
             // 
             // saveFileDialog1
@@ -4496,6 +4499,7 @@ namespace KamertonTest
             this.TabControl1.Controls.Add(this.TabPage1);
             this.TabControl1.Controls.Add(this.TabPage2);
             this.TabControl1.Controls.Add(this.tabPage4);
+            this.TabControl1.Controls.Add(this.tabPage7);
             this.TabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TabControl1.Location = new System.Drawing.Point(0, 2);
             this.TabControl1.Name = "TabControl1";
@@ -4522,6 +4526,25 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 610);
             this.textBox45.TabIndex = 0;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.AutoScroll = true;
+            this.tabPage7.Controls.Add(this.textBox47);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(987, 613);
+            this.tabPage7.TabIndex = 8;
+            this.tabPage7.Text = "Формирование отчета";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // textBox47
+            // 
+            this.textBox47.Location = new System.Drawing.Point(3, 1);
+            this.textBox47.Multiline = true;
+            this.textBox47.Name = "textBox47";
+            this.textBox47.Size = new System.Drawing.Size(981, 609);
+            this.textBox47.TabIndex = 0;
             // 
             // Form1
             // 
@@ -4578,6 +4601,8 @@ namespace KamertonTest
             this.TabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4973,6 +4998,8 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox textBox45;
         private System.Windows.Forms.Label label165;
         private System.Windows.Forms.TextBox textBox46;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TextBox textBox47;
     }
 }
 

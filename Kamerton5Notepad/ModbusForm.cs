@@ -56,7 +56,7 @@ namespace KamertonTest
 
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
-        bool testAllRun = false;
+     //   bool testAllRun = false;
         string fileName = "Kamerton log.txt";
         static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
@@ -675,7 +675,7 @@ namespace KamertonTest
                 char charReturnValue = (Char)intReturnASCII;
                 currentPort.Open();
                 currentPort.Write(buffer, 0, 5);
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 int count = currentPort.BytesToRead;
                 string returnMessage = "";
                 while (count > 0)
@@ -3274,8 +3274,46 @@ namespace KamertonTest
             textBox7.Text += ("Проверка напряжения питания" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
+            error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
+            error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
+            error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
+
+            if (radioButton1.Checked)                                    // Условие однократной проверки
+            {
+
+                textBox47.Text += ("Проверка напряжения питания" + "\r\n"+"\r\n");
+
+                if (coilArr_all[93] == false)
+                {
+                    temp_disp = readVolt_all[93];
+                    textBox47.Text += ("Напряжение питания модуля в норме                 \t = " + temp_disp * 2.51 / 100 + " V\r\n");
+                }
+                if (coilArr_all[94] == false)
+                {
+                    temp_disp = readVolt_all[94];
+                    textBox47.Text += ("Напряжение питания Радио1 в норме                 \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                }
+                if (coilArr_all[95] == false)
+                {
+                    temp_disp = readVolt_all[95];
+                    textBox47.Text += ("Напряжение питания Радио2 в норме                 \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                }
+                if (coilArr_all[96] == false)
+                {
+                    temp_disp = readVolt_all[96];
+                    textBox47.Text += ("Напряжение питания ГГС  в норме                   \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                }
+                if (coilArr_all[97] == false)
+                {
+                    temp_disp = readVolt_all[97];
+                    textBox47.Text += ("Напряжение питания светодиода микрофона в норме   \t  = " + temp_disp / 100 + " V\r\n");
+                }
+
+            }
             test_end();
-            // Результат?
+            textBox47.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
+            File.AppendAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
+          
         }
         private void test_valueDisp()
         {
@@ -3331,12 +3369,14 @@ namespace KamertonTest
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
             if (coilArr[0] == true) //есть ошибка
             {
+                textBox47.Text += ("\r\n" + "******Ошибки выполнения теста ****** \r\n");
                 // Обработка ошибки.
                 textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                 textBox8.Refresh();
                 error_list();
- 
-             }
+               // textBox47.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
+                //File.AppendAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
+            }
 
        }
         private void test_end1()
@@ -3381,6 +3421,7 @@ namespace KamertonTest
             {
                 textBox8.Text += ("Сенсор  трубки не отключился                                \t< = " + readVals_all[0] + ">\r\n");
                 textBox8.Refresh();
+                textBox47.Text += ("Сенсор  трубки не отключился                                \t< = " + readVals_all[0] + ">\r\n");
                 res = myProtocol.writeCoil(slave, 200, false);
             }
 
@@ -3443,7 +3484,7 @@ namespace KamertonTest
 
             if (coilArr_all[10] != false)
             {
-                textBox8.Text += ("Сенсор  трубки не включился                                    \t< = " + readVals_all[10] + ">\r\n");
+                textBox8.Text += ("Сенсор  трубки не включился                                   \t< = " + readVals_all[10] + ">\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 210, false);
             }
@@ -3548,7 +3589,7 @@ namespace KamertonTest
             if (coilArr_all[26] != false)
             {
                 temp_disp = readVolt_all[26];
-                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует \t< = " + readVals_all[26] + ">  " + temp_disp / 100 + " V \r\n");
+                textBox8.Text += ("Сигнал инструктора на разъеме Маг phone отсутствует       \t< = " + readVals_all[26] + ">  " + temp_disp / 100 + " V \r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 226, false);
             }
@@ -3569,7 +3610,7 @@ namespace KamertonTest
             if (coilArr_all[29] != false)
             {
                 temp_disp = readVolt_all[29];
-                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует    \t< = " + readVals_all[29] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox8.Text += ("Сигнал диспетчера на разъеме Маг phone отсутствует        \t< = " + readVals_all[29] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 229, false);
             }
@@ -4030,6 +4071,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[93];
                 textBox8.Text += ("Напряжение питания модуля не в норме                 \t< = " + readVals_all[93] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox47.Text += ("Напряжение питания модуля не в норме                 \t< = " + readVals_all[93] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 293, false);
             }
@@ -4037,6 +4079,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[94];
                 textBox8.Text += ("Напряжение питания Радио1 не в норме                 \t < = " + readVals_all[94] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox47.Text += ("Напряжение питания Радио1 не в норме                 \t < = " + readVals_all[94] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 294, false);
             }
@@ -4044,6 +4087,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[95];
                 textBox8.Text += ("Напряжение питания Радио2 не в норме                 \t  < = " + readVals_all[95] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox47.Text += ("Напряжение питания Радио2 не в норме                 \t  < = " + readVals_all[95] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 295, false);
             }
@@ -4051,6 +4095,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[96];
                 textBox8.Text += ("Напряжение питания ГГС  не в норме                   \t  < = " + readVals_all[96] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox47.Text += ("Напряжение питания ГГС  не в норме                   \t  < = " + readVals_all[96] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 296, false);
             }
@@ -4058,6 +4103,7 @@ namespace KamertonTest
             {
                 temp_disp = readVolt_all[97];
                 textBox8.Text += ("Напряжение питания светодиода микрофона не в норме   \t  < = " + readVals_all[97] + ">  " + temp_disp / 100 + " V\r\n");
+                textBox47.Text += ("Напряжение питания светодиода микрофона не в норме   \t  < = " + readVals_all[97] + ">  " + temp_disp / 100 + " V\r\n");
                 textBox8.Refresh();
                 res = myProtocol.writeCoil(slave, 297, false);
             }
@@ -4298,10 +4344,13 @@ namespace KamertonTest
                 res = myProtocol.writeCoil(slave, 329, false);
             }
 
-
+           // File.AppendAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
+            //textBox47.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
+            //File.AppendAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
 
 
             res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
+
         }
         private void error_list1()                                          //  40200 Получить данные со  счетчиков ошибок  
         {
@@ -4593,7 +4642,7 @@ namespace KamertonTest
                 button11.BackColor = Color.White;
                 label92.Text = ("");
                 progressBar2.Value = 0;
-                testAllRun = false;
+              //  testAllRun = false;
                 textBox7.Text += "Тест окончен!";
                 textBox7.Refresh();
                 startCoil = 8;                                                                // Управление питанием платы "Камертон"
@@ -4798,7 +4847,10 @@ namespace KamertonTest
                         //textBox45.Refresh();
                         textBox8.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" + "\r\n");
                         textBox8.Text += ("Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
+                        textBox47.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" );
+                        textBox47.Text += ("Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n" + "\r\n");
                         textBox8.Refresh();
+                        textBox47.Refresh();
                         test_end1();
                        // All_Test_Stop = false;                                                             // Установить флаг запуска теста
                    // }
@@ -4944,27 +4996,53 @@ namespace KamertonTest
                 textBox7.Text += ("Тест остановлен" + "\r\n");
                 progressBar2.Value = 0;
                 startWrReg = 120;
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
+                res = myProtocol.writeSingleRegister(slave, startWrReg, 13);          // Команда на закрытие файла отправлена
                 textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
                 textBox7.Refresh();
                 textBox9.Refresh();
                 textBox7.Text += "Тест окончен!";
-                textBox8.Text += ("\r\n" + "Тест модуля Аудио-1 окончен!  Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                testAllRun = false;
-                All_Test_Stop = false;                                       // Признак для управления кнопкой "Стоп" (Отключение произошло)
+                textBox8.Text += ("\r\n" + "Тест модуля Аудио-1 окончен!   Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
+                //testAllRun = false;
+                All_Test_Stop = false;                                                       // Признак для управления кнопкой "Стоп" (Отключение произошло)
+
+                if (radioButton1.Checked )                                // Условие однократной проверки
+                {
+                    pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+                    pathString = System.IO.Path.Combine(pathString, fileName);
+                    File.WriteAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
+                    //pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+                    //pathString = System.IO.Path.Combine(pathString, fileName);
+                 
+                    if (File.Exists(pathString))
+                    {
+                        textBox45.Text = File.ReadAllText(pathString);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Файл НЕ существует!  " + pathString, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                                                 // Сформировать файл отчета
+                }
+                else
+                {
+                    pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+                    System.IO.Directory.CreateDirectory(pathString);
+                    pathString = System.IO.Path.Combine(pathString, fileName);
+                    File.WriteAllText(pathString, textBox8.Text, Encoding.GetEncoding("UTF-8"));
+                    Read_File();                                                      // Вывести информацию из файла в окно
+                }
+                startCoil = 8;                                                        // Управление питанием платы "Камертон"
+                res = myProtocol.writeCoil(slave, startCoil, false);                  // Отключить питание платы "Камертон"
                 Polltimer1.Enabled = true;
-                startCoil = 8;                                               // Управление питанием платы "Камертон"
-                res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
-                Save_File();
-                Read_File();
             }
 
             else
             {
                 textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
+                Polltimer1.Enabled = true;
             }
         }
-
+ 
         private void label92_Click(object sender, EventArgs e)
         {
 
@@ -4992,7 +5070,7 @@ namespace KamertonTest
             pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
             System.IO.Directory.CreateDirectory(pathString);
             pathString = System.IO.Path.Combine(pathString, fileName);
-            File.WriteAllText(pathString, textBox8.Text, Encoding.GetEncoding("UTF-8"));
+            File.WriteAllText(pathString, textBox47.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void Read_File()
         {

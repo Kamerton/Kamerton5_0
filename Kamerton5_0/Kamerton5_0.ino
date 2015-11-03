@@ -5728,7 +5728,7 @@ void measure_power()
 	regBank.set(23,0);                           // XP3-3     sensor "ГГ-Радио1."
 	regBank.set(24,0);                           // XP4-3     sensor "ГГ-Радио2."
 	UpdateRegs();         
-	delay(200);
+	delay(100);
 
 	measure_volume_P(analog_tok);     
 	regBank.set(40400,voltage10);                     
@@ -5760,7 +5760,7 @@ void measure_power()
 	wdt_reset();
 	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
 	UpdateRegs();         
-	delay(200);
+	delay(100);
 
 	measure_volume_P(analog_3_6);     
 	regBank.set(40497,voltage10);   
