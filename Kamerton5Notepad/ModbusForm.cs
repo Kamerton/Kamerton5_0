@@ -47,7 +47,7 @@ namespace KamertonTest
         private int TestStep;
         private int TestRepeatCount;
         private int _SerialMonitor;
-        static bool _All_Test_Stop = true;
+        bool All_Test_Stop = false;                         // Признак для управления кнопкой "Стоп"
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
@@ -3370,7 +3370,7 @@ namespace KamertonTest
             } while (readVals[0] != 0);                                     // Если readVals[0] == 0 , тест завершен
         }
 
-        private void error_list()                       // Обработать информацию ошибок
+        private void error_list()                                           //  Обработать информацию ошибок и вывети в окно 
         {
             error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
             error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
@@ -4303,7 +4303,7 @@ namespace KamertonTest
 
             res = myProtocol.writeCoil(slave, 120, false);                      // Снять флаг общей ошибки теста
         }
-        private void error_list1()          //  40200 Получить данные со  счетчиков ошибок  
+        private void error_list1()                                          //  40200 Получить данные со  счетчиков ошибок  
         {
             ushort[] readVals = new ushort[10];
             ushort[] readVolt = new ushort[10];
@@ -4341,7 +4341,7 @@ namespace KamertonTest
              }
 
         }
-        private void error_list2()
+        private void error_list2()                                          //  40400 Получить данные измерений
         {
             ushort[] readVolt = new ushort[10];
             startRdReg = 200;
@@ -4376,9 +4376,8 @@ namespace KamertonTest
                  }
             }
         }
-        private void error_list3()
+        private void error_list3()                                          //  200   Получить данные состояния флага индикации возникновения  ошибки
         {
-            //   Polltimer1.Enabled = true;
             ushort[] readVals = new ushort[10];
             ushort[] readVolt = new ushort[10];
             bool[] coilArr = new bool[10];
@@ -4417,7 +4416,7 @@ namespace KamertonTest
             }
 
         }
-        private void error_list_print()
+        private void error_list_print()                                     // Вывод информации о состоянии error регистров (информация отладочная, в измерениях не применяется)
         {
             richTextBox1.Text = "";
             for (int i_reg = 0; i_reg < 130; i_reg++)
@@ -4429,139 +4428,8 @@ namespace KamertonTest
         }
 
         //*******************************************
-        private void TestAllNew()
-        {
-            short[] readVals = new short[125];
-            int slave;
-            int startRdReg;
-            int numRdRegs;
-            int res;
-            testAllRun = true;
-
-            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            startRdReg = 46; // 40046 Адрес дата/время контроллера  
-            numRdRegs = 8;
-            res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-
-
-            while (testAllRun)
-            {
-    
-
-                if (checkBoxPower.Checked || radioButton1.Checked)
-                {
-                    test_power();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                   // if(button9.Click()){}
-
-                }
-                if (checkBoxSensors1.Checked || radioButton1.Checked)
-                {
-                    sensor_off();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSensors2.Checked || radioButton1.Checked)
-                {
-                    sensor_on();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenGar1instr.Checked || radioButton1.Checked)
-                {
-                    test_instruktora();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenGar1disp.Checked || radioButton1.Checked)
-                {
-                    test_dispetchera();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenTrubka.Checked || radioButton1.Checked)
-                {
-                    test_MTT();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenTangRuch.Checked || radioButton1.Checked)
-                {
-                    test_tangR();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenTangN.Checked || radioButton1.Checked)
-                {
-                    test_tangN();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenGGS.Checked || radioButton1.Checked)
-                {
-                    testGGS();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenGGRadio1.Checked || radioButton1.Checked)
-                {
-                    test_GG_Radio1();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenGGRadio2.Checked || radioButton1.Checked)
-                {
-                    test_GG_Radio2();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxSenMicrophon.Checked || radioButton1.Checked)
-                {
-                    test_mikrophon();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-                if (checkBoxDisp.Checked || radioButton1.Checked)
-                {
-                    test_valueDisp();
-                    progressBar2.Value += 1;
-                    label98.Text = ("" + progressBar2.Value);
-                    label98.Refresh();
-                }
-
-                if (radioButton2.Checked)
-                //     if (radioButton2.Checked & TestN == 13)
-                {
-                    timerTestAll.Enabled = true;
-                    TestN = 0;
-                    TestRepeatCount++;
-                    if (TestRepeatCount > 32767) TestRepeatCount = 1;
-                    textBox7.Text += ("\r\n");
-                    textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
-                    textBox7.Text += ("\r\n");
-                    Thread.Sleep(500);
-                }
-
-        }
-
-
-
-        }
-
-        private void timerTestAll_Tick(object sender, EventArgs e)        // Тестирование программы общего теста
+  
+        private void timerTestAll_Tick(object sender, EventArgs e)          // Тестирование программы общего теста
         {
             short[] readVals = new short[125];
             int slave;
@@ -4569,19 +4437,18 @@ namespace KamertonTest
             int numRdRegs;
             int res;
             int TestNst;
-
-
+            All_Test_Stop = true;                                         // Признак для управления кнопкой "Стоп" (true - разрешить отключение)
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            startRdReg = 46; // 40046 Адрес дата/время контроллера  
+            startRdReg = 46;                                              // 40046 Адрес дата/время контроллера  
             numRdRegs = 8;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
 
             TestNst = test_step[TestN];
-            timerTestAll.Enabled = false;
+            timerTestAll.Enabled = false;                                 // Отключить таймер на время выполнения теста               
 
-            switch (TestNst)  // Определить № теста
+            switch (TestNst)                                              // Определить № теста
             {
-                    
+                   
                 default:
                 case 0:
                     if (checkBoxPower.Checked || radioButton1.Checked)
@@ -4706,7 +4573,7 @@ namespace KamertonTest
             }
             
             TestN++;                                                     // Увеличить счетчик номера теста
-            timerTestAll.Enabled = true;
+            timerTestAll.Enabled = true;                                 // Включить таймер на время выполнения теста 
             label98.Text = ("" + progressBar2.Value);
             if (progressBar2.Value == progressBar2.Maximum)
             {
@@ -4715,34 +4582,26 @@ namespace KamertonTest
             label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
 
-            if (radioButton1.Checked & TestN == TestStep)
+            if (radioButton1.Checked & TestN == TestStep)                                    // Условие однократной проверки
             {
                 timerTestAll.Enabled = false;
-                _All_Test_Stop = false;
- 
+               // All_Test_Stop = false;
                 ushort[] writeVals = new ushort[20];
                 bool[] coilArr = new bool[34];
-
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                 button9.BackColor = Color.Red;
                 button11.BackColor = Color.White;
                 label92.Text = ("");
                 progressBar2.Value = 0;
-                //startWrReg = 120;
-                //res = myProtocol.writeSingleRegister(slave, startWrReg, 13);                // Команда на закрытие файла отправлена
-                //textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
-                //textBox9.Refresh();
                 testAllRun = false;
                 textBox7.Text += "Тест окончен!";
                 textBox7.Refresh();
-                _All_Test_Stop = true;
-                Polltimer1.Enabled = true;
-                startCoil = 8;                                                             // Управление питанием платы "Камертон"
-                res = myProtocol.writeCoil(slave, startCoil, false);                       // Отключить питание платы "Камертон"
+                startCoil = 8;                                                                // Управление питанием платы "Камертон"
+                res = myProtocol.writeCoil(slave, startCoil, false);                          // Отключить питание платы "Камертон"
                 stop_test();
                 Polltimer1.Enabled = true;
             }
-            if (radioButton2.Checked & TestN == TestStep)   // Повтор многократного теста
+            if (radioButton2.Checked & TestN == TestStep)                                     // Условие многократной проверки. Повтор многократного теста
             {
                 timerTestAll.Enabled = true;
                 TestN = 0;
@@ -4755,7 +4614,7 @@ namespace KamertonTest
             }
         }
    
-        private void button11_Click_1(object sender, EventArgs e)         //Старт полного теста
+        private void button11_Click_1(object sender, EventArgs e)           //Старт полного теста
         {
             if ((myProtocol != null))
             {
@@ -4766,9 +4625,9 @@ namespace KamertonTest
             bool[] coilArr = new bool[200];
             progressBar2.Value = 0;
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-            startCoil = 8;                                               // Управление питанием платы "Камертон"
-            res = myProtocol.writeCoil(slave, startCoil, true);          // Включить питание платы "Камертон"
-            Thread.Sleep(1700);
+            startCoil = 8;                                                            // Управление питанием платы "Камертон"
+            res = myProtocol.writeCoil(slave, startCoil, true);                       // Включить питание платы "Камертон"
+            Thread.Sleep(1700);                                                       // Ожидание включения модуля Аудио-1
             button11.BackColor = Color.Lime;
             button11.Refresh();
             button9.BackColor = Color.LightSalmon;
@@ -4909,19 +4768,18 @@ namespace KamertonTest
                         }
                     else
                         {
-                            startCoil = 118;                                                                    // Признак многократной роверки снят.      Передать в контроллер
+                            startCoil = 118;                                                              // Признак многократной роверки снят.      Передать в контроллер
                             res = myProtocol.writeCoil(slave, startCoil, false);
-                            for (int i = 0; i < 13; i++)                // очистить список тестов
+                            for (int i = 0; i < 13; i++)                                                  // Заполнить список тестов (Выполнить все тесты)
                             {
                                 test_step[i] = i;
                             }
-                            TestStep = 13;
+                            TestStep = 13;                                                                // Количество тестов
                         }
  
-                    TestN = 0;                                                                              // Обнулить счетчик номера выполняемых тестов
-                    TestRepeatCount = 1;                                                                    // Установить начальный номер  счетчика проходов теста
-
-                    //if (_All_Test_Stop)                                                                     // Проверить наличие завершения выполнения тестов
+                        TestN = 0;                                                                         // Обнулить счетчик номера выполняемых тестов
+                        TestRepeatCount = 1;                                                               // Установить начальный номер  счетчика проходов теста
+                    //if (_All_Test_Stop)                                                                  // Проверить наличие завершения выполнения тестов
                     //{
                         startWrReg = 120;                                                                   // Команда на 
                         res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
@@ -4942,8 +4800,7 @@ namespace KamertonTest
                         textBox8.Text += ("Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                         textBox8.Refresh();
                         test_end1();
-                      //  testAllRun = true;
-                        _All_Test_Stop = false;                                                             // Установить флаг запуска теста
+                       // All_Test_Stop = false;                                                             // Установить флаг запуска теста
                    // }
      
                   timerTestAll.Enabled = true;
@@ -4976,7 +4833,7 @@ namespace KamertonTest
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
 
-        private void num_string()            //Получение из Камертон 5.0 и ввод номера имени файла 
+        private void num_string()                                           //Получение из Камертон 5.0 и ввод номера имени файла 
         {
 
             short[] readVals = new short[125];
@@ -5037,7 +4894,7 @@ namespace KamertonTest
            openFileDialog1.FileName = fileName;
         }
 
-        private void num_module_audio()     // Ввод номера платы Аудио 1 и передача его в Камертон 5
+        private void num_module_audio()                                     // Ввод номера платы Аудио 1 и передача его в Камертон 5
         {
         
             ushort[] writeVals = new ushort[20];
@@ -5063,53 +4920,13 @@ namespace KamertonTest
                 res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
          }
 
-        private void button9_Click(object sender, EventArgs e)            // Стоп полного теста
+        private void button9_Click(object sender, EventArgs e)              // Стоп полного теста
         {
-
-            stop_test();
-
-/*
-            if ((myProtocol != null))
+            if (All_Test_Stop == true)
             {
-                timerTestAll.Enabled = false;
-
-                ushort[] writeVals = new ushort[20];
-                bool[] coilArr = new bool[34];
-
-                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                button9.BackColor = Color.Red;
-                button11.BackColor = Color.White;
-                label92.Text = ("");
-                textBox7.Text += ("Тест остановлен" + "\r\n");
-                progressBar2.Value = 0;
-                startWrReg = 120;
-                res = myProtocol.writeSingleRegister(slave, startWrReg, 13); // Команда на закрытие файла отправлена
-                textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
-                // textBox9.Text = ("Стоп теста");
-                Save_File();
-                Read_File();
-
-                textBox7.Refresh();
-                textBox9.Refresh();
-                testAllRun = false;
-                //    test_end();
-
-                textBox7.Text += "Тест окончен!";
-                textBox8.Text += ("Тест модуля Аудио-1 окончен!  Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                textBox45.Text += ("Тест модуля Аудио-1 окончен!  Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                testAllRun = false;
-                _All_Test_Stop = true;
-                Polltimer1.Enabled = true;
-                startCoil = 8;                                               // Управление питанием платы "Камертон"
-                res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
+                stop_test();
+                All_Test_Stop = false;                                      // Признак для управления кнопкой "Стоп"
             }
-
-            else
-            {
-                textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
-            }
-
-            */
         }
 
         private void stop_test()
@@ -5131,11 +4948,10 @@ namespace KamertonTest
                 textBox9.Text += ("Команда на закрытие файла отправлена" + "\r\n");
                 textBox7.Refresh();
                 textBox9.Refresh();
-                testAllRun = false;
                 textBox7.Text += "Тест окончен!";
                 textBox8.Text += ("\r\n" + "Тест модуля Аудио-1 окончен!  Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                 testAllRun = false;
-                _All_Test_Stop = true;
+                All_Test_Stop = false;                                       // Признак для управления кнопкой "Стоп" (Отключение произошло)
                 Polltimer1.Enabled = true;
                 startCoil = 8;                                               // Управление питанием платы "Камертон"
                 res = myProtocol.writeCoil(slave, startCoil, false);         // Отключить питание платы "Камертон"
@@ -5148,9 +4964,6 @@ namespace KamertonTest
                 textBox9.Text += ("Ошибка!  Тестируемый модуль не подключен" + "\r\n");
             }
         }
-
-
-
 
         private void label92_Click(object sender, EventArgs e)
         {

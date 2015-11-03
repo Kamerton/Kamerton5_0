@@ -1862,6 +1862,7 @@ void control_command()
 
 void sensor_all_off()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[2])));                    //  " ****** Test sensor OFF start! ******" ;      
@@ -2176,6 +2177,7 @@ void sensor_all_off()
 			   }
 		  }
 	UpdateRegs(); 
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -2183,6 +2185,7 @@ void sensor_all_off()
 }
 void sensor_all_on()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[3])));                    // " ****** Test sensor ON start! ******";    
@@ -3179,6 +3182,7 @@ if(test_sens == false)
 	regBank.set(32,0);                                                              // XP1- 1  HeS1Ls    sensor подкючения гарнитуры диспетчера
 	*/
 	UpdateRegs(); 
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(500);
 	UpdateRegs(); 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
@@ -3195,6 +3199,7 @@ void set_rezistor()
 
 void test_headset_instructor()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	myFile.println("");
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[22])));
 	myFile.println(buffer);                                                         // " ****** Test headset instructor start! ******"               ; 
@@ -3288,13 +3293,14 @@ void test_headset_instructor()
 	regBank.set(28,0);                                                              // XP1- 15 HeS2Ls Отключить PTT инструктора
 	regBank.set(2,0);                                                               // Выключить сигнал на вход микрофона инструктора  Mic2p
 	UpdateRegs();     
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	//delay(100);
 }
 void test_headset_dispatcher()
  {
-
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[23])));                   // " ****** Test headset dispatcher start! ******"               ;
 	myFile.println(buffer);                                                         // " ****** Test headset dispatcher start! ******"               ;
@@ -3389,12 +3395,14 @@ void test_headset_dispatcher()
 	regBank.set(28,0);                                                              // XP1- 15 HeS2PTT   CTS вкл PTT Инструктора
 	regBank.set(1,0);                                                               // Отключить сигнал на вход микрофона диспетчера Mic1p
 	UpdateRegs(); 
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	//delay(100);
  }
 void test_MTT()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[24])));                   // " ****** Test MTT start! ******"                              ; 
 	myFile.println(buffer);                                                         // " ****** Test MTT start! ******"                              ; 
@@ -3465,10 +3473,12 @@ void test_MTT()
 	regBank.set(6,0);                                                               // Реле RL5. Отключить звук Front L, Front R
 	UpdateRegs();                                                                   // Выполнить команду
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(200);
 }
 void test_tangR()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[36])));                   // " ****** Test tangenta ruchnaja start! ******"                ;
@@ -3676,10 +3686,12 @@ void test_tangR()
 	regBank.set(20,0);                                                              // J8-23     XP7 1 PTT1 тангента ручная CTS
 	UpdateRegs();                                                                   // Выполнить команду
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 }
 void test_tangN()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[43])));                   // " ****** Test tangenta nognaja start! ******"                 ;
@@ -3830,12 +3842,13 @@ void test_tangN()
 	regBank.set(14,0);                                                              //   XP8 1 PTT тангента  
 	regBank.set(13,0);                                                              //   XP8 2 sensor тангента  
 	UpdateRegs();                                                                   // Выполнить команду
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 }
 void test_mikrophon()
 {
-	
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[54])));                   // " ****** Test miсrophone start! ******"                       ;
@@ -4073,10 +4086,15 @@ void test_mikrophon()
 	regBank.set(16,0);                                                              // XS1 - 6   sensor подключения микрофона
 	regBank.set(15,0);                                                              // XS1 - 5   PTT Мик CTS
 	UpdateRegs();     
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(200);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
+
 }
+
 void testGGS()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	for (int k = 0; k < 20; k++)
 	{
 		por_buffer[k] = i2c_eeprom_read_byte(deviceaddress,adr_porog_GGS + k); //
@@ -4175,12 +4193,13 @@ void testGGS()
 
 	regBank.set(6,0);                                                               // Реле RL5 Звук Front L, Front R
 	UpdateRegs();    
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
 void test_GG_Radio1()
 {
-
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[50])));                   // " ****** Test Radio1 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio1 start! ******"                           ;
@@ -4224,11 +4243,13 @@ void test_GG_Radio1()
 	measure_vol_min(analog_gg_radio2, 40308,308,i2c_eeprom_read_byte(deviceaddress,adr_porog_Radio1 + 19));                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
+    mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(100);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
 void test_GG_Radio2()
 {
-
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[52])));                   // " ****** Test Radio2 start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test Radio2 start! ******"                           ;
@@ -4274,12 +4295,14 @@ void test_GG_Radio2()
 
 	regBank.set(7,0);                                                               // Реле RL6 Звук Center
 	UpdateRegs();     
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(100);
 	regBank.set(adr_control_command,0);    
 }
 void test_power()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
-
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[67])));                   // " ****** Test power start! ******"                           ;
 	myFile.println(buffer);                                                         // " ****** Test power start! ******"                           ;
@@ -4419,13 +4442,14 @@ void test_power()
 				myFile.println("V - pass");
 			}
 	}
-
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(100);
 	regBank.set(adr_control_command,0);    
 }
 void test_video()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
-
 	myFile.println(""); 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[68])));                   // " ****** Test Adjusting the brightness of the display! ******"; 
 	myFile.println(buffer);                                                         // " ****** Test Adjusting the brightness of the display! ******"; 
@@ -4497,6 +4521,8 @@ void test_video()
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
 	regs_out[2]= 0x7F;                              // 127 Изменять в реальной схеме
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(100);
 	regBank.set(adr_control_command,0);    
 }
 void set_video()
@@ -4533,6 +4559,7 @@ void measure_mks()
 
 void test_instr_off()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[7])));                    // "Command sensor OFF headset instructor            send!"                   ; // OK   
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor OFF headset instructor            send!"                   ;  
@@ -4678,9 +4705,12 @@ void test_instr_off()
 			myFile.println(buffer);                                                 // "Command PTT headset instructor (CTS)                        OFF - "  отключен  - Pass
 		   }
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 void test_instr_on()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[10])));
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON headset instructor    send!"
@@ -4787,10 +4817,13 @@ void test_instr_on()
 			myFile.println(buffer);                                                 // "Command PTT headset instructor (CTS)                        ON  - "  включен  - Pass
 		   }
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 
 void test_disp_off()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[16])));                   // "Command sensor OFF headset instructor            send!"                   ; // OK   
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor OFF headset instructor            send!"     
@@ -4934,9 +4967,12 @@ void test_disp_off()
 			myFile.println(buffer);                                                 // "Command PTT headset dispatcher (CTS)                        OFF - "  отключен  - Pass
 		   }
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 void test_disp_on()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[19])));                   // "Command sensor ON  headset dispatcher 2          send!"                   ;   
 	if (test_repeat == false) myFile.println(buffer);                               // "Command sensor ON  headset dispatcher 2          send!"                   ;    
@@ -5043,10 +5079,13 @@ void test_disp_on()
 			myFile.println(buffer);                                                 // "Command PTT headset dispatcher (CTS)                        ON  - "  включен  - Pass
 		   }
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 
 void test_MTT_off()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	unsigned int regcount = 0;
 	regBank.set(25,1);                                                              // "Command sensor OFF MTT                           send! "     ;     
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[27])));                   // "Command sensor OFF MTT                           send! "     ;
@@ -5159,9 +5198,12 @@ void test_MTT_off()
 				myFile.println(buffer);                                             // "Test MTT HangUp (DCD)                                       OFF - ";
 			   }             
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 void test_MTT_on()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	delay(600);
 	unsigned int regcount = 0;
 	regBank.set(25,0);                                                              //  XP1- 19 HaSs  sensor подключения трубки    MTT ON
@@ -5268,10 +5310,13 @@ void test_MTT_on()
 				myFile.println(buffer);                                             //  "Test MTT HangUp (DCD)                                       ON  - ";трубки включен  - Pass
 			   }
 		 }
+	   mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	   delay(100);
 }
 
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 		int _istochnik          = istochnik;
 		unsigned int _adr_count = adr_count;
 		int _adr_flagErr        = adr_flagErr;
@@ -5513,10 +5558,12 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				}
 			}  
 		wdt_reset();
+		mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 }
 void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	int _istochnik          = istochnik;
 	unsigned int _adr_count = adr_count;
 	int _adr_flagErr        = adr_flagErr;
@@ -5615,18 +5662,18 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				}
 			} 
 		wdt_reset();
+		mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 		delay(100);
 }
 void measure_volume(int analog)
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	volume1     = 0;
 	 unsigned long	 volume_maxx = 0;
 	 unsigned long   volume_minx = 0;
-//unsigned int Array_min[20];                         //
-//unsigned int Array_max[20];                         //
-	wdt_reset();
- int stix=200;
-	for (int sti = 0;sti<= stix; sti++)
+	 wdt_reset();
+     int stix=200;
+	 for (int sti = 0;sti<= stix; sti++)
 	  {
 		volume_max  = 0;
 		volume_min  = 1023;
@@ -5660,6 +5707,8 @@ void measure_volume(int analog)
 		//Serial.println(((volume_maxx/stix) -(volume_minx /stix)) * (5.0 / 1023.0));
 		//Serial.print("voltage - ");
 		//Serial.println(voltage10);
+		mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+		delay(100);
 }
 void measure_volume_P(int analog)
 {
@@ -5673,6 +5722,7 @@ void measure_volume_P(int analog)
 }
 void measure_power()
 {
+	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	regBank.set(21,0);                           // XP2-2     sensor "Маг."  
 	regBank.set(22,0);                           // XP5-3     sensor "ГГC."
 	regBank.set(23,0);                           // XP3-3     sensor "ГГ-Радио1."
@@ -5714,6 +5764,8 @@ void measure_power()
 
 	measure_volume_P(analog_3_6);     
 	regBank.set(40497,voltage10);   
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	delay(100);
 }
 
 void i2c_test()
@@ -6807,7 +6859,7 @@ void test_system()
 
 void set_serial()
 {
-	wdt_disable(); //
+	//wdt_disable(); //
    clear_serial3();
    delay(400);
 // Поиск ком порта
@@ -6872,7 +6924,7 @@ void set_serial()
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
 	} while(portFound == false);
-	wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	//wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	digitalWrite(ledPin13,LOW);
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 }
@@ -7058,7 +7110,7 @@ void setup()
 	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
-	wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	//wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 }
 
 void loop()
