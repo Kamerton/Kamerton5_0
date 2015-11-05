@@ -3445,21 +3445,21 @@ namespace KamertonTest
                 if (coilArr_all[94] == false)
                 {
                     double temp_disp = readVolt_all[94];
-                    textBox48.Text += ("Напряжение питания на разьеме Радио1             \t - исправен\t  = ");
+                    textBox48.Text += ("Напряжение питания на разъеме Радио1             \t - исправен\t  = ");
                     label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[95] == false)
                 {
                     double temp_disp = readVolt_all[95];
-                    textBox48.Text += ("Напряжение питания на разьеме Радио2             \t - исправен\t  = ");
+                    textBox48.Text += ("Напряжение питания на разъеме Радио2             \t - исправен\t  = ");
                     label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[96] == false)
                 {
                     double temp_disp = readVolt_all[96];
-                    textBox48.Text += ("Напряжение питания на разьеме ГГС                \t - исправен\t  = ");
+                    textBox48.Text += ("Напряжение питания на разъеме ГГС                \t - исправен\t  = ");
                     label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
