@@ -7101,12 +7101,11 @@ void setup()
 	clear_serial();
  
 	default_mem_porog();
-	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+//	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
-//	wdt_enable (WDTO_8S);                            // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки

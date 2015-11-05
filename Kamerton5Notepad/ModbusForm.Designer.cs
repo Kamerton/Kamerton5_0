@@ -495,8 +495,7 @@ namespace KamertonTest
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(126, 17);
-            this.toolStripStatusLabel4.Text = "Камертон 5 подключен";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
             // 
             // timer_byte_set
             // 
