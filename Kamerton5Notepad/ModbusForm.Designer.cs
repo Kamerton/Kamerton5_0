@@ -35,6 +35,7 @@ namespace KamertonTest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.Polltimer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -48,37 +49,6 @@ namespace KamertonTest
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.find_com_port = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.TabPage2 = new System.Windows.Forms.TabPage();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.Label19 = new System.Windows.Forms.Label();
-            this.txtNumCoils = new System.Windows.Forms.TextBox();
-            this.txtStartCoil = new System.Windows.Forms.TextBox();
-            this.txtNumRdRegs = new System.Windows.Forms.TextBox();
-            this.txtStartRdReg = new System.Windows.Forms.TextBox();
-            this.txtNumWrRegs = new System.Windows.Forms.TextBox();
-            this.txtStartWrReg = new System.Windows.Forms.TextBox();
-            this.txtSlave = new System.Windows.Forms.TextBox();
-            this.Label20 = new System.Windows.Forms.Label();
-            this.Label17 = new System.Windows.Forms.Label();
-            this.Label18 = new System.Windows.Forms.Label();
-            this.cmbCommand = new System.Windows.Forms.ComboBox();
-            this.cmdExecute = new System.Windows.Forms.Button();
-            this.Label16 = new System.Windows.Forms.Label();
-            this.GroupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtWriteVal8 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal7 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal6 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal5 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal4 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal3 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal2 = new System.Windows.Forms.TextBox();
-            this.txtWriteVal1 = new System.Windows.Forms.TextBox();
-            this.GroupBox4 = new System.Windows.Forms.GroupBox();
-            this.lblReadValues = new System.Windows.Forms.Label();
-            this.lblResult2 = new System.Windows.Forms.Label();
-            this.Label15 = new System.Windows.Forms.Label();
-            this.Label14 = new System.Windows.Forms.Label();
             this.TabPage1 = new System.Windows.Forms.TabPage();
             this.lblResult1 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -422,12 +392,15 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox45 = new System.Windows.Forms.TextBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
+            this.textBox45 = new System.Windows.Forms.TextBox();
+            this.txtSlave = new System.Windows.Forms.TextBox();
+            this.txtStartCoil = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtNumCoils = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
-            this.TabPage2.SuspendLayout();
-            this.GroupBox5.SuspendLayout();
-            this.GroupBox4.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.GroupBox3.SuspendLayout();
@@ -525,307 +498,6 @@ namespace KamertonTest
             // 
             this.saveFileDialog1.Filter = "TXT files|*.txt";
             // 
-            // TabPage2
-            // 
-            this.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.TabPage2.Controls.Add(this.label38);
-            this.TabPage2.Controls.Add(this.label37);
-            this.TabPage2.Controls.Add(this.Label19);
-            this.TabPage2.Controls.Add(this.txtNumCoils);
-            this.TabPage2.Controls.Add(this.txtStartCoil);
-            this.TabPage2.Controls.Add(this.txtNumRdRegs);
-            this.TabPage2.Controls.Add(this.txtStartRdReg);
-            this.TabPage2.Controls.Add(this.txtNumWrRegs);
-            this.TabPage2.Controls.Add(this.txtStartWrReg);
-            this.TabPage2.Controls.Add(this.txtSlave);
-            this.TabPage2.Controls.Add(this.Label20);
-            this.TabPage2.Controls.Add(this.Label17);
-            this.TabPage2.Controls.Add(this.Label18);
-            this.TabPage2.Controls.Add(this.cmbCommand);
-            this.TabPage2.Controls.Add(this.cmdExecute);
-            this.TabPage2.Controls.Add(this.Label16);
-            this.TabPage2.Controls.Add(this.GroupBox5);
-            this.TabPage2.Controls.Add(this.GroupBox4);
-            this.TabPage2.Controls.Add(this.lblResult2);
-            this.TabPage2.Controls.Add(this.Label15);
-            this.TabPage2.Controls.Add(this.Label14);
-            this.TabPage2.Location = new System.Drawing.Point(4, 22);
-            this.TabPage2.Name = "TabPage2";
-            this.TabPage2.Size = new System.Drawing.Size(987, 613);
-            this.TabPage2.TabIndex = 1;
-            this.TabPage2.Text = "Read/Write";
-            // 
-            // label38
-            // 
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label38.Location = new System.Drawing.Point(652, 36);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(261, 17);
-            this.label38.TabIndex = 32;
-            this.label38.Text = "При тестировании не применяются";
-            // 
-            // label37
-            // 
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label37.Location = new System.Drawing.Point(652, 14);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(186, 17);
-            this.label37.TabIndex = 31;
-            this.label37.Text = "Сервисные  функции !";
-            // 
-            // Label19
-            // 
-            this.Label19.Location = new System.Drawing.Point(462, 38);
-            this.Label19.Name = "Label19";
-            this.Label19.Size = new System.Drawing.Size(62, 17);
-            this.Label19.TabIndex = 30;
-            this.Label19.Text = "# of Coils:";
-            // 
-            // txtNumCoils
-            // 
-            this.txtNumCoils.Location = new System.Drawing.Point(465, 58);
-            this.txtNumCoils.Name = "txtNumCoils";
-            this.txtNumCoils.Size = new System.Drawing.Size(41, 20);
-            this.txtNumCoils.TabIndex = 29;
-            this.txtNumCoils.Text = "1";
-            // 
-            // txtStartCoil
-            // 
-            this.txtStartCoil.Location = new System.Drawing.Point(375, 58);
-            this.txtStartCoil.Name = "txtStartCoil";
-            this.txtStartCoil.Size = new System.Drawing.Size(41, 20);
-            this.txtStartCoil.TabIndex = 27;
-            this.txtStartCoil.Text = "1";
-            // 
-            // txtNumRdRegs
-            // 
-            this.txtNumRdRegs.Location = new System.Drawing.Point(106, 58);
-            this.txtNumRdRegs.Name = "txtNumRdRegs";
-            this.txtNumRdRegs.Size = new System.Drawing.Size(41, 20);
-            this.txtNumRdRegs.TabIndex = 25;
-            this.txtNumRdRegs.Text = "1";
-            // 
-            // txtStartRdReg
-            // 
-            this.txtStartRdReg.Location = new System.Drawing.Point(15, 58);
-            this.txtStartRdReg.Name = "txtStartRdReg";
-            this.txtStartRdReg.Size = new System.Drawing.Size(41, 20);
-            this.txtStartRdReg.TabIndex = 23;
-            this.txtStartRdReg.Text = "1";
-            // 
-            // txtNumWrRegs
-            // 
-            this.txtNumWrRegs.Location = new System.Drawing.Point(285, 58);
-            this.txtNumWrRegs.Name = "txtNumWrRegs";
-            this.txtNumWrRegs.Size = new System.Drawing.Size(41, 20);
-            this.txtNumWrRegs.TabIndex = 19;
-            this.txtNumWrRegs.Text = "1";
-            // 
-            // txtStartWrReg
-            // 
-            this.txtStartWrReg.Location = new System.Drawing.Point(195, 58);
-            this.txtStartWrReg.Name = "txtStartWrReg";
-            this.txtStartWrReg.Size = new System.Drawing.Size(41, 20);
-            this.txtStartWrReg.TabIndex = 2;
-            this.txtStartWrReg.Text = "1";
-            // 
-            // txtSlave
-            // 
-            this.txtSlave.Location = new System.Drawing.Point(367, 10);
-            this.txtSlave.Name = "txtSlave";
-            this.txtSlave.Size = new System.Drawing.Size(41, 20);
-            this.txtSlave.TabIndex = 0;
-            this.txtSlave.Text = "1";
-            // 
-            // Label20
-            // 
-            this.Label20.Location = new System.Drawing.Point(375, 38);
-            this.Label20.Name = "Label20";
-            this.Label20.Size = new System.Drawing.Size(81, 17);
-            this.Label20.TabIndex = 28;
-            this.Label20.Text = "Start Coil (r/w):";
-            // 
-            // Label17
-            // 
-            this.Label17.Location = new System.Drawing.Point(102, 38);
-            this.Label17.Name = "Label17";
-            this.Label17.Size = new System.Drawing.Size(88, 17);
-            this.Label17.TabIndex = 26;
-            this.Label17.Text = "# of Regs (read):";
-            // 
-            // Label18
-            // 
-            this.Label18.Location = new System.Drawing.Point(12, 38);
-            this.Label18.Name = "Label18";
-            this.Label18.Size = new System.Drawing.Size(91, 17);
-            this.Label18.TabIndex = 24;
-            this.Label18.Text = "Start Reg (read):";
-            // 
-            // cmbCommand
-            // 
-            this.cmbCommand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCommand.Items.AddRange(new object[] {
-            "Read Holding Registers",
-            "Read Input Registers",
-            "Read Coils",
-            "Write Coils",
-            "Write Holding Registers",
-            "Write Single Register",
-            "Read/Write Registers"});
-            this.cmbCommand.Location = new System.Drawing.Point(106, 10);
-            this.cmbCommand.Name = "cmbCommand";
-            this.cmbCommand.Size = new System.Drawing.Size(212, 21);
-            this.cmbCommand.TabIndex = 22;
-            // 
-            // cmdExecute
-            // 
-            this.cmdExecute.Location = new System.Drawing.Point(12, 10);
-            this.cmdExecute.Name = "cmdExecute";
-            this.cmdExecute.Size = new System.Drawing.Size(86, 20);
-            this.cmdExecute.TabIndex = 21;
-            this.cmdExecute.Text = "Execute";
-            this.cmdExecute.Click += new System.EventHandler(this.cmdExecute_Click);
-            // 
-            // Label16
-            // 
-            this.Label16.Location = new System.Drawing.Point(282, 38);
-            this.Label16.Name = "Label16";
-            this.Label16.Size = new System.Drawing.Size(90, 17);
-            this.Label16.TabIndex = 20;
-            this.Label16.Text = "# of Regs (write):";
-            // 
-            // GroupBox5
-            // 
-            this.GroupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox5.Controls.Add(this.txtWriteVal8);
-            this.GroupBox5.Controls.Add(this.txtWriteVal7);
-            this.GroupBox5.Controls.Add(this.txtWriteVal6);
-            this.GroupBox5.Controls.Add(this.txtWriteVal5);
-            this.GroupBox5.Controls.Add(this.txtWriteVal4);
-            this.GroupBox5.Controls.Add(this.txtWriteVal3);
-            this.GroupBox5.Controls.Add(this.txtWriteVal2);
-            this.GroupBox5.Controls.Add(this.txtWriteVal1);
-            this.GroupBox5.Location = new System.Drawing.Point(12, 555);
-            this.GroupBox5.Name = "GroupBox5";
-            this.GroupBox5.Size = new System.Drawing.Size(957, 49);
-            this.GroupBox5.TabIndex = 18;
-            this.GroupBox5.TabStop = false;
-            this.GroupBox5.Text = "Write values:";
-            // 
-            // txtWriteVal8
-            // 
-            this.txtWriteVal8.Location = new System.Drawing.Point(509, 17);
-            this.txtWriteVal8.Name = "txtWriteVal8";
-            this.txtWriteVal8.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal8.TabIndex = 9;
-            this.txtWriteVal8.Text = "1";
-            // 
-            // txtWriteVal7
-            // 
-            this.txtWriteVal7.Location = new System.Drawing.Point(438, 17);
-            this.txtWriteVal7.Name = "txtWriteVal7";
-            this.txtWriteVal7.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal7.TabIndex = 8;
-            this.txtWriteVal7.Text = "1";
-            // 
-            // txtWriteVal6
-            // 
-            this.txtWriteVal6.Location = new System.Drawing.Point(367, 17);
-            this.txtWriteVal6.Name = "txtWriteVal6";
-            this.txtWriteVal6.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal6.TabIndex = 7;
-            this.txtWriteVal6.Text = "1";
-            // 
-            // txtWriteVal5
-            // 
-            this.txtWriteVal5.Location = new System.Drawing.Point(296, 17);
-            this.txtWriteVal5.Name = "txtWriteVal5";
-            this.txtWriteVal5.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal5.TabIndex = 6;
-            this.txtWriteVal5.Text = "1";
-            // 
-            // txtWriteVal4
-            // 
-            this.txtWriteVal4.Location = new System.Drawing.Point(225, 17);
-            this.txtWriteVal4.Name = "txtWriteVal4";
-            this.txtWriteVal4.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal4.TabIndex = 5;
-            this.txtWriteVal4.Text = "1";
-            // 
-            // txtWriteVal3
-            // 
-            this.txtWriteVal3.Location = new System.Drawing.Point(154, 17);
-            this.txtWriteVal3.Name = "txtWriteVal3";
-            this.txtWriteVal3.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal3.TabIndex = 4;
-            this.txtWriteVal3.Text = "1";
-            // 
-            // txtWriteVal2
-            // 
-            this.txtWriteVal2.Location = new System.Drawing.Point(83, 17);
-            this.txtWriteVal2.Name = "txtWriteVal2";
-            this.txtWriteVal2.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal2.TabIndex = 3;
-            this.txtWriteVal2.Text = "1";
-            // 
-            // txtWriteVal1
-            // 
-            this.txtWriteVal1.Location = new System.Drawing.Point(12, 17);
-            this.txtWriteVal1.Name = "txtWriteVal1";
-            this.txtWriteVal1.Size = new System.Drawing.Size(65, 20);
-            this.txtWriteVal1.TabIndex = 2;
-            this.txtWriteVal1.Text = "1";
-            // 
-            // GroupBox4
-            // 
-            this.GroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupBox4.Controls.Add(this.lblReadValues);
-            this.GroupBox4.Location = new System.Drawing.Point(12, 88);
-            this.GroupBox4.Name = "GroupBox4";
-            this.GroupBox4.Size = new System.Drawing.Size(957, 455);
-            this.GroupBox4.TabIndex = 17;
-            this.GroupBox4.TabStop = false;
-            this.GroupBox4.Text = "Read values:";
-            // 
-            // lblReadValues
-            // 
-            this.lblReadValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblReadValues.Location = new System.Drawing.Point(7, 15);
-            this.lblReadValues.Name = "lblReadValues";
-            this.lblReadValues.Size = new System.Drawing.Size(944, 422);
-            this.lblReadValues.TabIndex = 0;
-            // 
-            // lblResult2
-            // 
-            this.lblResult2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResult2.Location = new System.Drawing.Point(12, 617);
-            this.lblResult2.Name = "lblResult2";
-            this.lblResult2.Size = new System.Drawing.Size(953, 20);
-            this.lblResult2.TabIndex = 16;
-            this.lblResult2.Text = "Result:";
-            // 
-            // Label15
-            // 
-            this.Label15.Location = new System.Drawing.Point(192, 38);
-            this.Label15.Name = "Label15";
-            this.Label15.Size = new System.Drawing.Size(99, 17);
-            this.Label15.TabIndex = 3;
-            this.Label15.Text = "Start Reg (write):";
-            // 
-            // Label14
-            // 
-            this.Label14.Location = new System.Drawing.Point(326, 14);
-            this.Label14.Name = "Label14";
-            this.Label14.Size = new System.Drawing.Size(38, 19);
-            this.Label14.TabIndex = 1;
-            this.Label14.Text = "Slave";
-            // 
             // TabPage1
             // 
             this.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -885,7 +557,7 @@ namespace KamertonTest
             // 
             // button4
             // 
-            this.button4.BackgroundImage = global::Kamerton5Notepad.Properties.Resources.btSetCustom_Image;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button4.Location = new System.Drawing.Point(226, 101);
             this.button4.Name = "button4";
@@ -896,7 +568,7 @@ namespace KamertonTest
             // 
             // button3
             // 
-            this.button3.BackgroundImage = global::Kamerton5Notepad.Properties.Resources.btSetSystem_Image;
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button3.Location = new System.Drawing.Point(226, 35);
             this.button3.Name = "button3";
@@ -1274,6 +946,12 @@ namespace KamertonTest
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.label16);
+            this.GroupBox1.Controls.Add(this.txtNumCoils);
+            this.GroupBox1.Controls.Add(this.label15);
+            this.GroupBox1.Controls.Add(this.label14);
+            this.GroupBox1.Controls.Add(this.txtStartCoil);
+            this.GroupBox1.Controls.Add(this.txtSlave);
             this.GroupBox1.Controls.Add(this.cmbRetry);
             this.GroupBox1.Controls.Add(this.Label4);
             this.GroupBox1.Controls.Add(this.Label5);
@@ -1295,7 +973,7 @@ namespace KamertonTest
             "1",
             "2",
             "3"});
-            this.cmbRetry.Location = new System.Drawing.Point(76, 58);
+            this.cmbRetry.Location = new System.Drawing.Point(107, 57);
             this.cmbRetry.Name = "cmbRetry";
             this.cmbRetry.Size = new System.Drawing.Size(66, 21);
             this.cmbRetry.TabIndex = 9;
@@ -1318,7 +996,7 @@ namespace KamertonTest
             // 
             // txtTimeout
             // 
-            this.txtTimeout.Location = new System.Drawing.Point(76, 26);
+            this.txtTimeout.Location = new System.Drawing.Point(107, 25);
             this.txtTimeout.MaxLength = 5;
             this.txtTimeout.Name = "txtTimeout";
             this.txtTimeout.Size = new System.Drawing.Size(66, 20);
@@ -1329,7 +1007,7 @@ namespace KamertonTest
             // 
             // txtPollDelay
             // 
-            this.txtPollDelay.Location = new System.Drawing.Point(76, 92);
+            this.txtPollDelay.Location = new System.Drawing.Point(107, 91);
             this.txtPollDelay.MaxLength = 3;
             this.txtPollDelay.Name = "txtPollDelay";
             this.txtPollDelay.Size = new System.Drawing.Size(66, 20);
@@ -4494,7 +4172,6 @@ namespace KamertonTest
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
             this.TabControl1.Controls.Add(this.TabPage1);
-            this.TabControl1.Controls.Add(this.TabPage2);
             this.TabControl1.Controls.Add(this.tabPage4);
             this.TabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TabControl1.Location = new System.Drawing.Point(0, 2);
@@ -4514,6 +4191,15 @@ namespace KamertonTest
             this.tabPage4.Text = "Содержимое файла отчета";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // textBox48
+            // 
+            this.textBox48.Location = new System.Drawing.Point(0, 594);
+            this.textBox48.Multiline = true;
+            this.textBox48.Name = "textBox48";
+            this.textBox48.Size = new System.Drawing.Size(984, 16);
+            this.textBox48.TabIndex = 1;
+            this.textBox48.Visible = false;
+            // 
             // textBox45
             // 
             this.textBox45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -4524,14 +4210,56 @@ namespace KamertonTest
             this.textBox45.Size = new System.Drawing.Size(987, 588);
             this.textBox45.TabIndex = 0;
             // 
-            // textBox48
+            // txtSlave
             // 
-            this.textBox48.Location = new System.Drawing.Point(0, 594);
-            this.textBox48.Multiline = true;
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(984, 16);
-            this.textBox48.TabIndex = 1;
-            this.textBox48.Visible = false;
+            this.txtSlave.Location = new System.Drawing.Point(108, 126);
+            this.txtSlave.Name = "txtSlave";
+            this.txtSlave.Size = new System.Drawing.Size(66, 20);
+            this.txtSlave.TabIndex = 13;
+            this.txtSlave.Text = "1";
+            // 
+            // txtStartCoil
+            // 
+            this.txtStartCoil.Location = new System.Drawing.Point(107, 157);
+            this.txtStartCoil.Name = "txtStartCoil";
+            this.txtStartCoil.Size = new System.Drawing.Size(67, 20);
+            this.txtStartCoil.TabIndex = 14;
+            this.txtStartCoil.Text = "1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 129);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Адрес Modbus";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(10, 160);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "Старт адрес";
+            // 
+            // txtNumCoils
+            // 
+            this.txtNumCoils.Location = new System.Drawing.Point(108, 187);
+            this.txtNumCoils.Name = "txtNumCoils";
+            this.txtNumCoils.Size = new System.Drawing.Size(66, 20);
+            this.txtNumCoils.TabIndex = 17;
+            this.txtNumCoils.Text = "1";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 190);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(92, 13);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "Количество байт";
             // 
             // Form1
             // 
@@ -4544,11 +4272,6 @@ namespace KamertonTest
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.TabPage2.ResumeLayout(false);
-            this.TabPage2.PerformLayout();
-            this.GroupBox5.ResumeLayout(false);
-            this.GroupBox5.PerformLayout();
-            this.GroupBox4.ResumeLayout(false);
             this.TabPage1.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
@@ -4608,37 +4331,6 @@ namespace KamertonTest
         private System.Windows.Forms.Timer find_com_port;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.TabPage TabPage2;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label Label19;
-        private System.Windows.Forms.TextBox txtNumCoils;
-        private System.Windows.Forms.TextBox txtStartCoil;
-        private System.Windows.Forms.TextBox txtNumRdRegs;
-        private System.Windows.Forms.TextBox txtStartRdReg;
-        private System.Windows.Forms.TextBox txtNumWrRegs;
-        private System.Windows.Forms.TextBox txtStartWrReg;
-        private System.Windows.Forms.TextBox txtSlave;
-        private System.Windows.Forms.Label Label20;
-        private System.Windows.Forms.Label Label17;
-        private System.Windows.Forms.Label Label18;
-        private System.Windows.Forms.ComboBox cmbCommand;
-        private System.Windows.Forms.Button cmdExecute;
-        private System.Windows.Forms.Label Label16;
-        private System.Windows.Forms.GroupBox GroupBox5;
-        private System.Windows.Forms.TextBox txtWriteVal8;
-        private System.Windows.Forms.TextBox txtWriteVal7;
-        private System.Windows.Forms.TextBox txtWriteVal6;
-        private System.Windows.Forms.TextBox txtWriteVal5;
-        private System.Windows.Forms.TextBox txtWriteVal4;
-        private System.Windows.Forms.TextBox txtWriteVal3;
-        private System.Windows.Forms.TextBox txtWriteVal2;
-        private System.Windows.Forms.TextBox txtWriteVal1;
-        private System.Windows.Forms.GroupBox GroupBox4;
-        private System.Windows.Forms.Label lblReadValues;
-        private System.Windows.Forms.Label lblResult2;
-        private System.Windows.Forms.Label Label15;
-        private System.Windows.Forms.Label Label14;
         private System.Windows.Forms.TabPage TabPage1;
         private System.Windows.Forms.Label lblResult1;
         private System.Windows.Forms.GroupBox groupBox12;
@@ -4984,6 +4676,12 @@ namespace KamertonTest
         private System.Windows.Forms.Label label165;
         private System.Windows.Forms.TextBox textBox46;
         private System.Windows.Forms.TextBox textBox48;
+        private System.Windows.Forms.TextBox txtSlave;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtStartCoil;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtNumCoils;
     }
 }
 
