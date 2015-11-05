@@ -90,6 +90,12 @@ namespace KamertonTest
             this.cmdOpenSerial = new System.Windows.Forms.Button();
             this.cmbSerialProtocol = new System.Windows.Forms.ComboBox();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtNumCoils = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtStartCoil = new System.Windows.Forms.TextBox();
+            this.txtSlave = new System.Windows.Forms.TextBox();
             this.cmbRetry = new System.Windows.Forms.ComboBox();
             this.Label4 = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
@@ -394,12 +400,6 @@ namespace KamertonTest
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.txtSlave = new System.Windows.Forms.TextBox();
-            this.txtStartCoil = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtNumCoils = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -509,6 +509,7 @@ namespace KamertonTest
             this.TabPage1.Controls.Add(this.GroupBox3);
             this.TabPage1.Controls.Add(this.GroupBox2);
             this.TabPage1.Controls.Add(this.GroupBox1);
+            this.TabPage1.Cursor = System.Windows.Forms.Cursors.Default;
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Size = new System.Drawing.Size(987, 613);
@@ -517,9 +518,9 @@ namespace KamertonTest
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult1.Location = new System.Drawing.Point(1, 393);
             this.lblResult1.Name = "lblResult1";
@@ -559,6 +560,7 @@ namespace KamertonTest
             // 
             this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.Location = new System.Drawing.Point(226, 101);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(35, 33);
@@ -570,6 +572,7 @@ namespace KamertonTest
             // 
             this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Location = new System.Drawing.Point(226, 35);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 33);
@@ -591,6 +594,7 @@ namespace KamertonTest
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -604,6 +608,7 @@ namespace KamertonTest
             // 
             this.label80.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label80.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label80.Cursor = System.Windows.Forms.Cursors.Default;
             this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label80.Location = new System.Drawing.Point(16, 40);
             this.label80.Name = "label80";
@@ -648,9 +653,9 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label78.Location = new System.Drawing.Point(1, 513);
             this.label78.Name = "label78";
@@ -661,9 +666,9 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(3, 464);
             this.lblResult.Name = "lblResult";
@@ -680,7 +685,7 @@ namespace KamertonTest
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-                "т открыт, никаких изменений не может быть сделано";
+    "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox3
             // 
@@ -701,6 +706,7 @@ namespace KamertonTest
             // 
             // button6
             // 
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button6.Location = new System.Drawing.Point(61, 222);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(95, 22);
@@ -710,6 +716,7 @@ namespace KamertonTest
             // 
             // cmdOpenTCP
             // 
+            this.cmdOpenTCP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmdOpenTCP.Location = new System.Drawing.Point(61, 194);
             this.cmdOpenTCP.Name = "cmdOpenTCP";
             this.cmdOpenTCP.Size = new System.Drawing.Size(95, 22);
@@ -727,6 +734,7 @@ namespace KamertonTest
             // 
             // cmbTcpProtocol
             // 
+            this.cmbTcpProtocol.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbTcpProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTcpProtocol.Items.AddRange(new object[] {
             "Modbus/TCP",
@@ -796,6 +804,7 @@ namespace KamertonTest
             // 
             // FindSerial
             // 
+            this.FindSerial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FindSerial.Location = new System.Drawing.Point(34, 272);
             this.FindSerial.Name = "FindSerial";
             this.FindSerial.Size = new System.Drawing.Size(95, 22);
@@ -805,6 +814,7 @@ namespace KamertonTest
             // 
             // Close_Serial
             // 
+            this.Close_Serial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Close_Serial.Location = new System.Drawing.Point(34, 220);
             this.Close_Serial.Name = "Close_Serial";
             this.Close_Serial.Size = new System.Drawing.Size(95, 22);
@@ -814,6 +824,7 @@ namespace KamertonTest
             // 
             // cmbDataBits
             // 
+            this.cmbDataBits.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbDataBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDataBits.Items.AddRange(new object[] {
             "8",
@@ -825,6 +836,7 @@ namespace KamertonTest
             // 
             // cmbStopBits
             // 
+            this.cmbStopBits.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbStopBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStopBits.Items.AddRange(new object[] {
             "1",
@@ -860,6 +872,7 @@ namespace KamertonTest
             // 
             // cmbParity
             // 
+            this.cmbParity.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbParity.Items.AddRange(new object[] {
             "None",
@@ -888,6 +901,7 @@ namespace KamertonTest
             // 
             // cmbBaudRate
             // 
+            this.cmbBaudRate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbBaudRate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBaudRate.Items.AddRange(new object[] {
             "9600",
@@ -908,6 +922,7 @@ namespace KamertonTest
             // 
             // cmbComPort
             // 
+            this.cmbComPort.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbComPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbComPort.Location = new System.Drawing.Point(82, 26);
             this.cmbComPort.Name = "cmbComPort";
@@ -925,6 +940,7 @@ namespace KamertonTest
             // 
             // cmdOpenSerial
             // 
+            this.cmdOpenSerial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmdOpenSerial.Location = new System.Drawing.Point(34, 192);
             this.cmdOpenSerial.Name = "cmdOpenSerial";
             this.cmdOpenSerial.Size = new System.Drawing.Size(95, 22);
@@ -934,6 +950,7 @@ namespace KamertonTest
             // 
             // cmbSerialProtocol
             // 
+            this.cmbSerialProtocol.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbSerialProtocol.DisplayMember = "1";
             this.cmbSerialProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerialProtocol.Items.AddRange(new object[] {
@@ -965,8 +982,60 @@ namespace KamertonTest
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Опции MODBUS";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 190);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(92, 13);
+            this.label16.TabIndex = 18;
+            this.label16.Text = "Количество байт";
+            // 
+            // txtNumCoils
+            // 
+            this.txtNumCoils.Location = new System.Drawing.Point(108, 187);
+            this.txtNumCoils.Name = "txtNumCoils";
+            this.txtNumCoils.Size = new System.Drawing.Size(66, 20);
+            this.txtNumCoils.TabIndex = 17;
+            this.txtNumCoils.Text = "1";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(10, 160);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "Старт адрес";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 129);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "Адрес Modbus";
+            // 
+            // txtStartCoil
+            // 
+            this.txtStartCoil.Location = new System.Drawing.Point(107, 157);
+            this.txtStartCoil.Name = "txtStartCoil";
+            this.txtStartCoil.Size = new System.Drawing.Size(67, 20);
+            this.txtStartCoil.TabIndex = 14;
+            this.txtStartCoil.Text = "1";
+            // 
+            // txtSlave
+            // 
+            this.txtSlave.Location = new System.Drawing.Point(108, 126);
+            this.txtSlave.Name = "txtSlave";
+            this.txtSlave.Size = new System.Drawing.Size(66, 20);
+            this.txtSlave.TabIndex = 13;
+            this.txtSlave.Text = "1";
+            // 
             // cmbRetry
             // 
+            this.cmbRetry.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbRetry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRetry.Items.AddRange(new object[] {
             "0",
@@ -1050,6 +1119,7 @@ namespace KamertonTest
             this.tabPage5.Controls.Add(this.groupBox15);
             this.tabPage5.Controls.Add(this.groupBox7);
             this.tabPage5.Controls.Add(this.groupBox6);
+            this.tabPage5.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(987, 613);
@@ -1147,6 +1217,7 @@ namespace KamertonTest
             // 
             // button25
             // 
+            this.button25.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button25.Location = new System.Drawing.Point(555, 20);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(112, 23);
@@ -1166,6 +1237,7 @@ namespace KamertonTest
             // 
             // button24
             // 
+            this.button24.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button24.Location = new System.Drawing.Point(559, 113);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(112, 23);
@@ -1251,6 +1323,7 @@ namespace KamertonTest
             // 
             // button2
             // 
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Location = new System.Drawing.Point(92, 315);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(49, 23);
@@ -1261,6 +1334,7 @@ namespace KamertonTest
             // 
             // button81
             // 
+            this.button81.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button81.Location = new System.Drawing.Point(147, 315);
             this.button81.Name = "button81";
             this.button81.Size = new System.Drawing.Size(49, 23);
@@ -1281,6 +1355,7 @@ namespace KamertonTest
             // 
             // button27
             // 
+            this.button27.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button27.Location = new System.Drawing.Point(92, 286);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(49, 23);
@@ -1291,6 +1366,7 @@ namespace KamertonTest
             // 
             // button30
             // 
+            this.button30.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button30.Location = new System.Drawing.Point(147, 286);
             this.button30.Name = "button30";
             this.button30.Size = new System.Drawing.Size(49, 23);
@@ -1301,6 +1377,7 @@ namespace KamertonTest
             // 
             // button43
             // 
+            this.button43.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button43.Location = new System.Drawing.Point(92, 374);
             this.button43.Name = "button43";
             this.button43.Size = new System.Drawing.Size(49, 23);
@@ -1321,6 +1398,7 @@ namespace KamertonTest
             // 
             // button54
             // 
+            this.button54.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button54.Location = new System.Drawing.Point(147, 373);
             this.button54.Name = "button54";
             this.button54.Size = new System.Drawing.Size(49, 23);
@@ -1340,6 +1418,7 @@ namespace KamertonTest
             // 
             // button65
             // 
+            this.button65.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button65.Location = new System.Drawing.Point(92, 344);
             this.button65.Name = "button65";
             this.button65.Size = new System.Drawing.Size(49, 23);
@@ -1350,6 +1429,7 @@ namespace KamertonTest
             // 
             // button80
             // 
+            this.button80.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button80.Location = new System.Drawing.Point(147, 344);
             this.button80.Name = "button80";
             this.button80.Size = new System.Drawing.Size(49, 23);
@@ -1476,6 +1556,7 @@ namespace KamertonTest
             // 
             // button37
             // 
+            this.button37.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button37.Location = new System.Drawing.Point(92, 25);
             this.button37.Name = "button37";
             this.button37.Size = new System.Drawing.Size(49, 23);
@@ -1486,6 +1567,7 @@ namespace KamertonTest
             // 
             // button38
             // 
+            this.button38.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button38.Location = new System.Drawing.Point(92, 141);
             this.button38.Name = "button38";
             this.button38.Size = new System.Drawing.Size(49, 23);
@@ -1496,6 +1578,7 @@ namespace KamertonTest
             // 
             // button40
             // 
+            this.button40.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button40.Location = new System.Drawing.Point(92, 54);
             this.button40.Name = "button40";
             this.button40.Size = new System.Drawing.Size(49, 23);
@@ -1506,6 +1589,7 @@ namespace KamertonTest
             // 
             // button42
             // 
+            this.button42.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button42.Location = new System.Drawing.Point(147, 199);
             this.button42.Name = "button42";
             this.button42.Size = new System.Drawing.Size(49, 23);
@@ -1516,6 +1600,7 @@ namespace KamertonTest
             // 
             // button44
             // 
+            this.button44.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button44.Location = new System.Drawing.Point(92, 83);
             this.button44.Name = "button44";
             this.button44.Size = new System.Drawing.Size(49, 23);
@@ -1526,6 +1611,7 @@ namespace KamertonTest
             // 
             // button45
             // 
+            this.button45.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button45.Location = new System.Drawing.Point(147, 228);
             this.button45.Name = "button45";
             this.button45.Size = new System.Drawing.Size(49, 23);
@@ -1536,6 +1622,7 @@ namespace KamertonTest
             // 
             // button46
             // 
+            this.button46.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button46.Location = new System.Drawing.Point(92, 257);
             this.button46.Name = "button46";
             this.button46.Size = new System.Drawing.Size(49, 23);
@@ -1546,6 +1633,7 @@ namespace KamertonTest
             // 
             // button47
             // 
+            this.button47.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button47.Location = new System.Drawing.Point(147, 170);
             this.button47.Name = "button47";
             this.button47.Size = new System.Drawing.Size(49, 23);
@@ -1556,6 +1644,7 @@ namespace KamertonTest
             // 
             // button48
             // 
+            this.button48.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button48.Location = new System.Drawing.Point(147, 25);
             this.button48.Name = "button48";
             this.button48.Size = new System.Drawing.Size(49, 23);
@@ -1566,6 +1655,7 @@ namespace KamertonTest
             // 
             // button49
             // 
+            this.button49.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button49.Location = new System.Drawing.Point(92, 112);
             this.button49.Name = "button49";
             this.button49.Size = new System.Drawing.Size(49, 23);
@@ -1576,6 +1666,7 @@ namespace KamertonTest
             // 
             // button50
             // 
+            this.button50.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button50.Location = new System.Drawing.Point(147, 257);
             this.button50.Name = "button50";
             this.button50.Size = new System.Drawing.Size(49, 23);
@@ -1586,6 +1677,7 @@ namespace KamertonTest
             // 
             // button51
             // 
+            this.button51.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button51.Location = new System.Drawing.Point(92, 228);
             this.button51.Name = "button51";
             this.button51.Size = new System.Drawing.Size(49, 23);
@@ -1596,6 +1688,7 @@ namespace KamertonTest
             // 
             // button52
             // 
+            this.button52.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button52.Location = new System.Drawing.Point(147, 141);
             this.button52.Name = "button52";
             this.button52.Size = new System.Drawing.Size(49, 23);
@@ -1606,6 +1699,7 @@ namespace KamertonTest
             // 
             // button53
             // 
+            this.button53.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button53.Location = new System.Drawing.Point(147, 54);
             this.button53.Name = "button53";
             this.button53.Size = new System.Drawing.Size(49, 23);
@@ -1616,6 +1710,7 @@ namespace KamertonTest
             // 
             // button66
             // 
+            this.button66.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button66.Location = new System.Drawing.Point(147, 112);
             this.button66.Name = "button66";
             this.button66.Size = new System.Drawing.Size(49, 23);
@@ -1626,6 +1721,7 @@ namespace KamertonTest
             // 
             // button69
             // 
+            this.button69.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button69.Location = new System.Drawing.Point(92, 199);
             this.button69.Name = "button69";
             this.button69.Size = new System.Drawing.Size(49, 23);
@@ -1636,6 +1732,7 @@ namespace KamertonTest
             // 
             // button71
             // 
+            this.button71.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button71.Location = new System.Drawing.Point(92, 170);
             this.button71.Name = "button71";
             this.button71.Size = new System.Drawing.Size(49, 23);
@@ -1646,6 +1743,7 @@ namespace KamertonTest
             // 
             // button79
             // 
+            this.button79.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button79.Location = new System.Drawing.Point(147, 83);
             this.button79.Name = "button79";
             this.button79.Size = new System.Drawing.Size(49, 23);
@@ -1845,6 +1943,7 @@ namespace KamertonTest
             // 
             // button31
             // 
+            this.button31.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button31.Location = new System.Drawing.Point(130, 11);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(90, 25);
@@ -1856,6 +1955,7 @@ namespace KamertonTest
             // 
             // button32
             // 
+            this.button32.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button32.Location = new System.Drawing.Point(24, 11);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(90, 25);
@@ -1912,6 +2012,7 @@ namespace KamertonTest
             // 
             // button39
             // 
+            this.button39.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button39.Location = new System.Drawing.Point(92, 228);
             this.button39.Name = "button39";
             this.button39.Size = new System.Drawing.Size(49, 23);
@@ -1922,6 +2023,7 @@ namespace KamertonTest
             // 
             // button41
             // 
+            this.button41.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button41.Location = new System.Drawing.Point(147, 228);
             this.button41.Name = "button41";
             this.button41.Size = new System.Drawing.Size(49, 23);
@@ -1932,6 +2034,7 @@ namespace KamertonTest
             // 
             // button7
             // 
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button7.Location = new System.Drawing.Point(92, 25);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(49, 23);
@@ -1942,6 +2045,7 @@ namespace KamertonTest
             // 
             // button8
             // 
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button8.Location = new System.Drawing.Point(92, 141);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(49, 23);
@@ -1952,6 +2056,7 @@ namespace KamertonTest
             // 
             // button10
             // 
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button10.Location = new System.Drawing.Point(92, 54);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(49, 23);
@@ -1982,6 +2087,7 @@ namespace KamertonTest
             // 
             // button14
             // 
+            this.button14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button14.Location = new System.Drawing.Point(92, 83);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(49, 23);
@@ -2012,6 +2118,7 @@ namespace KamertonTest
             // 
             // button16
             // 
+            this.button16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button16.Location = new System.Drawing.Point(92, 198);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(49, 23);
@@ -2022,6 +2129,7 @@ namespace KamertonTest
             // 
             // button17
             // 
+            this.button17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button17.Location = new System.Drawing.Point(147, 170);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(49, 23);
@@ -2032,6 +2140,7 @@ namespace KamertonTest
             // 
             // button18
             // 
+            this.button18.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button18.Location = new System.Drawing.Point(147, 25);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(49, 23);
@@ -2042,6 +2151,7 @@ namespace KamertonTest
             // 
             // button19
             // 
+            this.button19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button19.Location = new System.Drawing.Point(92, 112);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(49, 23);
@@ -2062,6 +2172,7 @@ namespace KamertonTest
             // 
             // button20
             // 
+            this.button20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button20.Location = new System.Drawing.Point(147, 198);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(49, 23);
@@ -2082,6 +2193,7 @@ namespace KamertonTest
             // 
             // button22
             // 
+            this.button22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button22.Location = new System.Drawing.Point(147, 141);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(49, 23);
@@ -2092,6 +2204,7 @@ namespace KamertonTest
             // 
             // button23
             // 
+            this.button23.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button23.Location = new System.Drawing.Point(147, 54);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(49, 23);
@@ -2112,6 +2225,7 @@ namespace KamertonTest
             // 
             // button26
             // 
+            this.button26.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button26.Location = new System.Drawing.Point(147, 112);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(49, 23);
@@ -2122,6 +2236,7 @@ namespace KamertonTest
             // 
             // button28
             // 
+            this.button28.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button28.Location = new System.Drawing.Point(92, 170);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(49, 23);
@@ -2132,6 +2247,7 @@ namespace KamertonTest
             // 
             // button29
             // 
+            this.button29.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button29.Location = new System.Drawing.Point(147, 83);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(49, 23);
@@ -2251,6 +2367,7 @@ namespace KamertonTest
             // 
             // Test_power12v
             // 
+            this.Test_power12v.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Test_power12v.Location = new System.Drawing.Point(64, 259);
             this.Test_power12v.Name = "Test_power12v";
             this.Test_power12v.Size = new System.Drawing.Size(198, 27);
@@ -2281,6 +2398,7 @@ namespace KamertonTest
             // 
             // button35
             // 
+            this.button35.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button35.Location = new System.Drawing.Point(199, 378);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(49, 23);
@@ -2291,6 +2409,7 @@ namespace KamertonTest
             // 
             // button36
             // 
+            this.button36.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button36.Location = new System.Drawing.Point(254, 378);
             this.button36.Name = "button36";
             this.button36.Size = new System.Drawing.Size(49, 23);
@@ -2311,6 +2430,7 @@ namespace KamertonTest
             // 
             // button33
             // 
+            this.button33.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button33.Location = new System.Drawing.Point(199, 227);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(49, 23);
@@ -2321,6 +2441,7 @@ namespace KamertonTest
             // 
             // button34
             // 
+            this.button34.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button34.Location = new System.Drawing.Point(254, 227);
             this.button34.Name = "button34";
             this.button34.Size = new System.Drawing.Size(49, 23);
@@ -2413,6 +2534,7 @@ namespace KamertonTest
             // 
             // button55
             // 
+            this.button55.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button55.Location = new System.Drawing.Point(199, 350);
             this.button55.Name = "button55";
             this.button55.Size = new System.Drawing.Size(49, 23);
@@ -2433,6 +2555,7 @@ namespace KamertonTest
             // 
             // button56
             // 
+            this.button56.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button56.Location = new System.Drawing.Point(199, 321);
             this.button56.Name = "button56";
             this.button56.Size = new System.Drawing.Size(49, 23);
@@ -2453,6 +2576,7 @@ namespace KamertonTest
             // 
             // button64
             // 
+            this.button64.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button64.Location = new System.Drawing.Point(199, 199);
             this.button64.Name = "button64";
             this.button64.Size = new System.Drawing.Size(49, 23);
@@ -2463,6 +2587,7 @@ namespace KamertonTest
             // 
             // button57
             // 
+            this.button57.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button57.Location = new System.Drawing.Point(199, 25);
             this.button57.Name = "button57";
             this.button57.Size = new System.Drawing.Size(49, 23);
@@ -2473,6 +2598,7 @@ namespace KamertonTest
             // 
             // button67
             // 
+            this.button67.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button67.Location = new System.Drawing.Point(254, 350);
             this.button67.Name = "button67";
             this.button67.Size = new System.Drawing.Size(49, 23);
@@ -2493,6 +2619,7 @@ namespace KamertonTest
             // 
             // button63
             // 
+            this.button63.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button63.Location = new System.Drawing.Point(199, 170);
             this.button63.Name = "button63";
             this.button63.Size = new System.Drawing.Size(49, 23);
@@ -2503,6 +2630,7 @@ namespace KamertonTest
             // 
             // button78
             // 
+            this.button78.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button78.Location = new System.Drawing.Point(254, 112);
             this.button78.Name = "button78";
             this.button78.Size = new System.Drawing.Size(49, 23);
@@ -2513,6 +2641,7 @@ namespace KamertonTest
             // 
             // button68
             // 
+            this.button68.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button68.Location = new System.Drawing.Point(254, 321);
             this.button68.Name = "button68";
             this.button68.Size = new System.Drawing.Size(49, 23);
@@ -2523,6 +2652,7 @@ namespace KamertonTest
             // 
             // button58
             // 
+            this.button58.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button58.Location = new System.Drawing.Point(199, 54);
             this.button58.Name = "button58";
             this.button58.Size = new System.Drawing.Size(49, 23);
@@ -2543,6 +2673,7 @@ namespace KamertonTest
             // 
             // button77
             // 
+            this.button77.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button77.Location = new System.Drawing.Point(254, 141);
             this.button77.Name = "button77";
             this.button77.Size = new System.Drawing.Size(49, 23);
@@ -2564,6 +2695,7 @@ namespace KamertonTest
             // 
             // button62
             // 
+            this.button62.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button62.Location = new System.Drawing.Point(199, 141);
             this.button62.Name = "button62";
             this.button62.Size = new System.Drawing.Size(49, 23);
@@ -2574,6 +2706,7 @@ namespace KamertonTest
             // 
             // button70
             // 
+            this.button70.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button70.Location = new System.Drawing.Point(254, 25);
             this.button70.Name = "button70";
             this.button70.Size = new System.Drawing.Size(49, 23);
@@ -2584,6 +2717,7 @@ namespace KamertonTest
             // 
             // button59
             // 
+            this.button59.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button59.Location = new System.Drawing.Point(199, 83);
             this.button59.Name = "button59";
             this.button59.Size = new System.Drawing.Size(49, 23);
@@ -2604,6 +2738,7 @@ namespace KamertonTest
             // 
             // button75
             // 
+            this.button75.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button75.Location = new System.Drawing.Point(254, 170);
             this.button75.Name = "button75";
             this.button75.Size = new System.Drawing.Size(49, 23);
@@ -2624,6 +2759,7 @@ namespace KamertonTest
             // 
             // button61
             // 
+            this.button61.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button61.Location = new System.Drawing.Point(199, 112);
             this.button61.Name = "button61";
             this.button61.Size = new System.Drawing.Size(49, 23);
@@ -2634,6 +2770,7 @@ namespace KamertonTest
             // 
             // button74
             // 
+            this.button74.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button74.Location = new System.Drawing.Point(254, 83);
             this.button74.Name = "button74";
             this.button74.Size = new System.Drawing.Size(49, 23);
@@ -2644,6 +2781,7 @@ namespace KamertonTest
             // 
             // button72
             // 
+            this.button72.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button72.Location = new System.Drawing.Point(254, 54);
             this.button72.Name = "button72";
             this.button72.Size = new System.Drawing.Size(49, 23);
@@ -2665,6 +2803,7 @@ namespace KamertonTest
             // 
             // button73
             // 
+            this.button73.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button73.Location = new System.Drawing.Point(254, 199);
             this.button73.Name = "button73";
             this.button73.Size = new System.Drawing.Size(49, 23);
@@ -2916,6 +3055,7 @@ namespace KamertonTest
             this.tabPage6.Controls.Add(this.button1);
             this.tabPage6.Controls.Add(this.groupBox18);
             this.tabPage6.Controls.Add(this.groupBox16);
+            this.tabPage6.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(987, 613);
@@ -3737,6 +3877,7 @@ namespace KamertonTest
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Location = new System.Drawing.Point(749, 427);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 23);
@@ -3806,6 +3947,7 @@ namespace KamertonTest
             // checkBoxPower
             // 
             this.checkBoxPower.AutoSize = true;
+            this.checkBoxPower.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxPower.Location = new System.Drawing.Point(16, 87);
             this.checkBoxPower.Name = "checkBoxPower";
             this.checkBoxPower.Size = new System.Drawing.Size(185, 19);
@@ -3816,6 +3958,7 @@ namespace KamertonTest
             // checkBoxDisp
             // 
             this.checkBoxDisp.AutoSize = true;
+            this.checkBoxDisp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxDisp.Location = new System.Drawing.Point(16, 388);
             this.checkBoxDisp.Name = "checkBoxDisp";
             this.checkBoxDisp.Size = new System.Drawing.Size(184, 19);
@@ -3826,6 +3969,7 @@ namespace KamertonTest
             // checkBoxSensors2
             // 
             this.checkBoxSensors2.AutoSize = true;
+            this.checkBoxSensors2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSensors2.Location = new System.Drawing.Point(16, 137);
             this.checkBoxSensors2.Name = "checkBoxSensors2";
             this.checkBoxSensors2.Size = new System.Drawing.Size(136, 19);
@@ -3836,6 +3980,7 @@ namespace KamertonTest
             // checkBoxSensors1
             // 
             this.checkBoxSensors1.AutoSize = true;
+            this.checkBoxSensors1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSensors1.Location = new System.Drawing.Point(16, 112);
             this.checkBoxSensors1.Name = "checkBoxSensors1";
             this.checkBoxSensors1.Size = new System.Drawing.Size(146, 19);
@@ -3847,6 +3992,7 @@ namespace KamertonTest
             // checkBoxSenGGS
             // 
             this.checkBoxSenGGS.AutoSize = true;
+            this.checkBoxSenGGS.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenGGS.Location = new System.Drawing.Point(16, 363);
             this.checkBoxSenGGS.Name = "checkBoxSenGGS";
             this.checkBoxSenGGS.Size = new System.Drawing.Size(48, 19);
@@ -3857,6 +4003,7 @@ namespace KamertonTest
             // checkBoxSenMicrophon
             // 
             this.checkBoxSenMicrophon.AutoSize = true;
+            this.checkBoxSenMicrophon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenMicrophon.Location = new System.Drawing.Point(16, 287);
             this.checkBoxSenMicrophon.Name = "checkBoxSenMicrophon";
             this.checkBoxSenMicrophon.Size = new System.Drawing.Size(89, 19);
@@ -3867,6 +4014,7 @@ namespace KamertonTest
             // checkBoxSenGar1disp
             // 
             this.checkBoxSenGar1disp.AutoSize = true;
+            this.checkBoxSenGar1disp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenGar1disp.Location = new System.Drawing.Point(16, 187);
             this.checkBoxSenGar1disp.Name = "checkBoxSenGar1disp";
             this.checkBoxSenGar1disp.Size = new System.Drawing.Size(158, 19);
@@ -3877,6 +4025,7 @@ namespace KamertonTest
             // checkBoxSenGar1instr
             // 
             this.checkBoxSenGar1instr.AutoSize = true;
+            this.checkBoxSenGar1instr.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenGar1instr.Location = new System.Drawing.Point(16, 162);
             this.checkBoxSenGar1instr.Name = "checkBoxSenGar1instr";
             this.checkBoxSenGar1instr.Size = new System.Drawing.Size(163, 19);
@@ -3887,6 +4036,7 @@ namespace KamertonTest
             // checkBoxSenTangRuch
             // 
             this.checkBoxSenTangRuch.AutoSize = true;
+            this.checkBoxSenTangRuch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenTangRuch.Location = new System.Drawing.Point(16, 262);
             this.checkBoxSenTangRuch.Name = "checkBoxSenTangRuch";
             this.checkBoxSenTangRuch.Size = new System.Drawing.Size(122, 19);
@@ -3897,6 +4047,7 @@ namespace KamertonTest
             // checkBoxSenTangN
             // 
             this.checkBoxSenTangN.AutoSize = true;
+            this.checkBoxSenTangN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenTangN.Location = new System.Drawing.Point(16, 237);
             this.checkBoxSenTangN.Name = "checkBoxSenTangN";
             this.checkBoxSenTangN.Size = new System.Drawing.Size(127, 19);
@@ -3907,6 +4058,7 @@ namespace KamertonTest
             // checkBoxSenTrubka
             // 
             this.checkBoxSenTrubka.AutoSize = true;
+            this.checkBoxSenTrubka.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenTrubka.Location = new System.Drawing.Point(16, 212);
             this.checkBoxSenTrubka.Name = "checkBoxSenTrubka";
             this.checkBoxSenTrubka.Size = new System.Drawing.Size(65, 19);
@@ -3917,6 +4069,7 @@ namespace KamertonTest
             // checkBoxSenGGRadio2
             // 
             this.checkBoxSenGGRadio2.AutoSize = true;
+            this.checkBoxSenGGRadio2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenGGRadio2.Location = new System.Drawing.Point(16, 338);
             this.checkBoxSenGGRadio2.Name = "checkBoxSenGGRadio2";
             this.checkBoxSenGGRadio2.Size = new System.Drawing.Size(86, 19);
@@ -3927,6 +4080,7 @@ namespace KamertonTest
             // checkBoxSenGGRadio1
             // 
             this.checkBoxSenGGRadio1.AutoSize = true;
+            this.checkBoxSenGGRadio1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenGGRadio1.Location = new System.Drawing.Point(16, 313);
             this.checkBoxSenGGRadio1.Name = "checkBoxSenGGRadio1";
             this.checkBoxSenGGRadio1.Size = new System.Drawing.Size(86, 19);
@@ -3938,6 +4092,7 @@ namespace KamertonTest
             // checkBoxSenAll
             // 
             this.checkBoxSenAll.AutoSize = true;
+            this.checkBoxSenAll.Cursor = System.Windows.Forms.Cursors.Hand;
             this.checkBoxSenAll.Location = new System.Drawing.Point(16, 30);
             this.checkBoxSenAll.Name = "checkBoxSenAll";
             this.checkBoxSenAll.Size = new System.Drawing.Size(114, 19);
@@ -4174,9 +4329,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -4218,57 +4373,6 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 588);
             this.textBox45.TabIndex = 0;
-            // 
-            // txtSlave
-            // 
-            this.txtSlave.Location = new System.Drawing.Point(108, 126);
-            this.txtSlave.Name = "txtSlave";
-            this.txtSlave.Size = new System.Drawing.Size(66, 20);
-            this.txtSlave.TabIndex = 13;
-            this.txtSlave.Text = "1";
-            // 
-            // txtStartCoil
-            // 
-            this.txtStartCoil.Location = new System.Drawing.Point(107, 157);
-            this.txtStartCoil.Name = "txtStartCoil";
-            this.txtStartCoil.Size = new System.Drawing.Size(67, 20);
-            this.txtStartCoil.TabIndex = 14;
-            this.txtStartCoil.Text = "1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 129);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(79, 13);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "Адрес Modbus";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 160);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 13);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "Старт адрес";
-            // 
-            // txtNumCoils
-            // 
-            this.txtNumCoils.Location = new System.Drawing.Point(108, 187);
-            this.txtNumCoils.Name = "txtNumCoils";
-            this.txtNumCoils.Size = new System.Drawing.Size(66, 20);
-            this.txtNumCoils.TabIndex = 17;
-            this.txtNumCoils.Text = "1";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 190);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(92, 13);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "Количество байт";
             // 
             // Form1
             // 
