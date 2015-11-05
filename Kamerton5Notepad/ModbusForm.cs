@@ -2830,7 +2830,6 @@ namespace KamertonTest
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 1); // Отключить все сенсоры
             textBox7.Text += ("Команда на отключение сенсоров отправлена" + "\r\n");
-          //  textBox45.Text += ("Команда на отключение сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(700);
 
@@ -2903,11 +2902,11 @@ namespace KamertonTest
                 error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
                 error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
                 error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка отключения сенсоров" + "\r\n" + "\r\n");
+                textBox48.Text += (" -- Проверка отключения сенсоров --" + "\r\n" + "\r\n");
 
                 if (coilArr_all[0] == false)
                 {
-                    textBox48.Text += ("Сенсор  трубки (МТТ) отключился               \t\t - исправен\r\n");
+                    textBox48.Text += ("Сенсор трубки (МТТ) отключился               \t\t - исправен\r\n");
                  }
 
                 if (coilArr_all[1] == false)
@@ -2974,7 +2973,6 @@ namespace KamertonTest
             startWrReg = 120;
             res = myProtocol.writeSingleRegister(slave, startWrReg, 2); // Включить все сенсоры
             textBox7.Text += ("Команда на включение сенсоров отправлена" + "\r\n");
-           // textBox45.Text += ("Команда на включение сенсоров отправлена" + "\r\n");
             textBox7.Refresh();
 
             Thread.Sleep(600);
@@ -3047,22 +3045,22 @@ namespace KamertonTest
 
             if (radioButton1.Checked)                                    // Условие однократной проверки
             {
-                textBox48.Text += ("Проверка включения сенсоров" + "\r\n" + "\r\n");
+                textBox48.Text += (" -- Проверка включения сенсоров -- " + "\r\n" + "\r\n");
 
 
                 if (coilArr_all[10] == false)
                 {
-                    textBox48.Text += ("Сенсор  трубки включился                           \t - исправен\r\n");
+                    textBox48.Text += ("Сенсор трубки (MTT) включился                      \t - исправен\r\n");
                 }
 
                 if (coilArr_all[11] == false)
-                {
-                    textBox48.Text += ("Сенсор Тангента ручная включился                 \t - исправен\r\n");
+                { 
+                    textBox48.Text += ("Сенсор Тангента ручная включился                   \t - исправен\r\n");
                 }
 
                 if (coilArr_all[12] == false)
                 {
-                    textBox48.Text += ("Сенсор Тангента ножная включился                  \t - исправен\r\n");
+                    textBox48.Text += ("Сенсор Тангента ножная включился                   \t - исправен\r\n");
                 }
 
                 if (coilArr_all[13] == false)
@@ -3075,7 +3073,7 @@ namespace KamertonTest
                 }
                 if (coilArr_all[15] == false)
                 {
-                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками включился        \t - исправен\r\n");
+                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками включился          \t - исправен\r\n");
                 }
                 if (coilArr_all[16] == false)
                 {
@@ -3110,7 +3108,6 @@ namespace KamertonTest
             startWrReg = 120;  // В 40120 ячейке хранится номер теста. Эту ячейку применяет test_switch() Arduino
             res = myProtocol.writeSingleRegister(slave, startWrReg, 3); // Отключить все сенсоры
             textBox7.Text += ("Команда на проверку 'Гарнитура Инструктора' отправлена" + "\r\n");
-            textBox45.Text += ("Команда на проверку 'Гарнитура Инструктора' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
             if (radioButton1.Checked)                                    // Условие однократной проверки
@@ -3118,7 +3115,43 @@ namespace KamertonTest
                 error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
                 error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
                 error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'Гарнитуры инструктора' " + "\r\n" + "\r\n");
+                textBox48.Text += (" -- Проверка 'Гарнитуры инструктора' -- " + "\r\n" + "\r\n");
+
+                textBox48.Text += (" - Сенсоры отключены - " + "\r\n");
+
+                if (coilArr_all[3] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  отключился\t - исправен\r\n");
+                }
+                if (coilArr_all[4] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора отключился              \t - исправен\r\n");
+                }
+                if (coilArr_all[7] == false)
+                {
+                    textBox48.Text += ("Сенсор Микрофона отключился                          \t - исправен\r\n");
+                }
+
+                if (coilArr_all[20] != false)
+                {
+                    textBox48.Text += ("PTT инструктора отключился                           \t - исправен\r\n");
+                }
+                textBox48.Text += (" - Сенсоры включены - " + "\r\n");
+
+                if (coilArr_all[13] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками включился\t - исправен\r\n");
+                }
+                if (coilArr_all[14] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора включился               \t - исправен\r\n");
+                }
+                if (coilArr_all[21] == false)
+                {
+                    textBox48.Text += ("PTT инструктора не включился                         \t - исправен\r\n");
+                }
+
+
 
 
 
@@ -3334,27 +3367,27 @@ namespace KamertonTest
                 if (coilArr_all[93] == false)
                 {
                     temp_disp = readVolt_all[93];
-                    textBox48.Text += ("Напряжение питания модуля в норме                 \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                    textBox48.Text += ("Напряжение питания модуля Аудио -1               \t - исправен\t  = " + temp_disp * 2.51 / 100 + " V\r\n");
                 }
                 if (coilArr_all[94] == false)
                 {
                     temp_disp = readVolt_all[94];
-                    textBox48.Text += ("Напряжение питания Радио1 в норме                 \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                    textBox48.Text += ("Напряжение питания на разьеме Радио1             \t - исправен\t  = " + temp_disp * 2.51 / 100 + " V\r\n");
                 }
                 if (coilArr_all[95] == false)
                 {
                     temp_disp = readVolt_all[95];
-                    textBox48.Text += ("Напряжение питания Радио2 в норме                 \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                    textBox48.Text += ("Напряжение питания на разьеме Радио2             \t - исправен\t  = " + temp_disp * 2.51 / 100 + " V\r\n");
                 }
                 if (coilArr_all[96] == false)
                 {
                     temp_disp = readVolt_all[96];
-                    textBox48.Text += ("Напряжение питания ГГС  в норме                   \t  = " + temp_disp * 2.51 / 100 + " V\r\n");
+                    textBox48.Text += ("Напряжение питания на разьеме ГГС                \t - исправен\t  = " + temp_disp * 2.51 / 100 + " V\r\n");
                 }
                 if (coilArr_all[97] == false)
                 {
                     temp_disp = readVolt_all[97];
-                    textBox48.Text += ("Напряжение питания светодиода микрофона в норме   \t  = " + temp_disp / 100 + " V\r\n");
+                    textBox48.Text += ("Напряжение питания светодиода микрофона в норме  \t - исправен\t  = " + temp_disp / 100 + " V\r\n");
                 }
 
             }

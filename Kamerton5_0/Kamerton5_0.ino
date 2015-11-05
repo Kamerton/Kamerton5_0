@@ -5672,7 +5672,7 @@ void measure_volume(int analog)
 	 unsigned long	 volume_maxx = 0;
 	 unsigned long   volume_minx = 0;
 	 wdt_reset();
-     int stix=200;
+     int stix=150;
 	 for (int sti = 0;sti<= stix; sti++)
 	  {
 		volume_max  = 0;
