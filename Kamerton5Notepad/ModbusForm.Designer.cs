@@ -105,7 +105,7 @@ namespace KamertonTest
             this.txtTCPPort = new System.Windows.Forms.TextBox();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
             this.FindSerial = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.Close_Serial = new System.Windows.Forms.Button();
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
             this.Label8 = new System.Windows.Forms.Label();
@@ -1101,7 +1101,7 @@ namespace KamertonTest
             // GroupBox2
             // 
             this.GroupBox2.Controls.Add(this.FindSerial);
-            this.GroupBox2.Controls.Add(this.button5);
+            this.GroupBox2.Controls.Add(this.Close_Serial);
             this.GroupBox2.Controls.Add(this.cmbDataBits);
             this.GroupBox2.Controls.Add(this.cmbStopBits);
             this.GroupBox2.Controls.Add(this.Label8);
@@ -1131,14 +1131,14 @@ namespace KamertonTest
             this.FindSerial.Text = "Поиск Serial";
             this.FindSerial.Click += new System.EventHandler(this.FindSerial_Click);
             // 
-            // button5
+            // Close_Serial
             // 
-            this.button5.Location = new System.Drawing.Point(34, 220);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(95, 22);
-            this.button5.TabIndex = 14;
-            this.button5.Text = "Закрыть Serial";
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.Close_Serial.Location = new System.Drawing.Point(34, 220);
+            this.Close_Serial.Name = "Close_Serial";
+            this.Close_Serial.Size = new System.Drawing.Size(95, 22);
+            this.Close_Serial.TabIndex = 14;
+            this.Close_Serial.Text = "Закрыть Serial";
+            this.Close_Serial.Click += new System.EventHandler(this.button5_Click);
             // 
             // cmbDataBits
             // 
@@ -4665,7 +4665,7 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox txtTCPPort;
         private System.Windows.Forms.GroupBox GroupBox2;
         private System.Windows.Forms.Button FindSerial;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button Close_Serial;
         private System.Windows.Forms.ComboBox cmbDataBits;
         private System.Windows.Forms.ComboBox cmbStopBits;
         private System.Windows.Forms.Label Label8;

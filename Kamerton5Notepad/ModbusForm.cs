@@ -484,7 +484,7 @@ namespace KamertonTest
                             + (baudRate + (" baud, "
                             + (dataBits + (" data bits, "
                             + (stopBits + (" stop bits, parity " + parity)))))))));
-                button5.Enabled = true;
+                Close_Serial.Enabled = true;
                 portFound = true;
                 toolStripStatusLabel3.Text = (cmbComPort.Text + (", " + (baudRate + (" baud"))));
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -667,7 +667,8 @@ namespace KamertonTest
 
                     toolStripStatusLabel1.Text = "    MODBUS ON    ";
                     toolStripStatusLabel1.BackColor = Color.Lime;
-
+                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    toolStripStatusLabel4.ForeColor = Color.Black;
                 }
                 else
                 {
@@ -675,10 +676,10 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
+                    portFound = false;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-                    portFound = false;
-                    find_com_port.Enabled = true;
+                 //   find_com_port.Enabled = true;
                 }
 
           //  }
@@ -816,7 +817,7 @@ namespace KamertonTest
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Thread.Sleep(100);
                 portFound = false;
-                find_com_port.Enabled = true;
+              //  find_com_port.Enabled = true;
             }
            test_end1();
         }
@@ -862,7 +863,8 @@ namespace KamertonTest
                     {
                         toolStripStatusLabel1.Text = "    MODBUS ON    ";
                         toolStripStatusLabel1.BackColor = Color.Lime;
-
+                        toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
+                        toolStripStatusLabel4.ForeColor = Color.Black;
                         label83.Text = "";
                         label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
 
@@ -914,9 +916,9 @@ namespace KamertonTest
                             toolStripStatusLabel1.BackColor = Color.Red;
                             timer_byte_set.Enabled = false; toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
+                            portFound = false;
                             timerTestAll.Enabled = false;
                             Thread.Sleep(100);
-                            portFound = false;
                             //find_com_port.Enabled = true;
                         }
                       }
@@ -928,10 +930,10 @@ namespace KamertonTest
                         toolStripStatusLabel1.BackColor = Color.Red;
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
+                        portFound = false;
                         timer_byte_set.Enabled = false;
                         timerTestAll.Enabled = false;
                         Thread.Sleep(100);
-                        portFound = false;
                         //find_com_port.Enabled = true;
                      }
 
@@ -1076,7 +1078,7 @@ namespace KamertonTest
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             Thread.Sleep(100);
                             portFound = false;
-                            find_com_port.Enabled = true;
+                           // find_com_port.Enabled = true;
                         }
 
                     //*************************** Вывод состояния битов Камертона *****************************************
@@ -1422,7 +1424,7 @@ namespace KamertonTest
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             portFound = false;
-                            find_com_port.Enabled = true;
+                          //  find_com_port.Enabled = true;
                         }
 
                     startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
@@ -1525,7 +1527,7 @@ namespace KamertonTest
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
                         portFound = false;
-                        find_com_port.Enabled = true;
+                       // find_com_port.Enabled = true;
                     }
 
                     startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
@@ -1625,7 +1627,7 @@ namespace KamertonTest
                         Thread.Sleep(100); toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         portFound = false;
-                        find_com_port.Enabled = true;
+                      //  find_com_port.Enabled = true;
                     }
 
                     startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
@@ -1740,7 +1742,7 @@ namespace KamertonTest
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
                         portFound = false;
-                        find_com_port.Enabled = true;
+                       // find_com_port.Enabled = true;
                     }
 
                     startCoil = 81;  // Флаг 
@@ -1804,7 +1806,7 @@ namespace KamertonTest
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
                         portFound = false;
-                        find_com_port.Enabled = true;
+                       // find_com_port.Enabled = true;
                     }
                     label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                     toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
@@ -2245,7 +2247,7 @@ namespace KamertonTest
                 //    // Indicate result on status line
                 lblResult.Text = "Протокол закрыт";
                 //    // Disable button controls
-                button5.Enabled = false;
+                Close_Serial.Enabled = false;
                 cmdOpenSerial.Enabled = true;  
                 Polltimer1.Enabled = false;
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -3491,12 +3493,12 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
+                    portFound = false;
                     Polltimer1.Enabled = false;
                     timer_byte_set.Enabled = false;
                     timerTestAll.Enabled = false;
                     Thread.Sleep(100);
-                    portFound = false;
-                    find_com_port.Enabled = true;
+  //                  find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -3541,10 +3543,10 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
+                    portFound = false;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-                    portFound = false;
-                    find_com_port.Enabled = true;
+    //                find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -5136,7 +5138,7 @@ namespace KamertonTest
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Thread.Sleep(100);
                 portFound = false;
-                find_com_port.Enabled = true;
+               // find_com_port.Enabled = true;
             }
         }
             // конец проверки
@@ -5635,16 +5637,15 @@ namespace KamertonTest
                             myProtocol.closeProtocol();
                             myProtocol = null;
                             SetComPort();
-                            button5.Enabled = true;
+                            Close_Serial.Enabled = true;
                             Polltimer1.Enabled = true;
                         }
-                        else
-                        {
-                            label78.Text = "COM порт уже открыт";
-                            label78.Refresh();
-                        }
-       // }
-                        
+                       else
+                       {
+                           label78.Text = "COM порт уже открыт";
+                           label78.Refresh();
+                       }
+        
         }
 
         private void label44_Click(object sender, EventArgs e)
