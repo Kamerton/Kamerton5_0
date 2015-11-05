@@ -3423,7 +3423,7 @@ namespace KamertonTest
             ushort[] writeVals = new ushort[2];
             bool[] coilArr = new bool[4];
             startWrReg = 120;
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 17); // Отключить все сенсоры
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 17); // Проверка напряжения питания
             textBox7.Text += ("Проверка напряжения питания" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
