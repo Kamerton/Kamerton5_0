@@ -716,7 +716,7 @@ namespace KamertonTest
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
            
             }
@@ -758,7 +758,7 @@ namespace KamertonTest
                     return false;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 label78.Text += " Порт не найден ";
                 return false;
@@ -2905,6 +2905,60 @@ namespace KamertonTest
                 error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
                 textBox48.Text += ("Проверка отключения сенсоров" + "\r\n" + "\r\n");
 
+                if (coilArr_all[0] == false)
+                {
+                    textBox48.Text += ("Сенсор  трубки (МТТ) отключился               \t\t - исправен\r\n");
+                 }
+
+                if (coilArr_all[1] == false)
+                {
+                    textBox48.Text += ("Сенсор Тангента ручная отключился         \t\t - исправен\r\n");
+                }
+
+                if (coilArr_all[2] == false)
+                {
+                    textBox48.Text += ("Сенсор Тангента ножная отключился         \t\t - исправен\r\n");
+                }
+
+                if (coilArr_all[3] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  отключился\t - исправен\r\n");
+                }
+                if (coilArr_all[4] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора отключился              \t - исправен\r\n");
+                }
+                if (coilArr_all[5] == false)
+                {
+                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками отключился          \t - исправен\r\n");
+                }
+                if (coilArr_all[6] == false)
+                {
+                    textBox48.Text += ("Сенсор диспетчера отключился                        \t - исправен\r\n");
+                }
+                if (coilArr_all[7] == false)
+                {
+                    textBox48.Text += ("Сенсор Микрофона отключился                          \t - исправен\r\n");
+                }
+                if (coilArr_all[8] == false)
+                {
+                    textBox48.Text += ("Микрофон инструктора отключился                     \t - исправен\r\n");
+                }
+                if (coilArr_all[9] == false)
+                {
+                    textBox48.Text += ("Микрофон диспетчера отключился                     \t - исправен\r\n");
+                }
+ 
+                //if (coilArr_all[20] != false)
+                //{
+                //    textBox48.Text += ("PTT инструктора отключился                           \r\n");
+                //}
+
+                //if (coilArr_all[22] != false)
+                //{
+                //    textBox48.Text += ("PTT диспетчера отключился                           \r\n");
+                //}
+
             }
             test_end();
             textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
@@ -2995,7 +3049,53 @@ namespace KamertonTest
             {
                 textBox48.Text += ("Проверка включения сенсоров" + "\r\n" + "\r\n");
 
+
+                if (coilArr_all[10] == false)
+                {
+                    textBox48.Text += ("Сенсор  трубки включился                           \t - исправен\r\n");
+                }
+
+                if (coilArr_all[11] == false)
+                {
+                    textBox48.Text += ("Сенсор Тангента ручная включился                 \t - исправен\r\n");
+                }
+
+                if (coilArr_all[12] == false)
+                {
+                    textBox48.Text += ("Сенсор Тангента ножная включился                  \t - исправен\r\n");
+                }
+
+                if (coilArr_all[13] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками включился\t - исправен\r\n");
+                }
+                if (coilArr_all[14] == false)
+                {
+                    textBox48.Text += ("Сенсор гарнитуры инструктора включился               \t - исправен\r\n");
+                }
+                if (coilArr_all[15] == false)
+                {
+                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками включился        \t - исправен\r\n");
+                }
+                if (coilArr_all[16] == false)
+                {
+                    textBox48.Text += ("Сенсор диспетчера включился                         \t - исправен\r\n");
+                }
+                if (coilArr_all[17] == false)
+                {
+                    textBox48.Text += ("Сенсор Микрофона включился                           \t - исправен\r\n");
+                }
+                if (coilArr_all[18] == false)
+                {
+                    textBox48.Text += ("Микрофон инструктора включился                       \t - исправен\r\n");
+                }
+                if (coilArr_all[19] == false)
+                {
+                    textBox48.Text += ("Микрофон диспетчера включился                        \t - исправен\r\n");
+                }
+
             }
+
             test_end();
             textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
@@ -3331,7 +3431,7 @@ namespace KamertonTest
             res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 120  индикации возникновения любой ошибки
             if (coilArr[0] == true) //есть ошибка
             {
-                textBox48.Text += ("\r\n" + "******Ошибки выполнения теста ****** \r\n");
+                textBox48.Text += ("\r\n" + "****** Ошибки выполнения теста ****** \r\n"+"\r\n");
                 // Обработка ошибки.
                 textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                 textBox8.Refresh();
