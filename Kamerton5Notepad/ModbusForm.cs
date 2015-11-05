@@ -718,7 +718,7 @@ namespace KamertonTest
             }
             catch (Exception e)
             {
-
+           
             }
         }
         private bool DetectKamerton()

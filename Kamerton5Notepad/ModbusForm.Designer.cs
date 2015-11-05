@@ -3965,6 +3965,7 @@ namespace KamertonTest
             this.tabPage3.Controls.Add(this.progressBar2);
             this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(987, 613);
@@ -4003,6 +4004,7 @@ namespace KamertonTest
             // 
             // button84
             // 
+            this.button84.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button84.Location = new System.Drawing.Point(777, 15);
             this.button84.Name = "button84";
             this.button84.Size = new System.Drawing.Size(107, 23);
@@ -4037,6 +4039,7 @@ namespace KamertonTest
             // 
             // textBox9
             // 
+            this.textBox9.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox9.Location = new System.Drawing.Point(4, 23);
             this.textBox9.Multiline = true;
@@ -4049,6 +4052,7 @@ namespace KamertonTest
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButton2.Location = new System.Drawing.Point(31, 59);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(150, 17);
@@ -4061,6 +4065,7 @@ namespace KamertonTest
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.radioButton1.Location = new System.Drawing.Point(32, 43);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(144, 17);
@@ -4091,6 +4096,7 @@ namespace KamertonTest
             // 
             // textBox8
             // 
+            this.textBox8.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox8.Location = new System.Drawing.Point(6, 23);
             this.textBox8.Multiline = true;
@@ -4114,6 +4120,7 @@ namespace KamertonTest
             // 
             // textBox7
             // 
+            this.textBox7.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.textBox7.Location = new System.Drawing.Point(7, 23);
@@ -4145,6 +4152,7 @@ namespace KamertonTest
             // 
             // button9
             // 
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button9.Location = new System.Drawing.Point(130, 11);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(90, 25);
@@ -4155,6 +4163,7 @@ namespace KamertonTest
             // 
             // button11
             // 
+            this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button11.Location = new System.Drawing.Point(24, 11);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(90, 25);
