@@ -111,8 +111,8 @@ namespace KamertonTest
             // if (!(_serialPort.IsOpen))
             // _serialPort.Open();
             // serial_connect();
-          //  SetComPort();
-          //  Polltimer1.Enabled = true;
+            SetComPort();
+            Polltimer1.Enabled = true;
             TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
 
@@ -688,6 +688,7 @@ namespace KamertonTest
 
         private void SetComPort()
         {
+            find_com_port.Enabled = false;
             currentPort = new SerialPort();
             if (currentPort.IsOpen) currentPort.Close();
             try
@@ -703,7 +704,7 @@ namespace KamertonTest
                         serial_connect();
                         lblResult1.Text = ("Подключен к " + currentPort.PortName);
                         toolStripStatusLabel3.Text = ("Подключен к " + currentPort.PortName);
-                        find_com_port.Enabled = false;
+                       // find_com_port.Enabled = false;
                         break;
                     }
                     else
