@@ -5769,18 +5769,21 @@ namespace KamertonTest
 
         private void textBox46_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
              e.Handled = true;    
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
         }
@@ -5792,18 +5795,21 @@ namespace KamertonTest
 
         private void txtTimeout_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
         }
 
         private void txtPollDelay_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
         }
 
         private void txtTCPPort_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
         }
