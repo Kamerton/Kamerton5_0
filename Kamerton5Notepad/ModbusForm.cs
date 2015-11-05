@@ -4984,7 +4984,7 @@ namespace KamertonTest
                 startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-               // coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
+            //    coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
                 if (coilArr[0] == true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
