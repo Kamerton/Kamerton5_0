@@ -4466,7 +4466,7 @@ void test_video()
 	regs_out[2]= 0x7F;                                                              // ”ровень €ркости
 	measure_mks();                                                                  // »змерить длительность импульсов
 	
-	regBank.set(40062,regBank.get(40005));          // ѕередать уровень €ркости в программу
+	regBank.set(40062,regBank.get(40005));                                          // ѕередать уровень €ркости в программу
 
 	strcpy_P(buffer, (char*)pgm_read_word(&(table_message[69])));                   // !!!!! 
 	if (regBank.get(40062) != 50)                                                   //   
@@ -4554,7 +4554,8 @@ void measure_mks()
 	  }
 	  duration = duration1/10;
   //Serial.println(duration);
-  regBank.set(40063,duration);                          // ѕередать длительность импульса €ркости в программу
+ regBank.set(40469,duration); 	 
+ regBank.set(40063,duration);                          // ѕередать длительность импульса €ркости в программу
 }
 
 void test_instr_off()
@@ -5316,7 +5317,7 @@ void test_MTT_on()
 
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
-	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
+	    mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 		int _istochnik          = istochnik;
 		unsigned int _adr_count = adr_count;
 		int _adr_flagErr        = adr_flagErr;
@@ -5525,7 +5526,7 @@ void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 		Serial.print(voltage10);
 		Serial.print(" porogV - ");
 		Serial.println(_porogV);*/
-
+		regBank.set(_adr_count+200,voltage10);                               // адрес данных ошибки канала 
 		if(voltage10 > _porogV)                                                      // ѕроверить исправность канала
 			{
 				myFile.print(buffer); 
@@ -5630,13 +5631,14 @@ void measure_vol_max(int istochnik, unsigned int adr_count, int adr_flagErr, uns
 				break;
 		}
 	wdt_reset();
+	regBank.set(_adr_count+200,voltage10);                              // адрес данных ошибки канала 
 		if(voltage10 < _porogV)                                                     // ѕроверить исправность канала
 			{
 				myFile.print(buffer); 
 				regcount = regBank.get(_adr_count);                                 // адрес счетчика ошибки 
 				regcount++;                                                         // увеличить счетчик ошибок канала 
 				regBank.set(_adr_count, regcount);                                  // адрес счетчика ошибки канала 
-				regBank.set(_adr_count+200,voltage10);                              // адрес данных ошибки канала 
+				//regBank.set(_adr_count+200,voltage10);                              // адрес данных ошибки канала 
 				regBank.set(_adr_flagErr,1);                                        // установить флаг ошибки  канала 
 				regcount_err = regBank.get(adr_reg_count_err);                       // ѕолучить данные счетчика всех ошибок
 				regcount_err++;                                                      // увеличить счетчик всех ошибок 

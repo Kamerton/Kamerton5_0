@@ -3112,6 +3112,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Гарнитура Инструктора' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
+           // test_end();
             if (radioButton1.Checked)                                    // Условие однократной проверки
             {
                 test_end1();
@@ -3161,7 +3162,7 @@ namespace KamertonTest
                 {
                      double temp_disp = readVolt_all[30];
                      textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontL     \t- наводок нет\t = ");
-                     label45.Text += string.Format("{0:0.00}", temp_disp/100, CultureInfo.CurrentCulture);
+                     textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                      textBox48.Text += (" V\r\n");
                 }
 
@@ -3169,15 +3170,16 @@ namespace KamertonTest
                 {
                     double temp_disp = readVolt_all[31];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR     \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
+ 
                 }
 
                 if (coilArr_all[32] == false)
                 {
                     double temp_disp = readVolt_all[32];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineL        \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
 
@@ -3185,44 +3187,47 @@ namespace KamertonTest
                 {
                     double temp_disp = readVolt_all[33];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineR        \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[34] == false)
                 {
                     double temp_disp = readVolt_all[34];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag radio    \t- наводок нет\t = " );
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[35] == false)
                 {
                     double temp_disp = readVolt_all[35];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag phone    \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[36] == false)
                 {
                     double temp_disp = readVolt_all[36];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГС          \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[37] == false)
                 {
                     double temp_disp = readVolt_all[37];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио1    \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[38] == false)
                 {
                     double temp_disp = readVolt_all[38];
                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио2    \t- наводок нет\t = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
+
+
+
 
 
 
@@ -3437,37 +3442,37 @@ namespace KamertonTest
 
                 if (coilArr_all[93] == false)
                 {
-                    double temp_disp = readVolt_all[93];
+                    double s = readVolt_all[93];
                     textBox48.Text += ("Напряжение питания модуля Аудио -1               \t - исправен\t  = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", s * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
-                }
+                 }
                 if (coilArr_all[94] == false)
                 {
-                    double temp_disp = readVolt_all[94];
+                    double s = readVolt_all[94];
                     textBox48.Text += ("Напряжение питания на разъеме Радио1             \t - исправен\t  = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", s * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[95] == false)
                 {
                     double temp_disp = readVolt_all[95];
                     textBox48.Text += ("Напряжение питания на разъеме Радио2             \t - исправен\t  = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[96] == false)
                 {
                     double temp_disp = readVolt_all[96];
                     textBox48.Text += ("Напряжение питания на разъеме ГГС                \t - исправен\t  = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
                 if (coilArr_all[97] == false)
                 {
                     double temp_disp = readVolt_all[97];
                     textBox48.Text += ("Напряжение питания светодиода микрофона в норме  \t - исправен\t  = ");
-                    label45.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
+                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
                     textBox48.Text += (" V\r\n");
                 }
 
