@@ -3532,6 +3532,11 @@ namespace KamertonTest
                     Polltimer1.Enabled = false;
                     timer_byte_set.Enabled = false;
                     timerTestAll.Enabled = false;
+                    if (All_Test_Stop == true)
+                    {
+                        stop_test();
+                        All_Test_Stop = false;                                      // Признак для управления кнопкой "Стоп"
+                    }
                     Thread.Sleep(100);
   //                  find_com_port.Enabled = true;
                     return;
