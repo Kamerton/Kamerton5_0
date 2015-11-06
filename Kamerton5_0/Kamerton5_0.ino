@@ -1852,6 +1852,9 @@ void control_command()
         case 24:   
 				 set_SD();                                 // Проверка SD памяти
                 break;
+        case 25:   
+				send_file_PC();                                 // 
+                break;
 		default:
 			wdt_reset();
 		break;
@@ -5981,6 +5984,10 @@ void read_mem_regBank(int adr_mem , int step_mem)
 	{
 	  regBank.set(40130+i,i2c_eeprom_read_byte(deviceaddress,_adr_mem +i));   
 	}
+}
+void send_file_PC()
+{
+
 }
 
 void setup_mcp()
