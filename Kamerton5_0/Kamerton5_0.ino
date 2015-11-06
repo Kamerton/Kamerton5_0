@@ -188,6 +188,7 @@ const uint8_t spiSpeed = SPI_HALF_SPEED;
 #define FILE_BASE_NAME "150101"
 const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
 char fileName[13] = FILE_BASE_NAME "00.TXT";
+char fileName_p[13];
 //------------------------------------------------------------------------------
 
 char c;  // Для ввода символа с ком порта
@@ -1720,10 +1721,11 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 	sprintf(str2, "%s%s",str1, str_day_file);                                  // Сложение 2 строк
 	sprintf(fileName, "%s%s", str2, "00.TXT");                                 // Получение имени файла в file_name
 	//Serial.println(fileName);
-
 	regBank.set(adr_reg_temp_day, day);  
 	regBank.set(adr_reg_temp_mon, month); 
 	regBank.set(adr_reg_temp_year, year-2000); 
+	//char* strcpy(char* fileName_p, const char* fileName);
+	//Serial.println(fileName_p);
 }
 
 void control_command()
@@ -1813,7 +1815,8 @@ void control_command()
 			   FileOpen();
 			  wdt_reset();
 			  break;
-		case 13:	
+		case 13:
+		
 			  FileClose();
 			  wdt_reset();
 			  break;
@@ -5987,7 +5990,46 @@ void read_mem_regBank(int adr_mem , int step_mem)
 }
 void send_file_PC()
 {
+  Serial.println("fileName");
+  Serial.println(fileName);
+ // myFile = sd.open(fileName);
+ // if (myFile) 
+ // {
+ //   Serial.println(fileName_p);
 
+ //   // read from the file until there's nothing else in it:
+ //   while (myFile.available()) 
+	//{
+ //     Serial.print(myFile.read());
+ //   }
+ //   // close the file:
+ //    myFile.close();
+ // }
+ // else 
+ // {
+ //   // if the file didn't open, print an error:
+ //   Serial.println("error opening file");
+ // }
+
+  // if (!myFile.open(fileName, O_CREAT | O_WRITE | O_EXCL)) //sdError("file.open");
+  //{
+	 //Serial.println("error opening file");                            // Флаг ошибки  открытия файла
+  //}
+  //else
+  //{
+	   // read from the file until there's nothing else in it:
+    while (myFile.available()) 
+	{
+      Serial.write(myFile.read());
+    }
+    // close the file:
+   //  myFile.close();
+
+   //}
+
+
+  	regBank.set(adr_control_command,0);                                             // Завершить программу    
+//	delay(100);
 }
 
 void setup_mcp()

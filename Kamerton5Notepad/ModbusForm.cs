@@ -3226,7 +3226,7 @@ namespace KamertonTest
                     textBox48.Text += (" V\r\n");
                 }
 
-
+                textBox48.Text += ("\r\n"+" - Микрофон инструктора включен  - " + "\r\n"+"\r\n");
 
 
 
@@ -5850,6 +5850,16 @@ namespace KamertonTest
             // Проверка на ввод только цифр
             if ((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8)
                 e.Handled = true;  
+        }
+
+        private void file_info_Click(object sender, EventArgs e)
+        {
+            Polltimer1.Enabled = false;
+            startWrReg = 120;                                                                      // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 25);    
+ 
+
+
         }
      }
 
