@@ -46,13 +46,16 @@ namespace KamertonTest
         private int TestN;
         private int TestStep;
         private int TestRepeatCount;
-        private int _SerialMonitor;
+       // private int _SerialMonitor;
         bool All_Test_Stop = false;                         // Признак для управления кнопкой "Стоп"
+        bool list_files = false;
+        bool read_file = false; 
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         private int[] test_step = new int[20];
         private int num_module_audio1 = 0;
+        private int Sel_Index = 0;
 
         bool[] coilArr_all = new bool[200];
         bool portFound = false;
@@ -60,27 +63,25 @@ namespace KamertonTest
         string fileName = "Kamerton log.txt";
         static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-
-        SerialPort currentPort;
+        string pathStringSD = System.IO.Path.Combine(folderName, "SD");
+        SerialPort currentPort = new SerialPort();
 
          public Form1()
         {
             InitializeComponent();
             LoadListboxes();
         }
- 
+         SerialPort arduino = new SerialPort("COM9", 57600, Parity.None, 8, StopBits.One);
+        // arduino.WriteTimeout = 500;
+
+
         //SerialPort _serialPort = new SerialPort("COM4",
         //                                9600,
         //                                Parity.None,
         //                                8,
         //                                StopBits.One);
 
-         //   string folderName = @"c:\Audio log";
-            //string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-            //System.IO.Directory.CreateDirectory(pathString);
-            //string fileName = System.IO.Path.GetRandomFileName();
-            //pathString = System.IO.Path.Combine(pathString, fileName);
-
+ 
         private void Form1_Load(object sender, EventArgs e)
         {
             ToolTip1.SetToolTip(txtPollDelay, "Задержка в миллисекундах между двумя последовательными операциями Modbus, 0 для отключения");
@@ -96,20 +97,19 @@ namespace KamertonTest
             cmbSerialProtocol.SelectedIndex = 0;
             cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
-            //cmbCommand.SelectedIndex = 0;
             timer_byte_set.Enabled = false;
             timerTestAll.Enabled = false;
             Polltimer1.Enabled = false;
             find_com_port.Enabled = false;
             radioButton1.Checked = true;
             serviceSet();
-            _SerialMonitor = 0;
-            // _serialPort.Handshake = Handshake.None;
-            // _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
-            // _serialPort.ReadTimeout  = 500;
-            // _serialPort.WriteTimeout = 500;
-            // if (!(_serialPort.IsOpen))
-            // _serialPort.Open();
+          //  _SerialMonitor = 0;
+             arduino.Handshake = Handshake.None;
+             arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+             arduino.ReadTimeout  = 500;
+             arduino.WriteTimeout = 500;
+             if (!(arduino.IsOpen))
+            // arduino.Open();
             // serial_connect();
             SetComPort();
             Polltimer1.Enabled = true;
@@ -126,7 +126,7 @@ namespace KamertonTest
 
                         //cmdOpenSerial.Enabled = true;
                         //SetComPort();
-  
+                    list_files = false;
                         progressBar1.Value = 0;
                         find_com_port.Enabled = false;
                         timer_byte_set.Enabled = false;
@@ -152,6 +152,7 @@ namespace KamertonTest
                         //   toolStripStatusLabel3.Text = ("Выбрана вкладка 1 - Полный тест");
                         break;
                 case 1:
+                        list_files = false;
                         timer_byte_set.Enabled = false;                                            // Выполнение программы при переходе на вторую вкладку
                         Polltimer1.Enabled = false;
                         ushort[] writeVals = new ushort[2];
@@ -172,6 +173,7 @@ namespace KamertonTest
 
                             else
                             {
+                                Polltimer1.Enabled = false;
                                 toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
                                 toolStripStatusLabel1.BackColor = Color.Red;
                                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -244,13 +246,13 @@ namespace KamertonTest
                             Polltimer1.Enabled = false;
                             Thread.Sleep(100);
                             portFound = false;
-                           // find_com_port.Enabled = true;                        
+                          //  find_com_port.Enabled = true;                        
                         }
                      //  toolStripStatusLabel3.Text = ("Выбрана вкладка 2 Настройка проверки ");
                        Polltimer1.Enabled = true;  
                        break;
                 case 2:
-                    
+                    list_files = false;
                     Polltimer1.Enabled = false;                                                // Запретить опрос состояния
                     timerTestAll.Enabled = false;
                     bool[] coilArrA = new bool[2];
@@ -282,7 +284,7 @@ namespace KamertonTest
                         Polltimer1.Enabled = false;
                         Thread.Sleep(100);
                         portFound = false;
-                        find_com_port.Enabled = true;
+                       // find_com_port.Enabled = true;
                     }
 
                   
@@ -291,21 +293,25 @@ namespace KamertonTest
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 3 Байты обмена с Камертон");
                     break;
                 case 3:
-
+                    list_files = false;
                     timerTestAll.Enabled = false;
                     timer_byte_set.Enabled = false;
-                   // Polltimer1.Enabled = true;
+                    Polltimer1.Enabled = true;
                     //   toolStripStatusLabel3.Text = ("Выбрана  вкладка 4 Параметры прибора ");
                     break;
                 case 4:
-                    timer_byte_set.Enabled = false;
-                   // Polltimer1.Enabled = true;
-                    //   toolStripStatusLabel3.Text = ("Выбрана вкладка 5 Read/Write ");
-                    break;
-                case 5:
+
+                    list_files = false;
                     timer_byte_set.Enabled = false;
                    // Polltimer1.Enabled = true;
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 6 Содержимое файла отчета");
+                    Polltimer1.Enabled = false;
+                    break;
+                case 5:
+                    list_files = false;
+                    timer_byte_set.Enabled = false;
+                   // Polltimer1.Enabled = true;
+                    //   toolStripStatusLabel3.Text = ("Выбрана вкладка 6 ");
                     break;
 
                 default:
@@ -320,13 +326,13 @@ namespace KamertonTest
 
         void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(500);
-            //  string data = _serialPort.ReadLine();
+           // Thread.Sleep(50);
+              string data = arduino.ReadLine();
             //  Привлечение делегата на потоке UI, и отправка данных, которые
             //  были приняты привлеченным методом.
             //  ---- Метод "si_DataReceived" будет выполнен в потоке UI,
             //  который позволит заполнить текстовое поле TextBox.
-            //  this.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { data });
+              this.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { data });
         }
 
         private void serviceSet()
@@ -336,32 +342,30 @@ namespace KamertonTest
 
         private void si_DataReceived(string data)
         {
-            switch (_SerialMonitor) // Переключатель экранов вывода информации с Serial
+
+            if (read_file == true)
             {
-                default:
-                case 0:
-                    //textBox9.Text += (data.Trim() + "\r\n");
-                    //textBox9.Refresh();
-                    textBox11.Text += (data.Trim() + "\r\n");
-                    textBox11.Refresh();
-                    break;
-                case 1:
-                    //textBox9.Text += (data.Trim() + "\r\n");
-                    //textBox9.Refresh();
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    textBox11.Text += (data.Trim() + "\r\n");
-                    textBox11.Refresh();
-                    break;
+                textBox45.Text += (data.Trim() + "\r\n");
             }
+
+            else
+            {
+                textBox45.Text += (data.Trim() + "\r\n");
+                if (list_files == true)
+                {
+                    comboBox1.Items.Add(data.Trim());
+                    Sel_Index++;
+                    if (Sel_Index != 0) comboBox1.SelectedIndex = Sel_Index - 1;
+                }
+            }
+
         }
 
         private void cmdOpenSerial_Click(object sender, EventArgs e)
         {
             if ((myProtocol == null))
             {
+                FindSerial.Enabled = false; 
                 try
                 {
                     if ((cmbSerialProtocol.SelectedIndex == 0))
@@ -485,6 +489,7 @@ namespace KamertonTest
                             + (dataBits + (" data bits, "
                             + (stopBits + (" stop bits, parity " + parity)))))))));
                 Close_Serial.Enabled = true;
+                FindSerial.Enabled = true; 
                 portFound = true;
                 toolStripStatusLabel3.Text = (cmbComPort.Text + (", " + (baudRate + (" baud"))));
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -554,9 +559,6 @@ namespace KamertonTest
                 int dataBits;
                 int stopBits;
                 int res;
-                int slave;
-                int startRdReg;
-                int numRdRegs;
                 try
                 {
                     retryCnt = int.Parse(cmbRetry.Text, CultureInfo.CurrentCulture);
@@ -626,9 +628,7 @@ namespace KamertonTest
                 myProtocol.retryCnt = retryCnt;
                 myProtocol.pollDelay = pollDelay;
                 if (portFound == true) cmbComPort.Text = currentPort.PortName;
-                // Note: The following cast is required as the myProtocol object is declared 
-                // as the superclass of MbusSerialMasterProtocol. That way myProtocol can
-                // represent different protocol types.
+
                 res = ((MbusSerialMasterProtocol)(myProtocol)).openProtocol(cmbComPort.Text, baudRate, dataBits, stopBits, parity);
                 if ((res == BusProtocolErrors.FTALK_SUCCESS))
                 {
@@ -639,57 +639,20 @@ namespace KamertonTest
                                 + (stopBits + (" stop bits, parity " + parity)))))))));
 
                     toolStripStatusLabel3.Text =(cmbComPort.Text + (", " + (baudRate + (" baud"))));
-
+                    cmdOpenSerial.Enabled = false;  
                 }
                 else
                 {
                     lblResult1.Text = ("Не удалось открыть протокол, ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
                     toolStripStatusLabel3.Text = ("СОМ порт не подключен");
                 }
-
-                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-
-                startRdReg = 47; // 40047 Адрес дата/время контроллера
-                numRdRegs = 8;
-                res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-               // lblResult.Text += ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-                if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                {
-
-
-                    label83.Text = "";
-                    label83.Text = (label83.Text + readVals[0] + "." + readVals[1] + "." + readVals[2] + "   " + readVals[3] + ":" + readVals[4] + ":" + readVals[5]);
-
-
-                }
-                if ((res == BusProtocolErrors.FTALK_SUCCESS))
-                {
-
-                    toolStripStatusLabel1.Text = "    MODBUS ON    ";
-                    toolStripStatusLabel1.BackColor = Color.Lime;
-                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
-                    toolStripStatusLabel4.ForeColor = Color.Black;
-                }
-                else
-                {
-                    toolStripStatusLabel1.Text = "    MODBUS ERROR (6) ";
-                    toolStripStatusLabel1.BackColor = Color.Red;
-                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
-                    toolStripStatusLabel4.ForeColor = Color.Red;
-                    portFound = false;
-                    Polltimer1.Enabled = false;
-                    Thread.Sleep(100);
-                 //   find_com_port.Enabled = true;
-                }
-
-          //  }
-          //  Polltimer1.Enabled = true;
         }
 
         private void SetComPort()
         {
             find_com_port.Enabled = false;
-            currentPort = new SerialPort();
+         //   currentPort = new SerialPort();
+
             if (currentPort.IsOpen) currentPort.Close();
             try
             {
@@ -698,22 +661,27 @@ namespace KamertonTest
                 {
                     currentPort = new SerialPort(port, 57600);
                     if (DetectKamerton())
-                    {
-                        label78.Text = ("Подключен к " + currentPort.PortName);
-                        portFound = true;
-                        serial_connect();
-                        lblResult1.Text = ("Подключен к " + currentPort.PortName);
-                        toolStripStatusLabel3.Text = ("Подключен к " + currentPort.PortName);
-                       // find_com_port.Enabled = false;
-                        break;
-                    }
+                        {
+                            label78.Text = ("Обнаружен CОМ порт" + currentPort.PortName);
+                            portFound = true;
+                            serial_connect();
+                            FindSerial.Enabled = false; 
+                            find_com_port.Enabled = false;
+                            Polltimer1.Enabled = true;
+
+                            FindSerial.BackColor = Color.White;
+                            FindSerial.Refresh();
+                            Close_Serial.BackColor = Color.White;
+                            Close_Serial.Refresh();
+                            break;
+                        }
                     else
-                    {
-                        label78.Text = "COM порт не найден";
-                        toolStripStatusLabel3.Text = ("СОМ порт не подключен");
-                        lblResult1.Text = ("СОМ порт не подключен");
-                        portFound = false;
-                    }
+                        {
+                            label78.Text = "COM порт не найден";
+                            toolStripStatusLabel3.Text = ("СОМ порт не подключен");
+                            lblResult1.Text = ("СОМ порт не подключен");
+                            portFound = false;
+                        }
                 }
             }
             catch (Exception)
@@ -764,7 +732,6 @@ namespace KamertonTest
                 return false;
             }
         }
-
         private void file_fakt_namber()
         {
             short[] readVals = new short[20];
@@ -775,7 +742,7 @@ namespace KamertonTest
             startRdReg = 112; // 40112 Адрес
             numRdRegs = 4;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-            lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
+         //   lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
                 toolStripStatusLabel1.Text = "    MODBUS ON    ";
@@ -812,17 +779,17 @@ namespace KamertonTest
 
             else
             {
+                Polltimer1.Enabled = false;
                 toolStripStatusLabel1.Text = "    MODBUS ERROR (8) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Thread.Sleep(100);
                 portFound = false;
-              //  find_com_port.Enabled = true;
+               // find_com_port.Enabled = true;
             }
            test_end1();
         }
-
         #region Load Listboxes
         private void LoadListboxes()
         {
@@ -838,6 +805,33 @@ namespace KamertonTest
             cmbComPort.SelectedIndex = 0;
 
         }
+        private void LoadListFiles()
+        {
+
+            Polltimer1.Enabled = false;
+            startWrReg = 120;                                                                      // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
+
+
+
+
+
+            test_end1();
+
+            //Three to load - ports, baudrates, datetype.  Also set default textbox values:
+            //1) Available Ports:
+            //string[] ports = SerialPort.GetPortNames();
+
+            //foreach (string port in ports)
+            //{
+            //    cmbComPort.Items.Add(port);
+            //}
+
+            cmbComPort.SelectedIndex = 0;
+            Polltimer1.Enabled = true;
+
+       }
+
         #endregion
 
         #region timer all
@@ -920,7 +914,7 @@ namespace KamertonTest
                             portFound = false;
                             timerTestAll.Enabled = false;
                             Thread.Sleep(100);
-                            //find_com_port.Enabled = true;
+                          //  find_com_port.Enabled = true;
                         }
                       }
 
@@ -961,6 +955,10 @@ namespace KamertonTest
         }
         private void find_com_port_Tick(object sender, EventArgs e)
         {
+
+            finf_serial_run();
+
+            /*
             if ((myProtocol != null))
             {
                 // Close protocol and serial port
@@ -990,7 +988,7 @@ namespace KamertonTest
                 }
                 Polltimer1.Enabled = true;
             }
-
+            */
         }
         private void timer_byte_set_Tick(object sender, EventArgs e)
         {
@@ -1073,13 +1071,14 @@ namespace KamertonTest
                         }
                     else
                         {
+                            Polltimer1.Enabled = false;
                             toolStripStatusLabel1.Text = "    MODBUS ERROR (11)  ";
                             toolStripStatusLabel1.BackColor = Color.Red;
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             Thread.Sleep(100);
                             portFound = false;
-                           // find_com_port.Enabled = true;
+                            //find_com_port.Enabled = true;
                         }
 
                     //*************************** Вывод состояния битов Камертона *****************************************
@@ -1420,12 +1419,13 @@ namespace KamertonTest
                         }
                     else
                         {
+                            Polltimer1.Enabled = false;
                             toolStripStatusLabel1.Text = "    MODBUS ERROR (12)  ";
                             toolStripStatusLabel1.BackColor = Color.Red;
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             portFound = false;
-                          //  find_com_port.Enabled = true;
+                           // find_com_port.Enabled = true;
                         }
 
                     startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
@@ -1522,6 +1522,7 @@ namespace KamertonTest
                     }
                     else
                     {
+                        Polltimer1.Enabled = false;
                         toolStripStatusLabel1.Text = "    MODBUS ERROR (13)  ";
                         toolStripStatusLabel1.BackColor = Color.Red;
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -1623,6 +1624,7 @@ namespace KamertonTest
 
                     else
                     {
+                        Polltimer1.Enabled = false;
                         toolStripStatusLabel1.Text = "    MODBUS ERROR (14)  ";
                         toolStripStatusLabel1.BackColor = Color.Red;
                         Thread.Sleep(100); toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -1737,13 +1739,14 @@ namespace KamertonTest
 
                     else
                     {
+                        Polltimer1.Enabled = false;
                         toolStripStatusLabel1.Text = "    MODBUS ERROR (15)  ";
                         toolStripStatusLabel1.BackColor = Color.Red;
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
                         portFound = false;
-                       // find_com_port.Enabled = true;
+                      //  find_com_port.Enabled = true;
                     }
 
                     startCoil = 81;  // Флаг 
@@ -1801,6 +1804,7 @@ namespace KamertonTest
                     }
                     else
                     {
+                        Polltimer1.Enabled = false;
                         toolStripStatusLabel1.Text = "    MODBUS ERROR (1)  ";
                         toolStripStatusLabel1.BackColor = Color.Red;
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -2065,19 +2069,35 @@ namespace KamertonTest
             { 
                 // Close protocol and serial port
                 myProtocol.closeProtocol();
-                //    // Indicate result on status line
                 lblResult.Text = "Протокол закрыт";
-                //    // Disable button controls
+                label78.Text = "";
+                label78.Refresh();
+                lblResult1.Text = "";
+                lblResult.Refresh();
+                lblResult1.Refresh();
+                toolStripStatusLabel3.Text = ("");
                 Close_Serial.Enabled = false;
-                cmdOpenSerial.Enabled = true;  
                 Polltimer1.Enabled = false;
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 toolStripStatusLabel3.Text = ("");
-                Thread.Sleep(100);
+                statusStrip1.Refresh();
                 portFound = false;
+ 
+                for (int i = 10; i > 0; i--)
+                {
+                    lblResult1.Text = ("Повторный поиск СОМ порта возможен через = " + i);
+                    lblResult1.Refresh();
+                    Thread.Sleep(1000);
+                }
+                FindSerial.Enabled = true;
+                cmdOpenSerial.Enabled = true;  
+                //FindSerial.BackColor = Color.Lime;
+                //FindSerial.Refresh();
+                lblResult1.Text = "";
+                lblResult1.Refresh();
              }
           
         }
@@ -3529,12 +3549,12 @@ namespace KamertonTest
 
                 else
                 {
+                    Polltimer1.Enabled = false;
                     toolStripStatusLabel1.Text = "    MODBUS ERROR (4) ";
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
                     portFound = false;
-                    Polltimer1.Enabled = false;
                     timer_byte_set.Enabled = false;
                     timerTestAll.Enabled = false;
                     if (All_Test_Stop == true)
@@ -3543,7 +3563,7 @@ namespace KamertonTest
                         All_Test_Stop = false;                                      // Признак для управления кнопкой "Стоп"
                     }
                     Thread.Sleep(100);
-  //                  find_com_port.Enabled = true;
+                   // find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -3591,7 +3611,7 @@ namespace KamertonTest
                     portFound = false;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-    //                find_com_port.Enabled = true;
+                  //  find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -5022,7 +5042,7 @@ namespace KamertonTest
                 startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-            //    coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
+                coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
                 if (coilArr[0] == true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
@@ -5177,6 +5197,7 @@ namespace KamertonTest
             }
             else
             {
+                Polltimer1.Enabled = false;
                 toolStripStatusLabel1.Text = "    MODBUS ERROR (7) ";
                 toolStripStatusLabel1.BackColor = Color.Red;
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
@@ -5198,7 +5219,7 @@ namespace KamertonTest
             toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
         }
 
-        private void num_string()                                           //Получение из Камертон 5.0 и ввод номера имени файла 
+        private void num_string()                                                     //Получение из Камертон 5.0 и ввод номера имени файла 
         {
 
             short[] readVals = new short[125];
@@ -5259,7 +5280,7 @@ namespace KamertonTest
            openFileDialog1.FileName = fileName;
         }
 
-        private void num_module_audio()                                     // Ввод номера платы Аудио 1 и передача его в Камертон 5
+        private void num_module_audio()                                               // Ввод номера платы Аудио 1 и передача его в Камертон 5
         {
         
             ushort[] writeVals = new ushort[20];
@@ -5285,7 +5306,7 @@ namespace KamertonTest
                 res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
          }
 
-        private void button9_Click(object sender, EventArgs e)              // Стоп полного теста
+        private void button9_Click(object sender, EventArgs e)                         // Стоп полного теста
         {
             if (All_Test_Stop == true)
             {
@@ -5529,7 +5550,7 @@ namespace KamertonTest
 
         }
 
-        private void button24_Click(object sender, EventArgs e)                     // Установка уровня входного сигнала резисторами
+        private void button24_Click(object sender, EventArgs e)                          // Установка уровня входного сигнала резисторами
         {
             short[] writeVals = new short[12];
             short[] MSK = new short[2];
@@ -5587,7 +5608,7 @@ namespace KamertonTest
 
         }
 
-        private void button25_Click(object sender, EventArgs e)                     // Проверка яркости экрана
+        private void button25_Click(object sender, EventArgs e)                          // Проверка яркости экрана
         {
             short[] writeVals = new short[12];
             short[] readVals = new short[4];
@@ -5654,7 +5675,7 @@ namespace KamertonTest
                 Thread.Sleep(100);
                // find_com_port.Enabled = true;
             }
-
+ 
         }
 
         private void label40_Click(object sender, EventArgs e)
@@ -5669,29 +5690,114 @@ namespace KamertonTest
 
         private void FindSerial_Click(object sender, EventArgs e)
         {
- 
+
+            finf_serial_run();
+
+            /*
+            FindSerial.BackColor = Color.LightSalmon;
+            FindSerial.Refresh();
+
+            if ((myProtocol != null))
+            {
+
+                lblResult1.Text = "";
+                lblResult1.Refresh();
+                // Close protocol and serial port
+                myProtocol.closeProtocol();
+                lblResult.Text = "Протокол закрыт";
+                Close_Serial.Enabled = false;
+                cmdOpenSerial.Enabled = false;
+                Polltimer1.Enabled = false;
+                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                toolStripStatusLabel4.ForeColor = Color.Red;
+                toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+                toolStripStatusLabel1.BackColor = Color.Red;
+                toolStripStatusLabel3.Text = ("");
+                Thread.Sleep(100);
+                portFound = false;
+            }
+
                         label78.Text = "";
                         lblResult.Text = "";
+                        lblResult1.Text = "";
                         toolStripStatusLabel3.Text = ("");
                         label78.Refresh();
                         lblResult.Refresh();
+                        lblResult1.Refresh();
                        if (portFound != true)
                         {
                             myProtocol = new MbusRtuOverTcpMasterProtocol();
                             if (myProtocol.isOpen())
-                            myProtocol.closeProtocol();
+                            {
+                                myProtocol.closeProtocol();
+                            }
                             myProtocol = null;
                             SetComPort();
                             Close_Serial.Enabled = true;
-                            Polltimer1.Enabled = true;
+                           // Polltimer1.Enabled = true;
                         }
                        else
                        {
                            label78.Text = "COM порт уже открыт";
                            label78.Refresh();
                        }
-        
+        */
         }
+
+        private void finf_serial_run()
+        {
+            FindSerial.BackColor = Color.LightSalmon;
+            FindSerial.Refresh();
+
+            //if ((myProtocol != null))
+            //{
+
+            //    lblResult1.Text = "";
+            //    lblResult1.Refresh();
+            //    // Close protocol and serial port
+            //    myProtocol.closeProtocol();
+            //    lblResult.Text = "Протокол закрыт";
+            //    Close_Serial.Enabled = false;
+            //    cmdOpenSerial.Enabled = false;
+            //    Polltimer1.Enabled = false;
+            //    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+            //    toolStripStatusLabel4.ForeColor = Color.Red;
+            //    toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
+            //    toolStripStatusLabel1.BackColor = Color.Red;
+            //    toolStripStatusLabel3.Text = ("");
+            //    Thread.Sleep(100);
+            //    portFound = false;
+            //}
+
+            label78.Text = "";
+            lblResult.Text = "";
+            lblResult1.Text = "";
+            toolStripStatusLabel3.Text = ("");
+            label78.Refresh();
+            lblResult.Refresh();
+            lblResult1.Refresh();
+            if (portFound != true)
+            {
+                myProtocol = new MbusRtuOverTcpMasterProtocol();
+                if (myProtocol.isOpen())
+                {
+                    myProtocol.closeProtocol();
+                }
+                myProtocol = null;
+                SetComPort();
+                Close_Serial.Enabled = true;
+                // Polltimer1.Enabled = true;
+            }
+            else
+            {
+                label78.Text = "COM порт уже открыт";
+                label78.Refresh();
+            }
+        
+
+
+        }
+
 
         private void label44_Click(object sender, EventArgs e)
         {
@@ -5736,16 +5842,16 @@ namespace KamertonTest
             label48.Text = string.Format("{0:0.00}", s, CultureInfo.CurrentCulture);
          }
 
-        private void button76_Click_1(object sender, EventArgs e)  // Обновить уровни порогов инструктора
+        private void button76_Click_1(object sender, EventArgs e)                      // Обновить уровни порогов инструктора
         {
 
         }
 
-        private void button60_Click_1(object sender, EventArgs e)  // Сохранить уровни порогов инструктора
+        private void button60_Click_1(object sender, EventArgs e)                      // Сохранить уровни порогов инструктора
         {
 
         }
-        private void read_urovn_instruktora()    //  Получить данные по уровням порогов при проверке гарнитуры инструктора
+        private void read_urovn_instruktora()                                          //  Получить данные по уровням порогов при проверке гарнитуры инструктора
         {
             ushort[] read_urovn = new ushort[10];
             numRdRegs = 2;
@@ -5852,15 +5958,75 @@ namespace KamertonTest
                 e.Handled = true;  
         }
 
-        private void file_info_Click(object sender, EventArgs e)
+         private void button5_Click_1(object sender, EventArgs e)
         {
             Polltimer1.Enabled = false;
-            startWrReg = 120;                                                                      // 
-            res = myProtocol.writeSingleRegister(slave, startWrReg, 25);    
- 
+            textBox45.Text = "";
+            textBox45.Refresh();
+            Sel_Index = 0;
+            list_files = true;
+            read_file = false;
+            arduino.Open();
 
+            slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+            startWrReg = 120;                                                                      // 
+            res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
+
+
+            Thread.Sleep(4000);
+            arduino.Close();
+            Polltimer1.Enabled = true;
 
         }
+
+         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+         {
+
+         }
+
+         private void button12_Click(object sender, EventArgs e)
+         {
+             list_files = false;
+             read_file = false;
+             if (comboBox1.SelectedIndex != -1)
+             textBox45.Text = comboBox1.SelectedItem.ToString();
+             textBox45.Refresh();
+             arduino.Open();
+             arduino.Write(textBox45.Text);
+             arduino.Close();
+         }
+
+         private void button13_Click(object sender, EventArgs e)
+         {
+             Polltimer1.Enabled = false;
+             list_files = false;
+             read_file = true;
+
+             if (comboBox1.SelectedIndex != -1)
+             textBox45.Text = comboBox1.SelectedItem.ToString();
+             textBox45.Refresh();
+             arduino.Open();
+             arduino.Write(textBox45.Text);
+             arduino.Close();
+             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+             startWrReg = 120;                                                                      // 
+             res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
+             textBox45.Text = "";
+             textBox45.Refresh();
+             arduino.Open();
+             Thread.Sleep(4000);
+             arduino.Close();
+             Polltimer1.Enabled = true;
+         }
+
+         private void button12_Click_1(object sender, EventArgs e)
+         {
+             fileName = comboBox1.SelectedItem.ToString();
+             pathStringSD = System.IO.Path.Combine(folderName, "SD");
+             System.IO.Directory.CreateDirectory(pathStringSD);
+             pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
+             File.WriteAllText(pathStringSD, textBox45.Text, Encoding.GetEncoding("UTF-8"));
+         }
      }
 
 

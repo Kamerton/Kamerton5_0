@@ -173,7 +173,8 @@ int regcount_err        = 0;                                     // Переменная д
 
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
-#define chipSelect 49
+//#define chipSelect 49   // Основной
+#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
 SdFile file;
@@ -189,6 +190,7 @@ const uint8_t spiSpeed = SPI_HALF_SPEED;
 const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
 char fileName[13] = FILE_BASE_NAME "00.TXT";
 char fileName_p[13];
+char fileName_F[13];
 //------------------------------------------------------------------------------
 
 char c;  // Для ввода символа с ком порта
@@ -232,6 +234,7 @@ bool prer_Kmerton_On = true;                        // Флаг разрешение прерывани
 bool test_repeat     = true;                        // Флаг повторения теста
 volatile bool prer_Kmerton_Run = false;             // Флаг разрешение прерывания Камертон
 #define BUFFER_SIZEK 64                             // Размер буфера Камертон не более 128 байт
+#define BUFFER_SIZEKF 14                             // Размер буфера Камертон не более 128 байт
 unsigned char bufferK;                              // Счетчик количества принимаемых байт
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -278,7 +281,6 @@ const unsigned int adr_reg_temp_mon       PROGMEM       = 40113; // Регистр хран
 const unsigned int adr_reg_temp_day       PROGMEM       = 40114; // Регистр хранения переменной день 
 const unsigned int adr_reg_file_name      PROGMEM       = 40115; // Регистр хранения счетчик файлов  
 const unsigned int adr_reg_file_tek       PROGMEM       = 40116; // Регистр хранения счетчик файлов  
-
 
 const unsigned int adr_control_command    PROGMEM       = 40120; // Адрес передачи комманд на выполнение 
 const unsigned int adr_reg_count_err      PROGMEM       = 40121; // Адрес счетчика всех ошибок
@@ -1005,21 +1007,96 @@ void flash_time()                                              // Программа обра
 { 
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
-		//wdt_reset();
 		prer_Kamerton();
-		slave.run(); 
+		// slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
 }
 
 void serialEvent3()
 {
-	wdt_reset();
-	// Сброс сторожевого таймера при наличии связи с ПК
+	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+	while (prer_Kmerton_Run){}
+	if (portFound == true)
+	{
+	slave.run(); 
+	}
 }
+//fileName_F
+void serialEvent2()
+{
+		
+	if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+			unsigned char buffer = 0;                      // Установить в начало чтения буфера
 
+			while (Serial2.available())
+				{
+				  if (overflowFlag)                        // Если буфер переполнен - очистить
+					 Serial2.read();
+				  else                                     // Размер буфера в норме, считать информацию
+					{
+					if (bufferK == BUFFER_SIZEKF)           // Проверить размер буфера
+						{
+							overflowFlag = 1;              // Установить флаг превышения размера буфера
+						}
+							fileName_F[buffer] = Serial2.read(); 
+						buffer++;
+					}
+				}
+
+		   }
+
+	 else 
+		{
+	
+		}
+	Serial.println(fileName_F);
+	
+//	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+}
+void serialEvent()
+{
+	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+}
+void serialEvent1()
+{
+	/*
+	if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+			unsigned char buffer = 0;                      // Установить в начало чтения буфера
+
+			while (Serial1.available())
+				{
+				  if (overflowFlag)                        // Если буфер переполнен - очистить
+					 Serial1.read();
+				  else                                     // Размер буфера в норме, считать информацию
+					{
+					if (bufferK == BUFFER_SIZEK)           // Проверить размер буфера
+						{
+							overflowFlag = 1;              // Установить флаг превышения размера буфера
+						}
+						 regBank.set(40004+buffer,Serial1.read());
+						//regs_in[buffer] = Serial1.read(); 
+						buffer++;
+					}
+				}
+//			calculateCRC_In();
+			regBank.set(124,0);                              // Связь с "Камертон" установлена
+		   }
+	 else 
+		{
+			Stop_Kam = 0;                                    // Флаг отсутств. инф. из Камертона
+			regBank.set(124,1);                              // Флаг ошибки  связи с "Камертон"
+		}
+
+	*/
+}
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
 {
+	clear_serial1();
 	sendPacketK ();  
 	// Отправить информацию в модуль Камертон
 	waiting_for_replyK();                                  // Получить подтверждение
@@ -1035,7 +1112,8 @@ void sendPacketK ()
 }
 void waiting_for_replyK()                                  // Чтение данных из Камертона
 {
-	  if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
+	//  Уточнить задержку и применение Stop_Kam = 0; 
+	if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
 		  {
 			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
 			unsigned char buffer = 0;                      // Установить в начало чтения буфера
@@ -1458,7 +1536,7 @@ Serial.println();
 
 void list_file()
 {
-  while (file.openNext(sd.vwd(), O_READ))
+ while (file.openNext(sd.vwd(), O_READ))
   {
 	file.printName(&Serial);
 	Serial.write(' ');
@@ -1472,8 +1550,41 @@ void list_file()
 	Serial.println();
 	file.close();
   }
-  Serial.println("The end of the file list!");
+}
+void load_list_files()
+{
+//	delay(1000);
+		if (!sd.begin(chipSelect)) 
+		{
+			Serial.println("initialization SD failed!");
+		}
+	else
+		{
+	
+		while (file.openNext(sd.vwd(), O_READ))
+		  {
+			file.printName(&Serial2);
+			Serial2.println();
+			file.printName(&Serial);
+			Serial.println();
+			wdt_reset();
+			file.close();
+		  } 
+		 //  Serial2.flush();
+		 }
+		delay(1000);
+	//wdt_reset();
 
+
+
+ // while (file.openNext(sd.vwd(), O_READ))
+ // {
+	//file.printName(&Serial);
+	//Serial.println();
+	////wdt_reset();
+	//file.close();
+ // }
+  regBank.set(adr_control_command,0);
 }
 
 void file_print_date()  //программа  записи даты в файл
@@ -1654,7 +1765,8 @@ void FileClose()
 			Serial.println(" doesn't exist.");  
 			regBank.set(123,1);                              // Флаг ошибки  закрытия файла
 		}
-	regBank.set(adr_control_command,0);
+  	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	delay(100);
 }
 
 void file_name()
@@ -1727,6 +1839,7 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 	//char* strcpy(char* fileName_p, const char* fileName);
 	//Serial.println(fileName_p);
 }
+
 
 void control_command()
 {
@@ -1858,10 +1971,14 @@ void control_command()
         case 25:   
 				send_file_PC();                                 // 
                 break;
+		case 26:   
+				load_list_files();  
+	            break;
 		default:
 			wdt_reset();
 		break;
 	 }
+	 wdt_reset();
 	 regBank.set(adr_control_command,0);
 	}
 }
@@ -5990,8 +6107,11 @@ void read_mem_regBank(int adr_mem , int step_mem)
 }
 void send_file_PC()
 {
-  Serial.println("fileName");
-  Serial.println(fileName);
+ /* Serial.println("fileName");
+ 15110201.TXT
+
+ Serial.println(fileName);*/
+  myFile = sd.open(fileName_F);
  // myFile = sd.open(fileName);
  // if (myFile) 
  // {
@@ -6020,7 +6140,7 @@ void send_file_PC()
 	   // read from the file until there's nothing else in it:
     while (myFile.available()) 
 	{
-      Serial.write(myFile.read());
+      Serial2.write(myFile.read());
     }
     // close the file:
    //  myFile.close();
@@ -6029,7 +6149,7 @@ void send_file_PC()
 
 
   	regBank.set(adr_control_command,0);                                             // Завершить программу    
-//	delay(100);
+	delay(100);
 }
 
 void setup_mcp()
@@ -6913,7 +7033,7 @@ void set_serial()
 {
    wdt_disable(); //
    clear_serial3();
-   delay(400);
+   delay(200);
 // Поиск ком порта
 	Serial.println("COM port find...");
 	do
@@ -6969,8 +7089,9 @@ void set_serial()
 			inputByte_3 = 0;
 			inputByte_4 = 0;
 	   }
-	  // clear_serial3();
-	   delay(1000);
+	   Serial.print(".");
+	   clear_serial3();
+	   delay(500);
  	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
@@ -6988,6 +7109,29 @@ void clear_serial()
 			while (Serial.available())
 				{
 					 Serial.read();
+				}
+		   }
+}
+void clear_serial2()
+{
+  if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+
+			while (Serial2.available())
+				{
+					 Serial2.read();
+				}
+		   }
+}
+
+void clear_serial1()
+{
+  if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+
+			while (Serial1.available())
+				{
+					 Serial1.read();
 				}
 		   }
 }
@@ -7051,22 +7195,12 @@ void setup()
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
 //	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
 	slave.setSerial(3,57600);                       // Подключение к протоколу MODBUS компьютера Serial3 
-	Serial2.begin(9600);                            // 
+	Serial2.begin(57600);                            // 
 	Serial.println(" ");
 	Serial.println(" ***** Start system  *****");
 	Serial.println(" ");
 	portFound = false;
-	AD9850.reset();                   //reset module
-	delay(1000);
-	AD9850.powerDown();               //set signal output to LOW
-	delay(100);
-	AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1kHz frequency
-	delay(1000); 
 
-	// DateTime set_time = DateTime(15, 6, 15, 10, 51, 0); // Занести данные о времени в строку "set_time"
-	// RTC.adjust(set_time);                                // Записа
-	serial_print_date();
-	Serial.println(" ");
 	pinMode(ledPin13, OUTPUT);  
 	pinMode(ledPin12, OUTPUT);  
 	pinMode(ledPin11, OUTPUT);  
@@ -7080,6 +7214,21 @@ void setup()
 	digitalWrite(kn1Nano, LOW);
 	digitalWrite(kn2Nano, HIGH);
 	digitalWrite(kn3Nano, HIGH);
+
+//	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+
+	//set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+	AD9850.reset();                                  //reset module
+	delay(500);
+	AD9850.powerDown();                              //set signal output to LOW
+	delay(100);
+	AD9850.set_frequency(0,0,1000);                   //set power=UP, phase=0, 1kHz frequency
+	delay(1000); 
+
+	// DateTime set_time = DateTime(15, 6, 15, 10, 51, 0); // Занести данные о времени в строку "set_time"
+	// RTC.adjust(set_time);                                // Записа
+	serial_print_date();
+	Serial.println(" ");
 
 	setup_resistor();                               // Начальные установки резистора
 
@@ -7124,7 +7273,8 @@ void setup()
 	   regBank.set(i,0);   
 	} 
     Serial.println("Initializing SD card...");
-	pinMode(49, OUTPUT);
+//	pinMode(49, OUTPUT);//    заменить 
+	pinMode(53, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
@@ -7142,7 +7292,6 @@ void setup()
   // list all files in the card with date and size
   //sd.ls (LS_R | LS_DATE | LS_SIZE);
  
-	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
 	regBank.set(40120,0);                            // 
 	regBank.set(adr_reg_count_err,0);                // Обнулить данные счетчика всех ошибок
 	MsTimer2::set(30, flash_time);                   // 30ms период таймера прерывани
@@ -7150,8 +7299,8 @@ void setup()
 	resistor(2, 200);                                // Установить уровень сигнала
 	preob_num_str();
 	list_file();                                     // Вывод списка файлов в СОМ порт  
-	clear_serial();
- 
+//	clear_serial();
+// 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	default_mem_porog();
 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон

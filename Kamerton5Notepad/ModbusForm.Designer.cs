@@ -398,9 +398,12 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.file_info = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -519,13 +522,13 @@ namespace KamertonTest
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult1.Location = new System.Drawing.Point(1, 393);
+            this.lblResult1.Location = new System.Drawing.Point(1, 466);
             this.lblResult1.Name = "lblResult1";
-            this.lblResult1.Size = new System.Drawing.Size(963, 53);
+            this.lblResult1.Size = new System.Drawing.Size(963, 56);
             this.lblResult1.TabIndex = 18;
             this.lblResult1.Text = "Результат :";
             // 
@@ -654,26 +657,26 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(1, 513);
+            this.label78.Location = new System.Drawing.Point(1, 384);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(963, 77);
+            this.label78.Size = new System.Drawing.Size(963, 52);
             this.label78.TabIndex = 16;
             this.label78.Text = "Инфо :";
             this.label78.Click += new System.EventHandler(this.label78_Click);
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult.Location = new System.Drawing.Point(3, 464);
+            this.lblResult.Location = new System.Drawing.Point(1, 558);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(963, 38);
+            this.lblResult.Size = new System.Drawing.Size(963, 51);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "Результат :";
             this.lblResult.Click += new System.EventHandler(this.lblResult_Click);
@@ -686,7 +689,7 @@ namespace KamertonTest
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-                "т открыт, никаких изменений не может быть сделано";
+    "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox3
             // 
@@ -964,7 +967,6 @@ namespace KamertonTest
             // 
             // GroupBox1
             // 
-            this.GroupBox1.Controls.Add(this.file_info);
             this.GroupBox1.Controls.Add(this.label16);
             this.GroupBox1.Controls.Add(this.txtNumCoils);
             this.GroupBox1.Controls.Add(this.label15);
@@ -4331,9 +4333,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -4348,6 +4350,11 @@ namespace KamertonTest
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.button12);
+            this.tabPage4.Controls.Add(this.button13);
+            this.tabPage4.Controls.Add(this.button5);
+            this.tabPage4.Controls.Add(this.comboBox1);
             this.tabPage4.Controls.Add(this.textBox48);
             this.tabPage4.Controls.Add(this.textBox45);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -4355,7 +4362,35 @@ namespace KamertonTest
             this.tabPage4.Size = new System.Drawing.Size(987, 613);
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(479, 3);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(113, 23);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "Чтение файла";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(8, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(146, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "Чтение списка файлов";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(282, 5);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(191, 21);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox48
             // 
@@ -4369,22 +4404,22 @@ namespace KamertonTest
             // textBox45
             // 
             this.textBox45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox45.Location = new System.Drawing.Point(0, 0);
+            this.textBox45.Location = new System.Drawing.Point(0, 28);
             this.textBox45.Multiline = true;
             this.textBox45.Name = "textBox45";
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox45.Size = new System.Drawing.Size(987, 588);
+            this.textBox45.Size = new System.Drawing.Size(987, 560);
             this.textBox45.TabIndex = 0;
             // 
-            // file_info
+            // button12
             // 
-            this.file_info.Location = new System.Drawing.Point(37, 271);
-            this.file_info.Name = "file_info";
-            this.file_info.Size = new System.Drawing.Size(105, 23);
-            this.file_info.TabIndex = 19;
-            this.file_info.Text = "Чтение файла";
-            this.file_info.UseVisualStyleBackColor = true;
-            this.file_info.Click += new System.EventHandler(this.file_info_Click);
+            this.button12.Location = new System.Drawing.Point(608, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(135, 23);
+            this.button12.TabIndex = 7;
+            this.button12.Text = "Сохранить в файл";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click_1);
             // 
             // Form1
             // 
@@ -4807,7 +4842,10 @@ namespace KamertonTest
         private System.Windows.Forms.TextBox txtStartCoil;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtNumCoils;
-        private System.Windows.Forms.Button file_info;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button12;
     }
 }
 
