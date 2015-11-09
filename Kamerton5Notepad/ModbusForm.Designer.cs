@@ -398,12 +398,18 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -429,6 +435,7 @@ namespace KamertonTest
             this.groupBox19.SuspendLayout();
             this.TabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // Polltimer1
@@ -505,6 +512,7 @@ namespace KamertonTest
             // TabPage1
             // 
             this.TabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TabPage1.Controls.Add(this.groupBox4);
             this.TabPage1.Controls.Add(this.lblResult1);
             this.TabPage1.Controls.Add(this.groupBox12);
             this.TabPage1.Controls.Add(this.label78);
@@ -522,9 +530,9 @@ namespace KamertonTest
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult1.Location = new System.Drawing.Point(1, 466);
             this.lblResult1.Name = "lblResult1";
@@ -543,9 +551,9 @@ namespace KamertonTest
             this.groupBox12.Controls.Add(this.label81);
             this.groupBox12.Controls.Add(this.label82);
             this.groupBox12.Controls.Add(this.label83);
-            this.groupBox12.Location = new System.Drawing.Point(618, 6);
+            this.groupBox12.Location = new System.Drawing.Point(617, 6);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(284, 310);
+            this.groupBox12.Size = new System.Drawing.Size(284, 203);
             this.groupBox12.TabIndex = 17;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Установка времени контроллера";
@@ -657,9 +665,9 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label78.Location = new System.Drawing.Point(1, 384);
             this.label78.Name = "label78";
@@ -670,9 +678,9 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(1, 558);
             this.lblResult.Name = "lblResult";
@@ -689,7 +697,7 @@ namespace KamertonTest
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-    "т открыт, никаких изменений не может быть сделано";
+                "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox3
             // 
@@ -4333,9 +4341,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -4362,6 +4370,16 @@ namespace KamertonTest
             this.tabPage4.Size = new System.Drawing.Size(987, 613);
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(608, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(135, 23);
+            this.button12.TabIndex = 7;
+            this.button12.Text = "Сохранить в файл";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click_1);
             // 
             // button13
             // 
@@ -4411,15 +4429,68 @@ namespace KamertonTest
             this.textBox45.Size = new System.Drawing.Size(987, 560);
             this.textBox45.TabIndex = 0;
             // 
-            // button12
+            // groupBox4
             // 
-            this.button12.Location = new System.Drawing.Point(608, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(135, 23);
-            this.button12.TabIndex = 7;
-            this.button12.Text = "Сохранить в файл";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click_1);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.button15);
+            this.groupBox4.Controls.Add(this.comboBox2);
+            this.groupBox4.Location = new System.Drawing.Point(617, 219);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(283, 96);
+            this.groupBox4.TabIndex = 19;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Параметры RS 232";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Location = new System.Drawing.Point(16, 59);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(71, 21);
+            this.comboBox2.TabIndex = 4;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(140, 57);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 5;
+            this.button15.Text = "Сохранить";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label17.Location = new System.Drawing.Point(129, 24);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(114, 15);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "Текущие параметры";
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label18.Location = new System.Drawing.Point(16, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 18);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "СОМ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(230, 64);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 20;
+            this.label19.Text = "label19";
+            this.label19.Visible = false;
             // 
             // Form1
             // 
@@ -4471,6 +4542,8 @@ namespace KamertonTest
             this.TabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4846,6 +4919,12 @@ namespace KamertonTest
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label19;
     }
 }
 

@@ -64,6 +64,7 @@ namespace KamertonTest
         static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
+        string pathStringPort = System.IO.Path.Combine(folderName, "SetRS232");
         SerialPort currentPort = new SerialPort();
 
          public Form1()
@@ -796,40 +797,25 @@ namespace KamertonTest
             //Three to load - ports, baudrates, datetype.  Also set default textbox values:
             //1) Available Ports:
             string[] ports = SerialPort.GetPortNames();
-
+            cmbComPort.Items.Clear();
+            comboBox2.Items.Clear();
             foreach (string port in ports)
             {
                 cmbComPort.Items.Add(port);
+                comboBox2.Items.Add(port);
             }
 
             cmbComPort.SelectedIndex = 0;
-
+            comboBox2.SelectedIndex = 0;
         }
         private void LoadListFiles()
         {
-
             Polltimer1.Enabled = false;
             startWrReg = 120;                                                                      // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
-
-
-
-
-
             test_end1();
-
-            //Three to load - ports, baudrates, datetype.  Also set default textbox values:
-            //1) Available Ports:
-            //string[] ports = SerialPort.GetPortNames();
-
-            //foreach (string port in ports)
-            //{
-            //    cmbComPort.Items.Add(port);
-            //}
-
             cmbComPort.SelectedIndex = 0;
             Polltimer1.Enabled = true;
-
        }
 
         #endregion
@@ -6027,6 +6013,29 @@ namespace KamertonTest
              System.IO.Directory.CreateDirectory(pathStringSD);
              pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
              File.WriteAllText(pathStringSD, textBox45.Text, Encoding.GetEncoding("UTF-8"));
+         }
+
+         private void button15_Click(object sender, EventArgs e)
+         {
+           //  label18.Text = comboBox2.SelectedItem.ToString();
+
+             string pathStringPort = System.IO.Path.Combine(folderName, "SetRS232");
+             System.IO.Directory.CreateDirectory(pathStringPort);
+             pathStringPort = System.IO.Path.Combine(pathStringPort, "set_rs232.txt");
+             File.WriteAllText(pathStringPort, comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
+             if (File.Exists(pathStringPort))
+             {
+                 label19.Text = File.ReadAllText(pathStringPort);
+             }
+             else
+             {
+                 MessageBox.Show("Файл НЕ существует!  " + pathStringPort, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             }
+             SerialPort arduino = new SerialPort(label19.Text, 57600, Parity.None, 8, StopBits.One);
+            // SerialPort.GetPortNames();
+
+             label18.Text = arduino.PortName;
+
          }
      }
 
