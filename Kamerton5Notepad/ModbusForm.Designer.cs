@@ -47,7 +47,6 @@ namespace KamertonTest
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.find_com_port = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.TabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -500,12 +499,6 @@ namespace KamertonTest
             // 
             this.openFileDialog1.Filter = "Text files|*.txt|All files|*.*";
             // 
-            // find_com_port
-            // 
-            this.find_com_port.Enabled = true;
-            this.find_com_port.Interval = 8000;
-            this.find_com_port.Tick += new System.EventHandler(this.find_com_port_Tick);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "TXT files|*.txt";
@@ -890,16 +883,6 @@ namespace KamertonTest
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Serial Modbus";
             // 
-            // FindSerial
-            // 
-            this.FindSerial.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FindSerial.Location = new System.Drawing.Point(34, 272);
-            this.FindSerial.Name = "FindSerial";
-            this.FindSerial.Size = new System.Drawing.Size(95, 22);
-            this.FindSerial.TabIndex = 15;
-            this.FindSerial.Text = "Поиск Serial";
-            this.FindSerial.Visible = false;
-            this.FindSerial.Click += new System.EventHandler(this.FindSerial_Click);
             // 
             // Close_Serial
             // 
@@ -4575,7 +4558,6 @@ namespace KamertonTest
         private System.Windows.Forms.Timer timerTestAll;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.Timer find_com_port;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage TabPage1;

@@ -13,8 +13,6 @@ using System.Threading;
 using Kamerton5Notepad;
 using System.Linq;
 using FieldTalk.Modbus.Master;
-//using System.Runtime.Serialization.Formatters.Binary;
-
 
 // Функции протокола MODBUS
 
@@ -46,7 +44,6 @@ namespace KamertonTest
         private int TestN;
         private int TestStep;
         private int TestRepeatCount;
-       // private int _SerialMonitor;
         bool All_Test_Stop = false;                         // Признак для управления кнопкой "Стоп"
         bool list_files = false;
         bool read_file = false; 
@@ -58,13 +55,10 @@ namespace KamertonTest
         private int Sel_Index = 0;
 
         bool[] coilArr_all = new bool[200];
-       // bool portFound = false;
-     //   bool testAllRun = false;
         string fileName = "Kamerton log.txt";
         static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
-       // SerialPort currentPort = new SerialPort();
         SerialPort currentPort = new SerialPort(File.ReadAllText("set_MODBUS_port.txt"), 57600, Parity.None, 8, StopBits.One);
          public Form1()
         {
@@ -92,7 +86,6 @@ namespace KamertonTest
             timer_byte_set.Enabled = false;
             timerTestAll.Enabled = false;
             Polltimer1.Enabled = false;
-            //find_com_port.Enabled = false;
             radioButton1.Checked = true;
             serviceSet();
             arduino.Handshake = Handshake.None;
@@ -101,7 +94,6 @@ namespace KamertonTest
             arduino.WriteTimeout = 500;
             label18.Text = arduino.PortName;
             serial_connect();
-           // SetComPort();
             Polltimer1.Enabled = true;
             TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
@@ -115,7 +107,6 @@ namespace KamertonTest
                 case 0:
                         list_files = false;
                         progressBar1.Value = 0;
-                        find_com_port.Enabled = false;
                         timer_byte_set.Enabled = false;
                         Polltimer1.Enabled = true;
                         break;
@@ -147,18 +138,13 @@ namespace KamertonTest
                                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                                 toolStripStatusLabel4.ForeColor = Color.Red;
                                 Thread.Sleep(100);
-                               // portFound = false;
-                            }
-                          //  Polltimer1.Enabled = true;
+                             }
                         }
                         else
                         {
                             toolStripStatusLabel4.Text = ("Связь ПК с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             Polltimer1.Enabled = false;
-                            Thread.Sleep(100);
-                           // portFound = false;
-              
                         }
                      //  toolStripStatusLabel3.Text = ("Выбрана вкладка 2 Настройка проверки ");
                        Polltimer1.Enabled = true;  
@@ -175,8 +161,6 @@ namespace KamertonTest
                     {
                         res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
                         Thread.Sleep(1000);
-                        //button32.BackColor = Color.Lime;                                           // Изменение цвета кнопок
-                        //button31.BackColor = Color.LightSalmon;
                         label102.Text = "Выполняется контроль состояния сенсоров";
                         label102.ForeColor = Color.DarkOliveGreen;
                         numRdRegs = 2;
@@ -195,11 +179,7 @@ namespace KamertonTest
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Polltimer1.Enabled = false;
                         Thread.Sleep(100);
-                        //portFound = false;
-                       // find_com_port.Enabled = true;
-                    }
-
-                  
+                     }
                     timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 3 Байты обмена с Камертон");
@@ -413,7 +393,6 @@ namespace KamertonTest
                             + (stopBits + (" stop bits, parity " + parity)))))))));
                 Close_Serial.Enabled = true;
                 FindSerial.Enabled = true; 
-               // portFound = true;
                 toolStripStatusLabel3.Text = (cmbComPort.Text + (", " + (baudRate + (" baud"))));
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Black;
@@ -424,15 +403,12 @@ namespace KamertonTest
             {
                 lblResult.Text = (" ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
                 label78.Text = ("Не удалось открыть протокол!");
-                //portFound = false;
             }
         }
 
         private void serial_connect()
         {
-            //if (portFound == true)
-            //{
-                if ((myProtocol == null))
+               if ((myProtocol == null))
                 {
                     try
                     {
@@ -566,94 +542,6 @@ namespace KamertonTest
                 }
         }
 
-        private void SetComPort()
-        {
-            /*
-            
-            find_com_port.Enabled = false;
-         //   currentPort = new SerialPort();
-
-            if (currentPort.IsOpen) currentPort.Close();
-            try
-            {
-                string[] ports = SerialPort.GetPortNames();
-                foreach (string port in ports)
-                {
-                    currentPort = new SerialPort(port, 57600);
-                    if (DetectKamerton())
-                        {
-                            label78.Text = ("Обнаружен CОМ порт" + currentPort.PortName);
-                            portFound = true;
-                            serial_connect();
-                            FindSerial.Enabled = false; 
-                            find_com_port.Enabled = false;
-                            Polltimer1.Enabled = true;
-
-                            FindSerial.BackColor = Color.White;
-                            FindSerial.Refresh();
-                            Close_Serial.BackColor = Color.White;
-                            Close_Serial.Refresh();
-                            break;
-                        }
-                    else
-                        {
-                            label78.Text = "COM порт не найден";
-                            toolStripStatusLabel3.Text = ("СОМ порт не подключен");
-                            lblResult1.Text = ("СОМ порт не подключен");
-                            portFound = false;
-                        }
-                }
-            }
-            catch (Exception)
-            {
-           
-            }
-
-            */
-        }
-        private bool DetectKamerton()
-        {
-            try
-            {
-                //The below setting are for the Hello handshake
-                byte[] buffer = new byte[5];
-                buffer[0] = Convert.ToByte(16);
-                buffer[1] = Convert.ToByte(128);
-                buffer[2] = Convert.ToByte(0);
-                buffer[3] = Convert.ToByte(0);
-                buffer[4] = Convert.ToByte(4);
-                int intReturnASCII = 0;
-                char charReturnValue = (Char)intReturnASCII;
-                currentPort.Open();
-                currentPort.Write(buffer, 0, 5);
-                Thread.Sleep(2000);
-                int count = currentPort.BytesToRead;
-                string returnMessage = "";
-                while (count > 0)
-                    {
-                        intReturnASCII = currentPort.ReadByte();
-                        returnMessage = returnMessage + Convert.ToChar(intReturnASCII);
-                        count--;
-                    }
-
-                currentPort.Close();
-                if (returnMessage.Contains("HELLO FROM KAMERTON "))
-                {
-                    label78.Text += returnMessage;
-                    return true;
-                }
-                else
-                {
-                    label78.Text += " Порт не найден false ";
-                    return false;
-                }
-            }
-            catch (Exception)
-            {
-                label78.Text += " Порт не найден ";
-                return false;
-            }
-        }
         private void file_fakt_namber()
         {
             short[] readVals = new short[20];
@@ -664,13 +552,10 @@ namespace KamertonTest
             startRdReg = 112; // 40112 Адрес
             numRdRegs = 4;
             res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
-         //   lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
             if ((res == BusProtocolErrors.FTALK_SUCCESS))
             {
                 toolStripStatusLabel1.Text = "    MODBUS ON    ";
                 toolStripStatusLabel1.BackColor = Color.Lime;
-
-                // textBox9.Text = "\r\n";
                 textBox9.Text += "Текущий номер файла   -   ";
                 textBox9.Text += (readVals[0]);
                 if (readVals[1] < 10)
@@ -707,8 +592,6 @@ namespace KamertonTest
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Thread.Sleep(100);
-                //portFound = false;
-               // find_com_port.Enabled = true;
             }
            test_end1();
         }
@@ -744,8 +627,6 @@ namespace KamertonTest
         #region timer all
         private void Polltimer1_Tick(object sender, EventArgs e)                    // Выполняет контроль MODBUS и часов
         {
-           //if (portFound == true)
-           // {
                 short[] readVals = new short[125];
                 int slave;
                 int startRdReg;
@@ -818,7 +699,6 @@ namespace KamertonTest
                             toolStripStatusLabel1.BackColor = Color.Red;
                             timer_byte_set.Enabled = false; toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
-                            //portFound = false;
                             timerTestAll.Enabled = false;
                             Thread.Sleep(100);
                          }
@@ -831,11 +711,9 @@ namespace KamertonTest
                         toolStripStatusLabel1.BackColor = Color.Red;
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
-                      //  portFound = false;
                         timer_byte_set.Enabled = false;
                         timerTestAll.Enabled = false;
                         Thread.Sleep(100);
-                        //find_com_port.Enabled = true;
                      }
 
                     label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
@@ -847,61 +725,13 @@ namespace KamertonTest
                      toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                      toolStripStatusLabel4.ForeColor = Color.Red;
                      Thread.Sleep(100);
-                     //portFound = false;
-                    // find_com_port.Enabled = true;
                  }
-
-            //}
-            //else
-            //{
-            //    Polltimer1.Enabled = false;
-            //    portFound = false;
-            //   // find_com_port.Enabled = true;
-            //}
         }
-        private void find_com_port_Tick(object sender, EventArgs e)
-        {
-
-            finf_serial_run();
-
-            /*
-            if ((myProtocol != null))
-            {
-                // Close protocol and serial port
-                myProtocol.closeProtocol();
-                //    // Indicate result on status line
-                //lblResult.Text = "Протокол закрыт";
-                ////    // Disable button controls
-                //button5.Enabled = false;
-                //cmdOpenSerial.Enabled = true;
-                //Polltimer1.Enabled = false;
-                //toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                //toolStripStatusLabel1.BackColor = Color.Red;
-                //toolStripStatusLabel3.Text = ("");
-                //portFound = false;
-            }
-
-
-            if (portFound == false)
-            {
-
-                toolStripStatusLabel4.Text = "Поиск COM порта";
-                toolStripStatusLabel4.ForeColor = Color.Black;
-                SetComPort();
-                if (portFound == true)
-                {
-                    toolStripStatusLabel4.Text = "";
-                }
-                Polltimer1.Enabled = true;
-            }
-            */
-        }
+ 
         private void timer_byte_set_Tick(object sender, EventArgs e)
         {
             timerTestAll.Enabled = false;
-            //find_com_port.Enabled = false;
             Polltimer1.Enabled = false;
-
             short[] readVals = new short[124];
             int slave;
             int startRdReg;
@@ -969,8 +799,7 @@ namespace KamertonTest
                                         {
                                             Dec_bin[i + (8 * bite_x)] = false;
                                         }
-                                        //   textBox11.Text = (textBox11.Text + (Dec_bin[i+(8*bite_x)] + " "));
-                                    }
+                                     }
                                     binaryResult = "";
                                 }
 
@@ -983,9 +812,7 @@ namespace KamertonTest
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             Thread.Sleep(100);
-                            //portFound = false;
-                            //find_com_port.Enabled = true;
-                        }
+                         }
 
                     //*************************** Вывод состояния битов Камертона *****************************************
 
@@ -1330,14 +1157,11 @@ namespace KamertonTest
                             toolStripStatusLabel1.BackColor = Color.Red;
                             toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                             toolStripStatusLabel4.ForeColor = Color.Red;
-                            //portFound = false;
-                           // find_com_port.Enabled = true;
-                        }
+                         }
 
                     startCoil = 9;  //  regBank.add(00009-16);   Отображение соостояния реле 9-16
                     numCoils = 8;
                     res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                    //lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
                     {
 
@@ -1434,15 +1258,11 @@ namespace KamertonTest
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
-                       // portFound = false;
-                       // find_com_port.Enabled = true;
                     }
 
                     startCoil = 17;  //  regBank.add(00017-24);   Отображение соостояния реле 17-24
                     numCoils = 8;
                     res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                    //lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
                     {
                         if (coilArr[0] == true)                             // XP7 4 PTT2 Танг. р.  regBank.add(17)
@@ -1535,21 +1355,15 @@ namespace KamertonTest
                         toolStripStatusLabel1.BackColor = Color.Red;
                         Thread.Sleep(100); toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
-                        //portFound = false;
-                      //  find_com_port.Enabled = true;
                     }
 
                     startCoil = 25;  //  regBank.add(00001-12);   Отображение соостояния реле 25-32
                     numCoils = 8;
                     res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);
-                    //lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
-
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
                     {
 
-
-                        if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
+                       if (coilArr[0] == false)                            // XP1- 19 HaSs      Сенсор  подключения трубки       
                         {
                             button57.BackColor = Color.Lime;
                             button70.BackColor = Color.White;
@@ -1651,15 +1465,11 @@ namespace KamertonTest
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
-                        //portFound = false;
-                      //  find_com_port.Enabled = true;
                     }
 
                     startCoil = 81;  // Флаг 
                     numCoils = 4;
                     res = myProtocol.readInputDiscretes(slave, startCoil, coilArr, numCoils);
-                    //lblResult2.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
-
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
                     {
 
@@ -1716,8 +1526,6 @@ namespace KamertonTest
                         toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                         toolStripStatusLabel4.ForeColor = Color.Red;
                         Thread.Sleep(100);
-                        //portFound = false;
-                       // find_com_port.Enabled = true;
                     }
                     label80.Text = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture);
                     toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
@@ -1729,8 +1537,6 @@ namespace KamertonTest
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Polltimer1.Enabled = false;
                 Thread.Sleep(100);
-                //portFound = false;
-               // find_com_port.Enabled = true;
             }
 
         }
@@ -2284,7 +2090,6 @@ namespace KamertonTest
 
             }
         }
-//  
         private void button32_Click(object sender, EventArgs e)                        //Старт теста "Байты обмена с Камертон"
         {
             Polltimer1.Enabled = false;                                                // Запретить опрос состояния
@@ -2318,8 +2123,6 @@ namespace KamertonTest
                     toolStripStatusLabel4.ForeColor = Color.Red;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-                    //portFound = false;
-                    //find_com_port.Enabled = true;
                 }
 
 
@@ -2329,9 +2132,6 @@ namespace KamertonTest
 
         private void button31_Click(object sender, EventArgs e)                       //Останов теста "Байты обмена с Камертон"
         {
-            //startCoil = 33; // Остановить тест CTS
-
-            //res = myProtocol.writeCoil(slave, startCoil, false);
             button31.BackColor = Color.Red;
             button32.BackColor = Color.White;
             label102.Text = "Контроль состояния сенсоров ОСТАНОВЛЕН";
@@ -2352,8 +2152,6 @@ namespace KamertonTest
                     toolStripStatusLabel4.ForeColor = Color.Red;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-                    //portFound = false;
-                    //find_com_port.Enabled = true;
                }
         }
 
@@ -2745,8 +2543,6 @@ namespace KamertonTest
 
         #region Test all
         // для вызова тестов необходимо отправить по адресу 120  в контроллер номер теста  (1-23)
-        //
-
         private void sensor_off()// 
         {
             ushort[] writeVals = new ushort[2];
@@ -2822,73 +2618,7 @@ namespace KamertonTest
 
             }
 
- 
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                test_end1();
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += (" -- Проверка отключения сенсоров --" + "\r\n" + "\r\n");
-
-                if (coilArr_all[0] == false)
-                {
-                    textBox48.Text += ("Сенсор трубки (МТТ) отключился               \t\t - исправен\r\n");
-                 }
-
-                if (coilArr_all[1] == false)
-                {
-                    textBox48.Text += ("Сенсор Тангента ручная отключился         \t\t - исправен\r\n");
-                }
-
-                if (coilArr_all[2] == false)
-                {
-                    textBox48.Text += ("Сенсор Тангента ножная отключился         \t\t - исправен\r\n");
-                }
-
-                if (coilArr_all[3] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  отключился\t - исправен\r\n");
-                }
-                if (coilArr_all[4] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора отключился              \t - исправен\r\n");
-                }
-                if (coilArr_all[5] == false)
-                {
-                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками отключился          \t - исправен\r\n");
-                }
-                if (coilArr_all[6] == false)
-                {
-                    textBox48.Text += ("Сенсор диспетчера отключился                        \t - исправен\r\n");
-                }
-                if (coilArr_all[7] == false)
-                {
-                    textBox48.Text += ("Сенсор Микрофона отключился                          \t - исправен\r\n");
-                }
-                if (coilArr_all[8] == false)
-                {
-                    textBox48.Text += ("Микрофон инструктора отключился                     \t - исправен\r\n");
-                }
-                if (coilArr_all[9] == false)
-                {
-                    textBox48.Text += ("Микрофон диспетчера отключился                     \t - исправен\r\n");
-                }
- 
-                //if (coilArr_all[20] != false)
-                //{
-                //    textBox48.Text += ("PTT инструктора отключился                           \r\n");
-                //}
-
-                //if (coilArr_all[22] != false)
-                //{
-                //    textBox48.Text += ("PTT диспетчера отключился                           \r\n");
-                //}
-                */
-            }
             test_end();
-    //        textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void sensor_on()
@@ -2968,64 +2698,7 @@ namespace KamertonTest
 
             }
 
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                test_end1();
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += (" -- Проверка включения сенсоров -- " + "\r\n" + "\r\n");
-
-
-                if (coilArr_all[10] == false)
-                {
-                    textBox48.Text += ("Сенсор трубки (MTT) включился                      \t - исправен\r\n");
-                }
-
-                if (coilArr_all[11] == false)
-                { 
-                    textBox48.Text += ("Сенсор Тангента ручная включился                   \t - исправен\r\n");
-                }
-
-                if (coilArr_all[12] == false)
-                {
-                    textBox48.Text += ("Сенсор Тангента ножная включился                   \t - исправен\r\n");
-                }
-
-                if (coilArr_all[13] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками включился\t - исправен\r\n");
-                }
-                if (coilArr_all[14] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора включился               \t - исправен\r\n");
-                }
-                if (coilArr_all[15] == false)
-                {
-                    textBox48.Text += ("Сенсор диспетчера с 2 наушниками включился          \t - исправен\r\n");
-                }
-                if (coilArr_all[16] == false)
-                {
-                    textBox48.Text += ("Сенсор диспетчера включился                         \t - исправен\r\n");
-                }
-                if (coilArr_all[17] == false)
-                {
-                    textBox48.Text += ("Сенсор Микрофона включился                           \t - исправен\r\n");
-                }
-                if (coilArr_all[18] == false)
-                {
-                    textBox48.Text += ("Микрофон инструктора включился                       \t - исправен\r\n");
-                }
-                if (coilArr_all[19] == false)
-                {
-                    textBox48.Text += ("Микрофон диспетчера включился                        \t - исправен\r\n");
-                }
-                */
-            }
-
             test_end();
-          //  textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_instruktora()
@@ -3040,127 +2713,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Гарнитура Инструктора' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                test_end1();
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += (" -- Проверка 'Гарнитуры инструктора' -- " + "\r\n" + "\r\n");
-
-                textBox48.Text += (" - Сенсоры отключены - " + "\r\n");
-
-                if (coilArr_all[3] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками  отключился\t - исправен\r\n");
-                }
-                if (coilArr_all[4] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора отключился              \t - исправен\r\n");
-                }
-                if (coilArr_all[7] == false)
-                {
-                    textBox48.Text += ("Сенсор Микрофона отключился                          \t - исправен\r\n");
-                }
-
-                if (coilArr_all[20] != false)
-                {
-                    textBox48.Text += ("PTT инструктора отключился                           \t - исправен\r\n");
-                }
-                textBox48.Text += (" - Сенсоры включены - " + "\r\n");
-
-                if (coilArr_all[13] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора с 2 наушниками включился\t - исправен\r\n");
-                }
-                if (coilArr_all[14] == false)
-                {
-                    textBox48.Text += ("Сенсор гарнитуры инструктора включился               \t - исправен\r\n");
-                }
-                if (coilArr_all[21] == false)
-                {
-                    textBox48.Text += ("PTT инструктора не включился                         \t - исправен\r\n");
-                }
-
-                textBox48.Text += (" - На вход микрофона подан звуковой сигнал 30мВ  - " + "\r\n");
-                textBox48.Text += (" - Проверка отсутствия паразитных наводок   - " + "\r\n");
-
-                if (coilArr_all[30] == false)
-                {
-                     double temp_disp = readVolt_all[30];
-                     textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontL     \t- наводок нет\t = ");
-                     textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                     textBox48.Text += (" V\r\n");
-                }
-
-                if (coilArr_all[31] == false)
-                {
-                    double temp_disp = readVolt_all[31];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал FrontR     \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
- 
-                }
-
-                if (coilArr_all[32] == false)
-                {
-                    double temp_disp = readVolt_all[32];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineL        \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-
-                if (coilArr_all[33] == false)
-                {
-                    double temp_disp = readVolt_all[33];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал LineR        \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[34] == false)
-                {
-                    double temp_disp = readVolt_all[34];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag radio    \t- наводок нет\t = " );
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[35] == false)
-                {
-                    double temp_disp = readVolt_all[35];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал mag phone    \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[36] == false)
-                {
-                    double temp_disp = readVolt_all[36];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГС          \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[37] == false)
-                {
-                    double temp_disp = readVolt_all[37];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио1    \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[38] == false)
-                {
-                    double temp_disp = readVolt_all[38];
-                    textBox48.Text += ("Тест гарнитуры инструктора ** Сигнал ГГ Радио2    \t- наводок нет\t = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-
-                textBox48.Text += ("\r\n"+" - Микрофон инструктора включен  - " + "\r\n"+"\r\n");
-
-
-                */
-            }
             test_end();
-           // textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_dispetchera()
@@ -3174,18 +2727,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Гарнитура Диспетчера' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'Гарнитуры диспетчера' " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-           // textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_MTT()
@@ -3197,17 +2739,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'МТТ' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'МТТ' " + "\r\n" + "\r\n");
-                */
-            }
             test_end();
-           // textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_tangR()
@@ -3219,18 +2751,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Тангента ручная' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'Тангента ручная' " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-          //  textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_tangN()
@@ -3242,18 +2763,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Тангента ножная' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'Тангента ножная' " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-         //   textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void testGGS()
@@ -3265,19 +2775,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку ГГС отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'ГГС' " + "\r\n" + "\r\n");
-
-
-                */
-            }
             test_end();
-         //   textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_GG_Radio1()
@@ -3289,19 +2787,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'ГГ-Радио1' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'ГГ-Радио1' " + "\r\n" + "\r\n");
-
-                */
-
-            }
             test_end();
-          //  textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_GG_Radio2()
@@ -3313,18 +2799,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'ГГ-Радио2' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'ГГ-Радио2' " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-          //  textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_mikrophon()
@@ -3336,18 +2811,7 @@ namespace KamertonTest
             textBox7.Text += ("Команда на проверку 'Микрофон' отправлена" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка 'Микрофон' " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-         //   textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void test_power()
@@ -3359,57 +2823,9 @@ namespace KamertonTest
             textBox7.Text += ("Проверка напряжения питания" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
- 
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка напряжения питания" + "\r\n"+"\r\n");
-
-                if (coilArr_all[93] == false)
-                {
-                    double s = readVolt_all[93];
-                    textBox48.Text += ("Напряжение питания модуля Аудио -1               \t - исправен\t  = ");
-                    textBox48.Text += string.Format("{0:0.00}", s * 2.51 / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                 }
-                if (coilArr_all[94] == false)
-                {
-                    double s = readVolt_all[94];
-                    textBox48.Text += ("Напряжение питания на разъеме Радио1             \t - исправен\t  = ");
-                    textBox48.Text += string.Format("{0:0.00}", s * 2.51 / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[95] == false)
-                {
-                    double temp_disp = readVolt_all[95];
-                    textBox48.Text += ("Напряжение питания на разъеме Радио2             \t - исправен\t  = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[96] == false)
-                {
-                    double temp_disp = readVolt_all[96];
-                    textBox48.Text += ("Напряжение питания на разъеме ГГС                \t - исправен\t  = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp * 2.51 / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                if (coilArr_all[97] == false)
-                {
-                    double temp_disp = readVolt_all[97];
-                    textBox48.Text += ("Напряжение питания светодиода микрофона в норме  \t - исправен\t  = ");
-                    textBox48.Text += string.Format("{0:0.00}", temp_disp / 100, CultureInfo.CurrentCulture);
-                    textBox48.Text += (" V\r\n");
-                }
-                */
-            }
             test_end();
-          //  textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
-          
-        }
+         }
         private void test_valueDisp()
         {
             ushort[] writeVals = new ushort[2];
@@ -3419,18 +2835,7 @@ namespace KamertonTest
             textBox7.Text += ("Проверка регулировки яркости дисплея" + "\r\n");
             textBox7.Refresh();
             Thread.Sleep(250);
-            if (radioButton1.Checked)                                    // Условие однократной проверки
-            {
-                /*
-                error_list1();                              // Записать информацию регистров  40200 - 40330 Считать счетчики ошибок  
-                error_list2();                              // Записать информацию регистров  40400 - 40530 Считать напряжение 
-                error_list3();                              // Записать информацию регистров  200 - 330 флага индикации возникновения  ошибки
-                textBox48.Text += ("Проверка регулировки яркости дисплея " + "\r\n" + "\r\n");
-
-                */
-            }
             test_end();
-         //   textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
             File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
          }
  
@@ -3443,8 +2848,6 @@ namespace KamertonTest
             numRdRegs = 2;
             startCoil = 120;                                     // regBank.add(120);   // Флаг индикации возникновения любой ошибки
             numCoils = 2;
-         //   Thread.Sleep(100);
-
             do
             {
                 res = myProtocol.readMultipleRegisters(slave, 120, readVals, numRdRegs);  // Ожидание кода подтверждения окончания проверки  Адрес передачи подтверждения 40120
@@ -3462,7 +2865,6 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
-                //    portFound = false;
                     timer_byte_set.Enabled = false;
                     timerTestAll.Enabled = false;
                     if (All_Test_Stop == true)
@@ -3471,7 +2873,6 @@ namespace KamertonTest
                         All_Test_Stop = false;                                      // Признак для управления кнопкой "Стоп"
                     }
                     Thread.Sleep(100);
-                   // find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -3488,7 +2889,6 @@ namespace KamertonTest
                 textBox8.Text += ("Вызов программы обработки ошибок. " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                 textBox8.Refresh();
                 error_list();
-               // textBox48.Text += ("\r\n" + " ----------------------------------- \r\n" + "\r\n");
                 File.AppendAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
             }
 
@@ -3516,10 +2916,8 @@ namespace KamertonTest
                     toolStripStatusLabel1.BackColor = Color.Red;
                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                     toolStripStatusLabel4.ForeColor = Color.Red;
-                   // portFound = false;
                     Polltimer1.Enabled = false;
                     Thread.Sleep(100);
-                  //  find_com_port.Enabled = true;
                     return;
                 }
                 Thread.Sleep(50);
@@ -4871,7 +4269,6 @@ namespace KamertonTest
             if (radioButton1.Checked & TestN == TestStep)                                    // Условие однократной проверки
             {
                 timerTestAll.Enabled = false;
-               // All_Test_Stop = false;
                 ushort[] writeVals = new ushort[20];
                 bool[] coilArr = new bool[34];
                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
@@ -4879,7 +4276,6 @@ namespace KamertonTest
                 button11.BackColor = Color.White;
                 label92.Text = ("");
                 progressBar2.Value = 0;
-              //  testAllRun = false;
                 textBox7.Text += "Тест окончен!";
                 textBox7.Refresh();
                 startCoil = 8;                                                                // Управление питанием платы "Камертон"
@@ -5067,8 +4463,6 @@ namespace KamertonTest
  
                         TestN = 0;                                                                         // Обнулить счетчик номера выполняемых тестов
                         TestRepeatCount = 1;                                                               // Установить начальный номер  счетчика проходов теста
-                    //if (_All_Test_Stop)                                                                  // Проверить наличие завершения выполнения тестов
-                    //{
                         startWrReg = 120;                                                                   // Команда на 
                         res = myProtocol.writeSingleRegister(slave, startWrReg, 16);                        // Команда на сброс счетчиков отправлена
                         test_end1();
@@ -5080,10 +4474,6 @@ namespace KamertonTest
                         file_fakt_namber();                                                                 // Отобразить имя текущего файла
                         num_string();
                         Create_File();
-
-                        //textBox45.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" + "\r\n");
-                        //textBox45.Text += ("Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                        //textBox45.Refresh();
                         textBox8.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" + "\r\n");
                         textBox8.Text += ("Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
                         textBox48.Text += ("Отчет тестирования модуля Аудио-1 N " + textBox46.Text + "\r\n" );
@@ -5091,10 +4481,7 @@ namespace KamertonTest
                         textBox8.Refresh();
                         textBox48.Refresh();
                         test_end1();
-                       // All_Test_Stop = false;                                                             // Установить флаг запуска теста
-                   // }
-     
-                  timerTestAll.Enabled = true;
+                   timerTestAll.Enabled = true;
               
            }
          }
@@ -5111,8 +4498,6 @@ namespace KamertonTest
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Red;
                 Thread.Sleep(100);
-                //portFound = false;
-               // find_com_port.Enabled = true;
             }
         }
             // конец проверки
@@ -5193,8 +4578,6 @@ namespace KamertonTest
         
             ushort[] writeVals = new ushort[20];
             int numWrRegs;   //
-
-   //         slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                 startWrReg = 10;
                 numWrRegs = 4;   //
   
@@ -5206,11 +4589,6 @@ namespace KamertonTest
                 writeVals[1] = (ushort)data[1];
                 writeVals[2] = (ushort)data[2];
                 writeVals[3] = (ushort)data[3];
-
-                //string hex = BitConverter.ToString(data).TrimStart(new char[] { '0', '-' });
-                //textBox9.Text = (hex);
-                //textBox9.Refresh();
-   
                 res = myProtocol.writeMultipleRegisters(slave, startWrReg, writeVals, numWrRegs);
          }
 
@@ -5244,7 +4622,6 @@ namespace KamertonTest
                 textBox9.Refresh();
                 textBox7.Text += "Тест окончен!";
                 textBox8.Text += ("\r\n" + "Тест модуля Аудио-1 окончен!   Дата " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.CurrentCulture) + "\r\n");
-                //testAllRun = false;
                 All_Test_Stop = false;                                                       // Признак для управления кнопкой "Стоп" (Отключение произошло)
 
                 if (radioButton1.Checked )                                // Условие однократной проверки
@@ -5252,10 +4629,7 @@ namespace KamertonTest
                     pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
                     pathString = System.IO.Path.Combine(pathString, fileName);
                     File.WriteAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
-                    //pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
-                    //pathString = System.IO.Path.Combine(pathString, fileName);
-                 
-                    if (File.Exists(pathString))
+                   if (File.Exists(pathString))
                     {
                         textBox45.Text = File.ReadAllText(pathString);
                     }
@@ -5594,117 +4968,6 @@ namespace KamertonTest
         {
 
         }
-
-        private void FindSerial_Click(object sender, EventArgs e)
-        {
-
-         //   finf_serial_run();
-
-            /*
-            FindSerial.BackColor = Color.LightSalmon;
-            FindSerial.Refresh();
-
-            if ((myProtocol != null))
-            {
-
-                lblResult1.Text = "";
-                lblResult1.Refresh();
-                // Close protocol and serial port
-                myProtocol.closeProtocol();
-                lblResult.Text = "Протокол закрыт";
-                Close_Serial.Enabled = false;
-                cmdOpenSerial.Enabled = false;
-                Polltimer1.Enabled = false;
-                toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
-                toolStripStatusLabel4.ForeColor = Color.Red;
-                toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-                toolStripStatusLabel3.Text = ("");
-                Thread.Sleep(100);
-                portFound = false;
-            }
-
-                        label78.Text = "";
-                        lblResult.Text = "";
-                        lblResult1.Text = "";
-                        toolStripStatusLabel3.Text = ("");
-                        label78.Refresh();
-                        lblResult.Refresh();
-                        lblResult1.Refresh();
-                       if (portFound != true)
-                        {
-                            myProtocol = new MbusRtuOverTcpMasterProtocol();
-                            if (myProtocol.isOpen())
-                            {
-                                myProtocol.closeProtocol();
-                            }
-                            myProtocol = null;
-                            SetComPort();
-                            Close_Serial.Enabled = true;
-                           // Polltimer1.Enabled = true;
-                        }
-                       else
-                       {
-                           label78.Text = "COM порт уже открыт";
-                           label78.Refresh();
-                       }
-        */
-        }
-
-        private void finf_serial_run()
-        {/*
-            FindSerial.BackColor = Color.LightSalmon;
-            FindSerial.Refresh();
-
-            //if ((myProtocol != null))
-            //{
-
-            //    lblResult1.Text = "";
-            //    lblResult1.Refresh();
-            //    // Close protocol and serial port
-            //    myProtocol.closeProtocol();
-            //    lblResult.Text = "Протокол закрыт";
-            //    Close_Serial.Enabled = false;
-            //    cmdOpenSerial.Enabled = false;
-            //    Polltimer1.Enabled = false;
-            //    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
-            //    toolStripStatusLabel4.ForeColor = Color.Red;
-            //    toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-            //    toolStripStatusLabel1.BackColor = Color.Red;
-            //    toolStripStatusLabel3.Text = ("");
-            //    Thread.Sleep(100);
-            //    portFound = false;
-            //}
-
-            label78.Text = "";
-            lblResult.Text = "";
-            lblResult1.Text = "";
-            toolStripStatusLabel3.Text = ("");
-            label78.Refresh();
-            lblResult.Refresh();
-            lblResult1.Refresh();
-            if (portFound != true)
-            {
-                myProtocol = new MbusRtuOverTcpMasterProtocol();
-                if (myProtocol.isOpen())
-                {
-                    myProtocol.closeProtocol();
-                }
-                myProtocol = null;
-                SetComPort();
-                Close_Serial.Enabled = true;
-                // Polltimer1.Enabled = true;
-            }
-            else
-            {
-                label78.Text = "COM порт уже открыт";
-                label78.Refresh();
-            }
-        
-            */
-
-        }
-
         private void label44_Click(object sender, EventArgs e)
         {
 
@@ -5935,9 +5198,6 @@ namespace KamertonTest
 
          private void button15_Click(object sender, EventArgs e)
          {
-             //string pathStringPort = System.IO.Path.Combine(folderName, "SetRS232");
-             //System.IO.Directory.CreateDirectory(pathStringPort);
-             //pathStringPort = System.IO.Path.Combine(pathStringPort, "set_rs232.txt");
              File.WriteAllText("set_rs232.txt", comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
              if (File.Exists("set_rs232.txt"))
              {
