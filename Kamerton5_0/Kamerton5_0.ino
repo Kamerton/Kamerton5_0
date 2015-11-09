@@ -1008,19 +1008,19 @@ void flash_time()                                              // Программа обра
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
 		prer_Kamerton();
-		// slave.run(); 
+		slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
 }
 
 void serialEvent3()
 {
-	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
-	while (prer_Kmerton_Run){}
-	if (portFound == true)
-	{
-	slave.run(); 
-	}
+	//wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+	//while (prer_Kmerton_Run){}
+	//if (portFound == true)
+	//{
+	//slave.run(); 
+	//}
 }
 //fileName_F
 void serialEvent2()
@@ -1060,43 +1060,10 @@ void serialEvent()
 {
 	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
 }
-void serialEvent1()
-{
-	/*
-	if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
-		  {
-			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
-			unsigned char buffer = 0;                      // Установить в начало чтения буфера
 
-			while (Serial1.available())
-				{
-				  if (overflowFlag)                        // Если буфер переполнен - очистить
-					 Serial1.read();
-				  else                                     // Размер буфера в норме, считать информацию
-					{
-					if (bufferK == BUFFER_SIZEK)           // Проверить размер буфера
-						{
-							overflowFlag = 1;              // Установить флаг превышения размера буфера
-						}
-						 regBank.set(40004+buffer,Serial1.read());
-						//regs_in[buffer] = Serial1.read(); 
-						buffer++;
-					}
-				}
-//			calculateCRC_In();
-			regBank.set(124,0);                              // Связь с "Камертон" установлена
-		   }
-	 else 
-		{
-			Stop_Kam = 0;                                    // Флаг отсутств. инф. из Камертона
-			regBank.set(124,1);                              // Флаг ошибки  связи с "Камертон"
-		}
-
-	*/
-}
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
 {
-	clear_serial1();
+//	clear_serial1();
 	sendPacketK ();  
 	// Отправить информацию в модуль Камертон
 	waiting_for_replyK();                                  // Получить подтверждение

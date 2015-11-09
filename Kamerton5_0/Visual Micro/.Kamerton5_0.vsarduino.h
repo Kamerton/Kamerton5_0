@@ -90,7 +90,6 @@ void flash_time();
 void serialEvent3();
 void serialEvent2();
 void serialEvent();
-void serialEvent1();
 void prer_Kamerton();
 void sendPacketK ();
 void waiting_for_replyK();

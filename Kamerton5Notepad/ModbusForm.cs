@@ -71,7 +71,7 @@ namespace KamertonTest
             InitializeComponent();
             LoadListboxes();
         }
-         SerialPort arduino = new SerialPort("COM9", 57600, Parity.None, 8, StopBits.One);
+         SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
         // arduino.WriteTimeout = 500;
 
 
@@ -5042,11 +5042,11 @@ namespace KamertonTest
                 startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-                coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
+              //  coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
                 if (coilArr[0] == true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
-                        textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");
+                        textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !(1)" + "\r\n" + "\r\n");
                         timerTestAll.Enabled = false;
                         button9.BackColor = Color.Red;
                         button11.BackColor = Color.White;
@@ -5961,6 +5961,7 @@ namespace KamertonTest
          private void button5_Click_1(object sender, EventArgs e)
         {
             Polltimer1.Enabled = false;
+            comboBox1.Items.Clear();
             textBox45.Text = "";
             textBox45.Refresh();
             Sel_Index = 0;
