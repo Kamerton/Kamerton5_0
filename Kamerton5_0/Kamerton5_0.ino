@@ -1058,7 +1058,7 @@ void serialEvent2()
 }
 void serialEvent()
 {
-	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+	//wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
 }
 
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
@@ -7240,8 +7240,7 @@ void setup()
 	   regBank.set(i,0);   
 	} 
     Serial.println("Initializing SD card...");
-//	pinMode(49, OUTPUT);//    заменить 
-	pinMode(53, OUTPUT);//    заменить 
+	pinMode(49, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
