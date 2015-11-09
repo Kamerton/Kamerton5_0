@@ -7268,7 +7268,7 @@ void setup()
 //	clear_serial();
 // 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	default_mem_porog();
-	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+//	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 

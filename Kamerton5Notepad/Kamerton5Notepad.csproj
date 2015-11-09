@@ -17,7 +17,7 @@
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\publish\</PublishUrl>
+    <PublishUrl>C:\Kamerton50\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,14 +26,13 @@
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
+    <MapFileExtensions>false</MapFileExtensions>
     <UpdateUrl>\\Decima-files\users\nto\Мосейчук\</UpdateUrl>
     <ProductName>Kamerton5_0</ProductName>
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton5_0</SuiteName>
-    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -199,6 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="kcontrol2.ico" />
+    <Content Include="set_MODBUS_port.txt" />
+    <Content Include="set_rs232.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
