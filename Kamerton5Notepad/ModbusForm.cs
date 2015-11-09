@@ -72,7 +72,10 @@ namespace KamertonTest
             InitializeComponent();
             LoadListboxes();
         }
-         SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
+
+         SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
+    
+        // SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
         // arduino.WriteTimeout = 500;
 
 
@@ -104,13 +107,14 @@ namespace KamertonTest
             find_com_port.Enabled = false;
             radioButton1.Checked = true;
             serviceSet();
-          //  _SerialMonitor = 0;
-             arduino.Handshake = Handshake.None;
-             arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
-             arduino.ReadTimeout  = 500;
-             arduino.WriteTimeout = 500;
-             if (!(arduino.IsOpen))
-            // arduino.Open();
+          //  set_RS232();
+            arduino.Handshake = Handshake.None;
+            arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+            arduino.ReadTimeout = 500;
+            arduino.WriteTimeout = 500;
+            label18.Text = arduino.PortName;
+            // if (!(arduino.IsOpen))
+            //// arduino.Open();
             // serial_connect();
             SetComPort();
             Polltimer1.Enabled = true;
@@ -340,6 +344,30 @@ namespace KamertonTest
         {
             checkBoxSenAll.Checked = true;
         }
+        private void set_RS232()
+         {
+            if (File.Exists("set_rs232.txt"))
+             {
+
+                SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
+                label18.Text = arduino.PortName;
+                arduino.Handshake = Handshake.None;
+                arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+                arduino.ReadTimeout  = 500;
+                arduino.WriteTimeout = 500;
+             }
+             else
+             {
+                SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
+                label18.Text = arduino.PortName;
+                arduino.Handshake = Handshake.None;
+                arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
+                arduino.ReadTimeout  = 500;
+                arduino.WriteTimeout = 500;
+                //MessageBox.Show("Файл НЕ существует!  " + pathStringPort, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+             }
+
+         }
 
         private void si_DataReceived(string data)
         {
@@ -6022,19 +6050,26 @@ namespace KamertonTest
              string pathStringPort = System.IO.Path.Combine(folderName, "SetRS232");
              System.IO.Directory.CreateDirectory(pathStringPort);
              pathStringPort = System.IO.Path.Combine(pathStringPort, "set_rs232.txt");
-             File.WriteAllText(pathStringPort, comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
-             if (File.Exists(pathStringPort))
+            // File.WriteAllText(pathStringPort, comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
+             File.WriteAllText("set_rs232.txt", comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
+             if (File.Exists("set_rs232.txt"))
              {
-                 label19.Text = File.ReadAllText(pathStringPort);
+
+                 SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
+                 label18.Text = arduino.PortName;
+                // label19.Text = File.ReadAllText(pathStringPort);
              }
              else
              {
-                 MessageBox.Show("Файл НЕ существует!  " + pathStringPort, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                 SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
+                 label18.Text = arduino.PortName;
+                //MessageBox.Show("Файл НЕ существует!  " + pathStringPort, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
              }
-             SerialPort arduino = new SerialPort(label19.Text, 57600, Parity.None, 8, StopBits.One);
+            // SerialPort arduino = new SerialPort(label19.Text, 57600, Parity.None, 8, StopBits.One);
+            // SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
             // SerialPort.GetPortNames();
 
-             label18.Text = arduino.PortName;
+            // label18.Text = arduino.PortName;
 
          }
      }

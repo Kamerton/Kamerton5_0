@@ -31,7 +31,9 @@
     <ProductName>Kamerton5_0</ProductName>
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton5_0</SuiteName>
-    <ApplicationRevision>19</ApplicationRevision>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
