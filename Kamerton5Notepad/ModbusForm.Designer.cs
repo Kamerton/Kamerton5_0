@@ -401,14 +401,14 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label37 = new System.Windows.Forms.Label();
+            this.button21 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.button21 = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1193,7 +1193,7 @@ namespace KamertonTest
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(987, 613);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Байты обмена с Камертон";
+            this.tabPage5.Text = "Байты обмена с Аудио-1";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
             // 
             // label43
@@ -2900,7 +2900,7 @@ namespace KamertonTest
             this.groupBox7.Size = new System.Drawing.Size(221, 237);
             this.groupBox7.TabIndex = 1;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Принятые байты из Камертона";
+            this.groupBox7.Text = "Принятые байты из  Аудио-1";
             // 
             // label141
             // 
@@ -3027,7 +3027,7 @@ namespace KamertonTest
             this.groupBox6.Size = new System.Drawing.Size(222, 177);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Передача байтов в Камертон";
+            this.groupBox6.Text = "Передача байтов в Аудио-1";
             // 
             // label140
             // 
@@ -4408,6 +4408,26 @@ namespace KamertonTest
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(683, 8);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(180, 13);
+            this.label37.TabIndex = 23;
+            this.label37.Text = "Просмотр файла отчета проверки";
+            // 
+            // button21
+            // 
+            this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button21.Location = new System.Drawing.Point(879, 3);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(71, 23);
+            this.button21.TabIndex = 22;
+            this.button21.Text = "Блокнот";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
             // button12
             // 
             this.button12.Location = new System.Drawing.Point(484, 3);
@@ -4465,26 +4485,6 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 560);
             this.textBox45.TabIndex = 0;
-            // 
-            // button21
-            // 
-            this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button21.Location = new System.Drawing.Point(879, 3);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(71, 23);
-            this.button21.TabIndex = 22;
-            this.button21.Text = "Блокнот";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(683, 8);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(180, 13);
-            this.label37.TabIndex = 23;
-            this.label37.Text = "Просмотр файла отчета проверки";
             // 
             // Form1
             // 
