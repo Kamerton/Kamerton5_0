@@ -5171,54 +5171,49 @@ namespace KamertonTest
          private void button13_Click(object sender, EventArgs e)   // Чтение содержимого файла
          {
              Polltimer1.Enabled = false;
+             textBox45.Text = "";
+             textBox45.Refresh();
+
              if (list_files == true)
              {
-                 list_files = false;
+                // list_files = false;
                  read_file = true;
 
                  if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
-                     textBox45.Text = comboBox1.SelectedItem.ToString();
-                 textBox45.Refresh();
-                 if (arduino.IsOpen != true)
                  {
+                     textBox45.Text = comboBox1.SelectedItem.ToString();
+                     textBox45.Refresh();
+                     if (arduino.IsOpen != true)
+                     {
+                         arduino.Open();
+                     }
+                     arduino.Write(textBox45.Text);
+                     arduino.Close();
+
+                     Thread.Sleep(1000);
+                     slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                     startWrReg = 120;                                                 // Получить файл из Камертон 50  
+                     res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
+                    // textBox45.Text = "";
+                     //textBox45.Refresh();
                      arduino.Open();
+                     Thread.Sleep(6000);
+                     arduino.Close();
+                     button12.Enabled = true;
                  }
-                 arduino.Write(textBox45.Text);
-                 arduino.Close();
-                 Thread.Sleep(1000);
-                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                 startWrReg = 120;                                                 // Получить файл из Камертон 50  
-                 res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
-                 textBox45.Text = "";
-                 textBox45.Refresh();
-                 arduino.Open();
-                 Thread.Sleep(6000);
-                 arduino.Close();
-                 //  fileName = comboBox1.SelectedItem.ToString();
-              
-                 button12.Enabled = true;
-           
 
              }
-
-
              Polltimer1.Enabled = true;
 
          }
 
          private void button12_Click_1(object sender, EventArgs e)
          {
- 
                  fileName = comboBox1.SelectedItem.ToString();
-             //if (fileName != "")
-             //{
-   
-              //   pathStringSD = System.IO.Path.Combine(folderName, "SD");
+                 pathStringSD = System.IO.Path.Combine(folderName, "SD");
                  System.IO.Directory.CreateDirectory(pathStringSD);
                  pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
                  File.WriteAllText(pathStringSD, textBox45.Text, Encoding.GetEncoding("UTF-8"));
-             //}
-
          }
 
          private void button15_Click(object sender, EventArgs e)
