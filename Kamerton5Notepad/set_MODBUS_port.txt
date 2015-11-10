@@ -1,1 +1,1 @@
-﻿Modbus/TCP
+﻿COM2
