@@ -60,14 +60,14 @@ namespace KamertonTest
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
         SerialPort currentPort = new SerialPort(File.ReadAllText("set_MODBUS_port.txt"), 57600, Parity.None, 8, StopBits.One);
-         public Form1()
+        SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
+   
+        public Form1()
         {
             InitializeComponent();
             LoadListboxes();
         }
 
-        SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
-  
         private void Form1_Load(object sender, EventArgs e)
         {
             ToolTip1.SetToolTip(txtPollDelay, "Задержка в миллисекундах между двумя последовательными операциями Modbus, 0 для отключения");
@@ -94,7 +94,7 @@ namespace KamertonTest
             arduino.WriteTimeout = 500;
             label18.Text = arduino.PortName;
             serial_connect();
-            Polltimer1.Enabled = true;
+           // Polltimer1.Enabled = true;
             TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
 
@@ -108,7 +108,7 @@ namespace KamertonTest
                         list_files = false;
                         progressBar1.Value = 0;
                         timer_byte_set.Enabled = false;
-                        Polltimer1.Enabled = true;
+                      //  Polltimer1.Enabled = true;
                         break;
                 case 1:
                         list_files = false;
@@ -268,8 +268,7 @@ namespace KamertonTest
              
             if ((myProtocol == null))
             {
-                FindSerial.Enabled = false; 
-                try
+               try
                 {
                     if ((cmbSerialProtocol.SelectedIndex == 0))
                         myProtocol = new MbusRtuMasterProtocol(); // RTU
@@ -392,7 +391,6 @@ namespace KamertonTest
                             + (dataBits + (" data bits, "
                             + (stopBits + (" stop bits, parity " + parity)))))))));
                 Close_Serial.Enabled = true;
-                FindSerial.Enabled = true; 
                 toolStripStatusLabel3.Text = (cmbComPort.Text + (", " + (baudRate + (" baud"))));
                 toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5 УСТАНОВЛЕНА !");  // Обработка ошибки.
                 toolStripStatusLabel4.ForeColor = Color.Black;
@@ -5077,7 +5075,7 @@ namespace KamertonTest
 
         private void button84_Click(object sender, EventArgs e)
         {
-             System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+ 
         }
 
         private void textBox46_KeyPress(object sender, KeyPressEventArgs e)
@@ -5164,20 +5162,21 @@ namespace KamertonTest
              arduino.Close();
          }
 
-         private void button13_Click(object sender, EventArgs e)
+         private void button13_Click(object sender, EventArgs e)   // Чтение содержимого файла
          {
              Polltimer1.Enabled = false;
              list_files = false;
              read_file = true;
 
-             if (comboBox1.SelectedIndex != -1)
+             if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
              textBox45.Text = comboBox1.SelectedItem.ToString();
              textBox45.Refresh();
              arduino.Open();
              arduino.Write(textBox45.Text);
              arduino.Close();
+             Thread.Sleep(1000);
              slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-             startWrReg = 120;                                                                      // 
+             startWrReg = 120;                                                 // Получить файл из Камертон 50  
              res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
              textBox45.Text = "";
              textBox45.Refresh();
@@ -5210,6 +5209,12 @@ namespace KamertonTest
                  label18.Text = arduino.PortName;
              }
           }
+
+         private void button21_Click(object sender, EventArgs e)
+         {
+             System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+         }
+
      }
 
 

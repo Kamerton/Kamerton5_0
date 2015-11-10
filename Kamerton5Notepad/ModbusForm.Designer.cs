@@ -80,7 +80,6 @@ namespace KamertonTest
             this.Label10 = new System.Windows.Forms.Label();
             this.txtTCPPort = new System.Windows.Forms.TextBox();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
-            this.FindSerial = new System.Windows.Forms.Button();
             this.Close_Serial = new System.Windows.Forms.Button();
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
@@ -386,8 +385,6 @@ namespace KamertonTest
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label165 = new System.Windows.Forms.Label();
             this.textBox46 = new System.Windows.Forms.TextBox();
-            this.label157 = new System.Windows.Forms.Label();
-            this.button84 = new System.Windows.Forms.Button();
             this.label92 = new System.Windows.Forms.Label();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -410,6 +407,8 @@ namespace KamertonTest
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -861,7 +860,6 @@ namespace KamertonTest
             // 
             // GroupBox2
             // 
-            this.GroupBox2.Controls.Add(this.FindSerial);
             this.GroupBox2.Controls.Add(this.Close_Serial);
             this.GroupBox2.Controls.Add(this.cmbDataBits);
             this.GroupBox2.Controls.Add(this.cmbStopBits);
@@ -882,7 +880,6 @@ namespace KamertonTest
             this.GroupBox2.TabIndex = 5;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Serial Modbus";
-            // 
             // 
             // Close_Serial
             // 
@@ -4179,8 +4176,6 @@ namespace KamertonTest
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tabPage3.Controls.Add(this.label165);
             this.tabPage3.Controls.Add(this.textBox46);
-            this.tabPage3.Controls.Add(this.label157);
-            this.tabPage3.Controls.Add(this.button84);
             this.tabPage3.Controls.Add(this.label92);
             this.tabPage3.Controls.Add(this.groupBox21);
             this.tabPage3.Controls.Add(this.radioButton2);
@@ -4219,26 +4214,6 @@ namespace KamertonTest
             this.textBox46.Text = "0";
             this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox46.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox46_KeyPress);
-            // 
-            // label157
-            // 
-            this.label157.AutoSize = true;
-            this.label157.Location = new System.Drawing.Point(743, 45);
-            this.label157.Name = "label157";
-            this.label157.Size = new System.Drawing.Size(180, 13);
-            this.label157.TabIndex = 22;
-            this.label157.Text = "Просмотр файла отчета проверки";
-            // 
-            // button84
-            // 
-            this.button84.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button84.Location = new System.Drawing.Point(777, 15);
-            this.button84.Name = "button84";
-            this.button84.Size = new System.Drawing.Size(107, 23);
-            this.button84.TabIndex = 21;
-            this.button84.Text = "Блокнот";
-            this.button84.UseVisualStyleBackColor = true;
-            this.button84.Click += new System.EventHandler(this.button84_Click);
             // 
             // label92
             // 
@@ -4419,6 +4394,8 @@ namespace KamertonTest
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.label37);
+            this.tabPage4.Controls.Add(this.button21);
             this.tabPage4.Controls.Add(this.button12);
             this.tabPage4.Controls.Add(this.button13);
             this.tabPage4.Controls.Add(this.button5);
@@ -4433,19 +4410,19 @@ namespace KamertonTest
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(608, 3);
+            this.button12.Location = new System.Drawing.Point(484, 3);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(135, 23);
+            this.button12.Size = new System.Drawing.Size(145, 23);
             this.button12.TabIndex = 7;
-            this.button12.Text = "Сохранить в файл";
+            this.button12.Text = "Сохранить в файл на ПК";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click_1);
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(479, 3);
+            this.button13.Location = new System.Drawing.Point(386, 3);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(113, 23);
+            this.button13.Size = new System.Drawing.Size(92, 23);
             this.button13.TabIndex = 6;
             this.button13.Text = "Чтение файла";
             this.button13.UseVisualStyleBackColor = true;
@@ -4455,16 +4432,16 @@ namespace KamertonTest
             // 
             this.button5.Location = new System.Drawing.Point(8, 3);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(146, 23);
+            this.button5.Size = new System.Drawing.Size(175, 23);
             this.button5.TabIndex = 3;
-            this.button5.Text = "Чтение списка файлов";
+            this.button5.Text = "Чтение списка файлов на SD\r\n";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(282, 5);
+            this.comboBox1.Location = new System.Drawing.Point(189, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(191, 21);
             this.comboBox1.TabIndex = 2;
@@ -4488,6 +4465,26 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 560);
             this.textBox45.TabIndex = 0;
+            // 
+            // button21
+            // 
+            this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button21.Location = new System.Drawing.Point(879, 3);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(71, 23);
+            this.button21.TabIndex = 22;
+            this.button21.Text = "Блокнот";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(683, 8);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(180, 13);
+            this.label37.TabIndex = 23;
+            this.label37.Text = "Просмотр файла отчета проверки";
             // 
             // Form1
             // 
@@ -4585,7 +4582,6 @@ namespace KamertonTest
         private System.Windows.Forms.Label Label10;
         private System.Windows.Forms.TextBox txtTCPPort;
         private System.Windows.Forms.GroupBox GroupBox2;
-        private System.Windows.Forms.Button FindSerial;
         private System.Windows.Forms.Button Close_Serial;
         private System.Windows.Forms.ComboBox cmbDataBits;
         private System.Windows.Forms.ComboBox cmbStopBits;
@@ -4898,8 +4894,6 @@ namespace KamertonTest
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TabControl TabControl1;
-        private System.Windows.Forms.Label label157;
-        private System.Windows.Forms.Button button84;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TextBox textBox45;
         private System.Windows.Forms.Label label165;
@@ -4922,6 +4916,8 @@ namespace KamertonTest
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Label label37;
     }
 }
 
