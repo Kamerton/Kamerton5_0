@@ -46,7 +46,8 @@ namespace KamertonTest
         private int TestRepeatCount;
         bool All_Test_Stop = false;                         // Признак для управления кнопкой "Стоп"
         bool list_files = false;
-        bool read_file = false; 
+        bool read_file = false;
+     //   bool save_file = false;
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
@@ -55,7 +56,7 @@ namespace KamertonTest
         private int Sel_Index = 0;
 
         bool[] coilArr_all = new bool[200];
-        string fileName = "Kamerton log.txt";
+        string fileName = "";
         static string folderName = @"C:\Audio log";
         string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
@@ -92,6 +93,7 @@ namespace KamertonTest
             arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
             arduino.ReadTimeout = 500;
             arduino.WriteTimeout = 500;
+            arduino.Open();
             label18.Text = arduino.PortName;
             serial_connect();
            // Polltimer1.Enabled = true;
@@ -108,7 +110,6 @@ namespace KamertonTest
                         list_files = false;
                         progressBar1.Value = 0;
                         timer_byte_set.Enabled = false;
-                      //  Polltimer1.Enabled = true;
                         break;
                 case 1:
                         list_files = false;
@@ -195,16 +196,12 @@ namespace KamertonTest
 
                     list_files = false;
                     timer_byte_set.Enabled = false;
+                    button12.Enabled = false;
+                    button13.Enabled = false; 
                     Polltimer1.Enabled = true;
+
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 6 Содержимое файла отчета");
-                    Polltimer1.Enabled = false;
-                    break;
-                case 5:
-                    list_files = false;
-                    timer_byte_set.Enabled = false;
-                    Polltimer1.Enabled = true;
-                    //   toolStripStatusLabel3.Text = ("Выбрана вкладка 6 ");
-                    break;
+                   break;
 
                 default:
 
@@ -217,7 +214,11 @@ namespace KamertonTest
 
         void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-           // Thread.Sleep(50);
+            if (arduino.IsOpen != true)
+            {
+                arduino.Open();
+            }
+            // Thread.Sleep(500);
               string data = arduino.ReadLine();
             //  Привлечение делегата на потоке UI, и отправка данных, которые
             //  были приняты привлеченным методом.
@@ -5134,13 +5135,18 @@ namespace KamertonTest
             Sel_Index = 0;
             list_files = true;
             read_file = false;
-            arduino.Open();
 
+            if (arduino.IsOpen != true)
+            {
+                arduino.Open();
+            }
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             startWrReg = 120;                                                                      // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
             Thread.Sleep(4000);
             arduino.Close();
+         //   button12.Enabled = true;
+            button13.Enabled = true; 
             Polltimer1.Enabled = true;
 
         }
@@ -5165,34 +5171,54 @@ namespace KamertonTest
          private void button13_Click(object sender, EventArgs e)   // Чтение содержимого файла
          {
              Polltimer1.Enabled = false;
-             list_files = false;
-             read_file = true;
+             if (list_files == true)
+             {
+                 list_files = false;
+                 read_file = true;
 
-             if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
-             textBox45.Text = comboBox1.SelectedItem.ToString();
-             textBox45.Refresh();
-             arduino.Open();
-             arduino.Write(textBox45.Text);
-             arduino.Close();
-             Thread.Sleep(1000);
-             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-             startWrReg = 120;                                                 // Получить файл из Камертон 50  
-             res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
-             textBox45.Text = "";
-             textBox45.Refresh();
-             arduino.Open();
-             Thread.Sleep(4000);
-             arduino.Close();
+                 if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
+                     textBox45.Text = comboBox1.SelectedItem.ToString();
+                 textBox45.Refresh();
+                 if (arduino.IsOpen != true)
+                 {
+                     arduino.Open();
+                 }
+                 arduino.Write(textBox45.Text);
+                 arduino.Close();
+                 Thread.Sleep(1000);
+                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                 startWrReg = 120;                                                 // Получить файл из Камертон 50  
+                 res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
+                 textBox45.Text = "";
+                 textBox45.Refresh();
+                 arduino.Open();
+                 Thread.Sleep(6000);
+                 arduino.Close();
+                 //  fileName = comboBox1.SelectedItem.ToString();
+              
+                 button12.Enabled = true;
+           
+
+             }
+
+
              Polltimer1.Enabled = true;
+
          }
 
          private void button12_Click_1(object sender, EventArgs e)
          {
-             fileName = comboBox1.SelectedItem.ToString();
-             pathStringSD = System.IO.Path.Combine(folderName, "SD");
-             System.IO.Directory.CreateDirectory(pathStringSD);
-             pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
-             File.WriteAllText(pathStringSD, textBox45.Text, Encoding.GetEncoding("UTF-8"));
+ 
+                 fileName = comboBox1.SelectedItem.ToString();
+             //if (fileName != "")
+             //{
+   
+              //   pathStringSD = System.IO.Path.Combine(folderName, "SD");
+                 System.IO.Directory.CreateDirectory(pathStringSD);
+                 pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
+                 File.WriteAllText(pathStringSD, textBox45.Text, Encoding.GetEncoding("UTF-8"));
+             //}
+
          }
 
          private void button15_Click(object sender, EventArgs e)
@@ -5212,7 +5238,14 @@ namespace KamertonTest
 
          private void button21_Click(object sender, EventArgs e)
          {
-             System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+             if (fileName == "")
+             {
+                 System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe");
+             }
+             else
+             {
+                 System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("systemroot") + "\\System32\\notepad.exe", pathStringSD);
+             }
          }
 
      }
