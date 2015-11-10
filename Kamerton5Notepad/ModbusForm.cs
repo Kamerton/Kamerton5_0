@@ -89,8 +89,6 @@ namespace KamertonTest
             arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
             arduino.ReadTimeout = 500;
             arduino.WriteTimeout = 500;
-            //label18.Text = arduino.PortName;
-            //toolStripStatusLabel5.Text = (arduino.PortName + ", 57600 baud");
             arduino.Open();
             cmdOpenSerial2();
             serviceSet();
@@ -402,12 +400,12 @@ namespace KamertonTest
        
             if (!(arduino.IsOpen))
                 {
-                     toolStripStatusLabel5.Text = (arduino.PortName + ", Закрыт");
+                     toolStripStatusLabel5.Text = ("RS-232 "+arduino.PortName + ", Закрыт");
                 }
                 else
                 {
                     label18.Text = arduino.PortName;
-                    toolStripStatusLabel5.Text = (arduino.PortName + ", 57600 baud");
+                    toolStripStatusLabel5.Text = ("RS-232 " + arduino.PortName + ", 57600 baud");
                 }
   
         }

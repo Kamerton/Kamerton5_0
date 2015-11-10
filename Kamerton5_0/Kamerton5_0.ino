@@ -1517,8 +1517,8 @@ void list_file()
 }
 void load_list_files()
 {
-//	delay(1000);
-		if (!sd.begin(chipSelect)) 
+	//wdt_reset();
+	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
 		}
@@ -1538,17 +1538,6 @@ void load_list_files()
 		 }
 		delay(1000);
 		Serial.println("Files end");
-	//wdt_reset();
-
-
-
- // while (file.openNext(sd.vwd(), O_READ))
- // {
-	//file.printName(&Serial);
-	//Serial.println();
-	////wdt_reset();
-	//file.close();
- // }
   regBank.set(adr_control_command,0);
 }
 

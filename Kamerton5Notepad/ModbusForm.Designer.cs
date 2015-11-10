@@ -449,10 +449,10 @@ namespace KamertonTest
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2,
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel5,
-            this.toolStripStatusLabel4});
+            this.toolStripStatusLabel4,
+            this.toolStripStatusLabel2});
             this.statusStrip1.Location = new System.Drawing.Point(0, 644);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(992, 22);
@@ -4492,8 +4492,8 @@ namespace KamertonTest
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(36, 17);
-            this.toolStripStatusLabel5.Text = "COM2";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel5.Text = "RS-232";
             // 
             // progressBar3
             // 
