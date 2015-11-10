@@ -5200,6 +5200,7 @@ namespace KamertonTest
 
          private void button12_Click_1(object sender, EventArgs e)                   // Отправить текст в файл на ПК
          {
+                 button12.Enabled = false;
                  fileName = comboBox1.SelectedItem.ToString();
                  pathStringSD = System.IO.Path.Combine(folderName, "SD");
                  System.IO.Directory.CreateDirectory(pathStringSD);
