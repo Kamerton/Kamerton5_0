@@ -1236,9 +1236,9 @@ namespace KamertonTest
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label40.Location = new System.Drawing.Point(556, 46);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(181, 15);
+            this.label40.Size = new System.Drawing.Size(166, 15);
             this.label40.TabIndex = 61;
-            this.label40.Text = "Принято из модуля Камертон";
+            this.label40.Text = "Принято из модуля Аудио-1";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label40.Click += new System.EventHandler(this.label40_Click);
             // 
@@ -2683,7 +2683,7 @@ namespace KamertonTest
             this.label121.Name = "label121";
             this.label121.Size = new System.Drawing.Size(165, 23);
             this.label121.TabIndex = 28;
-            this.label121.Text = "Сенсор Мик.";
+            this.label121.Text = "Сенсор Микрофона";
             this.label121.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button63
@@ -2737,7 +2737,7 @@ namespace KamertonTest
             this.label120.Name = "label120";
             this.label120.Size = new System.Drawing.Size(165, 23);
             this.label120.TabIndex = 29;
-            this.label120.Text = "Сенсор Танг.р";
+            this.label120.Text = "Сенсор Танг.ручная";
             this.label120.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button77
@@ -2758,7 +2758,7 @@ namespace KamertonTest
             this.label116.Name = "label116";
             this.label116.Size = new System.Drawing.Size(165, 23);
             this.label116.TabIndex = 33;
-            this.label116.Text = "Сенсор МТГ  дисп.";
+            this.label116.Text = "Сенсор МТГ  диспет.";
             this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label116.Click += new System.EventHandler(this.label116_Click);
             // 
@@ -2802,7 +2802,7 @@ namespace KamertonTest
             this.label119.Name = "label119";
             this.label119.Size = new System.Drawing.Size(165, 23);
             this.label119.TabIndex = 30;
-            this.label119.Text = "Сенсор Танг.н";
+            this.label119.Text = "Сенсор Танг.ножная";
             this.label119.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button75
@@ -2823,7 +2823,7 @@ namespace KamertonTest
             this.label117.Name = "label117";
             this.label117.Size = new System.Drawing.Size(165, 43);
             this.label117.TabIndex = 32;
-            this.label117.Text = "Сенсор подкл. гарн. диспетчера с 2 науш.";
+            this.label117.Text = "Сенсор подключения гарнитуры диспетчера с 2 науш.";
             this.label117.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button61
