@@ -47,14 +47,12 @@ namespace KamertonTest
         bool All_Test_Stop = false;                         // Признак для управления кнопкой "Стоп"
         bool list_files = false;
         bool read_file = false;
-     //   bool save_file = false;
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         private int[] test_step = new int[20];
         private int num_module_audio1 = 0;
         private int Sel_Index = 0;
-
         bool[] coilArr_all = new bool[200];
         string fileName = "";
         static string folderName = @"C:\Audio log";
@@ -62,7 +60,7 @@ namespace KamertonTest
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
         SerialPort currentPort = new SerialPort(File.ReadAllText("set_MODBUS_port.txt"), 57600, Parity.None, 8, StopBits.One);
         SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
-   
+      
         public Form1()
         {
             InitializeComponent();
@@ -75,7 +73,6 @@ namespace KamertonTest
             ToolTip1.SetToolTip(cmbRetry, "Сколько раз повторить операцию, если в первый раз не принят?");
             ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
             ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
-            //   ToolTip1.SetToolTip(textBox1, "Время задержки измерения в миллисекундах");
             cmbComPort.SelectedIndex = 0;
             cmbParity.SelectedIndex = 0;
             cmbStopBits.SelectedIndex = 0;
@@ -88,18 +85,18 @@ namespace KamertonTest
             timerTestAll.Enabled = false;
             Polltimer1.Enabled = false;
             radioButton1.Checked = true;
-            serviceSet();
             arduino.Handshake = Handshake.None;
             arduino.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceived);
             arduino.ReadTimeout = 500;
             arduino.WriteTimeout = 500;
+            //label18.Text = arduino.PortName;
+            //toolStripStatusLabel5.Text = (arduino.PortName + ", 57600 baud");
             arduino.Open();
-            label18.Text = arduino.PortName;
+            cmdOpenSerial2();
+            serviceSet();
             serial_connect();
-           // Polltimer1.Enabled = true;
             TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
-
 
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
@@ -121,7 +118,6 @@ namespace KamertonTest
                         startWrReg = 120;
                         if ((myProtocol != null))
                         {
-                 
                             res = myProtocol.writeSingleRegister(slave, startWrReg, 23);              // Контроль имени файла
 
                             if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -214,11 +210,7 @@ namespace KamertonTest
 
         void sp_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            if (arduino.IsOpen != true)
-            {
-                arduino.Open();
-            }
-            // Thread.Sleep(500);
+             // Thread.Sleep(50);
               string data = arduino.ReadLine();
             //  Привлечение делегата на потоке UI, и отправка данных, которые
             //  были приняты привлеченным методом.
@@ -227,17 +219,13 @@ namespace KamertonTest
               this.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { data });
         }
 
-        private void serviceSet()
-        {
-            checkBoxSenAll.Checked = true;
-        }
-
         private void si_DataReceived(string data)
         {
-
+            progressBar3.Value = 100;
             if (read_file == true)
             {
                 textBox45.Text += (data.Trim() + "\r\n");
+                progressBar3.Increment(1);
             }
 
             else
@@ -250,7 +238,12 @@ namespace KamertonTest
                     if (Sel_Index != 0) comboBox1.SelectedIndex = Sel_Index - 1;
                 }
             }
+            progressBar3.Value = 0;
+        }
 
+        private void serviceSet()
+        {
+            checkBoxSenAll.Checked = true;
         }
 
         private void cmdOpenSerial_Click(object sender, EventArgs e)
@@ -403,6 +396,20 @@ namespace KamertonTest
                 lblResult.Text = (" ошибка была: " + BusProtocolErrors.getBusProtocolErrorText(res));
                 label78.Text = ("Не удалось открыть протокол!");
             }
+        }
+        private void cmdOpenSerial2()
+        {
+       
+            if (!(arduino.IsOpen))
+                {
+                     toolStripStatusLabel5.Text = (arduino.PortName + ", Закрыт");
+                }
+                else
+                {
+                    label18.Text = arduino.PortName;
+                    toolStripStatusLabel5.Text = (arduino.PortName + ", 57600 baud");
+                }
+  
         }
 
         private void serial_connect()
@@ -5135,18 +5142,14 @@ namespace KamertonTest
             Sel_Index = 0;
             list_files = true;
             read_file = false;
-
-            if (arduino.IsOpen != true)
-            {
-                arduino.Open();
-            }
             slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
             startWrReg = 120;                                                                      // 
             res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
-            Thread.Sleep(4000);
-            arduino.Close();
-         //   button12.Enabled = true;
-            button13.Enabled = true; 
+            progressBar3.Value = 1;
+            test_end1();
+ //           Thread.Sleep(4000);
+            button13.Enabled = true;
+            textBox45.Refresh();
             Polltimer1.Enabled = true;
 
         }
@@ -5163,42 +5166,30 @@ namespace KamertonTest
              if (comboBox1.SelectedIndex != -1)
              textBox45.Text = comboBox1.SelectedItem.ToString();
              textBox45.Refresh();
-             arduino.Open();
              arduino.Write(textBox45.Text);
-             arduino.Close();
-         }
+          }
 
-         private void button13_Click(object sender, EventArgs e)   // Чтение содержимого файла
+         private void button13_Click(object sender, EventArgs e)        // Чтение содержимого файла
          {
              Polltimer1.Enabled = false;
              textBox45.Text = "";
              textBox45.Refresh();
-
+             progressBar3.Value = 1;
              if (list_files == true)
              {
-                // list_files = false;
                  read_file = true;
 
                  if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
                  {
                      textBox45.Text = comboBox1.SelectedItem.ToString();
                      textBox45.Refresh();
-                     if (arduino.IsOpen != true)
-                     {
-                         arduino.Open();
-                     }
                      arduino.Write(textBox45.Text);
-                     arduino.Close();
-
                      Thread.Sleep(1000);
                      slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                      startWrReg = 120;                                                 // Получить файл из Камертон 50  
                      res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
-                    // textBox45.Text = "";
-                     //textBox45.Refresh();
-                     arduino.Open();
-                     Thread.Sleep(6000);
-                     arduino.Close();
+                     test_end1();
+                     Thread.Sleep(1000);
                      button12.Enabled = true;
                  }
 
@@ -5207,7 +5198,7 @@ namespace KamertonTest
 
          }
 
-         private void button12_Click_1(object sender, EventArgs e)
+         private void button12_Click_1(object sender, EventArgs e)                   // Отправить текст в файл на ПК
          {
                  fileName = comboBox1.SelectedItem.ToString();
                  pathStringSD = System.IO.Path.Combine(folderName, "SD");
@@ -5219,17 +5210,8 @@ namespace KamertonTest
          private void button15_Click(object sender, EventArgs e)
          {
              File.WriteAllText("set_rs232.txt", comboBox2.SelectedItem.ToString(), Encoding.GetEncoding("UTF-8"));
-             if (File.Exists("set_rs232.txt"))
-             {
-                 SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
-                 label18.Text = arduino.PortName;
-             }
-             else
-             {
-                 SerialPort arduino = new SerialPort("COM1", 57600, Parity.None, 8, StopBits.One);
-                 label18.Text = arduino.PortName;
-             }
-          }
+             arduino.Close(); 
+         }
 
          private void button21_Click(object sender, EventArgs e)
          {

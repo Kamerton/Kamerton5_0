@@ -173,8 +173,8 @@ int regcount_err        = 0;                                     // Переменная д
 
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
-#define chipSelect 49   // Основной
-//#define chipSelect 53    // Временно
+//#define chipSelect 49   // Основной
+#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
 SdFile file;
@@ -194,7 +194,6 @@ char fileName_F[13];
 //------------------------------------------------------------------------------
 
 char c;  // Для ввода символа с ком порта
-
 
 // Serial output stream
 ArduinoOutStream cout(Serial);
@@ -287,7 +286,6 @@ const unsigned int adr_reg_count_err      PROGMEM       = 40121; // Адрес счетчи
 
 const unsigned int adr_set_time           PROGMEM       = 36;    // адрес флаг установки
 
-
 //------------------------- Уровни пороговых значений сигналов при тестировании устройств--------------------------------------
 //++++++++++++++++++++++++++++ Заводские установки уровней порогов +++++++++++++++++++++++++++++++++++++
 
@@ -303,7 +301,6 @@ const  int adr_porog_Microphone            = 140;   //
 // end                                     = 160
 
 byte por_buffer[30] ;
-
 
 //const byte porog_instruktor[]    PROGMEM  = {30,30,35,35,35,35,35,35,35,35,35,150,150,35,35,35,35,35,35,35,254};
 const byte porog_instruktor[]    PROGMEM  = {
@@ -1007,7 +1004,7 @@ void flash_time()                                              // Программа обра
 { 
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
-		prer_Kamerton();
+	//	prer_Kamerton();
 		slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
@@ -1534,12 +1531,13 @@ void load_list_files()
 			Serial2.println();
 			file.printName(&Serial);
 			Serial.println();
-			wdt_reset();
+		//	wdt_reset();
 			file.close();
 		  } 
-		 //  Serial2.flush();
+		   Serial2.flush();
 		 }
 		delay(1000);
+		Serial.println("Files end");
 	//wdt_reset();
 
 
@@ -7240,7 +7238,8 @@ void setup()
 	   regBank.set(i,0);   
 	} 
     Serial.println("Initializing SD card...");
-	pinMode(49, OUTPUT);//    заменить 
+	//pinMode(49, OUTPUT);//    заменить 
+	pinMode(53, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
@@ -7265,10 +7264,7 @@ void setup()
 	resistor(2, 200);                                // Установить уровень сигнала
 	preob_num_str();
 	list_file();                                     // Вывод списка файлов в СОМ порт  
-//	clear_serial();
-// 	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	default_mem_porog();
-//	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
@@ -7276,7 +7272,7 @@ void setup()
 	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
-	//wdt_enable (WDTO_4S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
+	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
 }
 
 void loop()
