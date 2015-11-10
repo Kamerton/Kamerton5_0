@@ -631,19 +631,12 @@ namespace KamertonTest
         #region timer all
         private void Polltimer1_Tick(object sender, EventArgs e)                    // Выполняет контроль MODBUS и часов
         {
-                short[] readVals = new short[125];
-                int slave;
-                int startRdReg;
-                int numRdRegs;
-                int res;
-
-                slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                startRdReg = 46;                                                     // 40046 Адрес дата/время контроллера  
-                numRdRegs = 8;
-
-             if ((myProtocol != null))
+              short[] readVals = new short[125];
+              if ((myProtocol != null))
                 {
-               
+                    slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                    startRdReg = 46;                                                     // 40046 Адрес дата/время контроллера  
+                    numRdRegs = 8;
                     res = myProtocol.readMultipleRegisters(slave, startRdReg, readVals, numRdRegs);
                     lblResult.Text = ("Результат: " + (BusProtocolErrors.getBusProtocolErrorText(res) + "\r\n"));
                     if ((res == BusProtocolErrors.FTALK_SUCCESS))
@@ -706,7 +699,7 @@ namespace KamertonTest
                             timerTestAll.Enabled = false;
                             Thread.Sleep(100);
                          }
-                      }
+                     }
 
                     else
                     {
@@ -724,12 +717,12 @@ namespace KamertonTest
                     toolStripStatusLabel2.Text = ("Время : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss", CultureInfo.CurrentCulture));
                 }
              else
-                 {
-                     Polltimer1.Enabled = false;
-                     toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
-                     toolStripStatusLabel4.ForeColor = Color.Red;
-                     Thread.Sleep(100);
-                 }
+                {
+                    Polltimer1.Enabled = false;
+                    toolStripStatusLabel4.Text = ("Связь с прибором КАМЕРТОН 5  НЕ УСТАНОВЛЕНА !");  // Обработка ошибки.
+                    toolStripStatusLabel4.ForeColor = Color.Red;
+                    Thread.Sleep(100);
+                }
         }
  
         private void timer_byte_set_Tick(object sender, EventArgs e)
@@ -4351,7 +4344,7 @@ namespace KamertonTest
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
               //  coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
-                if (coilArr[0] == true)                                                                //есть ошибка
+                if (coilArr[0] != true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
                         textBox7.Text += ("Связь со звуковой платой АУДИО НЕ УСТАНОВЛЕНА !(1)" + "\r\n" + "\r\n");

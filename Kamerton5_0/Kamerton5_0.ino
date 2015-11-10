@@ -1004,7 +1004,7 @@ void flash_time()                                              // Программа обра
 { 
 		prer_Kmerton_Run = true;
 	//		digitalWrite(ledPin12,HIGH);
-	//	prer_Kamerton();
+		prer_Kamerton();
 		slave.run(); 
 		//	digitalWrite(ledPin12,LOW);
 		prer_Kmerton_Run = false;
@@ -1063,7 +1063,7 @@ void prer_Kamerton()                                          // Произвести обме
 //	clear_serial1();
 	sendPacketK ();  
 	// Отправить информацию в модуль Камертон
-	waiting_for_replyK();                                  // Получить подтверждение
+	//waiting_for_replyK();                                  // Получить подтверждение
 }
 void sendPacketK () 
 {              // Программа передачи пакета в Камертон
@@ -1076,8 +1076,10 @@ void sendPacketK ()
 }
 void waiting_for_replyK()                                  // Чтение данных из Камертона
 {
+	delayMicroseconds(3);
+
 	//  Уточнить задержку и применение Stop_Kam = 0; 
-	if (Serial1.available())                             // есть что-то проверить? Есть данные в буфере?
+	if (Serial1.available())                               // есть что-то проверить? Есть данные в буфере?
 		  {
 			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
 			unsigned char buffer = 0;                      // Установить в начало чтения буфера
@@ -1098,12 +1100,12 @@ void waiting_for_replyK()                                  // Чтение данных из К
 					}
 				}
 //			calculateCRC_In();
-			regBank.set(124,0);                              // Связь с "Камертон" установлена
+			regBank.set(124,1);                              // Связь с "Камертон" установлена
 		   }
 	 else 
 		{
 			Stop_Kam = 0;                                    // Флаг отсутств. инф. из Камертона
-			regBank.set(124,1);                              // Флаг ошибки  связи с "Камертон"
+			regBank.set(124,0);                              // Флаг ошибки  связи с "Камертон"
 		}
 
 	  //if( regBank.get(40007) != regs_temp)
