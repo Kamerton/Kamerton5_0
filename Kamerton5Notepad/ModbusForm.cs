@@ -1811,7 +1811,7 @@ namespace KamertonTest
           
         }
 
-        private void button6_Click(object sender, EventArgs e)                        // Закрыть TCP и протокол
+        private void button6_Click(object sender, EventArgs e)                         // Закрыть TCP и протокол
         {
             if ((myProtocol != null))
             {
@@ -4293,7 +4293,7 @@ namespace KamertonTest
             }
         }
    
-        private void button11_Click_1(object sender, EventArgs e)           //Старт полного теста
+        private void button11_Click_1(object sender, EventArgs e)                     //Старт полного теста
         {
             if ((myProtocol != null))
             {
@@ -4343,7 +4343,7 @@ namespace KamertonTest
                 startCoil = 124;                                                                       // regBank.add(124);  Флаг индикации связи с модулем "АУДИО"
                 numCoils = 2;
                 res = myProtocol.readCoils(slave, startCoil, coilArr, numCoils);                       // Проверить Адрес 124 Флаг индикации связи с модулем "АУДИО"
-              //  coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
+                //    coilArr[0] = false;                                                                  // !!! Убрать, только для тестирования
                 if (coilArr[0] != true)                                                                //есть ошибка
                     {
                         // Обработка ошибки.
@@ -5185,7 +5185,7 @@ namespace KamertonTest
                  }
 
              }
-             Polltimer1.Enabled = true;
+            Polltimer1.Enabled = true;
 
          }
 

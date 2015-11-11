@@ -173,8 +173,8 @@ int regcount_err        = 0;                                     // Переменная д
 
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
-//#define chipSelect 49   // Основной
-#define chipSelect 53    // Временно
+#define chipSelect 49   // Основной
+//#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
 SdFile file;
@@ -1053,17 +1053,12 @@ void serialEvent2()
 	
 //	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
 }
-void serialEvent()
-{
-	//wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
-}
-
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
 {
 //	clear_serial1();
 	sendPacketK ();  
 	// Отправить информацию в модуль Камертон
-	//waiting_for_replyK();                                  // Получить подтверждение
+	waiting_for_replyK();                                  // Получить подтверждение
 }
 void sendPacketK () 
 {              // Программа передачи пакета в Камертон
@@ -1076,7 +1071,7 @@ void sendPacketK ()
 }
 void waiting_for_replyK()                                  // Чтение данных из Камертона
 {
-	delayMicroseconds(3);
+	delayMicroseconds(5);
 
 	//  Уточнить задержку и применение Stop_Kam = 0; 
 	if (Serial1.available())                               // есть что-то проверить? Есть данные в буфере?
@@ -1830,7 +1825,6 @@ void control_command()
 	UpdateRegs() ;
 
 	int test_n = regBank.get(adr_control_command);                                  //адрес  40120
-
 	if (test_n != 0)
 	{
 //	Serial.println(test_n);	
@@ -1899,7 +1893,7 @@ void control_command()
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
-				test_power();                                                    	// Проверить напряжение  питания
+			    test_power();                                                    	// Проверить напряжение  питания
 				wdt_reset();
 				break;
 		case 18:
