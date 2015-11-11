@@ -162,9 +162,13 @@ namespace KamertonTest
                         startCoil = 124;                                                            // regBank.add(124);  
                         numCoils = 2;
                         res = myProtocol.readCoils(slave, startCoil, coilArrA, numCoils);            // Проверить Адрес 124  индикации подключения к модулю Аудио-1
-                        if (coilArrA[0] == true) //есть ошибка
+                        if (coilArrA[0] != true) //есть ошибка
                         {
                             textBox11.Text = ("Связь с модулем Аудио-1  НЕ УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
+                        }
+                        else
+                        {
+                            textBox11.Text = ("Связь с модулем Аудио-1  УСТАНОВЛЕНА !" + "\r\n" + "\r\n");  // Обработка ошибки.
                         }
 
                     }
