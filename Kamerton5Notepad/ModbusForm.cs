@@ -4260,7 +4260,7 @@ namespace KamertonTest
             TestN++;                                                     // Увеличить счетчик номера теста
             timerTestAll.Enabled = true;                                 // Включить таймер на время выполнения теста 
             label98.Text = ("" + progressBar2.Value);
-            if (progressBar2.Value == progressBar2.Maximum)
+           if (progressBar2.Value == progressBar2.Maximum)
             {
                 progressBar2.Value = 0;
             }
@@ -4293,7 +4293,7 @@ namespace KamertonTest
                 textBox7.Text += ("\r\n");
                 textBox7.Text += ("Повтор теста " + TestRepeatCount + "\r\n");
                 textBox7.Text += ("\r\n");
-                Thread.Sleep(100);
+                Thread.Sleep(1000);
             }
         }
    
