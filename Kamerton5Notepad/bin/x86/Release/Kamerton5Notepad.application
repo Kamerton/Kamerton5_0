@@ -16,7 +16,11 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+<<<<<<< .mine
+        <dsig:DigestValue>KRvsowB3ssH7K4O5t0kXB95XZEo=</dsig:DigestValue>
+=======
         <dsig:DigestValue>zz6hvvDkskb3HylDrNTLBgZNs6g=</dsig:DigestValue>
+>>>>>>> .r222
       </hash>
     </dependentAssembly>
   </dependency>
