@@ -56,7 +56,7 @@ namespace KamertonTest
         bool[] coilArr_all = new bool[200];
         string fileName = "";
         static string folderName = @"C:\Audio log";
-        string pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+        string pathString = System.IO.Path.Combine(folderName,(("RusError " +DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
         SerialPort currentPort = new SerialPort(File.ReadAllText("set_MODBUS_port.txt"), 57600, Parity.None, 8, StopBits.One);
         SerialPort arduino = new SerialPort(File.ReadAllText("set_rs232.txt"), 57600, Parity.None, 8, StopBits.One);
@@ -103,6 +103,9 @@ namespace KamertonTest
             {
                 case 0:
                         list_files = false;
+                        slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                        startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                        res = myProtocol.writeCoil(slave, startCoil, false);                       // Включить питание платы "Камертон"
                         progressBar1.Value = 0;
                         timer_byte_set.Enabled = false;
                         break;
@@ -113,6 +116,9 @@ namespace KamertonTest
                         ushort[] writeVals = new ushort[2];
                         short[] readVals = new short[125];
                         bool[] coilArr = new bool[4];
+                        slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                        startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                        res = myProtocol.writeCoil(slave, startCoil, false);                       // Включить питание платы "Камертон"
                         startWrReg = 120;
                         if ((myProtocol != null))
                         {
@@ -141,7 +147,8 @@ namespace KamertonTest
                             toolStripStatusLabel4.ForeColor = Color.Red;
                             Polltimer1.Enabled = false;
                         }
-                     //  toolStripStatusLabel3.Text = ("Выбрана вкладка 2 Настройка проверки ");
+                
+                //  toolStripStatusLabel3.Text = ("Выбрана вкладка 2 Настройка проверки ");
                        Polltimer1.Enabled = true;  
                        break;
                 case 2:
@@ -151,7 +158,7 @@ namespace KamertonTest
                     bool[] coilArrA = new bool[2];
                     slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                     progressBar1.Value = 0;
-                    startCoil = 8;                                                             // Управление питанием платы "Камертон"
+                    startCoil = 8;                                                                // Управление питанием платы "Камертон"
                     if ((myProtocol != null))
                     {
                         res = myProtocol.writeCoil(slave, startCoil, true);                        // Включить питание платы "Камертон"
@@ -187,6 +194,9 @@ namespace KamertonTest
                     list_files = false;
                     timerTestAll.Enabled = false;
                     timer_byte_set.Enabled = false;
+                    slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                    startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                    res = myProtocol.writeCoil(slave, startCoil, false);                       // Включить питание платы "Камертон"
                     Polltimer1.Enabled = true;
                     //   toolStripStatusLabel3.Text = ("Выбрана  вкладка 4 Параметры прибора ");
                     break;
@@ -196,6 +206,9 @@ namespace KamertonTest
                     timer_byte_set.Enabled = false;
                     button12.Enabled = false;
                     button13.Enabled = false; 
+                    slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                    startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                    res = myProtocol.writeCoil(slave, startCoil, false);                       // Включить питание платы "Камертон"
                     Polltimer1.Enabled = true;
 
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 6 Содержимое файла отчета");
@@ -4627,7 +4640,7 @@ namespace KamertonTest
 
                 if (radioButton1.Checked )                                // Условие однократной проверки
                 {
-                    pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+                    pathString = System.IO.Path.Combine(folderName, (("RusError " + DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
                     pathString = System.IO.Path.Combine(pathString, fileName);
                     File.WriteAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
                    if (File.Exists(pathString))
@@ -4642,7 +4655,7 @@ namespace KamertonTest
                 }
                 else
                 {
-                    pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+                    pathString = System.IO.Path.Combine(folderName, (("RusError " + DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
                     System.IO.Directory.CreateDirectory(pathString);
                     pathString = System.IO.Path.Combine(pathString, fileName);
                     File.WriteAllText(pathString, textBox8.Text, Encoding.GetEncoding("UTF-8"));
@@ -4667,7 +4680,7 @@ namespace KamertonTest
 
         private void Create_File()
         {
-           pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            pathString = System.IO.Path.Combine(folderName, (("RusError " + DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
             System.IO.Directory.CreateDirectory(pathString);
             pathString = System.IO.Path.Combine(pathString, fileName);
 
@@ -4684,14 +4697,14 @@ namespace KamertonTest
         }
         private void Save_File()
         {
-            pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            pathString = System.IO.Path.Combine(folderName, (("RusError " + DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
             System.IO.Directory.CreateDirectory(pathString);
             pathString = System.IO.Path.Combine(pathString, fileName);
             File.WriteAllText(pathString, textBox48.Text, Encoding.GetEncoding("UTF-8"));
         }
         private void Read_File()
         {
-            pathString = System.IO.Path.Combine(folderName, DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture));
+            pathString = System.IO.Path.Combine(folderName, (("RusError " + DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
             pathString = System.IO.Path.Combine(pathString, fileName);
 
             if (File.Exists(pathString))
