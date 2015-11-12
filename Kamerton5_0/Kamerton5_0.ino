@@ -180,24 +180,43 @@ File myFile;
 SdFile file;
 Sd2Card card;
 
-uint32_t cardSizeBlocks;
-uint16_t cardCapacityMB;
-
-// cache for SD block
-cache_t cache;
-
 
 // созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
 // Change spiSpeed to SPI_FULL_SPEED for better performance
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
 const uint8_t spiSpeed = SPI_HALF_SPEED;
 
+uint32_t cardSizeBlocks;
+uint16_t cardCapacityMB;
 
+// cache for SD block
+cache_t cache;
 
+// MBR information
+uint8_t partType;
+uint32_t relSector;
+uint32_t partSize;
 
+// Fake disk geometry
+uint8_t numberOfHeads;
+uint8_t sectorsPerTrack;
 
+// FAT parameters
+uint16_t reservedSectors;
+uint8_t sectorsPerCluster;
+uint32_t fatStart;
+uint32_t fatSize;
+uint32_t dataStart;
 
+// constants for file system structure
+uint16_t const BU16 = 128;
+uint16_t const BU32 = 8192;
 
+//  strings needed in file system structures
+char noName[] = "NO NAME    ";
+char fat16str[] = "FAT16   ";
+char fat32str[] = "FAT32   ";
+//------------------------------------------------------------------------------
 
 //++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
 //const uint32_t FILE_BLOCK_COUNT = 256000;
@@ -593,8 +612,6 @@ const char  txt_message67[]   PROGMEM            = " ****** Test power start! **
 const char  txt_message68[]   PROGMEM            = " ****** Test Adjusting the brightness of the display! ******"; 
 const char  txt_message69[]   PROGMEM            = "Adjusting the brightness code                              - "   ;
 const char  txt_message70[]   PROGMEM            = "Adjusting the brightness mks                               - "   ;
-
-
 
 
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -997,8 +1014,6 @@ void serial_print_date()                           // Печать даты и времени
 }
 
 const int8_t ERROR_LED_PIN = 13;
-
-
 
 void set_time()
 {
@@ -1941,7 +1956,7 @@ void control_command()
 				load_list_files();  
 	            break;
 		case 27:   
-		        eraseCard();
+		    //    eraseCard();
 		        break;
 		
 		
@@ -7149,45 +7164,6 @@ void set_SD()
 	delay(100);
 	regBank.set(adr_control_command,0);  
 }
-//------------------------------------------------------------------------------
-// flash erase all data
-uint32_t const ERASE_SIZE = 262144L;
-
-void eraseCard() 
-{
- // cout << endl << F("Erasing\n");
-  uint32_t firstBlock = 0;
-  uint32_t lastBlock;
-  uint16_t n = 0;
-  
-  do {
-    lastBlock = firstBlock + ERASE_SIZE - 1;
-    if (lastBlock >= cardSizeBlocks) {
-      lastBlock = cardSizeBlocks - 1;
-    }
-    if (!card.erase(firstBlock, lastBlock)) 
-	{
-     // sdError("erase failed");
-    }
-   // cout << '.';
-    if ((n++)%32 == 31) 
-	{
-     // cout << endl;
-    }
-    firstBlock += ERASE_SIZE;
-  } while (firstBlock < cardSizeBlocks);
-   // cout << endl;
-  
-  //if (!card.readBlock(0, cache.data))
-  //{
-  // // sdError("readBlock");
-  //}
- /* 
-  cout << hex << showbase << setfill('0') << internal;
-  cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
-  cout << dec << noshowbase << setfill(' ') << right;
-  cout << F("Erase done\n");*/
-}
 
 void setup()
 {
@@ -7284,8 +7260,8 @@ void setup()
 	   regBank.set(i,0);   
 	} 
     Serial.println("Initializing SD card...");
-	//pinMode(49, OUTPUT);//    заменить 
-	pinMode(53, OUTPUT);//    заменить 
+	pinMode(49, OUTPUT);//    заменить 
+	//pinMode(53, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
@@ -7296,24 +7272,6 @@ void setup()
 			Serial.println("initialization SD successfully.");
 			regBank.set(125,true); 
 		}
-
-
-	 if (!card.begin(chipSelect, spiSpeed)) 
-	 {
- /*   cout << F(
-           "\nSD initialization failure!\n"
-           "Is the SD card inserted correctly?\n"
-           "Is chip select correct at the top of this program?\n");
-    sdError("card.begin failed");*/
-  }
-  cardSizeBlocks = card.cardSize();
-  if (cardSizeBlocks == 0) 
-  {
-   /* sdError("cardSize");*/
-  }
-  cardCapacityMB = (cardSizeBlocks + 2047)/2048;
-
-
 
 
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
@@ -7335,7 +7293,6 @@ void setup()
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
 	MsTimer2::start();                               // Включить таймер прерывания
-	eraseCard();
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
 	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
@@ -7365,5 +7322,4 @@ void loop()
 	//Serial.print(	regBank.get(136),HEX);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	//Serial.print("--");
 	//Serial.println(	regBank.get(137),HEX);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
- 
-}
+ }
