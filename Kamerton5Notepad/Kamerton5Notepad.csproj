@@ -242,6 +242,7 @@
     <Content Include="Resources\media-floppy_1255.png" />
     <Content Include="Resources\media-floppy_6508.png" />
     <Content Include="Resources\media-floppy_6607.png" />
+    <Content Include="Resources\notepad64.png" />
     <Content Include="Resources\preferences-desktop-sound_3139.png" />
     <Content Include="Resources\preferences-desktop-sound_4609.png" />
     <Content Include="Resources\preferences-desktop-sound_5910.png" />

@@ -4359,7 +4359,7 @@ namespace KamertonTest
             // 
             // progressBar3
             // 
-            this.progressBar3.Location = new System.Drawing.Point(3, 600);
+            this.progressBar3.Location = new System.Drawing.Point(0, 581);
             this.progressBar3.Name = "progressBar3";
             this.progressBar3.Size = new System.Drawing.Size(981, 10);
             this.progressBar3.TabIndex = 24;
@@ -4367,12 +4367,12 @@ namespace KamertonTest
             // button21
             // 
             this.button21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button21.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button21.Image = ((System.Drawing.Image)(resources.GetObject("button21.Image")));
-            this.button21.Location = new System.Drawing.Point(824, 9);
+            this.button21.Location = new System.Drawing.Point(635, 8);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(88, 63);
+            this.button21.Size = new System.Drawing.Size(79, 64);
             this.button21.TabIndex = 22;
             this.button21.Text = "Блокнот";
             this.button21.UseVisualStyleBackColor = true;
@@ -4381,11 +4381,11 @@ namespace KamertonTest
             // button12
             // 
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button12.ForeColor = System.Drawing.Color.Red;
+            this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
-            this.button12.Location = new System.Drawing.Point(640, 9);
+            this.button12.Location = new System.Drawing.Point(498, 7);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(89, 63);
+            this.button12.Size = new System.Drawing.Size(89, 64);
             this.button12.TabIndex = 7;
             this.button12.Text = "Сохранить в\r\n файл на ПК";
             this.button12.UseVisualStyleBackColor = true;
@@ -4393,8 +4393,9 @@ namespace KamertonTest
             // 
             // button13
             // 
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button13.Image = ((System.Drawing.Image)(resources.GetObject("button13.Image")));
-            this.button13.Location = new System.Drawing.Point(382, 7);
+            this.button13.Location = new System.Drawing.Point(381, 7);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(72, 64);
             this.button13.TabIndex = 6;
@@ -4407,7 +4408,7 @@ namespace KamertonTest
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button5.ForeColor = System.Drawing.Color.Red;
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(20, 6);
+            this.button5.Location = new System.Drawing.Point(21, 7);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(64, 64);
             this.button5.TabIndex = 3;
@@ -4440,7 +4441,7 @@ namespace KamertonTest
             this.textBox45.Multiline = true;
             this.textBox45.Name = "textBox45";
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox45.Size = new System.Drawing.Size(987, 512);
+            this.textBox45.Size = new System.Drawing.Size(987, 499);
             this.textBox45.TabIndex = 0;
             // 
             // label10
@@ -4470,9 +4471,9 @@ namespace KamertonTest
             // label12
             // 
             this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(6, 154);
+            this.label12.Location = new System.Drawing.Point(1, 154);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 64);
+            this.label12.Size = new System.Drawing.Size(61, 64);
             this.label12.TabIndex = 41;
             // 
             // label167
