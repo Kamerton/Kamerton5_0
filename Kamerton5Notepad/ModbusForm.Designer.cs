@@ -40,9 +40,10 @@ namespace KamertonTest
             this.Polltimer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer_byte_set = new System.Windows.Forms.Timer(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timerTestAll = new System.Windows.Forms.Timer(this.components);
@@ -58,6 +59,7 @@ namespace KamertonTest
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.lblResult1 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -70,16 +72,8 @@ namespace KamertonTest
             this.label78 = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.Label13 = new System.Windows.Forms.Label();
-            this.GroupBox3 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.cmdOpenTCP = new System.Windows.Forms.Button();
-            this.Label12 = new System.Windows.Forms.Label();
-            this.cmbTcpProtocol = new System.Windows.Forms.ComboBox();
-            this.Label11 = new System.Windows.Forms.Label();
-            this.txtHostName = new System.Windows.Forms.TextBox();
-            this.Label10 = new System.Windows.Forms.Label();
-            this.txtTCPPort = new System.Windows.Forms.TextBox();
             this.GroupBox2 = new System.Windows.Forms.GroupBox();
+            this.label166 = new System.Windows.Forms.Label();
             this.Close_Serial = new System.Windows.Forms.Button();
             this.cmbDataBits = new System.Windows.Forms.ComboBox();
             this.cmbStopBits = new System.Windows.Forms.ComboBox();
@@ -95,6 +89,7 @@ namespace KamertonTest
             this.cmdOpenSerial = new System.Windows.Forms.Button();
             this.cmbSerialProtocol = new System.Windows.Forms.ComboBox();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.label157 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtNumCoils = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -401,6 +396,7 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label37 = new System.Windows.Forms.Label();
             this.button21 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -409,13 +405,11 @@ namespace KamertonTest
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.label10 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.GroupBox3.SuspendLayout();
             this.GroupBox2.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -466,22 +460,28 @@ namespace KamertonTest
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabel1.Text = "MODBUS Status :";
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
-            this.toolStripStatusLabel2.Text = "Время :";
-            // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(86, 17);
             this.toolStripStatusLabel3.Text = "COM port status";
             // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel5.Text = "RS-232";
+            // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLabel2.Text = "Время :";
             // 
             // timer_byte_set
             // 
@@ -514,7 +514,6 @@ namespace KamertonTest
             this.TabPage1.Controls.Add(this.label78);
             this.TabPage1.Controls.Add(this.lblResult);
             this.TabPage1.Controls.Add(this.Label13);
-            this.TabPage1.Controls.Add(this.GroupBox3);
             this.TabPage1.Controls.Add(this.GroupBox2);
             this.TabPage1.Controls.Add(this.GroupBox1);
             this.TabPage1.Cursor = System.Windows.Forms.Cursors.Default;
@@ -526,15 +525,16 @@ namespace KamertonTest
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.button15);
             this.groupBox4.Controls.Add(this.comboBox2);
-            this.groupBox4.Location = new System.Drawing.Point(617, 219);
+            this.groupBox4.Location = new System.Drawing.Point(198, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(324, 108);
+            this.groupBox4.Size = new System.Drawing.Size(180, 320);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Параметры RS 232";
@@ -542,29 +542,31 @@ namespace KamertonTest
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(35, 43);
+            this.label20.Location = new System.Drawing.Point(46, 194);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(99, 13);
             this.label20.TabIndex = 21;
             this.label20.Text = "Выбор СОМ порта";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(13, 92);
+            this.label19.Location = new System.Drawing.Point(13, 281);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(281, 13);
+            this.label19.Size = new System.Drawing.Size(147, 26);
             this.label19.TabIndex = 20;
-            this.label19.Text = "При изменении параметра перезапустите программу\r\n";
+            this.label19.Text = "При изменении параметра \r\nперезапустите программу\r\n";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
             this.label18.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label18.Location = new System.Drawing.Point(171, 16);
+            this.label18.Location = new System.Drawing.Point(59, 78);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 20);
+            this.label18.Size = new System.Drawing.Size(74, 23);
             this.label18.TabIndex = 7;
             this.label18.Text = "СОМ";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -573,7 +575,7 @@ namespace KamertonTest
             // 
             this.label17.AutoSize = true;
             this.label17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label17.Location = new System.Drawing.Point(16, 19);
+            this.label17.Location = new System.Drawing.Point(16, 115);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(153, 15);
             this.label17.TabIndex = 6;
@@ -581,7 +583,7 @@ namespace KamertonTest
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(170, 66);
+            this.button15.Location = new System.Drawing.Point(59, 244);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 5;
@@ -593,18 +595,18 @@ namespace KamertonTest
             // 
             this.comboBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Location = new System.Drawing.Point(38, 68);
+            this.comboBox2.Location = new System.Drawing.Point(59, 160);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(74, 21);
             this.comboBox2.TabIndex = 4;
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult1.Location = new System.Drawing.Point(1, 466);
+            this.lblResult1.Location = new System.Drawing.Point(1, 502);
             this.lblResult1.Name = "lblResult1";
             this.lblResult1.Size = new System.Drawing.Size(963, 56);
             this.lblResult1.TabIndex = 18;
@@ -612,6 +614,7 @@ namespace KamertonTest
             // 
             // groupBox12
             // 
+            this.groupBox12.Controls.Add(this.label38);
             this.groupBox12.Controls.Add(this.label85);
             this.groupBox12.Controls.Add(this.button4);
             this.groupBox12.Controls.Add(this.button3);
@@ -628,10 +631,18 @@ namespace KamertonTest
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Установка времени контроллера";
             // 
+            // label38
+            // 
+            this.label38.Image = ((System.Drawing.Image)(resources.GetObject("label38.Image")));
+            this.label38.Location = new System.Drawing.Point(6, 11);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(70, 70);
+            this.label38.TabIndex = 40;
+            // 
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(216, 16);
+            this.label85.Location = new System.Drawing.Point(262, 16);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(55, 13);
             this.label85.TabIndex = 39;
@@ -643,7 +654,7 @@ namespace KamertonTest
             this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(226, 101);
+            this.button4.Location = new System.Drawing.Point(272, 101);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(35, 33);
             this.button4.TabIndex = 38;
@@ -652,12 +663,12 @@ namespace KamertonTest
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImage = global::Kamerton5Notepad.Properties.Resources.btSetCustom_Image;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(226, 35);
+            this.button3.Location = new System.Drawing.Point(272, 34);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(35, 33);
+            this.button3.Size = new System.Drawing.Size(35, 34);
             this.button3.TabIndex = 37;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -666,7 +677,7 @@ namespace KamertonTest
             // 
             this.label84.AutoSize = true;
             this.label84.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label84.Location = new System.Drawing.Point(22, 86);
+            this.label84.Location = new System.Drawing.Point(68, 86);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(131, 15);
             this.label84.TabIndex = 36;
@@ -680,7 +691,7 @@ namespace KamertonTest
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(16, 104);
+            this.dateTimePicker1.Location = new System.Drawing.Point(71, 104);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(174, 24);
             this.dateTimePicker1.TabIndex = 35;
@@ -692,7 +703,7 @@ namespace KamertonTest
             this.label80.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label80.Cursor = System.Windows.Forms.Cursors.Default;
             this.label80.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label80.Location = new System.Drawing.Point(16, 40);
+            this.label80.Location = new System.Drawing.Point(71, 40);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(171, 20);
             this.label80.TabIndex = 34;
@@ -703,7 +714,7 @@ namespace KamertonTest
             // 
             this.label81.AutoSize = true;
             this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label81.Location = new System.Drawing.Point(22, 22);
+            this.label81.Location = new System.Drawing.Point(96, 22);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(112, 15);
             this.label81.TabIndex = 33;
@@ -714,7 +725,7 @@ namespace KamertonTest
             // 
             this.label82.AutoSize = true;
             this.label82.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label82.Location = new System.Drawing.Point(19, 141);
+            this.label82.Location = new System.Drawing.Point(65, 141);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(124, 15);
             this.label82.TabIndex = 32;
@@ -726,7 +737,7 @@ namespace KamertonTest
             this.label83.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label83.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label83.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label83.Location = new System.Drawing.Point(16, 159);
+            this.label83.Location = new System.Drawing.Point(71, 159);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(171, 20);
             this.label83.TabIndex = 31;
@@ -735,11 +746,11 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(1, 384);
+            this.label78.Location = new System.Drawing.Point(1, 450);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(963, 52);
             this.label78.TabIndex = 16;
@@ -748,9 +759,9 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(1, 558);
             this.lblResult.Name = "lblResult";
@@ -762,106 +773,16 @@ namespace KamertonTest
             // Label13
             // 
             this.Label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Label13.Location = new System.Drawing.Point(6, 343);
+            this.Label13.Location = new System.Drawing.Point(1, 400);
             this.Label13.Name = "Label13";
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-    "т открыт, никаких изменений не может быть сделано";
-            // 
-            // GroupBox3
-            // 
-            this.GroupBox3.Controls.Add(this.button6);
-            this.GroupBox3.Controls.Add(this.cmdOpenTCP);
-            this.GroupBox3.Controls.Add(this.Label12);
-            this.GroupBox3.Controls.Add(this.cmbTcpProtocol);
-            this.GroupBox3.Controls.Add(this.Label11);
-            this.GroupBox3.Controls.Add(this.txtHostName);
-            this.GroupBox3.Controls.Add(this.Label10);
-            this.GroupBox3.Controls.Add(this.txtTCPPort);
-            this.GroupBox3.Location = new System.Drawing.Point(194, 6);
-            this.GroupBox3.Name = "GroupBox3";
-            this.GroupBox3.Size = new System.Drawing.Size(208, 321);
-            this.GroupBox3.TabIndex = 13;
-            this.GroupBox3.TabStop = false;
-            this.GroupBox3.Text = "MODBUS/TCP";
-            // 
-            // button6
-            // 
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.Location = new System.Drawing.Point(61, 222);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(95, 22);
-            this.button6.TabIndex = 16;
-            this.button6.Text = "Закрыть TCP";
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // cmdOpenTCP
-            // 
-            this.cmdOpenTCP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmdOpenTCP.Location = new System.Drawing.Point(61, 194);
-            this.cmdOpenTCP.Name = "cmdOpenTCP";
-            this.cmdOpenTCP.Size = new System.Drawing.Size(95, 22);
-            this.cmdOpenTCP.TabIndex = 15;
-            this.cmdOpenTCP.Text = "Открыть TCP";
-            this.cmdOpenTCP.Click += new System.EventHandler(this.cmdOpenTCP_Click);
-            // 
-            // Label12
-            // 
-            this.Label12.Location = new System.Drawing.Point(10, 83);
-            this.Label12.Name = "Label12";
-            this.Label12.Size = new System.Drawing.Size(56, 18);
-            this.Label12.TabIndex = 14;
-            this.Label12.Text = "Protocol:";
-            // 
-            // cmbTcpProtocol
-            // 
-            this.cmbTcpProtocol.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbTcpProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTcpProtocol.Items.AddRange(new object[] {
-            "Modbus/TCP",
-            "Encapsulated RTU"});
-            this.cmbTcpProtocol.Location = new System.Drawing.Point(76, 82);
-            this.cmbTcpProtocol.Name = "cmbTcpProtocol";
-            this.cmbTcpProtocol.Size = new System.Drawing.Size(115, 21);
-            this.cmbTcpProtocol.TabIndex = 13;
-            // 
-            // Label11
-            // 
-            this.Label11.Location = new System.Drawing.Point(10, 54);
-            this.Label11.Name = "Label11";
-            this.Label11.Size = new System.Drawing.Size(64, 20);
-            this.Label11.TabIndex = 12;
-            this.Label11.Text = "IP Address:";
-            // 
-            // txtHostName
-            // 
-            this.txtHostName.Location = new System.Drawing.Point(76, 53);
-            this.txtHostName.Name = "txtHostName";
-            this.txtHostName.Size = new System.Drawing.Size(113, 20);
-            this.txtHostName.TabIndex = 11;
-            this.txtHostName.Text = "127.0.0.1";
-            // 
-            // Label10
-            // 
-            this.Label10.Location = new System.Drawing.Point(10, 24);
-            this.Label10.Name = "Label10";
-            this.Label10.Size = new System.Drawing.Size(60, 20);
-            this.Label10.TabIndex = 10;
-            this.Label10.Text = "TCP Port:";
-            // 
-            // txtTCPPort
-            // 
-            this.txtTCPPort.Location = new System.Drawing.Point(76, 23);
-            this.txtTCPPort.MaxLength = 6;
-            this.txtTCPPort.Name = "txtTCPPort";
-            this.txtTCPPort.Size = new System.Drawing.Size(66, 20);
-            this.txtTCPPort.TabIndex = 9;
-            this.txtTCPPort.Text = "502";
-            this.txtTCPPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTCPPort_KeyPress);
+                "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox2
             // 
+            this.GroupBox2.Controls.Add(this.label166);
             this.GroupBox2.Controls.Add(this.Close_Serial);
             this.GroupBox2.Controls.Add(this.cmbDataBits);
             this.GroupBox2.Controls.Add(this.cmbStopBits);
@@ -878,15 +799,23 @@ namespace KamertonTest
             this.GroupBox2.Controls.Add(this.cmbSerialProtocol);
             this.GroupBox2.Location = new System.Drawing.Point(12, 6);
             this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.Size = new System.Drawing.Size(166, 321);
+            this.GroupBox2.Size = new System.Drawing.Size(180, 320);
             this.GroupBox2.TabIndex = 5;
             this.GroupBox2.TabStop = false;
             this.GroupBox2.Text = "Serial Modbus";
             // 
+            // label166
+            // 
+            this.label166.Image = ((System.Drawing.Image)(resources.GetObject("label166.Image")));
+            this.label166.Location = new System.Drawing.Point(6, 16);
+            this.label166.Name = "label166";
+            this.label166.Size = new System.Drawing.Size(52, 54);
+            this.label166.TabIndex = 15;
+            // 
             // Close_Serial
             // 
             this.Close_Serial.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Close_Serial.Location = new System.Drawing.Point(34, 220);
+            this.Close_Serial.Location = new System.Drawing.Point(31, 272);
             this.Close_Serial.Name = "Close_Serial";
             this.Close_Serial.Size = new System.Drawing.Size(95, 22);
             this.Close_Serial.TabIndex = 14;
@@ -900,7 +829,7 @@ namespace KamertonTest
             this.cmbDataBits.Items.AddRange(new object[] {
             "8",
             "7"});
-            this.cmbDataBits.Location = new System.Drawing.Point(82, 134);
+            this.cmbDataBits.Location = new System.Drawing.Point(79, 186);
             this.cmbDataBits.Name = "cmbDataBits";
             this.cmbDataBits.Size = new System.Drawing.Size(71, 21);
             this.cmbDataBits.TabIndex = 13;
@@ -912,14 +841,14 @@ namespace KamertonTest
             this.cmbStopBits.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cmbStopBits.Location = new System.Drawing.Point(82, 161);
+            this.cmbStopBits.Location = new System.Drawing.Point(79, 213);
             this.cmbStopBits.Name = "cmbStopBits";
             this.cmbStopBits.Size = new System.Drawing.Size(71, 21);
             this.cmbStopBits.TabIndex = 12;
             // 
             // Label8
             // 
-            this.Label8.Location = new System.Drawing.Point(10, 135);
+            this.Label8.Location = new System.Drawing.Point(7, 187);
             this.Label8.Name = "Label8";
             this.Label8.Size = new System.Drawing.Size(63, 18);
             this.Label8.TabIndex = 11;
@@ -927,7 +856,7 @@ namespace KamertonTest
             // 
             // Label7
             // 
-            this.Label7.Location = new System.Drawing.Point(10, 162);
+            this.Label7.Location = new System.Drawing.Point(7, 214);
             this.Label7.Name = "Label7";
             this.Label7.Size = new System.Drawing.Size(48, 18);
             this.Label7.TabIndex = 10;
@@ -935,7 +864,7 @@ namespace KamertonTest
             // 
             // Label6
             // 
-            this.Label6.Location = new System.Drawing.Point(10, 108);
+            this.Label6.Location = new System.Drawing.Point(7, 160);
             this.Label6.Name = "Label6";
             this.Label6.Size = new System.Drawing.Size(48, 18);
             this.Label6.TabIndex = 9;
@@ -949,14 +878,14 @@ namespace KamertonTest
             "None",
             "Even",
             "Odd"});
-            this.cmbParity.Location = new System.Drawing.Point(82, 107);
+            this.cmbParity.Location = new System.Drawing.Point(79, 159);
             this.cmbParity.Name = "cmbParity";
             this.cmbParity.Size = new System.Drawing.Size(71, 21);
             this.cmbParity.TabIndex = 8;
             // 
             // Label3
             // 
-            this.Label3.Location = new System.Drawing.Point(10, 81);
+            this.Label3.Location = new System.Drawing.Point(7, 133);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(56, 18);
             this.Label3.TabIndex = 7;
@@ -964,7 +893,7 @@ namespace KamertonTest
             // 
             // Label2
             // 
-            this.Label2.Location = new System.Drawing.Point(10, 54);
+            this.Label2.Location = new System.Drawing.Point(7, 106);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(63, 18);
             this.Label2.TabIndex = 5;
@@ -985,7 +914,7 @@ namespace KamertonTest
             "125000",
             "128000",
             "256000"});
-            this.cmbBaudRate.Location = new System.Drawing.Point(82, 53);
+            this.cmbBaudRate.Location = new System.Drawing.Point(79, 105);
             this.cmbBaudRate.Name = "cmbBaudRate";
             this.cmbBaudRate.Size = new System.Drawing.Size(71, 21);
             this.cmbBaudRate.TabIndex = 4;
@@ -995,7 +924,7 @@ namespace KamertonTest
             // 
             this.cmbComPort.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cmbComPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbComPort.Location = new System.Drawing.Point(82, 26);
+            this.cmbComPort.Location = new System.Drawing.Point(79, 78);
             this.cmbComPort.Name = "cmbComPort";
             this.cmbComPort.Size = new System.Drawing.Size(71, 21);
             this.cmbComPort.TabIndex = 3;
@@ -1003,7 +932,7 @@ namespace KamertonTest
             // 
             // Label1
             // 
-            this.Label1.Location = new System.Drawing.Point(10, 27);
+            this.Label1.Location = new System.Drawing.Point(7, 79);
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(56, 18);
             this.Label1.TabIndex = 1;
@@ -1012,7 +941,7 @@ namespace KamertonTest
             // cmdOpenSerial
             // 
             this.cmdOpenSerial.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmdOpenSerial.Location = new System.Drawing.Point(34, 192);
+            this.cmdOpenSerial.Location = new System.Drawing.Point(31, 244);
             this.cmdOpenSerial.Name = "cmdOpenSerial";
             this.cmdOpenSerial.Size = new System.Drawing.Size(95, 22);
             this.cmdOpenSerial.TabIndex = 2;
@@ -1027,13 +956,14 @@ namespace KamertonTest
             this.cmbSerialProtocol.Items.AddRange(new object[] {
             "RTU",
             "ASCII"});
-            this.cmbSerialProtocol.Location = new System.Drawing.Point(82, 80);
+            this.cmbSerialProtocol.Location = new System.Drawing.Point(79, 132);
             this.cmbSerialProtocol.Name = "cmbSerialProtocol";
             this.cmbSerialProtocol.Size = new System.Drawing.Size(71, 21);
             this.cmbSerialProtocol.TabIndex = 6;
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.label157);
             this.GroupBox1.Controls.Add(this.label16);
             this.GroupBox1.Controls.Add(this.txtNumCoils);
             this.GroupBox1.Controls.Add(this.label15);
@@ -1046,17 +976,25 @@ namespace KamertonTest
             this.GroupBox1.Controls.Add(this.txtTimeout);
             this.GroupBox1.Controls.Add(this.txtPollDelay);
             this.GroupBox1.Controls.Add(this.Label9);
-            this.GroupBox1.Location = new System.Drawing.Point(418, 6);
+            this.GroupBox1.Location = new System.Drawing.Point(386, 6);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(184, 321);
+            this.GroupBox1.Size = new System.Drawing.Size(185, 320);
             this.GroupBox1.TabIndex = 4;
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Опции MODBUS";
             // 
+            // label157
+            // 
+            this.label157.Image = ((System.Drawing.Image)(resources.GetObject("label157.Image")));
+            this.label157.Location = new System.Drawing.Point(6, 20);
+            this.label157.Name = "label157";
+            this.label157.Size = new System.Drawing.Size(55, 48);
+            this.label157.TabIndex = 19;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 190);
+            this.label16.Location = new System.Drawing.Point(5, 244);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(92, 13);
             this.label16.TabIndex = 18;
@@ -1064,7 +1002,7 @@ namespace KamertonTest
             // 
             // txtNumCoils
             // 
-            this.txtNumCoils.Location = new System.Drawing.Point(108, 187);
+            this.txtNumCoils.Location = new System.Drawing.Point(103, 241);
             this.txtNumCoils.Name = "txtNumCoils";
             this.txtNumCoils.Size = new System.Drawing.Size(66, 20);
             this.txtNumCoils.TabIndex = 17;
@@ -1073,7 +1011,7 @@ namespace KamertonTest
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 160);
+            this.label15.Location = new System.Drawing.Point(5, 214);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(69, 13);
             this.label15.TabIndex = 16;
@@ -1082,7 +1020,7 @@ namespace KamertonTest
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 129);
+            this.label14.Location = new System.Drawing.Point(5, 183);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(79, 13);
             this.label14.TabIndex = 15;
@@ -1090,7 +1028,7 @@ namespace KamertonTest
             // 
             // txtStartCoil
             // 
-            this.txtStartCoil.Location = new System.Drawing.Point(107, 157);
+            this.txtStartCoil.Location = new System.Drawing.Point(102, 211);
             this.txtStartCoil.Name = "txtStartCoil";
             this.txtStartCoil.Size = new System.Drawing.Size(67, 20);
             this.txtStartCoil.TabIndex = 14;
@@ -1098,7 +1036,7 @@ namespace KamertonTest
             // 
             // txtSlave
             // 
-            this.txtSlave.Location = new System.Drawing.Point(108, 126);
+            this.txtSlave.Location = new System.Drawing.Point(103, 180);
             this.txtSlave.Name = "txtSlave";
             this.txtSlave.Size = new System.Drawing.Size(66, 20);
             this.txtSlave.TabIndex = 13;
@@ -1113,14 +1051,14 @@ namespace KamertonTest
             "1",
             "2",
             "3"});
-            this.cmbRetry.Location = new System.Drawing.Point(107, 57);
+            this.cmbRetry.Location = new System.Drawing.Point(102, 111);
             this.cmbRetry.Name = "cmbRetry";
             this.cmbRetry.Size = new System.Drawing.Size(66, 21);
             this.cmbRetry.TabIndex = 9;
             // 
             // Label4
             // 
-            this.Label4.Location = new System.Drawing.Point(10, 27);
+            this.Label4.Location = new System.Drawing.Point(5, 81);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(60, 20);
             this.Label4.TabIndex = 8;
@@ -1128,7 +1066,7 @@ namespace KamertonTest
             // 
             // Label5
             // 
-            this.Label5.Location = new System.Drawing.Point(10, 61);
+            this.Label5.Location = new System.Drawing.Point(5, 115);
             this.Label5.Name = "Label5";
             this.Label5.Size = new System.Drawing.Size(51, 20);
             this.Label5.TabIndex = 10;
@@ -1136,7 +1074,7 @@ namespace KamertonTest
             // 
             // txtTimeout
             // 
-            this.txtTimeout.Location = new System.Drawing.Point(107, 25);
+            this.txtTimeout.Location = new System.Drawing.Point(102, 79);
             this.txtTimeout.MaxLength = 5;
             this.txtTimeout.Name = "txtTimeout";
             this.txtTimeout.Size = new System.Drawing.Size(66, 20);
@@ -1147,7 +1085,7 @@ namespace KamertonTest
             // 
             // txtPollDelay
             // 
-            this.txtPollDelay.Location = new System.Drawing.Point(107, 91);
+            this.txtPollDelay.Location = new System.Drawing.Point(102, 145);
             this.txtPollDelay.MaxLength = 3;
             this.txtPollDelay.Name = "txtPollDelay";
             this.txtPollDelay.Size = new System.Drawing.Size(66, 20);
@@ -1157,7 +1095,7 @@ namespace KamertonTest
             // 
             // Label9
             // 
-            this.Label9.Location = new System.Drawing.Point(10, 93);
+            this.Label9.Location = new System.Drawing.Point(5, 147);
             this.Label9.Name = "Label9";
             this.Label9.Size = new System.Drawing.Size(71, 20);
             this.Label9.TabIndex = 12;
@@ -4378,9 +4316,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -4410,6 +4348,13 @@ namespace KamertonTest
             this.tabPage4.Size = new System.Drawing.Size(987, 613);
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(3, 600);
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(981, 10);
+            this.progressBar3.TabIndex = 24;
             // 
             // label37
             // 
@@ -4489,18 +4434,13 @@ namespace KamertonTest
             this.textBox45.Size = new System.Drawing.Size(987, 560);
             this.textBox45.TabIndex = 0;
             // 
-            // toolStripStatusLabel5
+            // label10
             // 
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabel5.Text = "RS-232";
-            // 
-            // progressBar3
-            // 
-            this.progressBar3.Location = new System.Drawing.Point(3, 600);
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(981, 10);
-            this.progressBar3.TabIndex = 24;
+            this.label10.Image = ((System.Drawing.Image)(resources.GetObject("label10.Image")));
+            this.label10.Location = new System.Drawing.Point(6, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 48);
+            this.label10.TabIndex = 22;
             // 
             // Form1
             // 
@@ -4518,8 +4458,6 @@ namespace KamertonTest
             this.groupBox4.PerformLayout();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
-            this.GroupBox3.ResumeLayout(false);
-            this.GroupBox3.PerformLayout();
             this.GroupBox2.ResumeLayout(false);
             this.GroupBox1.ResumeLayout(false);
             this.GroupBox1.PerformLayout();
@@ -4588,15 +4526,6 @@ namespace KamertonTest
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label Label13;
-        private System.Windows.Forms.GroupBox GroupBox3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button cmdOpenTCP;
-        private System.Windows.Forms.Label Label12;
-        private System.Windows.Forms.ComboBox cmbTcpProtocol;
-        private System.Windows.Forms.Label Label11;
-        private System.Windows.Forms.TextBox txtHostName;
-        private System.Windows.Forms.Label Label10;
-        private System.Windows.Forms.TextBox txtTCPPort;
         private System.Windows.Forms.GroupBox GroupBox2;
         private System.Windows.Forms.Button Close_Serial;
         private System.Windows.Forms.ComboBox cmbDataBits;
@@ -4936,6 +4865,10 @@ namespace KamertonTest
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ProgressBar progressBar3;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label166;
+        private System.Windows.Forms.Label label157;
+        private System.Windows.Forms.Label label10;
     }
 }
 

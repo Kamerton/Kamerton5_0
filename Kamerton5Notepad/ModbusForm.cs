@@ -72,14 +72,12 @@ namespace KamertonTest
             ToolTip1.SetToolTip(txtPollDelay, "Задержка в миллисекундах между двумя последовательными операциями Modbus, 0 для отключения");
             ToolTip1.SetToolTip(cmbRetry, "Сколько раз повторить операцию, если в первый раз не принят?");
             ToolTip1.SetToolTip(cmbSerialProtocol, "Выбор протокола COM: ASCII или RTU");
-            ToolTip1.SetToolTip(cmbTcpProtocol, "Выбор протокола Ethernet: MODBUS/TCP или Encapsulated RTU над TCP");
             cmbComPort.SelectedIndex = 0;
             cmbParity.SelectedIndex = 0;
             cmbStopBits.SelectedIndex = 0;
             cmbDataBits.SelectedIndex = 0;
             cmbBaudRate.SelectedIndex = 5;
             cmbSerialProtocol.SelectedIndex = 0;
-            cmbTcpProtocol.SelectedIndex = 0;
             cmbRetry.SelectedIndex = 2;
             timer_byte_set.Enabled = false;
             timerTestAll.Enabled = false;
@@ -1558,103 +1556,7 @@ namespace KamertonTest
 
         #endregion
 
-        private void cmdOpenTCP_Click(object sender, EventArgs e)
-        {
-            //
-            // First we must instantiate class if we haven't done so already
-            //
-            if ((myProtocol == null))
-            {
-                try
-                {
-                    if ((cmbTcpProtocol.SelectedIndex == 0))
-                        myProtocol = new MbusTcpMasterProtocol();
-                    else
-                        myProtocol = new MbusRtuOverTcpMasterProtocol();
-                }
-                catch (OutOfMemoryException ex)
-                {
-                    label78.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
-                    return;
-                }
-            }
-            else // already instantiated, close protocol and reinstantiate
-            {
-                if (myProtocol.isOpen())
-                    myProtocol.closeProtocol();
-                myProtocol = null;
-                try
-                {
-                    if ((cmbTcpProtocol.SelectedIndex == 0))
-                        myProtocol = new MbusTcpMasterProtocol();
-                    else
-                        myProtocol = new MbusRtuOverTcpMasterProtocol();
-                }
-                catch (OutOfMemoryException ex)
-                {
-                    label78.Text = ("Не удалось создать экземпляр класса серийного протокола! Ошибка была " + ex.Message);
-                    return;
-                }
-            }
-            //
-            // Here we configure the protocol
-            //
-            int retryCnt;
-            int pollDelay;
-            int timeOut;
-            int tcpPort;
-            int res;
-            try
-            {
-                retryCnt = int.Parse(cmbRetry.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                retryCnt = 0;
-            }
-            try
-            {
-                pollDelay = int.Parse(txtPollDelay.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                pollDelay = 0;
-            }
-            try
-            {
-                timeOut = int.Parse(txtTimeout.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                timeOut = 1000;
-            }
-            try
-            {
-                tcpPort = int.Parse(txtTCPPort.Text, CultureInfo.CurrentCulture);
-            }
-            catch (Exception)
-            {
-                tcpPort = 502;
-            }
-            myProtocol.timeout = timeOut;
-            myProtocol.retryCnt = retryCnt;
-            myProtocol.pollDelay = pollDelay;
-            // Note: The following cast is required as the myProtocol object is declared
-            // as the superclass of MbusTcpMasterProtocol. That way myProtocol can
-            // represent different protocol types.
-            ((MbusTcpMasterProtocol)myProtocol).port = (short)tcpPort;
-            res = ((MbusTcpMasterProtocol)myProtocol).openProtocol(txtHostName.Text);
-            if ((res == BusProtocolErrors.FTALK_SUCCESS))
-            {
-                label78.Text = ("Modbus/TCP port opened successfully with parameters: " + (txtHostName.Text + (", TCP port " + tcpPort)));
-                button6.Enabled = true;
-                Polltimer1.Enabled = true;
-            }
-            else
-            {
-                label78.Text = ("Could not open protocol, error was: " + BusProtocolErrors.getBusProtocolErrorText(res));
-            }
-        }
+   
 
         private void label24_Click(object sender, EventArgs e)
         {
@@ -1828,22 +1730,6 @@ namespace KamertonTest
           
         }
 
-        private void button6_Click(object sender, EventArgs e)                         // Закрыть TCP и протокол
-        {
-            if ((myProtocol != null))
-            {
-                // Close protocol and serial port
-                myProtocol.closeProtocol();
-                //    // Indicate result on status line
-                lblResult.Text = "Протокол закрыт";
-                //    // Disable button controls
-                button6.Enabled = false;
-                cmdOpenTCP.Enabled = true;
-                Polltimer1.Enabled = false;
-                toolStripStatusLabel1.Text = "  MODBUS ЗАКРЫТ   ";
-                toolStripStatusLabel1.BackColor = Color.Red;
-            }
-        }
         #region label all
         private void label48_Click(object sender, EventArgs e)
         {
@@ -5234,6 +5120,12 @@ namespace KamertonTest
              }
          }
 
+         private void label20_Click(object sender, EventArgs e)
+         {
+
+         }
+
+  
      }
 
 
