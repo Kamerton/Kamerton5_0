@@ -178,6 +178,15 @@ int regcount_err        = 0;                                     // Переменная д
 SdFat sd;
 File myFile;
 SdFile file;
+Sd2Card card;
+
+uint32_t cardSizeBlocks;
+uint16_t cardCapacityMB;
+
+// cache for SD block
+cache_t cache;
+
+
 // созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
 // Change spiSpeed to SPI_FULL_SPEED for better performance
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
@@ -7144,35 +7153,40 @@ void set_SD()
 // flash erase all data
 uint32_t const ERASE_SIZE = 262144L;
 
-void eraseCard() {
-  //cout << endl << F("Erasing\n");
-  //uint32_t firstBlock = 0;
-  //uint32_t lastBlock;
-  //uint16_t n = 0;
-
-  //do {
-  //  lastBlock = firstBlock + ERASE_SIZE - 1;
-  //  if (lastBlock >= cardSizeBlocks) {
-  //    lastBlock = cardSizeBlocks - 1;
-  //  }
-  //  if (!card.erase(firstBlock, lastBlock)) {
-  //    sdError("erase failed");
-  //  }
-  //  cout << '.';
-  //  if ((n++)%32 == 31) {
-  //    cout << endl;
-  //  }
-  //  firstBlock += ERASE_SIZE;
-  //} while (firstBlock < cardSizeBlocks);
-  //cout << endl;
-
-  //if (!card.readBlock(0, cache.data)) {
-  //  sdError("readBlock");
+void eraseCard() 
+{
+ // cout << endl << F("Erasing\n");
+  uint32_t firstBlock = 0;
+  uint32_t lastBlock;
+  uint16_t n = 0;
+  
+  do {
+    lastBlock = firstBlock + ERASE_SIZE - 1;
+    if (lastBlock >= cardSizeBlocks) {
+      lastBlock = cardSizeBlocks - 1;
+    }
+    if (!card.erase(firstBlock, lastBlock)) 
+	{
+     // sdError("erase failed");
+    }
+   // cout << '.';
+    if ((n++)%32 == 31) 
+	{
+     // cout << endl;
+    }
+    firstBlock += ERASE_SIZE;
+  } while (firstBlock < cardSizeBlocks);
+   // cout << endl;
+  
+  //if (!card.readBlock(0, cache.data))
+  //{
+  // // sdError("readBlock");
   //}
-  //cout << hex << showbase << setfill('0') << internal;
-  //cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
-  //cout << dec << noshowbase << setfill(' ') << right;
-  //cout << F("Erase done\n");
+ /* 
+  cout << hex << showbase << setfill('0') << internal;
+  cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
+  cout << dec << noshowbase << setfill(' ') << right;
+  cout << F("Erase done\n");*/
 }
 
 void setup()
@@ -7283,6 +7297,25 @@ void setup()
 			regBank.set(125,true); 
 		}
 
+
+	 if (!card.begin(chipSelect, spiSpeed)) 
+	 {
+ /*   cout << F(
+           "\nSD initialization failure!\n"
+           "Is the SD card inserted correctly?\n"
+           "Is chip select correct at the top of this program?\n");
+    sdError("card.begin failed");*/
+  }
+  cardSizeBlocks = card.cardSize();
+  if (cardSizeBlocks == 0) 
+  {
+   /* sdError("cardSize");*/
+  }
+  cardCapacityMB = (cardSizeBlocks + 2047)/2048;
+
+
+
+
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
  // Serial.println("Files found on the card (name, date and size in bytes): ");
 
@@ -7302,6 +7335,7 @@ void setup()
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
 	MsTimer2::start();                               // Включить таймер прерывания
+	eraseCard();
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
 	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
