@@ -193,11 +193,11 @@
   <ItemGroup>
     <None Include="Kamerton5Notepad_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
-    <None Include="Resources\btSetCustom.Image.png" />
-    <None Include="Resources\btSetSystem.Image.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="kcontrol2.ico" />
+    <Content Include="Resources\3floppy_unmount_9911.png" />
+    <Content Include="Resources\accessories-text-editor_2229.png" />
     <Content Include="Resources\alevt_1667.png" />
     <Content Include="Resources\application-x-kgetlist_1750.png" />
     <Content Include="Resources\application-x-kgetlist_3849.png" />
@@ -217,15 +217,25 @@
     <Content Include="Resources\audio-x-adpcm_1895.png" />
     <Content Include="Resources\audio-x-adpcm_7131.png" />
     <Content Include="Resources\audio-x-adpcm_8467.png" />
+    <Content Include="Resources\dialog-apply_6119.png" />
+    <Content Include="Resources\document-save_6364.png" />
     <Content Include="Resources\drive-harddisk_6171.png" />
     <Content Include="Resources\drive-harddisk_6468.png" />
+    <Content Include="Resources\edit-find_5765.png" />
+    <Content Include="Resources\emblem-important_1094.png" />
+    <Content Include="Resources\gnome-networktool_4754.png" />
     <Content Include="Resources\gnumeric_2285.png" />
     <Content Include="Resources\gnumeric_7744.png" />
     <Content Include="Resources\hwinfo_1886.png" />
     <Content Include="Resources\hwinfo_6789.png" />
+    <Content Include="Resources\interntet %281%29.png" />
+    <Content Include="Resources\interntet.png" />
     <Content Include="Resources\kget_1197.png" />
     <Content Include="Resources\kget_1222.png" />
     <Content Include="Resources\kget_4621.png" />
+    <Content Include="Resources\kontact_date2_6701.png" />
+    <Content Include="Resources\kontact_date_5220.png" />
+    <Content Include="Resources\kontact_date_6701.png" />
     <Content Include="Resources\media-flash-sd-mmc_3272.png" />
     <Content Include="Resources\media-flash-sd-mmc_4359.png" />
     <Content Include="Resources\media-flash-sd-mmc_5774.png" />
@@ -239,6 +249,7 @@
     <Content Include="Resources\preferences-system-time_4207.png" />
     <Content Include="Resources\preferences-system-time_5235.png" />
     <Content Include="Resources\preferences-system-time_6032.png" />
+    <Content Include="Resources\usb.png" />
     <Content Include="Resources\user-trash_2049.png" />
     <Content Include="Resources\user-trash_4116.png" />
     <Content Include="set_MODBUS_port.txt" />

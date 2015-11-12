@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="215552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="266240">
       <assemblyIdentity name="Kamerton5Notepad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>FDQecoU9lf1ppnjUHU18NM2L8mg=</dsig:DigestValue>
+        <dsig:DigestValue>5BolfeRIyVk2rwj6oFKxLX56K1I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -82,6 +82,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>sNhm4hj0k1WWNuphLRzULshOe4U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\3floppy_unmount_9911.png" size="2827">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>op7WASivRlfX0Iivy5+m3wFaiz8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\accessories-text-editor_2229.png" size="4241">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>novRt+uXVnQbttqw95IY5KFzyZ8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\alevt_1667.png" size="380">
@@ -255,6 +273,24 @@
       <dsig:DigestValue>GZDuhb9Rh1msSzONrzATyGK84Ko=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Resources\dialog-apply_6119.png" size="1093">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>FEJMVCHp1dXm0havshzPvZ/fVhU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\document-save_6364.png" size="3332">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>OW66UGYoQ59WZ0MeTdhgZobMy+w=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\drive-harddisk_6171.png" size="9938">
     <hash>
       <dsig:Transforms>
@@ -271,6 +307,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>jsOfFwBX5bseiuENlMewL6AVTT4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\edit-find_5765.png" size="5285">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>rmBElczQL6ZXd65h10walqZq6vw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\emblem-important_1094.png" size="5592">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>6J7iISdpjGUrJFLPOP6I8P/65+o=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\gnumeric_2285.png" size="2636">
@@ -307,6 +361,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>bffcvPNh/nz01ujdBk9fnYSS5+4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\interntet (1).png" size="6274">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>JIH3ojdYpVsjUVMc15Fnf+oRWgY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\interntet.png" size="19483">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>/zydYSj1felGBr7txxYf1KOzui4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\kget_1197.png" size="3524">
@@ -451,6 +523,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>XrVuUsReZv4eGtILpTZh6cUFefM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\usb.png" size="6807">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>FlYo4j2R5yshB5w49tK9dU66bOg=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\user-trash_2049.png" size="8191">

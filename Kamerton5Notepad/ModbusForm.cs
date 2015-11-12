@@ -5125,6 +5125,16 @@ namespace KamertonTest
 
          }
 
+         private void label18_Click(object sender, EventArgs e)
+         {
+
+         }
+
+         private void label37_Click_1(object sender, EventArgs e)
+         {
+
+         }
+
   
      }
 
