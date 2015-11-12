@@ -50,7 +50,9 @@ namespace KamertonTest
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.TabPage1 = new System.Windows.Forms.TabPage();
+            this.label37 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -59,6 +61,8 @@ namespace KamertonTest
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.lblResult1 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label167 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -396,6 +400,10 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.format_No = new System.Windows.Forms.Button();
+            this.format_Yes = new System.Windows.Forms.Button();
+            this.format_SD = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.button21 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -404,11 +412,6 @@ namespace KamertonTest
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label167 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -528,6 +531,14 @@ namespace KamertonTest
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Параметры прибора";
             // 
+            // label37
+            // 
+            this.label37.Image = ((System.Drawing.Image)(resources.GetObject("label37.Image")));
+            this.label37.Location = new System.Drawing.Point(9, 329);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(64, 64);
+            this.label37.TabIndex = 20;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label10);
@@ -543,6 +554,14 @@ namespace KamertonTest
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Параметры RS 232";
+            // 
+            // label10
+            // 
+            this.label10.Image = ((System.Drawing.Image)(resources.GetObject("label10.Image")));
+            this.label10.Location = new System.Drawing.Point(6, 16);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(65, 58);
+            this.label10.TabIndex = 22;
             // 
             // label20
             // 
@@ -638,6 +657,22 @@ namespace KamertonTest
             this.groupBox12.TabIndex = 17;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Установка времени контроллера";
+            // 
+            // label167
+            // 
+            this.label167.Image = ((System.Drawing.Image)(resources.GetObject("label167.Image")));
+            this.label167.Location = new System.Drawing.Point(1, 84);
+            this.label167.Name = "label167";
+            this.label167.Size = new System.Drawing.Size(64, 64);
+            this.label167.TabIndex = 42;
+            // 
+            // label12
+            // 
+            this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
+            this.label12.Location = new System.Drawing.Point(1, 154);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 64);
+            this.label12.TabIndex = 41;
             // 
             // label38
             // 
@@ -4342,6 +4377,9 @@ namespace KamertonTest
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.format_No);
+            this.tabPage4.Controls.Add(this.format_Yes);
+            this.tabPage4.Controls.Add(this.format_SD);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.progressBar3);
             this.tabPage4.Controls.Add(this.button21);
@@ -4356,6 +4394,51 @@ namespace KamertonTest
             this.tabPage4.Size = new System.Drawing.Size(987, 613);
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
+            // 
+            // format_No
+            // 
+            this.format_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.format_No.Location = new System.Drawing.Point(920, 8);
+            this.format_No.Name = "format_No";
+            this.format_No.Size = new System.Drawing.Size(56, 30);
+            this.format_No.TabIndex = 30;
+            this.format_No.Text = "Нет";
+            this.format_No.UseVisualStyleBackColor = true;
+            this.format_No.Visible = false;
+            this.format_No.Click += new System.EventHandler(this.format_No_Click_1);
+            // 
+            // format_Yes
+            // 
+            this.format_Yes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.format_Yes.Location = new System.Drawing.Point(920, 41);
+            this.format_Yes.Name = "format_Yes";
+            this.format_Yes.Size = new System.Drawing.Size(56, 30);
+            this.format_Yes.TabIndex = 29;
+            this.format_Yes.Text = "Да";
+            this.format_Yes.UseVisualStyleBackColor = true;
+            this.format_Yes.Visible = false;
+            this.format_Yes.Click += new System.EventHandler(this.format_Yes_Click);
+            // 
+            // format_SD
+            // 
+            this.format_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.format_SD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.format_SD.Image = ((System.Drawing.Image)(resources.GetObject("format_SD.Image")));
+            this.format_SD.Location = new System.Drawing.Point(843, 8);
+            this.format_SD.Name = "format_SD";
+            this.format_SD.Size = new System.Drawing.Size(71, 64);
+            this.format_SD.TabIndex = 28;
+            this.format_SD.Text = "Формат SD";
+            this.format_SD.UseVisualStyleBackColor = true;
+            this.format_SD.Click += new System.EventHandler(this.format_SD_Click_1);
+            // 
+            // label11
+            // 
+            this.label11.Image = ((System.Drawing.Image)(resources.GetObject("label11.Image")));
+            this.label11.Location = new System.Drawing.Point(337, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(24, 24);
+            this.label11.TabIndex = 27;
             // 
             // progressBar3
             // 
@@ -4443,46 +4526,6 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 499);
             this.textBox45.TabIndex = 0;
-            // 
-            // label10
-            // 
-            this.label10.Image = ((System.Drawing.Image)(resources.GetObject("label10.Image")));
-            this.label10.Location = new System.Drawing.Point(6, 16);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 58);
-            this.label10.TabIndex = 22;
-            // 
-            // label11
-            // 
-            this.label11.Image = ((System.Drawing.Image)(resources.GetObject("label11.Image")));
-            this.label11.Location = new System.Drawing.Point(337, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(24, 24);
-            this.label11.TabIndex = 27;
-            // 
-            // label37
-            // 
-            this.label37.Image = ((System.Drawing.Image)(resources.GetObject("label37.Image")));
-            this.label37.Location = new System.Drawing.Point(9, 329);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(64, 64);
-            this.label37.TabIndex = 20;
-            // 
-            // label12
-            // 
-            this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(1, 154);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 64);
-            this.label12.TabIndex = 41;
-            // 
-            // label167
-            // 
-            this.label167.Image = ((System.Drawing.Image)(resources.GetObject("label167.Image")));
-            this.label167.Location = new System.Drawing.Point(1, 84);
-            this.label167.Name = "label167";
-            this.label167.Size = new System.Drawing.Size(64, 64);
-            this.label167.TabIndex = 42;
             // 
             // Form1
             // 
@@ -4914,6 +4957,9 @@ namespace KamertonTest
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label167;
+        private System.Windows.Forms.Button format_No;
+        private System.Windows.Forms.Button format_Yes;
+        private System.Windows.Forms.Button format_SD;
     }
 }
 

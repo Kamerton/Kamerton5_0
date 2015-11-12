@@ -5135,6 +5135,39 @@ namespace KamertonTest
 
          }
 
+         private void format_Yes_Click(object sender, EventArgs e)
+         {
+             format_SD.Enabled = false;
+             format_Yes.Enabled = false;
+             format_No.Enabled = false;
+             Thread.Sleep(2000);
+             format_SD.Enabled = true;
+             format_Yes.Visible = false;
+             format_No.Visible = false;
+         }
+
+         private void format_No_Click_1(object sender, EventArgs e)
+         {
+             format_SD.Enabled = true;
+             format_No.Enabled = false;
+             format_Yes.Enabled = false;
+             Thread.Sleep(200);
+             format_SD.Enabled = true;
+             format_Yes.Visible = false;
+             format_No.Visible = false;
+         }
+
+         private void format_SD_Click_1(object sender, EventArgs e)
+         {
+             format_Yes.Visible = true;
+             format_No.Visible = true;
+             format_SD.Enabled = false;
+             format_No.Enabled = true;
+             format_Yes.Enabled = true;
+         }
+
+       
+
   
      }
 

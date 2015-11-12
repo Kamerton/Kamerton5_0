@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="266240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="282112">
       <assemblyIdentity name="Kamerton5Notepad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>5BolfeRIyVk2rwj6oFKxLX56K1I=</dsig:DigestValue>
+        <dsig:DigestValue>JrAflms1IQuDNtsd0zKuh3vNGkY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -327,6 +327,15 @@
       <dsig:DigestValue>6J7iISdpjGUrJFLPOP6I8P/65+o=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Resources\gnome-networktool_4754.png" size="4509">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>z1Y4fIiu0ka59DXvwYLvRN5NUvM=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\gnumeric_2285.png" size="2636">
     <hash>
       <dsig:Transforms>
@@ -408,6 +417,33 @@
       <dsig:DigestValue>zEnThnmEYR+1+TwPKhNeK5QrGmo=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Resources\kontact_date_5220.png" size="2096">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>p8QnQGx8nZnRz0iTzZny1R2APtQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\kontact_date_6701.png" size="15086">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>CEIxE4OUJPX1xM3OZ2NvQfMjhfI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\kontact_date2_6701.png" size="5258">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>cYOPBCtfdM/T7U/sNjE+eT6FqzA=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\media-flash-sd-mmc_3272.png" size="2406">
     <hash>
       <dsig:Transforms>
@@ -460,6 +496,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>4pQ/d6ug07gHkNBtRuyI7E0FdbA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\notepad64.png" size="6599">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>X/Br7MKX4JoGzmgY7rVKHxLAbas=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\preferences-desktop-sound_3139.png" size="5227">

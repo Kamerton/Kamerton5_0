@@ -183,6 +183,13 @@ SdFile file;
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
 const uint8_t spiSpeed = SPI_HALF_SPEED;
 
+
+
+
+
+
+
+
 //++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
 //const uint32_t FILE_BLOCK_COUNT = 256000;
 // log file base name.  Must be six characters or less.
@@ -1924,7 +1931,13 @@ void control_command()
 		case 26:   
 				load_list_files();  
 	            break;
+		case 27:   
+		        eraseCard();
+		        break;
+		
+		
 		default:
+
 			wdt_reset();
 		break;
 	 }
@@ -7126,6 +7139,40 @@ void set_SD()
 	UpdateRegs(); 
 	delay(100);
 	regBank.set(adr_control_command,0);  
+}
+//------------------------------------------------------------------------------
+// flash erase all data
+uint32_t const ERASE_SIZE = 262144L;
+
+void eraseCard() {
+  //cout << endl << F("Erasing\n");
+  //uint32_t firstBlock = 0;
+  //uint32_t lastBlock;
+  //uint16_t n = 0;
+
+  //do {
+  //  lastBlock = firstBlock + ERASE_SIZE - 1;
+  //  if (lastBlock >= cardSizeBlocks) {
+  //    lastBlock = cardSizeBlocks - 1;
+  //  }
+  //  if (!card.erase(firstBlock, lastBlock)) {
+  //    sdError("erase failed");
+  //  }
+  //  cout << '.';
+  //  if ((n++)%32 == 31) {
+  //    cout << endl;
+  //  }
+  //  firstBlock += ERASE_SIZE;
+  //} while (firstBlock < cardSizeBlocks);
+  //cout << endl;
+
+  //if (!card.readBlock(0, cache.data)) {
+  //  sdError("readBlock");
+  //}
+  //cout << hex << showbase << setfill('0') << internal;
+  //cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
+  //cout << dec << noshowbase << setfill(' ') << right;
+  //cout << F("Erase done\n");
 }
 
 void setup()
