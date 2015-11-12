@@ -412,6 +412,7 @@ namespace KamertonTest
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -4377,6 +4378,7 @@ namespace KamertonTest
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.button6);
             this.tabPage4.Controls.Add(this.format_No);
             this.tabPage4.Controls.Add(this.format_Yes);
             this.tabPage4.Controls.Add(this.format_SD);
@@ -4398,7 +4400,7 @@ namespace KamertonTest
             // format_No
             // 
             this.format_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_No.Location = new System.Drawing.Point(920, 8);
+            this.format_No.Location = new System.Drawing.Point(767, 8);
             this.format_No.Name = "format_No";
             this.format_No.Size = new System.Drawing.Size(56, 30);
             this.format_No.TabIndex = 30;
@@ -4410,7 +4412,7 @@ namespace KamertonTest
             // format_Yes
             // 
             this.format_Yes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_Yes.Location = new System.Drawing.Point(920, 41);
+            this.format_Yes.Location = new System.Drawing.Point(767, 40);
             this.format_Yes.Name = "format_Yes";
             this.format_Yes.Size = new System.Drawing.Size(56, 30);
             this.format_Yes.TabIndex = 29;
@@ -4424,7 +4426,7 @@ namespace KamertonTest
             this.format_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.format_SD.ForeColor = System.Drawing.SystemColors.ControlText;
             this.format_SD.Image = ((System.Drawing.Image)(resources.GetObject("format_SD.Image")));
-            this.format_SD.Location = new System.Drawing.Point(843, 8);
+            this.format_SD.Location = new System.Drawing.Point(690, 8);
             this.format_SD.Name = "format_SD";
             this.format_SD.Size = new System.Drawing.Size(71, 64);
             this.format_SD.TabIndex = 28;
@@ -4453,7 +4455,7 @@ namespace KamertonTest
             this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button21.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button21.Image = ((System.Drawing.Image)(resources.GetObject("button21.Image")));
-            this.button21.Location = new System.Drawing.Point(635, 8);
+            this.button21.Location = new System.Drawing.Point(587, 8);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(79, 64);
             this.button21.TabIndex = 22;
@@ -4466,7 +4468,7 @@ namespace KamertonTest
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
-            this.button12.Location = new System.Drawing.Point(498, 7);
+            this.button12.Location = new System.Drawing.Point(475, 7);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(89, 64);
             this.button12.TabIndex = 7;
@@ -4526,6 +4528,20 @@ namespace KamertonTest
             this.textBox45.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox45.Size = new System.Drawing.Size(987, 499);
             this.textBox45.TabIndex = 0;
+            // 
+            // button6
+            // 
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.Color.Red;
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.Location = new System.Drawing.Point(891, 8);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(70, 62);
+            this.button6.TabIndex = 31;
+            this.button6.Text = "Формат SD\r\n";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -4960,6 +4976,7 @@ namespace KamertonTest
         private System.Windows.Forms.Button format_No;
         private System.Windows.Forms.Button format_Yes;
         private System.Windows.Forms.Button format_SD;
+        private System.Windows.Forms.Button button6;
     }
 }
 

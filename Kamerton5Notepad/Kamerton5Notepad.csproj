@@ -250,6 +250,8 @@
     <Content Include="Resources\preferences-system-time_4207.png" />
     <Content Include="Resources\preferences-system-time_5235.png" />
     <Content Include="Resources\preferences-system-time_6032.png" />
+    <Content Include="Resources\SDFormatter V4.0.png" />
+    <Content Include="Resources\SDFormatter V4.1.png" />
     <Content Include="Resources\usb.png" />
     <Content Include="Resources\user-trash_2049.png" />
     <Content Include="Resources\user-trash_4116.png" />

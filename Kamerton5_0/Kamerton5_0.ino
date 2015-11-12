@@ -177,8 +177,6 @@ int regcount_err        = 0;                                     // Переменная д
 //#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
-Sd2Card card;
-
 
 // созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
 // Change spiSpeed to SPI_FULL_SPEED for better performance
@@ -1503,9 +1501,10 @@ void list_file()
 	myFile.printModifyDateTime(&Serial);
 	Serial.write(' ');
 	myFile.printFileSize(&Serial);
-	if (myFile.isDir()) {
+	if (myFile.isDir()) 
+	{
 	  // Indicate a directory.
-	  Serial.write('/');
+	//  Serial.write('/');
 	}
 	Serial.println();
 	myFile.close();
@@ -1514,26 +1513,33 @@ void list_file()
 }
 void load_list_files()
 {
+	//delay(2000);
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
 		}
 	else
 		{
-	
-		while (myFile.openNext(sd.vwd(), O_READ))
-		  {
-			myFile.printName(&Serial2);
-			Serial2.println();
-			myFile.printName(&Serial);
-			Serial.println();
-		//	wdt_reset();
-			myFile.close();
-		  } 
-		   Serial2.flush();
+			while (myFile.openNext(sd.vwd(), O_READ))
+			  {
+				myFile.printName(&Serial2);
+		/*		Serial2.println();*/
+				if (myFile.isDir()) 
+					{
+					  // Indicate a directory.
+					//  Serial.write('/');
+					}
+				Serial2.println();
+				//Serial2.flush();
+				myFile.printName(&Serial);
+				Serial.println();
+				myFile.close();
+			  } 
+		 Serial.println("Files end");
+		 // Serial2.flush();
 		 }
-		delay(1000);
-		Serial.println("Files end");
+	//	delay(1000);
+	//	Serial.println("Files end");
   regBank.set(adr_control_command,0);
 }
 
@@ -1920,7 +1926,8 @@ void control_command()
         case 25:   
 				send_file_PC();                                 // 
                 break;
-		case 26:   
+		case 26:  
+			    Serial.println("load_list_files");	
 				load_list_files();  
 	            break;
 		case 27:   
@@ -6098,7 +6105,7 @@ void send_file_PC()
       Serial2.write(myFile.read());
     }
     // close the file:
-   //  myFile.close();
+    myFile.close();
 
    //}
 

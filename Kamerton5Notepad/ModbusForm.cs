@@ -56,6 +56,7 @@ namespace KamertonTest
         bool[] coilArr_all = new bool[200];
         string fileName = "";
         static string folderName = @"C:\Audio log";
+        static string folderFormatName = @"C:\Program Files\SDA\SD Formatter\SDFormatter.exe";
         string pathString = System.IO.Path.Combine(folderName,(("RusError " +DateTime.Now.ToString("yyyy.MM.dd", CultureInfo.CurrentCulture))));
         string pathStringSD = System.IO.Path.Combine(folderName, "SD");
         SerialPort currentPort = new SerialPort(File.ReadAllText("set_MODBUS_port.txt"), 57600, Parity.None, 8, StopBits.One);
@@ -240,7 +241,6 @@ namespace KamertonTest
                 textBox45.Text += (data.Trim() + "\r\n");
                 progressBar3.Increment(1);
             }
-
             else
             {
                 textBox45.Text += (data.Trim() + "\r\n");
@@ -5041,7 +5041,7 @@ namespace KamertonTest
             res = myProtocol.writeSingleRegister(slave, startWrReg, 26);
             progressBar3.Value = 1;
             test_end1();
- //           Thread.Sleep(4000);
+            //Thread.Sleep(1000);
             button13.Enabled = true;
             textBox45.Refresh();
             Polltimer1.Enabled = true;
@@ -5050,12 +5050,13 @@ namespace KamertonTest
 
          private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
          {
-
+             button13.Enabled = true;
+             list_files = true;
          }
 
          private void button12_Click(object sender, EventArgs e)
          {
-             list_files = false;
+            // list_files = false;
              read_file = false;
              if (comboBox1.SelectedIndex != -1)
              textBox45.Text = comboBox1.SelectedItem.ToString();
@@ -5068,26 +5069,31 @@ namespace KamertonTest
              Polltimer1.Enabled = false;
              textBox45.Text = "";
              textBox45.Refresh();
+            // Thread.Sleep(1000);
              progressBar3.Value = 1;
-             if (list_files == true)
-             {
+             list_files = false;
+
+             //if (list_files == true)
+             //{
                  read_file = true;
 
                  if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
                  {
                      textBox45.Text = comboBox1.SelectedItem.ToString();
                      textBox45.Refresh();
-                     arduino.Write(textBox45.Text);
-                     Thread.Sleep(1000);
+                     arduino.Write(comboBox1.SelectedItem.ToString());
+                   //  arduino.Write(textBox45.Text);
+                    // Thread.Sleep(1000);
                      slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                      startWrReg = 120;                                                 // Получить файл из Камертон 50  
                      res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
                      test_end1();
-                     Thread.Sleep(1000);
+                   //  Thread.Sleep(1000);
                      button12.Enabled = true;
                  }
 
-             }
+            // }
+          
             Polltimer1.Enabled = true;
 
          }
@@ -5164,6 +5170,12 @@ namespace KamertonTest
              format_SD.Enabled = false;
              format_No.Enabled = true;
              format_Yes.Enabled = true;
+         }
+
+         private void button6_Click(object sender, EventArgs e)
+         {
+             MessageBox.Show("Внимание! Для форматирования установите\r\n   SD карту в устройство чтения на ПК", "Вызов программы форматирования SD карты", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+             System.Diagnostics.Process.Start(folderFormatName);
          }
 
        

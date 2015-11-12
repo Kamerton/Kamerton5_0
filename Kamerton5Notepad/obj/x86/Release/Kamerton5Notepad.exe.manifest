@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="282112">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="286720">
       <assemblyIdentity name="Kamerton5Notepad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>lr3t7P1l+VmKkcQsdVTb7deWfcQ=</dsig:DigestValue>
+        <dsig:DigestValue>vQEmRx65nrjrWNAq+K/mDpP3hkI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -568,6 +568,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>XrVuUsReZv4eGtILpTZh6cUFefM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\SDFormatter V4.0.png" size="3337">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>OE3tLqLBvU+9FFClKrPXARC6EtM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\SDFormatter V4.1.png" size="3495">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>C+kIMo2tiYz4X3vN/M4uBLTvhh8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\usb.png" size="6807">
