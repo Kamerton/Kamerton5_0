@@ -4421,14 +4421,14 @@ namespace KamertonTest
             // 
             // format_SD
             // 
-            this.format_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_SD.ForeColor = System.Drawing.Color.DarkRed;
+            this.format_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.format_SD.ForeColor = System.Drawing.SystemColors.ControlText;
             this.format_SD.Image = ((System.Drawing.Image)(resources.GetObject("format_SD.Image")));
             this.format_SD.Location = new System.Drawing.Point(843, 8);
             this.format_SD.Name = "format_SD";
             this.format_SD.Size = new System.Drawing.Size(71, 64);
             this.format_SD.TabIndex = 28;
-            this.format_SD.Text = "Формат SD";
+            this.format_SD.Text = "Удалить\r\nфайл на  SD";
             this.format_SD.UseVisualStyleBackColor = true;
             this.format_SD.Click += new System.EventHandler(this.format_SD_Click_1);
             // 
@@ -4464,7 +4464,7 @@ namespace KamertonTest
             // button12
             // 
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button12.ForeColor = System.Drawing.Color.DarkRed;
+            this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
             this.button12.Location = new System.Drawing.Point(498, 7);
             this.button12.Name = "button12";
