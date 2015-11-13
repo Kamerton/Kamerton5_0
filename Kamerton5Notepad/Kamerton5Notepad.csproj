@@ -154,6 +154,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -197,61 +198,11 @@
   <ItemGroup>
     <Content Include="kcontrol2.ico" />
     <Content Include="Resources\3floppy_unmount_9911.png" />
-    <Content Include="Resources\accessories-text-editor_2229.png" />
-    <Content Include="Resources\alevt_1667.png" />
-    <Content Include="Resources\application-x-kgetlist_1750.png" />
-    <Content Include="Resources\application-x-kgetlist_3849.png" />
-    <Content Include="Resources\application-x-kgetlist_9793.png" />
-    <Content Include="Resources\applications-system_6386.png" />
-    <Content Include="Resources\applications-system_8772.png" />
-    <Content Include="Resources\applications-system_9001.png" />
-    <Content Include="Resources\applications-system_9764.ico" />
-    <Content Include="Resources\applications-utilities_2692.png" />
-    <Content Include="Resources\applications-utilities_4663.png" />
-    <Content Include="Resources\applications-utilities_7508.png" />
-    <Content Include="Resources\audio-headset_3629.png" />
-    <Content Include="Resources\audio-headset_5752.png" />
-    <Content Include="Resources\audio-input-microphone_3724.png" />
-    <Content Include="Resources\audio-input-microphone_5699.png" />
-    <Content Include="Resources\audio-input-microphone_9366.png" />
-    <Content Include="Resources\audio-x-adpcm_1895.png" />
-    <Content Include="Resources\audio-x-adpcm_7131.png" />
-    <Content Include="Resources\audio-x-adpcm_8467.png" />
-    <Content Include="Resources\dialog-apply_6119.png" />
-    <Content Include="Resources\document-save_6364.png" />
-    <Content Include="Resources\drive-harddisk_6171.png" />
-    <Content Include="Resources\drive-harddisk_6468.png" />
-    <Content Include="Resources\edit-find_5765.png" />
-    <Content Include="Resources\emblem-important_1094.png" />
-    <Content Include="Resources\gnome-networktool_4754.png" />
-    <Content Include="Resources\gnumeric_2285.png" />
-    <Content Include="Resources\gnumeric_7744.png" />
-    <Content Include="Resources\hwinfo_1886.png" />
-    <Content Include="Resources\hwinfo_6789.png" />
-    <Content Include="Resources\interntet %281%29.png" />
-    <Content Include="Resources\interntet.png" />
-    <Content Include="Resources\kget_1197.png" />
-    <Content Include="Resources\kget_1222.png" />
-    <Content Include="Resources\kget_4621.png" />
+    <Content Include="Resources\btSetCustom.Image.png" />
+    <Content Include="Resources\btSetSystem.Image.png" />
     <Content Include="Resources\kontact_date2_6701.png" />
-    <Content Include="Resources\media-flash-sd-mmc_3272.png" />
-    <Content Include="Resources\media-flash-sd-mmc_4359.png" />
-    <Content Include="Resources\media-flash-sd-mmc_5774.png" />
-    <Content Include="Resources\media-floppy_1255.png" />
-    <Content Include="Resources\media-floppy_6508.png" />
-    <Content Include="Resources\media-floppy_6607.png" />
-    <Content Include="Resources\notepad64.png" />
-    <Content Include="Resources\preferences-desktop-sound_3139.png" />
-    <Content Include="Resources\preferences-desktop-sound_4609.png" />
-    <Content Include="Resources\preferences-desktop-sound_5910.png" />
-    <Content Include="Resources\preferences-desktop-sound_6293.png" />
-    <Content Include="Resources\preferences-system-time_4207.png" />
-    <Content Include="Resources\preferences-system-time_5235.png" />
-    <Content Include="Resources\preferences-system-time_6032.png" />
     <Content Include="Resources\SDFormatter V4.1.png" />
     <Content Include="Resources\usb.png" />
-    <Content Include="Resources\user-trash_2049.png" />
-    <Content Include="Resources\user-trash_4116.png" />
     <Content Include="set_MODBUS_port.txt" />
     <Content Include="set_rs232.txt" />
   </ItemGroup>

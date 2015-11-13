@@ -5141,41 +5141,41 @@ namespace KamertonTest
 
          }
 
-         private void format_Yes_Click(object sender, EventArgs e)
-         {
-             format_SD.Enabled = false;
-             format_Yes.Enabled = false;
-             format_No.Enabled = false;
-             Thread.Sleep(2000);
-             format_SD.Enabled = true;
-             format_Yes.Visible = false;
-             format_No.Visible = false;
-         }
-
-         private void format_No_Click_1(object sender, EventArgs e)
-         {
-             format_SD.Enabled = true;
-             format_No.Enabled = false;
-             format_Yes.Enabled = false;
-             Thread.Sleep(200);
-             format_SD.Enabled = true;
-             format_Yes.Visible = false;
-             format_No.Visible = false;
-         }
-
-         private void format_SD_Click_1(object sender, EventArgs e)
-         {
-             format_Yes.Visible = true;
-             format_No.Visible = true;
-             format_SD.Enabled = false;
-             format_No.Enabled = true;
-             format_Yes.Enabled = true;
-         }
-
          private void button6_Click(object sender, EventArgs e)
          {
              MessageBox.Show("Внимание! Для форматирования установите\r\n   SD карту в устройство чтения на ПК", "Вызов программы форматирования SD карты", MessageBoxButtons.OK, MessageBoxIcon.Warning);
              System.Diagnostics.Process.Start(folderFormatName);
+         }
+
+         private void file_del_SD_Click(object sender, EventArgs e)
+         {
+             file_del_yes.Visible = true;
+             file_del_no.Visible = true;
+             file_del_SD.Enabled = false;
+             file_del_no.Enabled = true;
+             file_del_yes.Enabled = true;
+         }
+
+         private void file_del_no_Click(object sender, EventArgs e)
+         {
+             file_del_SD.Enabled = true;
+             file_del_no.Enabled = false;
+             file_del_yes.Enabled = false;
+             Thread.Sleep(200);
+             file_del_SD.Enabled = true;
+             file_del_yes.Visible = false;
+             file_del_no.Visible = false;
+         }
+
+         private void file_del_yes_Click(object sender, EventArgs e)
+         {
+             file_del_SD.Enabled = false;
+             file_del_yes.Enabled = false;
+             file_del_no.Enabled = false;
+             Thread.Sleep(2000);
+             file_del_SD.Enabled = true;
+             file_del_yes.Visible = false;
+             file_del_no.Visible = false;
          }
 
        

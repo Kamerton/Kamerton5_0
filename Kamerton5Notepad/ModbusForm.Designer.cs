@@ -400,9 +400,8 @@ namespace KamertonTest
             this.button11 = new System.Windows.Forms.Button();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.format_No = new System.Windows.Forms.Button();
-            this.format_Yes = new System.Windows.Forms.Button();
-            this.format_SD = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.file_del_SD = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.button21 = new System.Windows.Forms.Button();
@@ -412,7 +411,8 @@ namespace KamertonTest
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox48 = new System.Windows.Forms.TextBox();
             this.textBox45 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.file_del_no = new System.Windows.Forms.Button();
+            this.file_del_yes = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.TabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -628,9 +628,9 @@ namespace KamertonTest
             // 
             // lblResult1
             // 
-            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult1.Location = new System.Drawing.Point(101, 502);
             this.lblResult1.Name = "lblResult1";
@@ -790,9 +790,9 @@ namespace KamertonTest
             // 
             // label78
             // 
-            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label78.Location = new System.Drawing.Point(101, 450);
             this.label78.Name = "label78";
@@ -803,9 +803,9 @@ namespace KamertonTest
             // 
             // lblResult
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblResult.Location = new System.Drawing.Point(101, 558);
             this.lblResult.Name = "lblResult";
@@ -822,7 +822,7 @@ namespace KamertonTest
             this.Label13.Size = new System.Drawing.Size(585, 50);
             this.Label13.TabIndex = 14;
             this.Label13.Text = "Все параметры должны быть выбраны ПРЕЖДЕ, чем открывать порт. После того, как пор" +
-    "т открыт, никаких изменений не может быть сделано";
+                "т открыт, никаких изменений не может быть сделано";
             // 
             // GroupBox2
             // 
@@ -4360,9 +4360,9 @@ namespace KamertonTest
             // 
             // TabControl1
             // 
-            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl1.Controls.Add(this.tabPage3);
             this.TabControl1.Controls.Add(this.tabPage6);
             this.TabControl1.Controls.Add(this.tabPage5);
@@ -4378,10 +4378,10 @@ namespace KamertonTest
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.file_del_yes);
+            this.tabPage4.Controls.Add(this.file_del_no);
             this.tabPage4.Controls.Add(this.button6);
-            this.tabPage4.Controls.Add(this.format_No);
-            this.tabPage4.Controls.Add(this.format_Yes);
-            this.tabPage4.Controls.Add(this.format_SD);
+            this.tabPage4.Controls.Add(this.file_del_SD);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.progressBar3);
             this.tabPage4.Controls.Add(this.button21);
@@ -4397,42 +4397,32 @@ namespace KamertonTest
             this.tabPage4.TabIndex = 7;
             this.tabPage4.Text = "Содержимое файла отчета";
             // 
-            // format_No
+            // button6
             // 
-            this.format_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_No.Location = new System.Drawing.Point(767, 8);
-            this.format_No.Name = "format_No";
-            this.format_No.Size = new System.Drawing.Size(56, 30);
-            this.format_No.TabIndex = 30;
-            this.format_No.Text = "Нет";
-            this.format_No.UseVisualStyleBackColor = true;
-            this.format_No.Visible = false;
-            this.format_No.Click += new System.EventHandler(this.format_No_Click_1);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.Color.Red;
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.Location = new System.Drawing.Point(891, 8);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(70, 62);
+            this.button6.TabIndex = 31;
+            this.button6.Text = "Формат SD\r\n";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // format_Yes
+            // file_del_SD
             // 
-            this.format_Yes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_Yes.Location = new System.Drawing.Point(767, 40);
-            this.format_Yes.Name = "format_Yes";
-            this.format_Yes.Size = new System.Drawing.Size(56, 30);
-            this.format_Yes.TabIndex = 29;
-            this.format_Yes.Text = "Да";
-            this.format_Yes.UseVisualStyleBackColor = true;
-            this.format_Yes.Visible = false;
-            this.format_Yes.Click += new System.EventHandler(this.format_Yes_Click);
-            // 
-            // format_SD
-            // 
-            this.format_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.format_SD.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.format_SD.Image = ((System.Drawing.Image)(resources.GetObject("format_SD.Image")));
-            this.format_SD.Location = new System.Drawing.Point(690, 8);
-            this.format_SD.Name = "format_SD";
-            this.format_SD.Size = new System.Drawing.Size(71, 64);
-            this.format_SD.TabIndex = 28;
-            this.format_SD.Text = "Удалить\r\nфайл на  SD";
-            this.format_SD.UseVisualStyleBackColor = true;
-            this.format_SD.Click += new System.EventHandler(this.format_SD_Click_1);
+            this.file_del_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.file_del_SD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.file_del_SD.Image = ((System.Drawing.Image)(resources.GetObject("file_del_SD.Image")));
+            this.file_del_SD.Location = new System.Drawing.Point(690, 8);
+            this.file_del_SD.Name = "file_del_SD";
+            this.file_del_SD.Size = new System.Drawing.Size(71, 64);
+            this.file_del_SD.TabIndex = 28;
+            this.file_del_SD.Text = "Удалить\r\nфайл на  SD";
+            this.file_del_SD.UseVisualStyleBackColor = true;
+            this.file_del_SD.Click += new System.EventHandler(this.file_del_SD_Click);
             // 
             // label11
             // 
@@ -4529,19 +4519,25 @@ namespace KamertonTest
             this.textBox45.Size = new System.Drawing.Size(987, 499);
             this.textBox45.TabIndex = 0;
             // 
-            // button6
+            // file_del_no
             // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.ForeColor = System.Drawing.Color.Red;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(891, 8);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(70, 62);
-            this.button6.TabIndex = 31;
-            this.button6.Text = "Формат SD\r\n";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.file_del_no.Location = new System.Drawing.Point(767, 9);
+            this.file_del_no.Name = "file_del_no";
+            this.file_del_no.Size = new System.Drawing.Size(75, 23);
+            this.file_del_no.TabIndex = 32;
+            this.file_del_no.Text = "Отменить";
+            this.file_del_no.UseVisualStyleBackColor = true;
+            this.file_del_no.Click += new System.EventHandler(this.file_del_no_Click);
+            // 
+            // file_del_yes
+            // 
+            this.file_del_yes.Location = new System.Drawing.Point(767, 48);
+            this.file_del_yes.Name = "file_del_yes";
+            this.file_del_yes.Size = new System.Drawing.Size(75, 23);
+            this.file_del_yes.TabIndex = 33;
+            this.file_del_yes.Text = "Удалить";
+            this.file_del_yes.UseVisualStyleBackColor = true;
+            this.file_del_yes.Click += new System.EventHandler(this.file_del_yes_Click);
             // 
             // Form1
             // 
@@ -4973,10 +4969,10 @@ namespace KamertonTest
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label167;
-        private System.Windows.Forms.Button format_No;
-        private System.Windows.Forms.Button format_Yes;
-        private System.Windows.Forms.Button format_SD;
+        private System.Windows.Forms.Button file_del_SD;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button file_del_yes;
+        private System.Windows.Forms.Button file_del_no;
     }
 }
 
