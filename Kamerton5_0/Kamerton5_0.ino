@@ -177,14 +177,27 @@ int regcount_err        = 0;                                     // Переменная д
 //#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
+SdFile file;
+Sd2Card card;
+
+uint32_t cardSizeBlocks;
+uint16_t cardCapacityMB;
+
+// cache for SD block
+cache_t cache;
+
 
 // созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
 // Change spiSpeed to SPI_FULL_SPEED for better performance
 // Use SPI_QUARTER_SPEED for even slower SPI bus speed
 const uint8_t spiSpeed = SPI_HALF_SPEED;
 
-// Serial output stream
-ArduinoOutStream cout(Serial);
+
+
+
+
+
+
 
 //++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
 //const uint32_t FILE_BLOCK_COUNT = 256000;
@@ -198,6 +211,8 @@ char fileName_F[13];
 
 char c;  // Для ввода символа с ком порта
 
+// Serial output stream
+ArduinoOutStream cout(Serial);
 
 //*********************Работа с именем файла ******************************
 
@@ -578,6 +593,8 @@ const char  txt_message67[]   PROGMEM            = " ****** Test power start! **
 const char  txt_message68[]   PROGMEM            = " ****** Test Adjusting the brightness of the display! ******"; 
 const char  txt_message69[]   PROGMEM            = "Adjusting the brightness code                              - "   ;
 const char  txt_message70[]   PROGMEM            = "Adjusting the brightness mks                               - "   ;
+
+
 
 
 //++++++++++++++++++++++++++++++ Тексты ошибок ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -981,6 +998,8 @@ void serial_print_date()                           // Печать даты и времени
 
 const int8_t ERROR_LED_PIN = 13;
 
+
+
 void set_time()
 {
 	RTC.adjust(DateTime(__DATE__, __TIME__));
@@ -1055,7 +1074,7 @@ void prer_Kamerton()                                          // Произвести обме
 //	clear_serial1();
 	sendPacketK ();  
 	// Отправить информацию в модуль Камертон
-	//waiting_for_replyK();                                  // Получить подтверждение
+	waiting_for_replyK();                                  // Получить подтверждение
 }
 void sendPacketK () 
 {              // Программа передачи пакета в Камертон
@@ -1494,52 +1513,44 @@ Serial.println();
 
 void list_file()
 {
- while (myFile.openNext(sd.vwd(), O_READ))
+ while (file.openNext(sd.vwd(), O_READ))
   {
-	myFile.printName(&Serial);
+	file.printName(&Serial);
 	Serial.write(' ');
-	myFile.printModifyDateTime(&Serial);
+	file.printModifyDateTime(&Serial);
 	Serial.write(' ');
-	myFile.printFileSize(&Serial);
-	if (myFile.isDir()) 
-	{
+	file.printFileSize(&Serial);
+	if (file.isDir()) {
 	  // Indicate a directory.
-	//  Serial.write('/');
+	  Serial.write('/');
 	}
 	Serial.println();
-	myFile.close();
+	file.close();
   }
-
 }
 void load_list_files()
 {
-	//delay(2000);
+	//wdt_reset();
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
 		}
 	else
 		{
-			while (myFile.openNext(sd.vwd(), O_READ))
-			  {
-				myFile.printName(&Serial2);
-		/*		Serial2.println();*/
-				if (myFile.isDir()) 
-					{
-					  // Indicate a directory.
-					//  Serial.write('/');
-					}
-				Serial2.println();
-				//Serial2.flush();
-				myFile.printName(&Serial);
-				Serial.println();
-				myFile.close();
-			  } 
-		 Serial.println("Files end");
-		 // Serial2.flush();
+	
+		while (file.openNext(sd.vwd(), O_READ))
+		  {
+			file.printName(&Serial2);
+			Serial2.println();
+			file.printName(&Serial);
+			Serial.println();
+		//	wdt_reset();
+			file.close();
+		  } 
+		   Serial2.flush();
 		 }
-	//	delay(1000);
-	//	Serial.println("Files end");
+		delay(1000);
+		Serial.println("Files end");
   regBank.set(adr_control_command,0);
 }
 
@@ -1926,12 +1937,11 @@ void control_command()
         case 25:   
 				send_file_PC();                                 // 
                 break;
-		case 26:  
-			    Serial.println("load_list_files");	
+		case 26:   
 				load_list_files();  
 	            break;
 		case 27:   
-		    //    eraseCard();
+		        eraseCard();
 		        break;
 		
 		
@@ -6105,7 +6115,7 @@ void send_file_PC()
       Serial2.write(myFile.read());
     }
     // close the file:
-    myFile.close();
+   //  myFile.close();
 
    //}
 
@@ -6951,6 +6961,7 @@ modbus registers follow the following format
 	regBank.add(40529);                         // Код регулировки яркости дисплея
 	regBank.add(40530);                         // 
 
+
 	slave._device = &regBank;  
 }
 void test_system()
@@ -7138,6 +7149,45 @@ void set_SD()
 	delay(100);
 	regBank.set(adr_control_command,0);  
 }
+//------------------------------------------------------------------------------
+// flash erase all data
+uint32_t const ERASE_SIZE = 262144L;
+
+void eraseCard() 
+{
+ // cout << endl << F("Erasing\n");
+  uint32_t firstBlock = 0;
+  uint32_t lastBlock;
+  uint16_t n = 0;
+  
+  do {
+    lastBlock = firstBlock + ERASE_SIZE - 1;
+    if (lastBlock >= cardSizeBlocks) {
+      lastBlock = cardSizeBlocks - 1;
+    }
+    if (!card.erase(firstBlock, lastBlock)) 
+	{
+     // sdError("erase failed");
+    }
+   // cout << '.';
+    if ((n++)%32 == 31) 
+	{
+     // cout << endl;
+    }
+    firstBlock += ERASE_SIZE;
+  } while (firstBlock < cardSizeBlocks);
+   // cout << endl;
+  
+  //if (!card.readBlock(0, cache.data))
+  //{
+  // // sdError("readBlock");
+  //}
+ /* 
+  cout << hex << showbase << setfill('0') << internal;
+  cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
+  cout << dec << noshowbase << setfill(' ') << right;
+  cout << F("Erase done\n");*/
+}
 
 void setup()
 {
@@ -7148,13 +7198,13 @@ void setup()
 			Serial.println("RTC failed");
 			while(1);
 		};
-	
 	setup_mcp();                                    // Настроить порты расширения  
 	mcp_Analog.digitalWrite(DTR, HIGH);             // Разрешение вывода (обмена)информации с Камертоном
 	mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Red, HIGH); 
 	Serial.begin(9600);                             // Подключение к USB ПК
 	Serial1.begin(115200);                          // Подключение к звуковому модулю Камертон
+//	slave.setSerial(2,57600);                       // Подключение к протоколу MODBUS компьютера Serial2 
 	slave.setSerial(3,57600);                       // Подключение к протоколу MODBUS компьютера Serial3 
 	Serial2.begin(57600);                            // 
 	Serial.println(" ");
@@ -7176,6 +7226,8 @@ void setup()
 	digitalWrite(kn2Nano, HIGH);
 	digitalWrite(kn3Nano, HIGH);
 
+//	set_serial();                                    // Поиск СОМ порта подключения к компьютеру
+
 	//set_serial();                                    // Поиск СОМ порта подключения к компьютеру
 	AD9850.reset();                                  //reset module
 	delay(500);
@@ -7186,23 +7238,12 @@ void setup()
 
 	// DateTime set_time = DateTime(15, 6, 15, 10, 51, 0); // Занести данные о времени в строку "set_time"
 	// RTC.adjust(set_time);                                // Записа
-	serial_print_date(); 
+	serial_print_date();
 	Serial.println(" ");
-	setup_regModbus();                              // Настройка регистров MODBUS
-	setup_resistor();                                 // Начальные установки резистора
 
-	pinMode(49, OUTPUT);//    заменить 
-	Serial.println("Initializing SD card...");
-	if (!sd.begin(chipSelect)) 
-		{
-			Serial.println("initialization SD failed!");
-			regBank.set(125,false); 
-		}
-	else
-		{
-			Serial.println("initialization SD successfully.");
-			regBank.set(125,true); 
-		}
+	setup_resistor();                               // Начальные установки резистора
+
+	setup_regModbus();                              // Настройка регистров MODBUS
 
 	regs_out[0]= 0x2B;                              // Код первого байта подключения к Камертону 43
 	regs_out[1]= 0xC4;                              // 196 Изменять в реальной схеме
@@ -7216,7 +7257,7 @@ void setup()
 	regBank.set(24,0);                              // XP4-3     sensor "ГГ-Радио2."
 //	regBank.set(8,1);                               // Включить питание Камертон
 	UpdateRegs();                                   // Обновить информацию в регистрах
-	
+
 	#if FASTADC                                     // Ускорить считывание аналогового канала
 	// set prescale to 16
 	sbi(ADCSRA,ADPS2) ;
@@ -7242,6 +7283,38 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	} 
+    Serial.println("Initializing SD card...");
+	//pinMode(49, OUTPUT);//    заменить 
+	pinMode(53, OUTPUT);//    заменить 
+	if (!sd.begin(chipSelect)) 
+		{
+			Serial.println("initialization SD failed!");
+			regBank.set(125,false); 
+		}
+	else
+		{
+			Serial.println("initialization SD successfully.");
+			regBank.set(125,true); 
+		}
+
+
+	 if (!card.begin(chipSelect, spiSpeed)) 
+	 {
+ /*   cout << F(
+           "\nSD initialization failure!\n"
+           "Is the SD card inserted correctly?\n"
+           "Is chip select correct at the top of this program?\n");
+    sdError("card.begin failed");*/
+  }
+  cardSizeBlocks = card.cardSize();
+  if (cardSizeBlocks == 0) 
+  {
+   /* sdError("cardSize");*/
+  }
+  cardCapacityMB = (cardSizeBlocks + 2047)/2048;
+
+
+
 
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
  // Serial.println("Files found on the card (name, date and size in bytes): ");
@@ -7258,11 +7331,10 @@ void setup()
 	list_file();                                     // Вывод списка файлов в СОМ порт  
 	default_mem_porog();
 	prer_Kmerton_On = true;                          // Разрешить прерывания на камертон
-	MsTimer2::start();                               // Включить таймер прерывания
 	mcp_Analog.digitalWrite(Front_led_Red, LOW); 
 	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 //	logTime = micros();
-	//formatCard() ;
+	MsTimer2::start();                               // Включить таймер прерывания
 	Serial.println(" ");                             //
 	Serial.println("System initialization OK!.");    // Информация о завершении настройки
 	//wdt_enable (WDTO_8S); // Для тестов не рекомендуется устанавливать значение менее 8 сек.
@@ -7292,4 +7364,5 @@ void loop()
 	//Serial.print(	regBank.get(136),HEX);    // XP1- 16 HeS2Rs    sensor подключения гарнитуры инструктора с 2 наушниками
 	//Serial.print("--");
 	//Serial.println(	regBank.get(137),HEX);    // XP1- 13 HeS2Ls    sensor подключения гарнитуры инструктора 
- }
+ 
+}
