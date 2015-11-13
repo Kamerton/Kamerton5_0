@@ -5147,10 +5147,12 @@ namespace KamertonTest
                  file_del_SD.Enabled = false;
                  file_del_no.Enabled = true;
                  file_del_yes.Enabled = true;
+                 fileName = comboBox1.SelectedItem.ToString();
+                 MessageBox.Show(("Файл для удаления с SD карты и ПК\r\n\r\n             ") + fileName, "Программа удаления файла с SD карты и ПК", MessageBoxButtons.OK, MessageBoxIcon.Warning);
              }
              else
              {
-                 MessageBox.Show("Файл для удаления с SD карты не указан", "Программа удаления файла с SD карты", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 MessageBox.Show("Файл для удаления с SD карты и ПК не указан", "Программа удаления файла с SD карты и ПК", MessageBoxButtons.OK, MessageBoxIcon.Error);
              }
 
          }
@@ -5171,7 +5173,29 @@ namespace KamertonTest
              file_del_SD.Enabled = false;
              file_del_yes.Enabled = false;
              file_del_no.Enabled = false;
-             Thread.Sleep(2000);
+             if (comboBox1.Text != "")
+             {
+                 //textBox45.Text = comboBox1.SelectedItem.ToString();
+                 //textBox45.Refresh();
+                 //Удаление файла на ПК
+                 fileName = comboBox1.SelectedItem.ToString();
+                 pathStringSD = System.IO.Path.Combine(folderName, "SD");
+                 System.IO.Directory.CreateDirectory(pathStringSD);
+                 pathStringSD = System.IO.Path.Combine(pathStringSD, fileName);
+                 File.Delete(pathStringSD);
+                 //Удаление файла на SD
+                 arduino.Write(comboBox1.SelectedItem.ToString());
+                 slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
+                 startWrReg = 120;                                                 // Получить файл из Камертон 50  
+                 res = myProtocol.writeSingleRegister(slave, startWrReg, 28);
+                 test_end1();
+                 button12.Enabled = true;
+             }
+             else
+             {
+                 MessageBox.Show("Файл для удаления с SD карты и ПК не указан", "Программа удаления файла с SD карты и ПК", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+       //      Thread.Sleep(2000);
              file_del_SD.Enabled = true;
              file_del_yes.Visible = false;
              file_del_no.Visible = false;
