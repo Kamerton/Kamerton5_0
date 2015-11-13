@@ -514,19 +514,19 @@ namespace KamertonTest
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(97, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabel1.Text = "MODBUS Status :";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(94, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(86, 17);
             this.toolStripStatusLabel3.Text = "COM port status";
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(43, 17);
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel5.Text = "RS-232";
             // 
             // toolStripStatusLabel4
@@ -537,7 +537,7 @@ namespace KamertonTest
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(48, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(44, 17);
             this.toolStripStatusLabel2.Text = "Время :";
             // 
             // timer_byte_set
@@ -682,7 +682,7 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult1.Location = new System.Drawing.Point(101, 502);
+            this.lblResult1.Location = new System.Drawing.Point(81, 458);
             this.lblResult1.Name = "lblResult1";
             this.lblResult1.Size = new System.Drawing.Size(860, 68);
             this.lblResult1.TabIndex = 18;
@@ -844,7 +844,7 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label78.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label78.Location = new System.Drawing.Point(101, 450);
+            this.label78.Location = new System.Drawing.Point(81, 390);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(860, 64);
             this.label78.TabIndex = 16;
@@ -857,7 +857,7 @@ namespace KamertonTest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblResult.Location = new System.Drawing.Point(101, 558);
+            this.lblResult.Location = new System.Drawing.Point(81, 539);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(860, 63);
             this.lblResult.TabIndex = 15;
