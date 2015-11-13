@@ -55,9 +55,10 @@ AH_AD9850 AD9850(23, 25, 27, 29);
 #define  Front_led_Red  15                          // Назначение светодиодов на передней панели
 
 //+++++++++++++++++++++++++++++ Внешняя память +++++++++++++++++++++++++++++++++++++++
-int deviceaddress        = 80;          // Адрес микросхемы
-unsigned int eeaddress   =  0;          // Адрес ячейки памяти
-
+int deviceaddress        = 80;                      // Адрес микросхемы памяти
+unsigned int eeaddress   =  0;                      // Адрес ячейки памяти
+byte hi;                                            // Старший байт для преобразования числа
+byte low;                                           // Младший байт для преобразования числа
 
 
 //  Порты управления платой Камертон
@@ -169,7 +170,8 @@ const int adr_reg_ind_DCD      PROGMEM           = 10083;        // Адрес флагa 
 //const int adr_file_name_count  PROGMEM           = 243;          // Адрес хранения переменной счетчика номера файла
 //------------------------------------------------------------------------------------------------------------------
 int regcount_err        = 0;                                     // Переменная для хранения всех ошибок
-
+	//	hi=highByte(n_str_electro);
+	//	low=lowByte(n_str_electro);
 
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
@@ -1930,13 +1932,13 @@ void control_command()
 				test_video();				              //
 				break;
         case 20:                                           // Записать уровни порогов заводские
-				default_mem_porog();
+			    default_mem_porog();
 				break;
         case 21:                                           // 	21 - Записать уровни порогов пользовательские
-			//	set_mem_porog();
+				set_mem_porog();
 				break;
         case 22:                                           // 22 - Получить уровни порогов пользовательские
-//				read_mem_porog();
+				read_mem_porog();
 				break;
         case 23:   
 				controlFileName();                         // Контроль имени файла
@@ -1951,10 +1953,10 @@ void control_command()
 				load_list_files();  
 	            break;
 		case 27:   
-		        eraseCard();
+		        file_del_SD();
 		        break;
          case 28:   
-				file_del_SD();
+				//;
 		        break;
 		
 		default:
@@ -5994,39 +5996,64 @@ void default_mem_porog()  // Запись заводских установок уровней порога
 
 void set_mem_porog()
 {
-	int n_test_mem ;
-	n_test_mem = regBank.get(40128);                               // Номер блока порогов
+	/*
+		Программа записи порогов в EEPROM
+		Стартовый адрес памяти 200
+		Стартовый адрес регистров 40130 
+		Длина блока не более ??? байт
+		regBank.get(40127);  //  Адрес блока регистров для передачи в ПК уровней порогов.
+		regBank.get(40128);  //  Адрес блока памяти для передачи в ПК уровней порогов.
+		regBank.get(40129);  //  Адрес длины блока памяти для передачи в ПК уровней порогов.
+	*/
+	int _adr_reg  = regBank.get(40127);              // Начальный адрес блока регистров, 
+	int _adr_mem  = regBank.get(40128);              // Начальный адрес блока памяти
+	int _step_mem = regBank.get(40129);              // Длина блока с учетом хранения двухбайтных чисел
+	int _u_porog  = 0;                               // Временное хранения содержимого регистра.
+	int i_k       = 0;                               // Смещение адреса блока памяти
 
-	switch (n_test_mem)
-	{
+	for (int i = 0; i < _step_mem;i++)                            // Копирование блока памяти в регистры.        
+		{
+			_u_porog = regBank.get(_adr_reg+i);
+	       // разбираем _u_porog на byte
+		   	hi=highByte(_u_porog);
+			low=lowByte(_u_porog);
+		//	// тут мы эти hi,low можем сохранить EEPROM
+			i2c_eeprom_write_byte(deviceaddress,_adr_mem+i_k, hi); 
+			i_k++;
+			i2c_eeprom_write_byte(deviceaddress,_adr_mem+i_k, low); 
+			i_k++;
+	    }
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	delay(200);
+}
+void read_mem_porog()
+{
+	/*
+		Программа записи уровней порога из памяти в регистры
+		regBank.get(40127);  //  Адрес блока регистров для передачи в ПК уровней порогов.
+		regBank.get(40128);  //  Адрес блока памяти для передачи в ПК уровней порогов.
+		regBank.get(40129);  //  Адрес длины блока памяти для передачи в ПК уровней порогов.
+		Стартовый адрес памяти 200
+		Стартовый адрес регистров 40130 
+		Длина блока не более ??? байт
+	*/
+	int _adr_reg  = regBank.get(40127);              // Начальный адрес блока регистров, 
+	int _adr_mem  = regBank.get(40128);              // Начальный адрес блока памяти
+	int _step_mem = regBank.get(40129);              // Длина блока с учетом хранения двухбайтных чисел
+	int _u_porog = 0;                                      // Временное хранения содержимого регистра.
+	int i_k = 0;                                           // Смещение адреса блока памяти
 
-		case 1:                                                      // headset_instructor
-			    set_mem_regBank(adr_porog_instruktor , 19);          // Последняя цифра означает количество ячеек(порогов) 
-				break;
-		case 2:
-				 set_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
-				break;
-		case 3:
-				set_mem_regBank(adr_porog_MTT , 21);                //MTT                                                    	// Проверить напряжение  питания
-				break;
-		case 4:
-				set_mem_regBank(adr_porog_Microphone, 20);          //mikrophon		              //
-				break;
-		case 5:
-				set_mem_regBank(adr_porog_GGS , 28);                //GGS			              //
-				break;
-        case 6:                                           
-				set_mem_regBank(adr_porog_Radio1 , 20);             //Radio1
-				break;
-        case 7:                                                                // 	
-				set_mem_regBank(adr_porog_Radio2 , 20);             //Radio2
-				break;
- 		default:
-			    break;
-		break;
-	}
-	wdt_reset();
-	regBank.set(40128,0);   
+	for (int i = 0; i < _step_mem;i++)                            // Копирование блока памяти в регистры.        
+		{
+
+		  hi  = i2c_eeprom_read_byte(deviceaddress,_adr_mem+i_k);   // 
+	      i_k++;
+		  low = i2c_eeprom_read_byte(deviceaddress,_adr_mem+i_k);
+		  i_k++;
+		   _u_porog = (hi<<8) | low;                              // собираем как "настоящие программеры"
+		  regBank.set(_adr_reg+i,_u_porog);
+		 }
+	
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
 }
@@ -6040,37 +6067,6 @@ void set_mem_regBank(int adr_mem , int step_mem)
 			i2c_eeprom_write_byte(deviceaddress, _adr_mem + i, regBank.get(40130)+i);
 		}
 }
-void read_mem_porog(int adr_reg, int adr_mem , int step_mem)
-{
-	    //n_str_electro = 0; // Устанавливаем № строки 1
-		//   // разбираем 
-		//	hi=highByte(n_str_electro);
-		//	low=lowByte(n_str_electro);
-		//	// тут мы эти hi,low можем сохранить EEPROM
-		//	i2c_eeprom_write_byte(deviceaddress,adr_n_str_electro, hi); 
-		//	i2c_eeprom_write_byte(deviceaddress,adr_n_str_electro+1, low); 
-		// тут мы эти hi,low можем сохранить, прочитать из eePROM
-  //   hi  = i2c_eeprom_read_byte(deviceaddress,adr_n_str_electro); // 29-30 Номер строки в файле elektro.txt
-  //   low = i2c_eeprom_read_byte(deviceaddress,adr_n_str_electro+1);
-  // 
-	 //n_str_electro = (hi<<8) | low; // собираем как "настоящие программеры"
-	 //  //   n_str_electro = word(hi,low); // или собираем как "ардуинщики"
-	
-
-	int _adr_reg = adr_reg;
-	int _adr_mem = adr_mem;
-	int _step_mem = step_mem;
-
-	for (int i = 0; i < _step_mem;i++)
-		{
-
-
-		//	regBank.set(adr_reg+i,);
-		//	read_mem_regBank(adr_porog_instruktor , 19);
-			//i2c_eeprom_write_byte(deviceaddress, _adr_mem + i, regBank.get(40130)+i);
-		}
-}
-
 
 //void read_mem_porog()
 //{
@@ -6674,11 +6670,11 @@ modbus registers follow the following format
 	regBank.add(40124);  //
 	regBank.add(40125);  //  
 	regBank.add(40126);  //  
-	regBank.add(40127);  //  
-	regBank.add(40128);  //  Адрес программы проверки передать в ПК
-	regBank.add(40129);  //  Адрес программы проверки получить из ПК
+	regBank.add(40127);  //  Адрес блока регистров для передачи в ПК уровней порогов.
+	regBank.add(40128);  //  Адрес блока памяти для передачи в ПК уровней порогов.
+	regBank.add(40129);  //  Адрес длины блока памяти для передачи в ПК уровней порогов.
 
-	regBank.add(40130);  //  Регистры временного хранения для передачи уровней порогов
+	regBank.add(40130);  //  Регистры временного хранения для передачи уровней порогов 
 	regBank.add(40131);  //
 	regBank.add(40132);  //  
 	regBank.add(40133);  //
@@ -6710,6 +6706,17 @@ modbus registers follow the following format
 	regBank.add(40157);  //
     regBank.add(40158);  //  
 	regBank.add(40159);  //
+
+	regBank.add(40160);  //  
+	regBank.add(40161);  //
+	regBank.add(40162);  //  
+	regBank.add(40163);  //
+    regBank.add(40164);  //  
+	regBank.add(40165);  //
+    regBank.add(40166);  //  
+	regBank.add(40167);  //
+    regBank.add(40168);  //  
+	regBank.add(40169);  //
 
 
 	regBank.add(40200);                         // Aдрес счетчика ошибки "Sensor MTT                          XP1- 19 HaSs            OFF - ";

@@ -50,10 +50,10 @@ namespace KamertonTest
         float temp_disp;
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
+        bool[] coilArr_all = new bool[200];
         private int[] test_step = new int[20];
         private int num_module_audio1 = 0;
         private int Sel_Index = 0;
-        bool[] coilArr_all = new bool[200];
         string fileName = "";
         static string folderName = @"C:\Audio log";
         static string folderFormatName = @"C:\Program Files\SDA\SD Formatter\SDFormatter.exe";
@@ -3891,8 +3891,7 @@ namespace KamertonTest
         }
         private void error_list1()                                          //  40200 Получить данные со  счетчиков ошибок  
         {
-            ushort[] readVals = new ushort[10];
-            ushort[] readVolt = new ushort[10];
+            ushort[] readVals = new ushort[150];
             bool[] coilArr = new bool[10];
             startRdReg = 200;
             numRdRegs = 5;
@@ -3929,7 +3928,7 @@ namespace KamertonTest
         }
         private void error_list2()                                          //  40400 Получить данные измерений
         {
-            ushort[] readVolt = new ushort[10];
+            ushort[] readVolt = new ushort[150];
             startRdReg = 200;
             numRdRegs = 5;
   
@@ -3964,9 +3963,9 @@ namespace KamertonTest
         }
         private void error_list3()                                          //  200   Получить данные состояния флага индикации возникновения  ошибки
         {
-            ushort[] readVals = new ushort[10];
-            ushort[] readVolt = new ushort[10];
-            bool[] coilArr = new bool[10];
+            //ushort[] readVals = new ushort[100];
+            //ushort[] readVolt = new ushort[100];
+            bool[] coilArr = new bool[100];
             startCoil = 200;                                                                    // Начальный Адрес 200 флага индикации возникновения  ошибки
             numCoils = 5;
 
@@ -5065,7 +5064,7 @@ namespace KamertonTest
              arduino.Write(textBox45.Text);
           }
 
-         private void button13_Click(object sender, EventArgs e)        // Чтение содержимого файла
+         private void button13_Click(object sender, EventArgs e)                     // Чтение содержимого файла
          {
              Polltimer1.Enabled = false;
              textBox45.Text = "";
@@ -5074,7 +5073,7 @@ namespace KamertonTest
              list_files = false;
                  read_file = true;
 
-                 if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
+                 if (comboBox1.SelectedIndex != -1)                                // Отправить имя файла в Камертон 50  
                  {
                      textBox45.Text = comboBox1.SelectedItem.ToString();
                      textBox45.Refresh();
@@ -5170,7 +5169,7 @@ namespace KamertonTest
 
          private void file_del_yes_Click(object sender, EventArgs e)
          {
-             file_del_SD.Enabled = false;
+             file_del_SD.Enabled = false;                                              // Удалить  файл из SD и ПК
              file_del_yes.Enabled = false;
              file_del_no.Enabled = false;
              if (comboBox1.Text != "")
@@ -5185,8 +5184,8 @@ namespace KamertonTest
                  //Удаление файла на SD
                  arduino.Write(comboBox1.SelectedItem.ToString());
                  slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
-                 startWrReg = 120;                                                 // Получить файл из Камертон 50  
-                 res = myProtocol.writeSingleRegister(slave, startWrReg, 28);
+                 startWrReg = 120;                                                     // Удалить  файл из Камертон 50  
+                 res = myProtocol.writeSingleRegister(slave, startWrReg, 27);
                  test_end1();
                  button12.Enabled = true;
              }
