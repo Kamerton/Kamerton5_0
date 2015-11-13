@@ -32,7 +32,7 @@
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton5_0</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -79,7 +79,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>480F428D5C1C884C6F5FA72AA8DCB12E5C27D56D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AFC600BBA9C514F3C43823034D61FC33CC495510</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -89,7 +89,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -167,9 +167,14 @@
       <ProductName>Microsoft .NET Framework 4 %28x86 и x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>Клиентский профиль .NET Framework 3.5 SP1</ProductName>
+      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -187,11 +192,17 @@
       <ProductName>Установщик Windows 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kamerton5Notepad_3_TemporaryKey.pfx" />
     <None Include="Kamerton5Notepad_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
@@ -205,6 +216,7 @@
     <Content Include="Resources\btSetCustom.Image.png" />
     <Content Include="Resources\btSetSystem.Image.png" />
     <Content Include="Resources\contact_2678.png" />
+    <Content Include="Resources\dotnetfx45_full_x86_x64.exe" />
     <Content Include="Resources\kontact_date2_6701.png" />
     <Content Include="Resources\microphone.png" />
     <Content Include="Resources\microphone_48_3908.png" />
