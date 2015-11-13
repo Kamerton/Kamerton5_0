@@ -198,9 +198,17 @@
   <ItemGroup>
     <Content Include="kcontrol2.ico" />
     <Content Include="Resources\3floppy_unmount_9911.png" />
+    <Content Include="Resources\advancedsettings_2829.png" />
+    <Content Include="Resources\audio-headset_5752.png" />
+    <Content Include="Resources\audio-input-microphone_5699.png" />
+    <Content Include="Resources\audio-input-microphone_9642.png" />
     <Content Include="Resources\btSetCustom.Image.png" />
     <Content Include="Resources\btSetSystem.Image.png" />
+    <Content Include="Resources\contact_2678.png" />
     <Content Include="Resources\kontact_date2_6701.png" />
+    <Content Include="Resources\microphone.png" />
+    <Content Include="Resources\microphone_48_3908.png" />
+    <Content Include="Resources\preferences-desktop-sound_3139.png" />
     <Content Include="Resources\SDFormatter V4.1.png" />
     <Content Include="Resources\usb.png" />
     <Content Include="set_MODBUS_port.txt" />

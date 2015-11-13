@@ -48,6 +48,8 @@ namespace KamertonTest
         bool list_files = false;
         bool read_file = false;
         float temp_disp;
+        ushort[] porog_min_all = new ushort[200];
+        ushort[] porog_max_all = new ushort[200];
         ushort[] readVals_all = new ushort[200];
         ushort[] readVolt_all = new ushort[200];
         bool[] coilArr_all = new bool[200];
@@ -92,7 +94,7 @@ namespace KamertonTest
             cmdOpenSerial2();
             serviceSet();
             serial_connect();
-            TabControl1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
+            param_Test1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
         }
 
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
@@ -1986,7 +1988,7 @@ namespace KamertonTest
         #region Button test
         private void tabPage5_Click(object sender, EventArgs e)
         {
-            if (TabControl1.SelectedIndex == 2)
+            if (param_Test1.SelectedIndex == 2)
             {
                 // Управление вкладкой   "Байты обмена с Камертон"
 
@@ -5197,6 +5199,11 @@ namespace KamertonTest
              file_del_SD.Enabled = true;
              file_del_yes.Visible = false;
              file_del_no.Visible = false;
+         }
+
+         private void button88_Click(object sender, EventArgs e)
+         {
+
          }
 
        

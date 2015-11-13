@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="287744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton5Notepad.exe" size="340480">
       <assemblyIdentity name="Kamerton5Notepad" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zaeFvmfhCfWWtkrevF3F9qzn8A8=</dsig:DigestValue>
+        <dsig:DigestValue>t3n6ZBx2bj8zj/mtDOKgufmTNu8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -93,6 +93,42 @@
       <dsig:DigestValue>op7WASivRlfX0Iivy5+m3wFaiz8=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Resources\advancedsettings_2829.png" size="8757">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>xpf2+wP2Ydc2GUDYuNMUeCXV+8c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\audio-headset_5752.png" size="2482">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>t/vNuujFKMt/xJI9c/Y21XyoxKw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\audio-input-microphone_5699.png" size="2831">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ClYG4QT4Z/QzwHGhp1/YfJhBY3k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\audio-input-microphone_9642.png" size="3782">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>UsnhGqhrt5Akyca1MN8tkg33miM=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\btSetCustom.Image.png" size="558">
     <hash>
       <dsig:Transforms>
@@ -111,6 +147,15 @@
       <dsig:DigestValue>50tlrmiPYvx92Es4a4K41kxmdeA=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Resources\contact_2678.png" size="3923">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>Ua/H/cFG+wyFMtG8vi3NN/+Qgzc=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Resources\kontact_date2_6701.png" size="5258">
     <hash>
       <dsig:Transforms>
@@ -118,6 +163,33 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>cYOPBCtfdM/T7U/sNjE+eT6FqzA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\microphone.png" size="35949">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>iyvkuM7HRI4B4f80HtujuZJ8GyE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\microphone_48_3908.png" size="3325">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>qsduzPo4XKnM0UjJz4rzXpVFWRQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\preferences-desktop-sound_3139.png" size="5227">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>MLzEes93x0LOnEB2Z99tZxR5jys=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\SDFormatter V4.1.png" size="3495">
