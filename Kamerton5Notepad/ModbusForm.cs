@@ -207,6 +207,8 @@ namespace KamertonTest
                     button13.Enabled = false; 
                     slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                     startCoil = 8;                                                            // Управление питанием платы "Камертон"
+                    file_del_yes.Visible = false;
+                    file_del_no.Visible = false;
                     res = myProtocol.writeCoil(slave, startCoil, false);                       // Включить питание платы "Камертон"
                     Polltimer1.Enabled = true;
 
@@ -5056,7 +5058,6 @@ namespace KamertonTest
 
          private void button12_Click(object sender, EventArgs e)
          {
-            // list_files = false;
              read_file = false;
              if (comboBox1.SelectedIndex != -1)
              textBox45.Text = comboBox1.SelectedItem.ToString();
@@ -5069,12 +5070,8 @@ namespace KamertonTest
              Polltimer1.Enabled = false;
              textBox45.Text = "";
              textBox45.Refresh();
-            // Thread.Sleep(1000);
              progressBar3.Value = 1;
              list_files = false;
-
-             //if (list_files == true)
-             //{
                  read_file = true;
 
                  if (comboBox1.SelectedIndex != -1)                    // Отправить имя файла в Камертон 50  
@@ -5082,18 +5079,12 @@ namespace KamertonTest
                      textBox45.Text = comboBox1.SelectedItem.ToString();
                      textBox45.Refresh();
                      arduino.Write(comboBox1.SelectedItem.ToString());
-                   //  arduino.Write(textBox45.Text);
-                    // Thread.Sleep(1000);
                      slave = int.Parse(txtSlave.Text, CultureInfo.CurrentCulture);
                      startWrReg = 120;                                                 // Получить файл из Камертон 50  
                      res = myProtocol.writeSingleRegister(slave, startWrReg, 25);
                      test_end1();
-                   //  Thread.Sleep(1000);
                      button12.Enabled = true;
                  }
-
-            // }
-          
             Polltimer1.Enabled = true;
 
          }
@@ -5149,11 +5140,19 @@ namespace KamertonTest
 
          private void file_del_SD_Click(object sender, EventArgs e)
          {
-             file_del_yes.Visible = true;
-             file_del_no.Visible = true;
-             file_del_SD.Enabled = false;
-             file_del_no.Enabled = true;
-             file_del_yes.Enabled = true;
+             if (comboBox1.Text != "")
+             {
+                 file_del_yes.Visible = true;
+                 file_del_no.Visible = true;
+                 file_del_SD.Enabled = false;
+                 file_del_no.Enabled = true;
+                 file_del_yes.Enabled = true;
+             }
+             else
+             {
+                 MessageBox.Show("Файл для удаления с SD карты не указан", "Программа удаления файла с SD карты", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+
          }
 
          private void file_del_no_Click(object sender, EventArgs e)

@@ -4402,9 +4402,9 @@ namespace KamertonTest
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button6.ForeColor = System.Drawing.Color.Red;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(891, 8);
+            this.button6.Location = new System.Drawing.Point(891, 7);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(70, 62);
+            this.button6.Size = new System.Drawing.Size(70, 64);
             this.button6.TabIndex = 31;
             this.button6.Text = "Формат SD\r\n";
             this.button6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -4416,7 +4416,7 @@ namespace KamertonTest
             this.file_del_SD.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.file_del_SD.ForeColor = System.Drawing.SystemColors.ControlText;
             this.file_del_SD.Image = ((System.Drawing.Image)(resources.GetObject("file_del_SD.Image")));
-            this.file_del_SD.Location = new System.Drawing.Point(690, 8);
+            this.file_del_SD.Location = new System.Drawing.Point(690, 7);
             this.file_del_SD.Name = "file_del_SD";
             this.file_del_SD.Size = new System.Drawing.Size(71, 64);
             this.file_del_SD.TabIndex = 28;
@@ -4445,7 +4445,7 @@ namespace KamertonTest
             this.button21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button21.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button21.Image = ((System.Drawing.Image)(resources.GetObject("button21.Image")));
-            this.button21.Location = new System.Drawing.Point(587, 8);
+            this.button21.Location = new System.Drawing.Point(587, 7);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(79, 64);
             this.button21.TabIndex = 22;
@@ -4521,22 +4521,24 @@ namespace KamertonTest
             // 
             // file_del_no
             // 
-            this.file_del_no.Location = new System.Drawing.Point(767, 9);
+            this.file_del_no.Location = new System.Drawing.Point(767, 7);
             this.file_del_no.Name = "file_del_no";
-            this.file_del_no.Size = new System.Drawing.Size(75, 23);
+            this.file_del_no.Size = new System.Drawing.Size(75, 25);
             this.file_del_no.TabIndex = 32;
             this.file_del_no.Text = "Отменить";
             this.file_del_no.UseVisualStyleBackColor = true;
+            this.file_del_no.Visible = false;
             this.file_del_no.Click += new System.EventHandler(this.file_del_no_Click);
             // 
             // file_del_yes
             // 
-            this.file_del_yes.Location = new System.Drawing.Point(767, 48);
+            this.file_del_yes.Location = new System.Drawing.Point(767, 46);
             this.file_del_yes.Name = "file_del_yes";
-            this.file_del_yes.Size = new System.Drawing.Size(75, 23);
+            this.file_del_yes.Size = new System.Drawing.Size(75, 25);
             this.file_del_yes.TabIndex = 33;
             this.file_del_yes.Text = "Удалить";
             this.file_del_yes.UseVisualStyleBackColor = true;
+            this.file_del_yes.Visible = false;
             this.file_del_yes.Click += new System.EventHandler(this.file_del_yes_Click);
             // 
             // Form1

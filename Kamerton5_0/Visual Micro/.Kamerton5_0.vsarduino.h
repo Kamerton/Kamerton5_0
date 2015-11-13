@@ -160,6 +160,7 @@ void clear_serial2();
 void clear_serial1();
 void clear_serial3();
 void set_SD();
+void file_del_SD();
 void eraseCard();
 //
 //

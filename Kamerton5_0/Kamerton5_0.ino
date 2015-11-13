@@ -174,7 +174,6 @@ int regcount_err        = 0;                                     // Переменная д
 //++++++++++++++++++++++ Работа с файлами +++++++++++++++++++++++++++++++++++++++
 //#define chipSelect SS
 #define chipSelect 49   // Основной
-//#define chipSelect 53    // Временно
 SdFat sd;
 File myFile;
 SdFile file;
@@ -1943,7 +1942,9 @@ void control_command()
 		case 27:   
 		        eraseCard();
 		        break;
-		
+         case 28:   
+				file_del_SD();
+		        break;
 		
 		default:
 
@@ -7149,6 +7150,38 @@ void set_SD()
 	delay(100);
 	regBank.set(adr_control_command,0);  
 }
+void file_del_SD()
+{
+	if (!sd.begin(chipSelect)) 
+		{
+			//Serial.println("initialization SD failed!");
+			//regBank.set(125,false); 
+		}
+	else
+		{
+			  myFile = sd.open(fileName_F);
+				//myFile = sd.open("example.txt", FILE_WRITE);
+				//myFile.close();
+
+			  // Check to see if the file exists:
+			  if (sd.exists(fileName_F)) 
+			  {
+				 // regBank.set(125,true); 
+				  sd.remove(fileName_F);
+			   // Serial.println("example.txt exists.");
+			  }
+			  else 
+			  {
+			   // Serial.println("example.txt doesn't exist.");
+				//regBank.set(125,false); 
+			  }
+	    	}
+
+	UpdateRegs(); 
+	delay(100);
+	regBank.set(adr_control_command,0);  
+
+}
 //------------------------------------------------------------------------------
 // flash erase all data
 uint32_t const ERASE_SIZE = 262144L;
@@ -7284,8 +7317,7 @@ void setup()
 	   regBank.set(i,0);   
 	} 
     Serial.println("Initializing SD card...");
-	//pinMode(49, OUTPUT);//    заменить 
-	pinMode(53, OUTPUT);//    заменить 
+	pinMode(49, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
 			Serial.println("initialization SD failed!");
@@ -7296,25 +7328,6 @@ void setup()
 			Serial.println("initialization SD successfully.");
 			regBank.set(125,true); 
 		}
-
-
-	 if (!card.begin(chipSelect, spiSpeed)) 
-	 {
- /*   cout << F(
-           "\nSD initialization failure!\n"
-           "Is the SD card inserted correctly?\n"
-           "Is chip select correct at the top of this program?\n");
-    sdError("card.begin failed");*/
-  }
-  cardSizeBlocks = card.cardSize();
-  if (cardSizeBlocks == 0) 
-  {
-   /* sdError("cardSize");*/
-  }
-  cardCapacityMB = (cardSizeBlocks + 2047)/2048;
-
-
-
 
 	SdFile::dateTimeCallback(dateTime);             // Настройка времени записи файла
  // Serial.println("Files found on the card (name, date and size in bytes): ");
