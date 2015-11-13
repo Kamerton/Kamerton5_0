@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\Kamerton5.0_64\|C:\Kamerton50\|C:\Program Files\|E:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\publish\|D:\1 SVN Kamerton5_0\trunk\Kamerton5Notepad\publish\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory>\\Decima-files\users\nto\Мосейчук\|http://localhost/KamertonTestFin/</UpdateUrlHistory>
+    <BootstrapperUrlHistory>file:///C:/VirtualBuffer/|E:\1 SVN Kamerton4_0\trunk\KamertonTestFin</BootstrapperUrlHistory>
+    <ErrorReportUrlHistory />
+    <FallbackCulture>ru-RU</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+</Project>
