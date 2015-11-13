@@ -234,8 +234,6 @@
     <Content Include="Resources\kget_1222.png" />
     <Content Include="Resources\kget_4621.png" />
     <Content Include="Resources\kontact_date2_6701.png" />
-    <Content Include="Resources\kontact_date_5220.png" />
-    <Content Include="Resources\kontact_date_6701.png" />
     <Content Include="Resources\media-flash-sd-mmc_3272.png" />
     <Content Include="Resources\media-flash-sd-mmc_4359.png" />
     <Content Include="Resources\media-flash-sd-mmc_5774.png" />
@@ -250,7 +248,6 @@
     <Content Include="Resources\preferences-system-time_4207.png" />
     <Content Include="Resources\preferences-system-time_5235.png" />
     <Content Include="Resources\preferences-system-time_6032.png" />
-    <Content Include="Resources\SDFormatter V4.0.png" />
     <Content Include="Resources\SDFormatter V4.1.png" />
     <Content Include="Resources\usb.png" />
     <Content Include="Resources\user-trash_2049.png" />

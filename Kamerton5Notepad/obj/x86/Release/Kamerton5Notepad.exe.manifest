@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Iaa3skkrlvyDtwGrphQdjppU07w=</dsig:DigestValue>
+        <dsig:DigestValue>1MRHAq7yfX0vC4zmqp9P/VDUYtk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -417,24 +417,6 @@
       <dsig:DigestValue>zEnThnmEYR+1+TwPKhNeK5QrGmo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Resources\kontact_date_5220.png" size="2096">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>p8QnQGx8nZnRz0iTzZny1R2APtQ=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Resources\kontact_date_6701.png" size="15086">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>CEIxE4OUJPX1xM3OZ2NvQfMjhfI=</dsig:DigestValue>
-    </hash>
-  </file>
   <file name="Resources\kontact_date2_6701.png" size="5258">
     <hash>
       <dsig:Transforms>
@@ -568,15 +550,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>XrVuUsReZv4eGtILpTZh6cUFefM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Resources\SDFormatter V4.0.png" size="3337">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>OE3tLqLBvU+9FFClKrPXARC6EtM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\SDFormatter V4.1.png" size="3495">
