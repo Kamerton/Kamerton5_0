@@ -4063,7 +4063,7 @@ namespace KamertonTest
             // 
             this.richTextBox1.Location = new System.Drawing.Point(0, 21);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(198, 368);
+            this.richTextBox1.Size = new System.Drawing.Size(149, 362);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -4071,9 +4071,9 @@ namespace KamertonTest
             // button1
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(819, 456);
+            this.button1.Location = new System.Drawing.Point(831, 435);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 23);
+            this.button1.Size = new System.Drawing.Size(127, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Получить ошибки";
             this.button1.UseVisualStyleBackColor = true;
