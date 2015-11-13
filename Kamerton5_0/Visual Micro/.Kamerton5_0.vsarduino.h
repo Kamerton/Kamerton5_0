@@ -147,7 +147,7 @@ void i2c_test1();
 void default_mem_porog();
 void set_mem_porog();
 void set_mem_regBank(int adr_mem , int step_mem);
-void read_mem_porog();
+void read_mem_porog(int adr_reg, int adr_mem , int step_mem);
 void read_mem_regBank(int adr_mem , int step_mem);
 void send_file_PC();
 void setup_mcp();
@@ -161,7 +161,6 @@ void clear_serial1();
 void clear_serial3();
 void set_SD();
 void file_del_SD();
-void eraseCard();
 //
 //
 

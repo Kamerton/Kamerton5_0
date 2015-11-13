@@ -315,6 +315,17 @@ const  int adr_porog_Radio2                = 120;   // 20 адресов
 const  int adr_porog_Microphone            = 140;   //  
 // end                                     = 160
 
+//Новые пороги две ячейки, 2 байта
+const  int adr_int_porog_instruktor            = 200;     // 19 адресов 
+const  int adr_int_porog_dispatcher            = 250;    // 19 адресов 
+const  int adr_int_porog_MTT                   = 300;    // 21 адресов 
+const  int adr_int_porog_GGS                   = 350;    // 29 адресов 
+const  int adr_int_porog_Radio1                = 420;   // 20 адресов 
+const  int adr_int_porog_Radio2                = 460;   // 20 адресов 
+const  int adr_int_porog_Microphone            = 500;   //
+//end                                            550;
+
+
 byte por_buffer[30] ;
 
 //const byte porog_instruktor[]    PROGMEM  = {30,30,35,35,35,35,35,35,35,35,35,150,150,35,35,35,35,35,35,35,254};
@@ -1922,10 +1933,10 @@ void control_command()
 				default_mem_porog();
 				break;
         case 21:                                           // 	21 - Записать уровни порогов пользовательские
-				set_mem_porog();
+			//	set_mem_porog();
 				break;
         case 22:                                           // 22 - Получить уровни порогов пользовательские
-				read_mem_porog();
+//				read_mem_porog();
 				break;
         case 23:   
 				controlFileName();                         // Контроль имени файла
@@ -5984,13 +5995,13 @@ void default_mem_porog()  // Запись заводских установок уровней порога
 void set_mem_porog()
 {
 	int n_test_mem ;
-	n_test_mem = regBank.get(40128); 
+	n_test_mem = regBank.get(40128);                               // Номер блока порогов
 
 	switch (n_test_mem)
 	{
 
 		case 1:                                                      // headset_instructor
-			    set_mem_regBank(adr_porog_instruktor , 19);
+			    set_mem_regBank(adr_porog_instruktor , 19);          // Последняя цифра означает количество ячеек(порогов) 
 				break;
 		case 2:
 				 set_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
@@ -6013,13 +6024,13 @@ void set_mem_porog()
  		default:
 			    break;
 		break;
-
 	}
 	wdt_reset();
 	regBank.set(40128,0);   
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
 }
+
 void set_mem_regBank(int adr_mem , int step_mem)
 {
 	int _adr_mem = adr_mem;
@@ -6029,46 +6040,77 @@ void set_mem_regBank(int adr_mem , int step_mem)
 			i2c_eeprom_write_byte(deviceaddress, _adr_mem + i, regBank.get(40130)+i);
 		}
 }
-
-void read_mem_porog()
+void read_mem_porog(int adr_reg, int adr_mem , int step_mem)
 {
-	int n_test_mem ;
-	n_test_mem = regBank.get(40129); 
+	    //n_str_electro = 0; // Устанавливаем № строки 1
+		//   // разбираем 
+		//	hi=highByte(n_str_electro);
+		//	low=lowByte(n_str_electro);
+		//	// тут мы эти hi,low можем сохранить EEPROM
+		//	i2c_eeprom_write_byte(deviceaddress,adr_n_str_electro, hi); 
+		//	i2c_eeprom_write_byte(deviceaddress,adr_n_str_electro+1, low); 
+		// тут мы эти hi,low можем сохранить, прочитать из eePROM
+  //   hi  = i2c_eeprom_read_byte(deviceaddress,adr_n_str_electro); // 29-30 Номер строки в файле elektro.txt
+  //   low = i2c_eeprom_read_byte(deviceaddress,adr_n_str_electro+1);
+  // 
+	 //n_str_electro = (hi<<8) | low; // собираем как "настоящие программеры"
+	 //  //   n_str_electro = word(hi,low); // или собираем как "ардуинщики"
+	
 
-	switch (n_test_mem)
-	{
+	int _adr_reg = adr_reg;
+	int _adr_mem = adr_mem;
+	int _step_mem = step_mem;
 
-		case 1:                                                      // headset_instructor
-			    read_mem_regBank(adr_porog_instruktor , 19);
-				break;
-		case 2:
-				 read_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
-				break;
-		case 3:
-				read_mem_regBank(adr_porog_MTT , 21);                //MTT                                                    	// Проверить напряжение  питания
-				break;
-		case 4:
-				read_mem_regBank(adr_porog_Microphone, 20);          //mikrophon		              //
-				break;
-		case 5:
-				read_mem_regBank(adr_porog_GGS , 28);                //GGS			              //
-				break;
-        case 6:                                           
-				read_mem_regBank(adr_porog_Radio1 , 20);             //Radio1
-				break;
-        case 7:                                                                // 	
-				read_mem_regBank(adr_porog_Radio2 , 20);             //Radio2
-				break;
- 		default:
-			    break;
-		break;
+	for (int i = 0; i < _step_mem;i++)
+		{
 
-	}
-	wdt_reset();
-	regBank.set(40129,0);  
-	regBank.set(adr_control_command,0);                                             // Завершить программу    
-	delay(200);
+
+		//	regBank.set(adr_reg+i,);
+		//	read_mem_regBank(adr_porog_instruktor , 19);
+			//i2c_eeprom_write_byte(deviceaddress, _adr_mem + i, regBank.get(40130)+i);
+		}
 }
+
+
+//void read_mem_porog()
+//{
+//	int n_test_mem ;
+//	n_test_mem = regBank.get(40129); 
+//
+//	switch (n_test_mem)
+//	{
+//
+//		case 1:                                                      // headset_instructor
+//			    read_mem_regBank(adr_porog_instruktor , 19);
+//				break;
+//		case 2:
+//				 read_mem_regBank(adr_porog_dispatcher , 19);        //headset_dispatcher			                                        // Сброс счетчиков ошибок                    
+//				break;
+//		case 3:
+//				read_mem_regBank(adr_porog_MTT , 21);                //MTT                                                    	// Проверить напряжение  питания
+//				break;
+//		case 4:
+//				read_mem_regBank(adr_porog_Microphone, 20);          //mikrophon		              //
+//				break;
+//		case 5:
+//				read_mem_regBank(adr_porog_GGS , 28);                //GGS			              //
+//				break;
+//        case 6:                                           
+//				read_mem_regBank(adr_porog_Radio1 , 20);             //Radio1
+//				break;
+//        case 7:                                                                // 	
+//				read_mem_regBank(adr_porog_Radio2 , 20);             //Radio2
+//				break;
+// 		default:
+//			    break;
+//		break;
+//
+//	}
+//	wdt_reset();
+//	regBank.set(40129,0);  
+//	regBank.set(adr_control_command,0);                                             // Завершить программу    
+//	delay(200);
+//}
 void read_mem_regBank(int adr_mem , int step_mem)
 {
 	int _adr_mem = adr_mem;
@@ -7183,44 +7225,6 @@ void file_del_SD()
 
 }
 //------------------------------------------------------------------------------
-// flash erase all data
-uint32_t const ERASE_SIZE = 262144L;
-
-void eraseCard() 
-{
- // cout << endl << F("Erasing\n");
-  uint32_t firstBlock = 0;
-  uint32_t lastBlock;
-  uint16_t n = 0;
-  
-  do {
-    lastBlock = firstBlock + ERASE_SIZE - 1;
-    if (lastBlock >= cardSizeBlocks) {
-      lastBlock = cardSizeBlocks - 1;
-    }
-    if (!card.erase(firstBlock, lastBlock)) 
-	{
-     // sdError("erase failed");
-    }
-   // cout << '.';
-    if ((n++)%32 == 31) 
-	{
-     // cout << endl;
-    }
-    firstBlock += ERASE_SIZE;
-  } while (firstBlock < cardSizeBlocks);
-   // cout << endl;
-  
-  //if (!card.readBlock(0, cache.data))
-  //{
-  // // sdError("readBlock");
-  //}
- /* 
-  cout << hex << showbase << setfill('0') << internal;
-  cout << F("All data set to ") << setw(4) << int(cache.data[0]) << endl;
-  cout << dec << noshowbase << setfill(' ') << right;
-  cout << F("Erase done\n");*/
-}
 
 void setup()
 {
