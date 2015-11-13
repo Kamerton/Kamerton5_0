@@ -6,11 +6,11 @@ using System.Resources;
 // Общие сведения об этой сборке предоставляются следующим набором 
 // атрибутов. Отредактируйте значения этих атрибутов, чтобы изменить
 // общие сведения об этой сборке.
-[assembly: AssemblyTitle("Kamerton5Notepad")]
-[assembly: AssemblyDescription("Kamerton5Notepad")]
+[assembly: AssemblyTitle("Kamerton50_x86")]
+[assembly: AssemblyDescription("Kamerton50_x86")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Децима")]
-[assembly: AssemblyProduct("Kamerton5Notepad.Properties")]
+[assembly: AssemblyProduct("Kamerton50_x86.Properties")]
 [assembly: AssemblyCopyright("Copyright © ООО Децима 2015")]
 [assembly: AssemblyTrademark("Decima")]
 [assembly: AssemblyCulture("")]

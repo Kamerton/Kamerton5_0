@@ -5021,6 +5021,7 @@ namespace KamertonTest
             this.ClientSize = new System.Drawing.Size(992, 666);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.param_Test1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Программа тестирования платы  \" Аудио - 1\" версия 5.0";
             this.Load += new System.EventHandler(this.Form1_Load);

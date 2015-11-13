@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kamerton5Notepad", "Kamerton5Notepad.csproj", "{EE4A3177-0311-4981-B7AF-9458829A013D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kamerton 5.0 x86", "Kamerton 5.0 x86.csproj", "{EE4A3177-0311-4981-B7AF-9458829A013D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,8 +8,8 @@
     <ProjectGuid>{EE4A3177-0311-4981-B7AF-9458829A013D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kamerton5Notepad</RootNamespace>
-    <AssemblyName>Kamerton5Notepad</AssemblyName>
+    <RootNamespace>Kamerton50_x86</RootNamespace>
+    <AssemblyName>Kamerton50_x86</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -17,7 +17,7 @@
     <UpgradeBackupLocation />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Kamerton50\</PublishUrl>
+    <PublishUrl>C:\Kamerton50_x86\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,9 +28,9 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <UpdateUrl>\\Decima-files\users\nto\Мосейчук\</UpdateUrl>
-    <ProductName>Kamerton5_0</ProductName>
+    <ProductName>Kamerton50_x86</ProductName>
     <PublisherName>Децима</PublisherName>
-    <SuiteName>Kamerton5_0</SuiteName>
+    <SuiteName>Kamerton50_x86</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
@@ -174,7 +174,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
+      <ProductName>Клиентский профиль .NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

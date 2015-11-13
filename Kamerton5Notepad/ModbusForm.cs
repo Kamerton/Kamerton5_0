@@ -10,7 +10,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Globalization;
 using System.Threading;
-using Kamerton5Notepad;
+using Kamerton50_x86;
 using System.Linq;
 using FieldTalk.Modbus.Master;
 
