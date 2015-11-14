@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton50_x86.exe" size="352256">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton50_x86.exe" size="365056">
       <assemblyIdentity name="Kamerton50_x86" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>96RV6ZXhTcTnORb9nKcmJZljv+U=</dsig:DigestValue>
+        <dsig:DigestValue>b9hap0KOhCQCR6X8B7lLoYW0kNw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -82,6 +82,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>sNhm4hj0k1WWNuphLRzULshOe4U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Oscilloscope\Osc_DLL.dll" size="710144">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>yr/1XqqGAdscEPVZIJXfg0elcPI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\3floppy_unmount_9911.png" size="2827">

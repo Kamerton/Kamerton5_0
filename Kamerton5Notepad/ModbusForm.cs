@@ -91,14 +91,6 @@ namespace KamertonTest
 
         #endregion
 
-
-       
-
-
-
-
-
-
         private MbusMasterFunctions myProtocol;
         private int slave;
         private int startCoil;
@@ -161,6 +153,7 @@ namespace KamertonTest
             serviceSet();
             serial_connect();
             param_Test1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
+
         }
 
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
