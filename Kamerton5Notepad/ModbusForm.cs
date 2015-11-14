@@ -37,10 +37,62 @@ namespace KamertonTest
     public partial class Form1 : Form
     {
 
+         #region Variables and objects
+        // Осциллограф
+        /// <summary>
+        /// Timer to update terminal textbox at fixed interval.
+        /// </summary>
+        private System.Windows.Forms.Timer formUpdateTimer = new System.Windows.Forms.Timer();
+
+        /// <summary>
+        /// SerialPort object.
+        /// </summary>
+        private SerialPort serialPort = new SerialPort();
+
+        /// <summary>
+        /// Sample counter to calculate performance statics.
+        /// </summary>
+        private SampleCounter sampleCounter = new SampleCounter();
+
+        /// <summary>
+        /// TextBoxBuffer containing text printed to terminal.
+        /// </summary>
+        private TextBoxBuffer textBoxBuffer = new TextBoxBuffer(4096);
+
+        /// <summary>
+        /// ASCII buffer for decoding CSVs in serial stream.
+        /// </summary>
+        private string asciiBuf = "";
+
+        /// <summary>
+        /// Oscilloscope channel values decoded from serial stream.
+        /// </summary>
+        private float[] channels = new float[9] { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+
+        /// <summary>
+        /// Oscilloscope for channels 1, 2 and 3.
+        /// </summary>
+        private Oscilloscope oscilloscope123 = Oscilloscope.CreateScope("Oscilloscope/Oscilloscope_settings.ini", "");
+
+        /// <summary>
+        /// Oscilloscope for channels 4, 5 and 6.
+        /// </summary>
+        private Oscilloscope oscilloscope456 = Oscilloscope.CreateScope("Oscilloscope/Oscilloscope_settings.ini", "");
+
+        /// <summary>
+        /// Oscilloscope for channels 7, 8 and 9.
+        /// </summary>
+        private Oscilloscope oscilloscope789 = Oscilloscope.CreateScope("Oscilloscope/Oscilloscope_settings.ini", "");
+
+        /// <summary>
+        /// CSV file writer.
+        /// </summary>
+        private CsvFileWriter csvFileWriter = null;
+
+        #endregion
 
 
-
-
+       
 
 
 
@@ -5223,8 +5275,7 @@ namespace KamertonTest
 
          private void button60_Click_2(object sender, EventArgs e)
          {
-             Form2 frm = new Form2(this);
-             frm.Show();
+        
            
          }
 

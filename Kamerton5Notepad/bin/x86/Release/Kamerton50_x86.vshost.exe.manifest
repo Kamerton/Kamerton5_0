@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton50_x86.exe" size="351744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Kamerton50_x86.exe" size="352256">
       <assemblyIdentity name="Kamerton50_x86" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mOmQ2JxwYu3OTe+ztDdXw9nI04o=</dsig:DigestValue>
+        <dsig:DigestValue>96RV6ZXhTcTnORb9nKcmJZljv+U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

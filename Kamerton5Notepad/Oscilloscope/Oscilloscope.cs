@@ -479,7 +479,7 @@ using System.Runtime.InteropServices;
 
 
 // Begin Oscilloscope DLL Wrapper Implementation
-namespace Serial_Oscilloscope
+namespace KamertonTest
 {
     sealed class Oscilloscope : IDisposable
     {
