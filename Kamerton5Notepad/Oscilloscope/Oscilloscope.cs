@@ -1797,20 +1797,20 @@ namespace KamertonTest
             {
                 switch (ErrorNum)
                 {
-                    case SCOPE_CREATION_ERROR:
-                        throw new Exception("Oscilloscope Creation Failed.");
-                    case SCOPE_HANDLE_ERROR:
-                        throw new Exception("Oscilloscope Access Failed.");
-                    case SCOPE_DISPOSED_ERROR:
-                        throw new Exception("Oscilloscope has been Disposed.");
-                    case CAPTIONSIZE_ERROR:
-                        throw new Exception("Caption Too Long.");
-                    case SCOPE_TRIGGERSOURCE_ERROR:
-                        throw new Exception("The Oscilloscope threw a Set Trigger Source Exception and must be Closed.");
-                    case SCOPE_TRIGGEREDGE_ERROR:
-                        throw new Exception("The Oscilloscope threw a Set Trigger Edge Exception and must be Closed.");
-                    case SCOPE_NOT_VISIBLE:
-                        throw new Exception("This Property Cannot be Accessed when the Oscilloscope is in Hide Mode.");
+                    //case SCOPE_CREATION_ERROR:
+                    //    throw new Exception("Oscilloscope Creation Failed.");
+                    ////case SCOPE_HANDLE_ERROR:
+                    ////    throw new Exception("Oscilloscope Access Failed.");
+                    //case SCOPE_DISPOSED_ERROR:
+                    //    throw new Exception("Oscilloscope has been Disposed.");
+                    //case CAPTIONSIZE_ERROR:
+                    //    throw new Exception("Caption Too Long.");
+                    //case SCOPE_TRIGGERSOURCE_ERROR:
+                    //    throw new Exception("The Oscilloscope threw a Set Trigger Source Exception and must be Closed.");
+                    //case SCOPE_TRIGGEREDGE_ERROR:
+                    //    throw new Exception("The Oscilloscope threw a Set Trigger Edge Exception and must be Closed.");
+                    //case SCOPE_NOT_VISIBLE:
+                    //    throw new Exception("This Property Cannot be Accessed when the Oscilloscope is in Hide Mode.");
                 }
             }
         }

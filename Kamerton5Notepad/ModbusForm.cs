@@ -154,6 +154,24 @@ namespace KamertonTest
             serial_connect();
             param_Test1.Selected += new TabControlEventHandler(TabControl1_Selected);   // 
 
+          //  this.Text = Assembly.GetExecutingAssembly().GetName().Name + " (Port Closed)";
+
+            // Set oscilloscope captions
+            //oscilloscope123.Caption = "Channels 1, 2 and 3";
+            //oscilloscope456.Caption = "Channels 4, 5 and 6";
+            //oscilloscope789.Caption = "Channels 7, 8 and 9";
+
+            // Refresh serial port list
+          //  RefreshSerialPortList();
+
+            // Select default baud rate
+          //  toolStripMenuItem115200.Checked = true;
+
+            // Setup form update timer
+            //formUpdateTimer.Interval = 50;
+            //formUpdateTimer.Tick += new EventHandler(formUpdateTimer_Tick);
+            //formUpdateTimer.Start();
+
         }
 
         private void TabControl1_Selected(object sender, TabControlEventArgs e)
