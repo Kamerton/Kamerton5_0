@@ -187,7 +187,8 @@ namespace KamertonTest
                         Polltimer1.Enabled = false;
                         Thread.Sleep(100);
                      }
-                    timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
+
+                     timer_byte_set.Enabled = true;                                           // Включить контроль состояния модуля Камертон            
 
                     //   toolStripStatusLabel3.Text = ("Выбрана вкладка 3 Байты обмена с Камертон");
                     break;
@@ -5204,6 +5205,13 @@ namespace KamertonTest
          private void button88_Click(object sender, EventArgs e)
          {
 
+         }
+
+         private void button60_Click_2(object sender, EventArgs e)
+         {
+             Form2 frm = new Form2(this);
+             frm.Show();
+           
          }
 
        

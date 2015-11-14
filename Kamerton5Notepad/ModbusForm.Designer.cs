@@ -3573,6 +3573,7 @@ namespace KamertonTest
             // 
             // button89
             // 
+            this.button89.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button89.Image = ((System.Drawing.Image)(resources.GetObject("button89.Image")));
             this.button89.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button89.Location = new System.Drawing.Point(277, 519);
@@ -3585,6 +3586,7 @@ namespace KamertonTest
             // 
             // button76
             // 
+            this.button76.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button76.Image = ((System.Drawing.Image)(resources.GetObject("button76.Image")));
             this.button76.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button76.Location = new System.Drawing.Point(277, 435);
@@ -3597,6 +3599,7 @@ namespace KamertonTest
             // 
             // button91
             // 
+            this.button91.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button91.Image = ((System.Drawing.Image)(resources.GetObject("button91.Image")));
             this.button91.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button91.Location = new System.Drawing.Point(277, 93);
@@ -3609,6 +3612,7 @@ namespace KamertonTest
             // 
             // button88
             // 
+            this.button88.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button88.Image = ((System.Drawing.Image)(resources.GetObject("button88.Image")));
             this.button88.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button88.Location = new System.Drawing.Point(277, 351);
@@ -3622,6 +3626,7 @@ namespace KamertonTest
             // 
             // button87
             // 
+            this.button87.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button87.Image = ((System.Drawing.Image)(resources.GetObject("button87.Image")));
             this.button87.Location = new System.Drawing.Point(277, 265);
             this.button87.Name = "button87";
@@ -3633,6 +3638,7 @@ namespace KamertonTest
             // 
             // button86
             // 
+            this.button86.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button86.Image = ((System.Drawing.Image)(resources.GetObject("button86.Image")));
             this.button86.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button86.Location = new System.Drawing.Point(277, 179);
@@ -3645,6 +3651,7 @@ namespace KamertonTest
             // 
             // button60
             // 
+            this.button60.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button60.Image = ((System.Drawing.Image)(resources.GetObject("button60.Image")));
             this.button60.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button60.Location = new System.Drawing.Point(277, 7);
@@ -3654,6 +3661,7 @@ namespace KamertonTest
             this.button60.Text = "Гарнитура\r\nинструктора";
             this.button60.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button60.UseVisualStyleBackColor = true;
+            this.button60.Click += new System.EventHandler(this.button60_Click_2);
             // 
             // groupBox10
             // 
@@ -4063,7 +4071,7 @@ namespace KamertonTest
             // 
             this.richTextBox1.Location = new System.Drawing.Point(0, 21);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(149, 362);
+            this.richTextBox1.Size = new System.Drawing.Size(149, 364);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -4082,6 +4090,7 @@ namespace KamertonTest
             // 
             // groupBox18
             // 
+            this.groupBox18.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox18.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox18.BackgroundImage")));
             this.groupBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.groupBox18.Controls.Add(this.label134);
