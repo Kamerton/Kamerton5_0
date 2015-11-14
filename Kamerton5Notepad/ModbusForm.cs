@@ -13,6 +13,11 @@ using System.Threading;
 using Kamerton50_x86;
 using System.Linq;
 using FieldTalk.Modbus.Master;
+using System.Reflection;
+using System.Text.RegularExpressions;
+
+
+
 
 // Функции протокола MODBUS
 
@@ -32,8 +37,17 @@ namespace KamertonTest
     public partial class Form1 : Form
     {
 
-        private MbusMasterFunctions myProtocol;
 
+
+
+
+
+
+
+
+
+
+        private MbusMasterFunctions myProtocol;
         private int slave;
         private int startCoil;
         private int numCoils;
