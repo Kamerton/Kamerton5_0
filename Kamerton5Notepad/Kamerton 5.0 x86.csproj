@@ -32,7 +32,7 @@
     <PublisherName>Децима</PublisherName>
     <SuiteName>Kamerton50_x86</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -142,6 +142,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,6 +209,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Kamerton5Notepad_3_TemporaryKey.pfx" />
@@ -219,8 +228,6 @@
     <Content Include="Resources\audio-headset_5752.png" />
     <Content Include="Resources\audio-input-microphone_5699.png" />
     <Content Include="Resources\audio-input-microphone_9642.png" />
-    <Content Include="Resources\btSetCustom.Image.png" />
-    <Content Include="Resources\btSetSystem.Image.png" />
     <Content Include="Resources\contact_2678.png" />
     <Content Include="Resources\dotnetfx45_full_x86_x64.exe" />
     <Content Include="Resources\kontact_date2_6701.png" />

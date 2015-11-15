@@ -59,19 +59,5 @@ namespace Kamerton50_x86.Properties {
                 resourceCulture = value;
             }
         }
-        
-        internal static System.Drawing.Bitmap btSetCustom_Image {
-            get {
-                object obj = ResourceManager.GetObject("btSetCustom.Image", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap btSetSystem_Image {
-            get {
-                object obj = ResourceManager.GetObject("btSetSystem.Image", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
