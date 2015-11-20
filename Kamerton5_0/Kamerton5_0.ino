@@ -122,12 +122,12 @@ int analog_gg_radio2      = 6;       //
 int analog_ggs            = 7;       //
 int analog_LineL          = 8;       //
 int analog_LineR          = 9;       //
-int analog_FrontL        = 10;       //
-int analog_FrontR        = 11;       //
-int analog_W             = 12;       //
-int analog_13            = 13;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
-int analog_14            = 14;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
-int analog_3_6           = 15;       // Измерение напряжения питания 3,6в. на разъемах платы Камертон
+int analog_FrontL         = 10;       //
+int analog_FrontR         = 11;       //
+int analog_W              = 12;       //
+int analog_13             = 13;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
+int analog_14             = 14;       // Измерение напряжения питания  12в.на разъемах  платы Камертон
+int analog_3_6            = 15;       // Измерение напряжения питания 3,6в. на разъемах платы Камертон
 
 //-----------------------------------------------------------------------------------
 bool portFound = false;
@@ -179,13 +179,13 @@ int regcount_err        = 0;                                     // Переменная д
 SdFat sd;
 File myFile;
 SdFile file;
-Sd2Card card;
-
-uint32_t cardSizeBlocks;
-uint16_t cardCapacityMB;
-
-// cache for SD block
-cache_t cache;
+//Sd2Card card;
+//
+//uint32_t cardSizeBlocks;
+//uint16_t cardCapacityMB;
+//
+//// cache for SD block
+//cache_t cache;
 
 
 // созданы переменные, использующие функции библиотеки SD utility library functions: +++++++++++++++
@@ -194,18 +194,12 @@ cache_t cache;
 const uint8_t spiSpeed = SPI_HALF_SPEED;
 
 
-
-
-
-
-
-
 //++++++++++++++++++++ Назначение имени файла ++++++++++++++++++++++++++++++++++++++++++++
 //const uint32_t FILE_BLOCK_COUNT = 256000;
 // log file base name.  Must be six characters or less.
 #define FILE_BASE_NAME "150101"
 const uint8_t BASE_NAME_SIZE = sizeof(FILE_BASE_NAME) - 1;
-char fileName[13] = FILE_BASE_NAME "00.TXT";
+char fileName[13]            = FILE_BASE_NAME "00.TXT";
 char fileName_p[13];
 char fileName_F[13];
 //------------------------------------------------------------------------------
@@ -214,6 +208,7 @@ char c;  // Для ввода символа с ком порта
 
 // Serial output stream
 ArduinoOutStream cout(Serial);
+char bufferSerial2[128];  
 
 //*********************Работа с именем файла ******************************
 
@@ -250,7 +245,7 @@ bool prer_Kmerton_On = true;                        // Флаг разрешение прерывани
 bool test_repeat     = true;                        // Флаг повторения теста
 volatile bool prer_Kmerton_Run = false;             // Флаг разрешение прерывания Камертон
 #define BUFFER_SIZEK 64                             // Размер буфера Камертон не более 128 байт
-#define BUFFER_SIZEKF 14                             // Размер буфера Камертон не более 128 байт
+#define BUFFER_SIZEKF 128                           // Размер буфера Serial2 не более 128 байт
 unsigned char bufferK;                              // Счетчик количества принимаемых байт
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -277,7 +272,6 @@ const unsigned int adr_Mic_Start_year     PROGMEM      = 40098; // адрес год
 const unsigned int adr_Mic_Start_hour     PROGMEM      = 40099; // адрес час
 const unsigned int adr_Mic_Start_minute   PROGMEM      = 40100; // адрес минута
 const unsigned int adr_Mic_Start_second   PROGMEM      = 40101; // адрес секунда
-
 // Время окончания теста
 const unsigned int adr_Mic_Stop_day       PROGMEM       = 40102; // адрес день
 const unsigned int adr_Mic_Stop_month     PROGMEM       = 40103; // адрес месяц
@@ -438,7 +432,7 @@ const byte  porog_GGS[]    PROGMEM = {
 	//++++++++++++++++++++++++++++++++ Test GGS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 200,		//  0                         // resistor(1, 200); Установить уровень сигнала xx мв
 200,		//  1                         // resistor(2, 200); Установить уровень сигнала xx мв
-	          	//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+				//+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 35, 		//  2                         // measure_vol_min(analog_FrontL,    40280,280,35); уровень сигнала на выходе "Test GGS ** Signal FrontL 
 35, 		//  3                         // measure_vol_min(analog_FrontR,    40281,281,35); уровень сигнала на выходе "Test GGS ** Signal FrontR        
 35, 		//  4                         // measure_vol_min(analog_LineL,     40282,282,35); уровень сигнала на выходе "Test GGS ** Signal LineL 
@@ -448,7 +442,7 @@ const byte  porog_GGS[]    PROGMEM = {
 35, 		//  8                         // measure_vol_min(analog_ggs,       40286,286,35); уровень сигнала на выходе "Test GGS ** Signal GGS    
 35, 		//  9                         // measure_vol_min(analog_gg_radio1, 40287,287,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio1   
 35, 		//  10                        // measure_vol_min(analog_gg_radio2, 40288,288,35); уровень сигнала на выходе "Test GGS ** Signal GG Radio2
-               //++++++++++++++++++++++++++++++++++ Сигнал подан на вход GGS ++++++++++++++++++++++++
+			   //++++++++++++++++++++++++++++++++++ Сигнал подан на вход GGS ++++++++++++++++++++++++
 40,	    	// 11    					  //measure_vol_max(analog_FrontL,    40290,290,40); уровень сигнала на выходе "Test GGS ** Signal FrontL                                   ON  - ";
 40,	    	// 12  						  //measure_vol_max(analog_FrontR,    40291,291,40); уровень сигнала на выходе "Test GGS ** Signal FrontR                                   ON  - ";
 35,			// 13						  //measure_vol_min(analog_LineL,     40282,282,35); уровень сигнала на выходе "Test GGS ** Signal LineL                                    OFF - ";
@@ -474,7 +468,7 @@ const byte  porog_Radio1[]    PROGMEM = {
 
 200,		// 0							//resistor(1, 250);  Установить уровень сигнала xx мв
 200,		// 1							//resistor(2, 250);  Установить уровень сигнала xx мв
-                 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+				 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 35,			// 2							//measure_vol_min(analog_FrontL,    40300,300,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontL                                OFF - ";
 35,			// 3							//measure_vol_min(analog_FrontR,    40301,301,35); уровень сигнала на выходе "Test Radio1 ** Signal FrontR                                OFF - ";
 35,			// 4							//measure_vol_min(analog_LineL,     40302,302,35); уровень сигнала на выходе "Test Radio1 ** Signal LineL                                 OFF - ";
@@ -501,7 +495,7 @@ const byte  porog_Radio2[]    PROGMEM = {
 
 200,		// 0							//resistor(1, 250);  Установить уровень сигнала xx мв
 200,		// 1							//resistor(2, 250);  Установить уровень сигнала xx мв
-                 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+				 //+++++++++++++++++++++++++++++++++++   Проверка отсутствия сигнала на выходах +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 35,			// 2							//measure_vol_min(analog_FrontL,    40310,310,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 35,			// 3							//measure_vol_min(analog_FrontR,    40311,311,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
 35,			// 4							//measure_vol_min(analog_LineL,     40312,312,35); уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
@@ -511,7 +505,7 @@ const byte  porog_Radio2[]    PROGMEM = {
 35,			// 8							//measure_vol_min(analog_ggs,       40316,316,35); уровень сигнала на выходе "Test Radio2 ** Signal GGS                                   OFF - ";
 35,			// 9							//measure_vol_min(analog_gg_radio1, 40317,317,35); уровень сигнала на выходе "Test Radio2 ** Signal GG Radio1                             OFF - ";
 35,			// 10							//measure_vol_min(analog_gg_radio2, 40318,318,35); уровень сигнала на выходе "Test Radio2 ** Signal GG Radio2                             OFF - ";
-                    //++++++++++++++++++++++++++++++++++ Сигнал подан на вход  Radio2 ++++++++++++++++++++++++
+					//++++++++++++++++++++++++++++++++++ Сигнал подан на вход  Radio2 ++++++++++++++++++++++++
 35,			// 11							//measure_vol_min(analog_FrontL,    40310,310,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontL                                OFF - ";
 35,			// 12							//measure_vol_min(analog_FrontR,    40311,311,35); уровень сигнала на выходе "Test Radio2 ** Signal FrontR                                OFF - ";
 35,			// 13							//measure_vol_min(analog_LineL,     40312,312,35); уровень сигнала на выходе "Test Radio2 ** Signal LineL                                 OFF - ";
@@ -1050,11 +1044,11 @@ void serialEvent3()
 //fileName_F
 void serialEvent2()
 {
-		
+	/*
 	if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
 		  {
 			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
-			unsigned char buffer = 0;                      // Установить в начало чтения буфера
+			unsigned char buffer_count = 0;                      // Установить в начало чтения буфера
 
 			while (Serial2.available())
 				{
@@ -1062,25 +1056,85 @@ void serialEvent2()
 					 Serial2.read();
 				  else                                     // Размер буфера в норме, считать информацию
 					{
-					if (bufferK == BUFFER_SIZEKF)           // Проверить размер буфера
+					if (buffer_count == BUFFER_SIZEKF)           // Проверить размер буфера
 						{
 							overflowFlag = 1;              // Установить флаг превышения размера буфера
 						}
-							fileName_F[buffer] = Serial2.read(); 
-						buffer++;
+							fileName_F[buffer_count] = Serial2.read(); 
+						buffer_count++;
 					}
 				}
-
 		   }
-
 	 else 
 		{
 	
 		}
+
+//	int len = readString(buffer, sizeof(buffer), '\r');
+
 	Serial.println(fileName_F);
-	
+	*/
 //	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
 }
+int readString(char *buffer, int max_len, int terminator)
+{
+  int pos = 0;
+
+  while (true) {
+	if (Serial2.available() > 0) 
+	{
+	  int readch = Serial2.read();
+	  if (readch == terminator) 
+	  {
+		buffer[pos] = '\0';
+		break;
+	  }
+	  else if (readch != '\n' && pos < max_len-1) 
+	  {  // Ignore new-lines
+		buffer[pos++] = readch;
+		fileName_F[pos++] = readch;
+	  }
+	}
+  }
+  return pos;
+}
+
+void read_Serial2()
+{
+	if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
+		  {
+			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+			unsigned char buffer_count = 0;                      // Установить в начало чтения буфера
+
+			while (Serial2.available())
+				{
+				  if (overflowFlag)                        // Если буфер переполнен - очистить
+					 Serial2.read();
+				  else                                     // Размер буфера в норме, считать информацию
+					{
+					if (buffer_count == BUFFER_SIZEKF)           // Проверить размер буфера
+						{
+							overflowFlag = 1;              // Установить флаг превышения размера буфера
+						}
+							 bufferSerial2[buffer_count] = Serial2.read(); 
+						buffer_count++;
+					}
+				}
+		   }
+	 else 
+		{
+	
+		}
+	
+	for (int i = 0; i < 13; i++)
+	{
+        fileName_F[i] = bufferSerial2[i];
+    }
+
+	Serial.println(bufferSerial2);
+	Serial.println(fileName_F);
+}
+
 void prer_Kamerton()                                          // Произвести обмен информации с модулем Камертон
 {
 //	clear_serial1();
@@ -1643,7 +1697,7 @@ void controlFileName()
  
   if (temp_file_name == 0)
   {
-     regBank.set(adr_reg_file_name,temp_file_name);   
+	 regBank.set(adr_reg_file_name,temp_file_name);   
   }
   else
   {
@@ -1744,7 +1798,7 @@ void FileClose()
 			Serial.println(" doesn't exist.");  
 			regBank.set(123,1);                              // Флаг ошибки  закрытия файла
 		}
-  	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 }
 
@@ -1818,7 +1872,6 @@ void preob_num_str() // Программа формирования имени файла, состоящего из текуще
 	//char* strcpy(char* fileName_p, const char* fileName);
 	//Serial.println(fileName_p);
 }
-
 
 void control_command()
 {
@@ -1921,7 +1974,7 @@ void control_command()
 				Reg_count_clear();			                                        // Сброс счетчиков ошибок                    
 				break;
 		case 17:
-			    test_power();                                                    	// Проверить напряжение  питания
+				test_power();                                                    	// Проверить напряжение  питания
 				wdt_reset();
 				break;
 		case 18:
@@ -1931,33 +1984,33 @@ void control_command()
 		case 19:
 				test_video();				              //
 				break;
-        case 20:                                           // Записать уровни порогов заводские
-			    default_mem_porog();
+		case 20:                                           // Записать уровни порогов заводские
+				default_mem_porog();
 				break;
-        case 21:                                           // 	21 - Записать уровни порогов пользовательские
+		case 21:                                           // 	21 - Записать уровни порогов пользовательские
 				set_mem_porog();
 				break;
-        case 22:                                           // 22 - Получить уровни порогов пользовательские
+		case 22:                                           // 22 - Получить уровни порогов пользовательские
 				read_mem_porog();
 				break;
-        case 23:   
+		case 23:   
 				controlFileName();                         // Контроль имени файла
 				break;
-        case 24:   
+		case 24:   
 				 set_SD();                                 // Проверка SD памяти
-                break;
-        case 25:   
+				break;
+		case 25:   
 				send_file_PC();                                 // 
-                break;
+				break;
 		case 26:   
 				load_list_files();  
-	            break;
+				break;
 		case 27:   
-		        file_del_SD();
-		        break;
-         case 28:   
-				//;
-		        break;
+				file_del_SD();
+				break;
+		 case 28:   
+				test_RS232();
+				break;
 		
 		default:
 
@@ -4352,7 +4405,7 @@ void test_GG_Radio1()
 	measure_vol_min(analog_gg_radio2, 40308,308,i2c_eeprom_read_byte(deviceaddress,adr_porog_Radio1 + 19));                                // Измерить уровень сигнала на выходе "Test Radio1 ** Signal GG Radio2                             OFF - ";
 	regBank.set(4,0);                                                               // Реле RL3 Звук  LFE  "Маг."
 	UpdateRegs();     
-    mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
+	mcp_Analog.digitalWrite(Front_led_Blue, HIGH); 
 	delay(100);
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 }
@@ -5426,7 +5479,7 @@ void test_MTT_on()
 
 void measure_vol_min(int istochnik, unsigned int adr_count, int adr_flagErr, unsigned int porogV)
 {
-	    mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
+		mcp_Analog.digitalWrite(Front_led_Blue, LOW); 
 		int _istochnik          = istochnik;
 		unsigned int _adr_count = adr_count;
 		int _adr_flagErr        = adr_flagErr;
@@ -5783,7 +5836,7 @@ void measure_volume(int analog)
 	 unsigned long	 volume_maxx = 0;
 	 unsigned long   volume_minx = 0;
 	 wdt_reset();
-     int stix=150;
+	 int stix=150;
 	 for (int sti = 0;sti<= stix; sti++)
 	  {
 		volume_max  = 0;
@@ -5927,6 +5980,12 @@ void i2c_test1()
 	}
 	
 }
+
+void test_RS232()
+{
+
+}
+
 void default_mem_porog()  // Запись заводских установок уровней порога
 {
  byte por_buffer[30] ;
@@ -5934,7 +5993,7 @@ void default_mem_porog()  // Запись заводских установок уровней порога
  
   for (int k = 0; k < 19; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_instruktor)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_instruktor)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_instruktor+k,por_buffer[k]);
   }
  
@@ -5942,7 +6001,7 @@ void default_mem_porog()  // Запись заводских установок уровней порога
  
   for (int k = 0; k < 19; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_dispatcher)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_dispatcher)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_dispatcher+k,por_buffer[k]);
   }
 
@@ -5950,14 +6009,14 @@ void default_mem_porog()  // Запись заводских установок уровней порога
 
   for (int k = 0; k < 21; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_MTT)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_MTT)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_MTT+k,por_buffer[k]);
   }
  
 // ---------------- porog_GGS
   for (int k = 0; k < 29; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_GGS)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_GGS)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_GGS+k,por_buffer[k]);
 
 
@@ -5971,21 +6030,21 @@ void default_mem_porog()  // Запись заводских установок уровней порога
   // ---------------- adr_porog_Radio1
   for (int k = 0; k < 20; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Radio1)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Radio1)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_Radio1+k,por_buffer[k]);
   }
  
  // ---------------- adr_porog_Radio2
   for (int k = 0; k < 20; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Radio2)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Radio2)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_Radio2+k,por_buffer[k]);
   }
  
   // ---------------- adr_porog_Microphone
    for (int k = 0; k < 20; k++)
   {
-    por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Microphone)+k);
+	por_buffer[k] = pgm_read_byte(pgm_get_far_address(porog_Microphone)+k);
 	i2c_eeprom_write_byte(deviceaddress, adr_porog_Microphone+k,por_buffer[k]);
   }
  
@@ -6014,15 +6073,15 @@ void set_mem_porog()
 	for (int i = 0; i < _step_mem;i++)                            // Копирование блока памяти в регистры.        
 		{
 			_u_porog = regBank.get(_adr_reg+i);
-	       // разбираем _u_porog на byte
-		   	hi=highByte(_u_porog);
+		   // разбираем _u_porog на byte
+			hi=highByte(_u_porog);
 			low=lowByte(_u_porog);
 		//	// тут мы эти hi,low можем сохранить EEPROM
 			i2c_eeprom_write_byte(deviceaddress,_adr_mem+i_k, hi); 
 			i_k++;
 			i2c_eeprom_write_byte(deviceaddress,_adr_mem+i_k, low); 
 			i_k++;
-	    }
+		}
 	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(200);
 }
@@ -6047,7 +6106,7 @@ void read_mem_porog()
 		{
 
 		  hi  = i2c_eeprom_read_byte(deviceaddress,_adr_mem+i_k);   // 
-	      i_k++;
+		  i_k++;
 		  low = i2c_eeprom_read_byte(deviceaddress,_adr_mem+i_k);
 		  i_k++;
 		   _u_porog = (hi<<8) | low;                              // собираем как "настоящие программеры"
@@ -6118,6 +6177,8 @@ void read_mem_regBank(int adr_mem , int step_mem)
 }
 void send_file_PC()
 {
+	delay(1000);
+	read_Serial2();
  /* Serial.println("fileName");
  15110201.TXT
 
@@ -6149,17 +6210,17 @@ void send_file_PC()
   //else
   //{
 	   // read from the file until there's nothing else in it:
-    while (myFile.available()) 
+	while (myFile.available()) 
 	{
-      Serial2.write(myFile.read());
-    }
-    // close the file:
+	  Serial2.write(myFile.read());
+	}
+	// close the file:
    //  myFile.close();
 
    //}
 
 
-  	regBank.set(adr_control_command,0);                                             // Завершить программу    
+	regBank.set(adr_control_command,0);                                             // Завершить программу    
 	delay(100);
 }
 
@@ -6678,44 +6739,44 @@ modbus registers follow the following format
 	regBank.add(40131);  //
 	regBank.add(40132);  //  
 	regBank.add(40133);  //
-    regBank.add(40134);  //  
+	regBank.add(40134);  //  
 	regBank.add(40135);  //
-    regBank.add(40136);  //  
+	regBank.add(40136);  //  
 	regBank.add(40137);  //
-    regBank.add(40138);  //  
+	regBank.add(40138);  //  
 	regBank.add(40139);  //
 
 	regBank.add(40140);  //  
 	regBank.add(40141);  //
 	regBank.add(40142);  //  
 	regBank.add(40143);  //
-    regBank.add(40144);  //  
+	regBank.add(40144);  //  
 	regBank.add(40145);  //
-    regBank.add(40146);  //  
+	regBank.add(40146);  //  
 	regBank.add(40147);  //
-    regBank.add(40148);  //  
+	regBank.add(40148);  //  
 	regBank.add(40149);  //
 
 	regBank.add(40150);  //  
 	regBank.add(40151);  //
 	regBank.add(40152);  //  
 	regBank.add(40153);  //
-    regBank.add(40154);  //  
+	regBank.add(40154);  //  
 	regBank.add(40155);  //
-    regBank.add(40156);  //  
+	regBank.add(40156);  //  
 	regBank.add(40157);  //
-    regBank.add(40158);  //  
+	regBank.add(40158);  //  
 	regBank.add(40159);  //
 
 	regBank.add(40160);  //  
 	regBank.add(40161);  //
 	regBank.add(40162);  //  
 	regBank.add(40163);  //
-    regBank.add(40164);  //  
+	regBank.add(40164);  //  
 	regBank.add(40165);  //
-    regBank.add(40166);  //  
+	regBank.add(40166);  //  
 	regBank.add(40167);  //
-    regBank.add(40168);  //  
+	regBank.add(40168);  //  
 	regBank.add(40169);  //
 
 
@@ -7114,7 +7175,7 @@ void set_serial()
 	   Serial.print(".");
 	   clear_serial3();
 	   delay(500);
- 	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
+	   mcp_Analog.digitalWrite(Front_led_Red, blink_red); 
 	   mcp_Analog.digitalWrite(Front_led_Blue, !blink_red); 
 	   blink_red = !blink_red;
 	   digitalWrite(ledPin13,!digitalRead(ledPin13));
@@ -7193,7 +7254,7 @@ void set_SD()
 			   // Serial.println("example.txt doesn't exist.");
 				regBank.set(125,false); 
 			  }
-	    	}
+			}
 
 	UpdateRegs(); 
 	delay(100);
@@ -7224,7 +7285,7 @@ void file_del_SD()
 			   // Serial.println("example.txt doesn't exist.");
 				//regBank.set(125,false); 
 			  }
-	    	}
+			}
 
 	UpdateRegs(); 
 	delay(100);
@@ -7327,7 +7388,7 @@ void setup()
 	{
 	   regBank.set(i,0);   
 	} 
-    Serial.println("Initializing SD card...");
+	Serial.println("Initializing SD card...");
 	pinMode(49, OUTPUT);//    заменить 
 	if (!sd.begin(chipSelect)) 
 		{
