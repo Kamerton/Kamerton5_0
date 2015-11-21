@@ -1045,11 +1045,34 @@ void serialEvent3()
 void serialEvent2()
 {
 	/*
+<<<<<<< .mine
+	//if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
+	//	  {
+	//		unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+	//		unsigned char buffer = 0;                      // Установить в начало чтения буфера
+=======
 	if (Serial2.available())                             // есть что-то проверить? Есть данные в буфере?
 		  {
 			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
 			unsigned char buffer_count = 0;                      // Установить в начало чтения буфера
+>>>>>>> .r274
 
+<<<<<<< .mine
+	//		while (Serial2.available())
+	//			{
+	//			  if (overflowFlag)                        // Если буфер переполнен - очистить
+	//				 Serial2.read();
+	//			  else                                     // Размер буфера в норме, считать информацию
+	//				{
+	//				if (bufferK == BUFFER_SIZEKF)           // Проверить размер буфера
+	//					{
+	//						overflowFlag = 1;              // Установить флаг превышения размера буфера
+	//					}
+	//						fileName_F[buffer] = Serial2.read(); 
+	//					buffer++;
+	//				}
+	//			}
+=======
 			while (Serial2.available())
 				{
 				  if (overflowFlag)                        // Если буфер переполнен - очистить
@@ -1064,7 +1087,16 @@ void serialEvent2()
 						buffer_count++;
 					}
 				}
-		   }
+>>>>>>> .r274
+	//	   }
+<<<<<<< .mine
+	// else 
+	//	{
+	//
+	//	}
+	//Serial.println(fileName_F);
+	//
+=======
 	 else 
 		{
 	
@@ -1074,6 +1106,7 @@ void serialEvent2()
 
 	Serial.println(fileName_F);
 	*/
+>>>>>>> .r274
 //	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
 }
 int readString(char *buffer, int max_len, int terminator)
@@ -2000,6 +2033,8 @@ void control_command()
 				 set_SD();                                 // Проверка SD памяти
 				break;
 		case 25:   
+			 //   Serial.println(test_n);	
+			    readFileName();
 				send_file_PC();                                 // 
 				break;
 		case 26:   
@@ -6175,14 +6210,48 @@ void read_mem_regBank(int adr_mem , int step_mem)
 	  regBank.set(40130+i,i2c_eeprom_read_byte(deviceaddress,_adr_mem +i));   
 	}
 }
+
+void readFileName()
+{
+	
+	if (Serial2.available())                               // есть что-то проверить? Есть данные в буфере?
+		  {
+			unsigned char overflowFlag = 0 ;               // Флаг превышения размера буфера
+			unsigned char buffer = 0;                      // Установить в начало чтения буфера
+
+			while (Serial2.available())
+				{
+				  if (overflowFlag)                        // Если буфер переполнен - очистить
+					 Serial2.read();
+				  else                                     // Размер буфера в норме, считать информацию
+					{
+					if (bufferK == BUFFER_SIZEKF)           // Проверить размер буфера
+						{
+							overflowFlag = 1;              // Установить флаг превышения размера буфера
+						}
+							fileName_F[buffer] = Serial2.read(); 
+						buffer++;
+					}
+				}
+
+		   }
+
+	 else 
+		{
+	
+		}
+	Serial.println(fileName_F);
+	
+//	wdt_reset();  // Сброс сторожевого таймера при наличии связи с ПК
+}
 void send_file_PC()
 {
 	delay(1000);
 	read_Serial2();
  /* Serial.println("fileName");
- 15110201.TXT
+ 15110201.TXT*/
 
- Serial.println(fileName);*/
+  Serial.println(fileName_F);
   myFile = sd.open(fileName_F);
  // myFile = sd.open(fileName);
  // if (myFile) 

@@ -152,6 +152,7 @@ void set_mem_porog();
 void read_mem_porog();
 void set_mem_regBank(int adr_mem , int step_mem);
 void read_mem_regBank(int adr_mem , int step_mem);
+void readFileName();
 void send_file_PC();
 void setup_mcp();
 void setup_resistor();
