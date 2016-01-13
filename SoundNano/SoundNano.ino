@@ -119,21 +119,21 @@ void step_sound2()
 
 void menu()
 {
-	if ((Kn1 != 0) & (Kn2 != 0) & (Kn3 != 0)) var = 0;
-	if ((Kn1 == 0) & (Kn2 != 0) & (Kn3 != 0)) var = 1;
-	if ((Kn1 != 0) & (Kn2 == 0) & (Kn3 != 0)) var = 2;
-	if ((Kn1 != 0) & (Kn2 != 0) & (Kn3 == 0)) var = 3;
-	//if (Kn1 == 0)  var = 1;
-	//if (Kn2 == 0)  var = 2;
-	//if (Kn3 == 0)  var = 3;
+	//if ((Kn1 != 0) & (Kn2 != 0) & (Kn3 != 0)) var = 0;
+	//if ((Kn1 == 0) & (Kn2 != 0) & (Kn3 != 0)) var = 1;
+	//if ((Kn1 != 0) & (Kn2 == 0) & (Kn3 != 0)) var = 2;
+	//if ((Kn1 != 0) & (Kn2 != 0) & (Kn3 == 0)) var = 3;
+//	if (Kn1 == 0)  var = 1;
+	//if (Kn2 != 0)  var = 2;
+	//if (Kn3 != 0)  var = 3;
 	//if ((Kn1 != 0) & (Kn2 != 0) & (Kn3 == 0)) var = 3;
 
 
-	Serial.println(var);
-	if (var != _var)
+//	Serial.println(var);
+  if (Kn1 == 0)
 	{
-		_var = var;
-		Serial.println(_var);
+		//_var = var;
+		Serial.println("ok");
 		/*
 		switch (_var) 
 		{
@@ -152,6 +152,12 @@ void menu()
 		}
 		*/
 	}
+	else
+	{
+	//var = 0;
+	
+	}
+
 }
 
 
@@ -168,9 +174,9 @@ void setup()
   pinMode(Kn3, INPUT);
   pinMode(Out1,OUTPUT);
 
-  //digitalWrite(Kn1, HIGH);
-  //digitalWrite(Kn2, HIGH);
-  //digitalWrite(Kn3, HIGH);
+  digitalWrite(Kn1, HIGH);
+  digitalWrite(Kn2, HIGH);
+  digitalWrite(Kn3, HIGH);
   digitalWrite(Out1, HIGH);
   // initialize serial communication
   AD9850.set_frequency(0,0,2000);    //set power=UP, phase=0, 2kHz frequency 
@@ -182,6 +188,6 @@ void loop()
 {
 	//step_sound();
 	menu();
- //   delay(10);
+    delay(100);
 
 }
