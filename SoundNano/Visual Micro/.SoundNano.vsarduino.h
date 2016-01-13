@@ -13,7 +13,9 @@
 #define __AVR_ATmega328p__
 #define __AVR_ATmega328P__
 #define F_CPU 16000000L
-#define ARDUINO 160
+#define ARDUINO 165
+#define ARDUINO_AVR_NANO
+#define ARDUINO_ARCH_AVR
 #define __cplusplus
 #define __inline__
 #define __asm__(x)
@@ -82,10 +84,10 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 
-void step_sound();
+void step_sound1();
+void step_sound2();
 void fix_sound1();
 void fix_sound2();
-void step_sound2();
 void menu();
 //
 //
