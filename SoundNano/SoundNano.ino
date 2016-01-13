@@ -56,14 +56,20 @@ void step_sound()
   digitalWrite(led13, LOW); 
   for (int i=frequency_max;i >  frequency_start; i=i-frequency_step)
 			{
+			
 				 AD9850.set_frequency(0,0,i);    //set power=UP, phase=0, i= frequency
 				 delay(5); 
 			}
 }
 void fix_sound1()
 {
- AD9850.set_frequency(0,0,1000);    //set power=UP, phase=0, 1000= frequency
- digitalWrite(Out1, LOW); 
+	AD9850.reset();                                  //reset module
+	delay(500);
+	AD9850.powerDown();                              //set signal output to LOW
+	delay(100);
+	AD9850.set_frequency(0,0,1000);                   //set power=UP, phase=0, 1kHz frequency
+	delay(1000); 
+    digitalWrite(Out1, LOW); 
 }
 
 void fix_sound2()
